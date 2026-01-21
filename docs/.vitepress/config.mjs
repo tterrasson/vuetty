@@ -1,10 +1,11 @@
 import { defineConfig } from 'vitepress'
 
 export default defineConfig({
+  base: '/vuetty/',
   title: "Vuetty",
   description: "A Vue.js Custom Renderer for Terminal User Interfaces",
   head: [
-    ['link', { rel: 'icon', href: '/images/logo-small.webp' }]
+    ['link', { rel: 'icon', href: '/vuetty/images/logo-small.webp' }]
   ],
   themeConfig: {
     logo: '/images/logo-small.webp',

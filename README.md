@@ -4,7 +4,7 @@ A Vue.js custom renderer for building Terminal User Interfaces (TUIs). Vuetty br
 
 ## Documentation
 
-For detailed documentation, component references, and advanced usage, visit the [full documentation](https://github.com/tterrasson/vuetty).
+For detailed documentation, component references, and advanced usage, visit the [full documentation](https://tterrasson.github.io/vuetty/).
 
 ## Features
 
