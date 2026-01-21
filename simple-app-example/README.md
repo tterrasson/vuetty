@@ -9,7 +9,6 @@ A minimal barebone starter application for building Terminal User Interfaces (TU
 - **Pinia** - State management
 - **Bun** - Fast JavaScript runtime and bundler
 - **Rollup** - Module bundler for production builds
-- **Hot Reload** - Fast development with Bun loader
 
 ## Project Structure
 
@@ -136,7 +135,6 @@ export const useCounterStore = defineStore('counter', () => {
 ### Development (Bun)
 
 - Uses `bunfig.dev.toml` to preload `vuetty/bun-loader`
-- Supports `.vue` file hot reloading
 - Fast startup and execution
 
 ### Production (Rollup)
@@ -159,7 +157,3 @@ export const useCounterStore = defineStore('counter', () => {
 - Implement navigation between different views/pages
 - Add more complex layouts and interactions
 - Integrate with external APIs or data sources
-
-## License
-
-MIT

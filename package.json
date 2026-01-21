@@ -3,39 +3,48 @@
   "version": "0.1.0",
   "description": "Build reactive Terminal User Interfaces using Vue.js",
   "homepage": "https://github.com/tterrasson/vuetty",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tterrasson/vuetty.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tterrasson/vuetty/issues"
+  },
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
-  "types": "./src/index.d.ts",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "types": "./src/index.d.ts",
+      "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
       "default": "./dist/index.js"
     },
     "./rollup-plugin": {
-      "types": "./src/rollup-plugin/index.d.ts",
+      "types": "./dist/rollup-plugin/index.d.ts",
       "import": "./dist/rollup-plugin/index.js",
       "default": "./dist/rollup-plugin/index.js"
     },
     "./bun-loader": {
-      "types": "./src/build/bun-loader.d.ts",
-      "import": "./src/build/bun-loader.js",
-      "default": "./src/build/bun-loader.js"
+      "types": "./dist/build/bun-loader.d.ts",
+      "import": "./dist/build/bun-loader.js",
+      "default": "./dist/build/bun-loader.js"
     },
     "./loader": {
-      "types": "./src/build/bun-loader.d.ts",
-      "import": "./src/build/bun-loader.js",
-      "default": "./src/build/bun-loader.js"
+      "types": "./dist/build/bun-loader.d.ts",
+      "import": "./dist/build/bun-loader.js",
+      "default": "./dist/build/bun-loader.js"
     }
   },
   "files": [
     "dist",
-    "src"
+    "README.md",
+    "LICENSE"
   ],
   "scripts": {
-    "build": "npm run clean && npm run build:rollup && npm run build:debug-assets",
+    "build": "bun run clean && bun run build:rollup && bun run build:types && bun run build:debug-assets",
     "build:rollup": "rollup -c rollup.config.js",
+    "build:types": "cp src/index.d.ts dist/ && mkdir -p dist/rollup-plugin && cp src/rollup-plugin/index.d.ts dist/rollup-plugin/ && mkdir -p dist/build && cp src/build/bun-loader.d.ts src/build/bun-loader.js dist/build/",
     "build:debug-assets": "bun run scripts/build-debug.js",
     "clean": "rm -rf ./dist && mkdir -p ./dist",
     "dev": "bun run examples/run.js",
