@@ -2,7 +2,7 @@
   "name": "vuetty",
   "version": "0.1.0",
   "description": "Build reactive Terminal User Interfaces using Vue.js",
-  "homepage": "https://github.com/tterrasson/vuetty",
+  "homepage": "https://tterrasson.github.io/vuetty/",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tterrasson/vuetty.git"
@@ -42,9 +42,9 @@
     "LICENSE"
   ],
   "scripts": {
-    "build": "bun run clean && bun run build:rollup && bun run build:types && bun run build:debug-assets",
+    "build": "bun run scripts/build.js",
     "build:rollup": "rollup -c rollup.config.js",
-    "build:types": "cp src/index.d.ts dist/ && mkdir -p dist/rollup-plugin && cp src/rollup-plugin/index.d.ts dist/rollup-plugin/ && mkdir -p dist/build && cp src/build/bun-loader.d.ts src/build/bun-loader.js dist/build/",
+    "build:types": "bun run scripts/build-types.js",
     "build:debug-assets": "bun run scripts/build-debug.js",
     "clean": "rm -rf ./dist && mkdir -p ./dist",
     "dev": "bun run examples/run.js",
