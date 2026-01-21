@@ -1,0 +1,28 @@
+{
+  "name": "simple-app-example",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "A minimal barebone Vuetty application starter",
+  "module": "src/index.js",
+  "scripts": {
+    "dev": "bun --config=bunfig.dev.toml run src/index.js",
+    "build": "rollup -c rollup.config.js",
+    "compile": "bun scripts/build-compile.js",
+    "start": "bun dist/bundle.js",
+    "clean": "rm -rf dist .*.bun-build"
+  },
+  "dependencies": {
+    "pinia": "^3.0.4",
+    "vue": "^3.5.0",
+    "vuetty": "^0.1.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-alias": "^6.0.0",
+    "@rollup/plugin-commonjs": "^29.0.0",
+    "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-node-resolve": "^16.0.3",
+    "@rollup/plugin-replace": "^6.0.3",
+    "@types/bun": "latest",
+    "rollup": "^4.55.1"
+  }
+}

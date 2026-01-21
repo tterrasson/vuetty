@@ -1,0 +1,81 @@
+/* Root variables for light theme (default) */
+:root {
+  /* Color palette */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f5f5f5;
+  --bg-tertiary: #e8e8e8;
+  --bg-panel: #fafafa;
+
+  --text-primary: #1a1a1a;
+  --text-secondary: #2a2a2a;
+  --text-muted: #5a5a5a;
+
+  --border-color: #dbdbdb;
+  --border-panel: #d0d0d0;
+
+  --accent-primary: #3273dc;
+  --accent-hover: #276cda;
+
+  /* Event category colors */
+  --event-render: #00d1b2;
+  --event-input: #f39c12;
+  --event-console: #e67e22;
+  --event-layout: #3498db;
+  --event-viewport: #9b59b6;
+  --event-vue: #e74c3c;
+  --event-vuetty: #00cec9;
+
+  /* Status colors */
+  --status-connected: #00a854;
+  --status-error: #f14668;
+  --status-warn: #ffdd57;
+
+  /* Console colors */
+  --console-log: #363636;
+  --console-error: #f14668;
+  --console-warn: #ffdd57;
+
+  /* Scrollbar */
+  --scrollbar-track: #f5f5f5;
+  --scrollbar-thumb: #b5b5b5;
+  --scrollbar-hover: #999999;
+}
+
+/* Dark theme */
+[data-theme="dark"] {
+  --bg-primary: #1e1e1e;
+  --bg-secondary: #2d2d30;
+  --bg-tertiary: #252526;
+  --bg-panel: #252526;
+
+  --text-primary: #f0f0f0;
+  --text-secondary: #e0e0e0;
+  --text-muted: #a0a0a0;
+
+  --border-color: #3e3e42;
+  --border-panel: #3e3e42;
+
+  --accent-primary: #0e639c;
+  --accent-hover: #1177bb;
+
+  /* Event category colors (VS Code Dark inspired) */
+  --event-render: #4ec9b0;
+  --event-input: #dcdcaa;
+  --event-console: #ce9178;
+  --event-layout: #569cd6;
+  --event-viewport: #c586c0;
+  --event-vue: #f48771;
+  --event-vuetty: #4fc1ff;
+
+  --status-connected: #5fdc8b;
+  --status-error: #f48771;
+  --status-warn: #dcdcaa;
+
+  --console-log: #d4d4d4;
+  --console-error: #f48771;
+  --console-warn: #dcdcaa;
+
+  --scrollbar-track: #1e1e1e;
+  --scrollbar-thumb: #424242;
+  --scrollbar-hover: #4e4e4e;
+}

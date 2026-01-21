@@ -1,0 +1,9 @@
+# bunfig.toml - Bun configuration file
+
+# Preload Bun plugin for .vue files (development/examples only)
+# For production builds, users should use the Rollup plugin
+preload = ["./src/build/bun-loader.js"]
+
+[test]
+# Setup file to run before all tests
+preload = ["./tests/setup.js"]

@@ -1,0 +1,265 @@
+# Checkbox
+
+An interactive multi-select checkbox list component that allows users to select one or more options from a list. Supports keyboard navigation, custom styling, and responsive layouts.
+
+## Basic Usage
+
+Checkbox supports both vertical and horizontal layouts:
+
+```vue
+<template>
+  <Col :gap="2">
+    <!-- Vertical layout (default) -->
+    <Checkbox
+      v-model="selectedFruits"
+      label="Select your favorite fruits:"
+      :options="fruitOptions"
+      :height="5"
+    />
+
+    <!-- Show selected -->
+    <Box :padding="1">
+      <TextBox>Selected: {{ selectedFruits.join(', ') }}</TextBox>
+    </Box>
+
+    <!-- Horizontal layout -->
+    <Checkbox
+      v-model="notifications"
+      label="Notification preferences:"
+      :options="notificationOptions"
+      direction="horizontal"
+    />
+
+    <!-- With disabled options -->
+    <Checkbox
+      v-model="selectedRoles"
+      label="Assign user roles:"
+      :options="roleOptions"
+      :height="6"
+    />
+  </Col>
+</template>
+
+<script setup>
+import { ref } from 'vue';
+import { Checkbox, Box, TextBox, Col } from 'vuetty';
+
+const selectedFruits = ref(['apple']);
+const fruitOptions = [
+  { label: 'Apple', value: 'apple' },
+  { label: 'Banana', value: 'banana' },
+  { label: 'Orange', value: 'orange' },
+  { label: 'Grape', value: 'grape' },
+  { label: 'Mango', value: 'mango' }
+];
+
+const notifications = ref(['email']);
+const notificationOptions = [
+  { label: 'Email', value: 'email' },
+  { label: 'SMS', value: 'sms' },
+  { label: 'Push', value: 'push' }
+];
+
+const selectedRoles = ref(['user']);
+const roleOptions = [
+  { label: 'Administrator', value: 'admin', disabled: true },
+  { label: 'Moderator', value: 'moderator' },
+  { label: 'User', value: 'user' },
+  { label: 'Guest', value: 'guest' }
+];
+</script>
+```
+
+## Props
+
+### Model
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `modelValue` | `Array` | `[]` | Array of selected values (v-model) |
+
+### Options
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `options` | `Array` | `[]` (required) | Array of option objects. Each option must have `label` and `value` properties. Can also include `disabled: true` to disable individual options. |
+
+**Option Object Structure:**
+```javascript
+{
+  label: 'Display Label',    // Text shown to user
+  value: 'option-value',     // Value used in modelValue
+  disabled: false            // Optional: mark as non-selectable
+}
+```
+
+### Display
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `label` | `String` | `''` | Label displayed above the checkbox list |
+| `direction` | `String` | `'vertical'` | Layout direction: `'vertical'` or `'horizontal'` |
+| `height` | `Number` | `10` | Number of visible items (vertical mode only) |
+| `width` | `Number` | `null` | Component width in characters (null = auto) |
+| `itemSpacing` | `Number` | `2` | Spacing between items in characters |
+
+### Layout
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `flex` | `Number \| String` | `undefined` | Flex shorthand value |
+| `flexGrow` | `Number` | `undefined` | Flex grow factor |
+| `flexShrink` | `Number` | `undefined` | Flex shrink factor |
+| `flexBasis` | `Number \| String` | `undefined` | Flex basis value |
+
+### State
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `disabled` | `Boolean` | `false` | Disable the entire checkbox component |
+
+### Styling
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `color` | `String` | `undefined` | Text color (supports named colors and hex codes) |
+| `bg` | `String` | `undefined` | Background color |
+| `focusColor` | `String` | `'cyan'` | Color for focused item highlight |
+| `selectedColor` | `String` | `'green'` | Color for selected checkbox indicators |
+| `highlightColor` | `String` | `'yellow'` | Color for highlighted item cursor |
+| `bold` | `Boolean` | `false` | Bold text |
+| `dim` | `Boolean` | `false` | Dimmed text |
+
+## Events
+
+| Event | Payload | Description |
+|-------|---------|-------------|
+| `update:modelValue` | `Array` | Emitted when selection changes. The new array of selected values. |
+| `change` | `Array` | Emitted when selection changes (same as update:modelValue) |
+| `focus` | - | Emitted when component receives keyboard focus |
+| `blur` | - | Emitted when component loses keyboard focus |
+
+## Keyboard Navigation
+
+| Key | Action |
+|-----|--------|
+| `↑` / `←` | Move to previous option |
+| `↓` / `→` | Move to next option |
+| `Home` | Jump to first option |
+| `End` | Jump to last option |
+| `Page Up` | Move up one page (height) |
+| `Page Down` | Move down one page (height) |
+| `Space` / `Enter` | Toggle current option selection |
+| `Tab` | Navigate to next focusable component |
+
+## Advanced Examples
+
+### Custom Styling
+
+```vue
+<template>
+  <Checkbox
+    v-model="features"
+    label="Select features to enable:"
+    :options="featureOptions"
+    :height="5"
+    focus-color="magenta"
+    selected-color="yellow"
+    highlight-color="blue"
+    color="white"
+    bold
+  />
+</template>
+
+<script setup>
+import { ref } from 'vue';
+import { Checkbox } from 'vuetty';
+
+const features = ref(['caching']);
+const featureOptions = [
+  { label: 'Caching', value: 'caching' },
+  { label: 'Compression', value: 'compression' },
+  { label: 'Encryption', value: 'encryption' },
+  { label: 'Logging', value: 'logging' }
+];
+</script>
+```
+
+### Form Integration
+
+```vue
+<template>
+  <Col>
+    <Box :padding="2" color="cyan">
+      <TextBox bold>User Preferences</TextBox>
+    </Box>
+
+    <Checkbox
+      v-model="form.preferences"
+      label="Notification channels:"
+      :options="notificationOptions"
+      :height="4"
+      @change="onChange"
+    />
+
+    <Box :padding="1">
+      <TextBox dim>Use arrow keys to navigate, Space to select</TextBox>
+    </Box>
+  </Col>
+</template>
+
+<script setup>
+import { reactive } from 'vue';
+import { Checkbox, Box, TextBox, Col } from 'vuetty';
+
+const form = reactive({
+  preferences: ['email']
+});
+
+const notificationOptions = [
+  { label: 'Email Notifications', value: 'email' },
+  { label: 'SMS Alerts', value: 'sms' },
+  { label: 'Push Notifications', value: 'push' },
+  { label: 'Weekly Digest', value: 'digest' }
+];
+
+const onChange = (newSelection) => {
+  console.log('Preferences updated:', newSelection);
+};
+</script>
+```
+
+### Responsive Layout
+
+```vue
+<template>
+  <Row>
+    <Col :flex="1">
+      <Checkbox
+        v-model="selected"
+        :options="options"
+        label="Options:"
+        :height="8"
+        :width="30"
+      />
+    </Col>
+    <Col :flex="2">
+      <Box :padding="1">
+        <TextBox>Details panel</TextBox>
+      </Box>
+    </Col>
+  </Row>
+</template>
+
+<script setup>
+import { ref } from 'vue';
+import { Checkbox, Box, TextBox, Row, Col } from 'vuetty';
+
+const selected = ref([]);
+const options = [
+  { label: 'Option 1', value: 'opt1' },
+  { label: 'Option 2', value: 'opt2' },
+  { label: 'Option 3', value: 'opt3' }
+];
+</script>
+```

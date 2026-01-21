@@ -1,0 +1,90 @@
+{
+  "name": "vuetty",
+  "version": "0.1.0",
+  "description": "Build reactive Terminal User Interfaces using Vue.js",
+  "homepage": "https://github.com/tterrasson/vuetty",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./src/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./src/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./rollup-plugin": {
+      "types": "./src/rollup-plugin/index.d.ts",
+      "import": "./dist/rollup-plugin/index.js",
+      "default": "./dist/rollup-plugin/index.js"
+    },
+    "./bun-loader": {
+      "types": "./src/build/bun-loader.d.ts",
+      "import": "./src/build/bun-loader.js",
+      "default": "./src/build/bun-loader.js"
+    },
+    "./loader": {
+      "types": "./src/build/bun-loader.d.ts",
+      "import": "./src/build/bun-loader.js",
+      "default": "./src/build/bun-loader.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "npm run clean && npm run build:rollup && npm run build:debug-assets",
+    "build:rollup": "rollup -c rollup.config.js",
+    "build:debug-assets": "bun run scripts/build-debug.js",
+    "clean": "rm -rf ./dist && mkdir -p ./dist",
+    "dev": "bun run examples/run.js",
+    "test": "bun test",
+    "pack": "bun run build && bunx npm pack",
+    "prepublishOnly": "bun run build",
+    "docs:dev": "bun vitepress dev docs",
+    "docs:build": "bun vitepress build docs",
+    "docs:preview": "bun vitepress preview docs"
+  },
+  "keywords": [
+    "vuetty",
+    "tui",
+    "terminal",
+    "vue",
+    "vue3",
+    "custom-renderer",
+    "cli",
+    "terminal-ui",
+    "reactive",
+    "text-ui",
+    "command-line",
+    "flexbox"
+  ],
+  "author": "Thibault Terrasson",
+  "license": "MIT",
+  "peerDependencies": {
+    "vue": "^3.5.26"
+  },
+  "dependencies": {
+    "chalk": "^5.6.2",
+    "cli-highlight": "^2.1.11",
+    "figlet": "^1.9.4",
+    "glob": "^13.0.0",
+    "gradient-string": "^3.0.0",
+    "marked": "^17.0.1",
+    "string-width": "^8.1.0",
+    "terminal-image": "^4.2.0",
+    "yoga-layout": "^3.2.1"
+  },
+  "devDependencies": {
+    "@rollup/plugin-alias": "^6.0.0",
+    "@rollup/plugin-commonjs": "^29.0.0",
+    "@rollup/plugin-node-resolve": "^16.0.3",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@types/bun": "latest",
+    "@vue/compiler-sfc": "^3.5.27",
+    "bulma": "^1.0.4",
+    "rollup": "^4.55.2",
+    "vitepress": "^2.0.0-alpha.15"
+  }
+}

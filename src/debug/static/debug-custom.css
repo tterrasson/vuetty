@@ -1,0 +1,266 @@
+/* Vuetty Debug Server - Custom Styles */
+
+/* Override body defaults */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+  font-size: 13px;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  overflow: hidden;
+}
+
+/* Override Bulma button styles for better contrast */
+.button.is-primary {
+  background-color: var(--accent-primary);
+  border-color: transparent;
+  color: #fff;
+  font-weight: 600;
+}
+
+.button.is-primary:hover {
+  background-color: var(--accent-hover);
+}
+
+/* Override Bulma tag styles for better contrast */
+.tag {
+  font-weight: 600;
+}
+
+/* Override Bulma panel-heading styles */
+.panel-heading {
+  padding: 10px 15px !important;
+  margin: 0 !important;
+  background: var(--bg-tertiary) !important;
+  border: none !important;
+}
+
+/* Override Bulma checkbox styles for better alignment */
+.checkbox {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+  margin-bottom: 0 !important;
+}
+
+.checkbox input[type="checkbox"] {
+  margin: 0 !important;
+  vertical-align: middle !important;
+}
+
+/* Event log specific styles */
+.event {
+  padding: 6px 10px;
+  margin: 2px 0;
+  border-left: 3px solid var(--border-color);
+  display: grid;
+  grid-template-columns: 90px auto 1fr;
+  gap: 10px;
+  font-size: 12px;
+  line-height: 1.4;
+  transition: background 0.1s;
+  cursor: pointer;
+}
+
+.event:hover {
+  background: var(--bg-secondary);
+}
+
+/* Event category colors */
+.event-render { border-left-color: var(--event-render); }
+.event-input { border-left-color: var(--event-input); }
+.event-console { border-left-color: var(--event-console); }
+.event-layout { border-left-color: var(--event-layout); }
+.event-viewport { border-left-color: var(--event-viewport); }
+.event-vue { border-left-color: var(--event-vue); }
+.event-vuetty { border-left-color: var(--event-vuetty); }
+
+/* Time, type, data spans */
+.time {
+  color: var(--text-muted);
+  font-size: 11px;
+  cursor: help;
+  font-weight: 500;
+}
+
+.type {
+  color: var(--event-vuetty);
+  font-weight: 600;
+}
+
+.data {
+  color: var(--text-primary);
+  font-weight: 500;
+  /* Collapsed state - single line with ellipsis */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.data.expanded {
+  /* Expanded state - multi-line */
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 6px;
+  border: 2px solid var(--scrollbar-track);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-hover);
+}
+
+/* Console output specific */
+.console-entry {
+  padding: 6px 10px;
+  margin: 2px 0;
+  border-left: 3px solid var(--border-color);
+  line-height: 1.5;
+}
+
+.console-log {
+  color: var(--console-log);
+  border-left-color: var(--text-muted);
+}
+
+.console-error {
+  color: var(--console-error);
+  border-left-color: var(--console-error);
+  background: rgba(241, 70, 104, 0.1);
+}
+
+.console-warn {
+  color: var(--console-warn);
+  border-left-color: var(--console-warn);
+  background: rgba(255, 221, 87, 0.1);
+}
+
+/* Vue warning/error styles */
+.vue-warn {
+  color: var(--console-warn);
+  border-left-color: var(--console-warn);
+  background: rgba(255, 221, 87, 0.1);
+}
+
+.vue-error {
+  color: var(--console-error);
+  border-left-color: var(--console-error);
+  background: rgba(241, 70, 104, 0.1);
+}
+
+.vue-header {
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.vue-trace {
+  color: var(--text-muted);
+  font-size: 11px;
+  margin-top: 5px;
+  padding-left: 15px;
+  white-space: pre-wrap;
+}
+
+.vue-info {
+  color: var(--accent-primary);
+  font-size: 11px;
+  margin-top: 3px;
+  padding-left: 15px;
+}
+
+/* Code blocks (layout tree, viewport state) */
+pre {
+  background: var(--bg-tertiary);
+  padding: 1rem;
+  border-radius: 4px;
+  color: var(--text-secondary);
+  font-size: 12px;
+  line-height: 1.5;
+  font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+#layout-tree,
+#viewport-state {
+  margin: 0;
+  min-height: 100px;
+}
+
+/* Event counter badge */
+.event-counter {
+  display: inline-block;
+  background: var(--bg-tertiary);
+  color: var(--text-secondary);
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 10px;
+  margin-left: 4px;
+  font-weight: 700;
+}
+
+/* Search highlight */
+.search-highlight {
+  background-color: rgba(255, 221, 87, 0.3);
+  border-radius: 2px;
+  padding: 0 2px;
+}
+
+/* Theme toggle switch (custom styling) */
+.theme-toggle-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+}
+
+.theme-toggle-wrapper input[type="checkbox"] {
+  appearance: none;
+  width: 40px;
+  height: 20px;
+  background: var(--bg-tertiary);
+  border-radius: 10px;
+  position: relative;
+  cursor: pointer;
+  transition: background 0.3s;
+  border: 1px solid var(--border-color);
+}
+
+.theme-toggle-wrapper input[type="checkbox"]:checked {
+  background: var(--accent-primary);
+}
+
+.theme-toggle-wrapper input[type="checkbox"]::before {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: white;
+  top: 1px;
+  left: 2px;
+  transition: transform 0.3s;
+}
+
+.theme-toggle-wrapper input[type="checkbox"]:checked::before {
+  transform: translateX(19px);
+}

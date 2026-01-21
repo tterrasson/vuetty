@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vuetty Debug Server</title>
+  <link rel="stylesheet" href="debug.css">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+  <!-- Main container -->
+  <div style="height: 100vh; display: flex; flex-direction: column;">
+
+    <!-- Header -->
+    <header class="navbar" role="navigation" style="background: var(--bg-secondary); border-bottom: 1px solid var(--border-color); flex-shrink: 0;">
+      <div class="navbar-brand">
+        <h1 class="navbar-item title is-5 mb-0" style="color: var(--event-render);">Vuetty Debug Server</h1>
+      </div>
+
+      <div class="navbar-menu" id="navbarMenu" style="background: transparent;">
+        <div class="navbar-end">
+          <!-- Connection status -->
+          <div class="navbar-item">
+            <span id="connection-status" class="tag is-info">Connecting...</span>
+          </div>
+
+          <!-- Theme toggle -->
+          <div class="navbar-item">
+            <div class="theme-toggle-wrapper">
+              <span class="icon">☀️</span>
+              <input type="checkbox" id="theme-toggle" checked>
+              <span class="icon">🌙</span>
+            </div>
+          </div>
+
+          <!-- Clear button -->
+          <div class="navbar-item">
+            <button id="clear-btn" class="button is-primary is-small">Clear</button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main content panels -->
+    <div class="columns is-gapless" style="flex: 1; overflow: hidden; margin: 0;">
+
+      <!-- Left Panel: Event Log -->
+      <div class="column is-two-thirds" style="display: flex; flex-direction: column; border-right: 1px solid var(--border-color); background: var(--bg-panel);">
+
+        <!-- Panel header -->
+        <div class="panel-heading" style="background: var(--bg-tertiary); border-bottom: 1px solid var(--border-color); flex-shrink: 0;">
+          <h2 class="title is-6 mb-0" style="color: var(--text-primary);">Event Log</h2>
+        </div>
+
+        <!-- Search filter -->
+        <div class="panel-block" style="border-bottom: 1px solid var(--border-color); background: var(--bg-secondary); flex-shrink: 0;">
+          <div class="control has-icons-left" style="width: 100%;">
+            <input
+              type="text"
+              id="search-input"
+              class="input is-small"
+              placeholder="Search events..."
+              style="background: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);"
+            >
+            <span class="icon is-left is-small">
+              <span style="font-size: 14px;">🔍</span>
+            </span>
+          </div>
+        </div>
+
+        <!-- Event filters (checkboxes) -->
+        <div class="panel-block" style="flex-wrap: wrap; gap: 8px; padding: 10px; background: var(--bg-secondary); border-bottom: 1px solid var(--border-color); flex-shrink: 0;">
+          <label class="checkbox" style="font-size: 12px; margin-right: 8px; color: var(--text-primary);">
+            <input type="checkbox" checked data-filter="render">
+            Render<span class="event-counter" data-counter="render">0</span>
+          </label>
+          <label class="checkbox" style="font-size: 12px; margin-right: 8px; color: var(--text-primary);">
+            <input type="checkbox" checked data-filter="input">
+            Input<span class="event-counter" data-counter="input">0</span>
+          </label>
+          <label class="checkbox" style="font-size: 12px; margin-right: 8px; color: var(--text-primary);">
+            <input type="checkbox" checked data-filter="console">
+            Console<span class="event-counter" data-counter="console">0</span>
+          </label>
+          <label class="checkbox" style="font-size: 12px; margin-right: 8px; color: var(--text-primary);">
+            <input type="checkbox" checked data-filter="layout">
+            Layout<span class="event-counter" data-counter="layout">0</span>
+          </label>
+          <label class="checkbox" style="font-size: 12px; margin-right: 8px; color: var(--text-primary);">
+            <input type="checkbox" checked data-filter="viewport">
+            Viewport<span class="event-counter" data-counter="viewport">0</span>
+          </label>
+          <label class="checkbox" style="font-size: 12px; margin-right: 8px; color: var(--text-primary);">
+            <input type="checkbox" checked data-filter="vue">
+            Vue<span class="event-counter" data-counter="vue">0</span>
+          </label>
+          <label class="checkbox" style="font-size: 12px; margin-right: 8px; color: var(--text-primary);">
+            <input type="checkbox" checked data-filter="vuetty">
+            Vuetty<span class="event-counter" data-counter="vuetty">0</span>
+          </label>
+        </div>
+
+        <!-- Event list -->
+        <div id="event-log" style="flex: 1; overflow-y: auto; padding: 10px; background: var(--bg-primary);"></div>
+      </div>
+
+      <!-- Right Panel: Details -->
+      <div class="column is-one-third" style="display: flex; flex-direction: column; background: var(--bg-panel);">
+
+        <!-- Tabs -->
+        <div class="tabs" style="margin-bottom: 0; background: var(--bg-tertiary); border-bottom: 1px solid var(--border-color); flex-shrink: 0;">
+          <ul style="border-bottom: none; margin: 0;">
+            <li class="is-active" data-tab="layout">
+              <a style="color: var(--text-primary);">Layout Tree</a>
+            </li>
+            <li data-tab="viewport">
+              <a style="color: var(--text-secondary);">Viewport</a>
+            </li>
+            <li data-tab="memory">
+              <a style="color: var(--text-secondary);">Memory</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Tab content -->
+        <div style="flex: 1; overflow-y: auto; padding: 10px; background: var(--bg-primary);">
+          <div id="layout-tab" class="tab-content is-active">
+            <pre id="layout-tree">No layout data yet...</pre>
+          </div>
+
+          <div id="viewport-tab" class="tab-content" style="display: none;">
+            <pre id="viewport-state">No viewport data yet...</pre>
+          </div>
+
+          <div id="memory-tab" class="tab-content" style="display: none;">
+            <pre id="memory-stats">No memory data yet...</pre>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="debug.js"></script>
+</body>
+</html>
