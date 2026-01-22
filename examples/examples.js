@@ -25,5 +25,6 @@ export const examples = [
   example('big-text', 'BigText', './components/BigText.vue'),
   example('full-layout', 'Full Layout', './components/FullLayout.vue'),
   example('image', 'Image', './components/Image.vue'),
-  example('tree', 'Tree', './components/Tree.vue')
+  example('tree', 'Tree', './components/Tree.vue'),
+  example('theming', 'Theming', './components/Theming.vue')
 ];
