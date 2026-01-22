@@ -386,6 +386,7 @@ describe('Radiobox component', () => {
         highlightedIndex: 0,
         isFocused: true,
         disabled: false,
+        hint: 'default',
         direction: 'vertical'
       });
       const stripped = stripAnsi(result);
@@ -435,6 +436,137 @@ describe('Radiobox component', () => {
       const stripped = stripAnsi(result);
 
       expect(stripped).toMatch(/Navigate|select|Tab/i);
+    });
+
+    test('displays custom hint text when provided', () => {
+      const result = renderRadiobox({
+        options,
+        modelValue: null,
+        highlightedIndex: 0,
+        isFocused: true,
+        disabled: false,
+        hint: 'Custom radio hint',
+        direction: 'vertical'
+      });
+      const stripped = stripAnsi(result);
+
+      expect(stripped).toContain('Custom radio hint');
+      // Should not show default hint
+      expect(stripped).not.toContain('Navigate');
+    });
+
+    test('hides hint when hint prop is false', () => {
+      const result = renderRadiobox({
+        options,
+        modelValue: null,
+        highlightedIndex: 0,
+        isFocused: true,
+        disabled: false,
+        hint: false,
+        direction: 'vertical'
+      });
+      const stripped = stripAnsi(result);
+
+      // Should not show any hint
+      expect(stripped).not.toContain('Navigate');
+      expect(stripped).not.toContain('select');
+      expect(stripped).not.toContain('Tab');
+    });
+
+    test('shows default hint when hint prop is "default"', () => {
+      const result = renderRadiobox({
+        options,
+        modelValue: null,
+        highlightedIndex: 0,
+        isFocused: true,
+        disabled: false,
+        hint: 'default',
+        direction: 'vertical'
+      });
+      const stripped = stripAnsi(result);
+
+      expect(stripped).toMatch(/Navigate|select|Tab/i);
+    });
+
+    test('handles empty string hint', () => {
+      const result = renderRadiobox({
+        options,
+        modelValue: null,
+        highlightedIndex: 0,
+        isFocused: true,
+        disabled: false,
+        hint: '',
+        direction: 'vertical'
+      });
+      const stripped = stripAnsi(result);
+
+      // Empty hint should not display anything
+      expect(stripped).not.toContain('Navigate');
+    });
+
+    test('default hint respects direction prop', () => {
+      const vertical = renderRadiobox({
+        options,
+        modelValue: null,
+        highlightedIndex: 0,
+        isFocused: true,
+        hint: 'default',
+        direction: 'vertical'
+      });
+      const horizontal = renderRadiobox({
+        options,
+        modelValue: null,
+        highlightedIndex: 0,
+        isFocused: true,
+        hint: 'default',
+        direction: 'horizontal'
+      });
+
+      const strippedV = stripAnsi(vertical);
+      const strippedH = stripAnsi(horizontal);
+
+      // Vertical should show up/down arrows
+      expect(strippedV).toContain('↑↓');
+      // Horizontal should show left/right arrows
+      expect(strippedH).toContain('←→');
+    });
+
+    test('hint=false does not add extra lines', () => {
+      const withoutHint = renderRadiobox({
+        options,
+        modelValue: null,
+        highlightedIndex: 0,
+        isFocused: true,
+        disabled: false,
+        hint: false,
+        direction: 'vertical'
+      });
+
+      const withHint = renderRadiobox({
+        options,
+        modelValue: null,
+        highlightedIndex: 0,
+        isFocused: true,
+        disabled: false,
+        hint: 'default',
+        direction: 'vertical'
+      });
+
+      const strippedWithout = stripAnsi(withoutHint);
+      const strippedWith = stripAnsi(withHint);
+
+      // Without hint should have fewer lines than with hint
+      const linesWithout = strippedWithout.split('\n').length;
+      const linesWith = strippedWith.split('\n').length;
+      expect(linesWithout).toBeLessThan(linesWith);
+
+      // Without hint should not contain hint text
+      expect(strippedWithout).not.toContain('Navigate');
+      expect(strippedWithout).not.toContain('select');
+      expect(strippedWithout).not.toContain('Tab');
+
+      // With hint should contain hint text
+      expect(strippedWith).toContain('Navigate');
     });
   });
 
@@ -656,6 +788,7 @@ describe('Radiobox component', () => {
         highlightedIndex: 0,
         isFocused: true,
         label: 'Choose:',
+        hint: 'default',
         direction: 'vertical'
       });
       const stripped = stripAnsi(result);
@@ -698,6 +831,7 @@ describe('Radiobox component', () => {
         highlightedIndex: 0,
         isFocused: true,
         label: 'Select one:',
+        hint: 'default',
         direction: 'vertical'
       });
       const stripped = stripAnsi(result);

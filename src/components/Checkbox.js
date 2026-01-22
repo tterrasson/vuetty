@@ -86,6 +86,10 @@ export default {
     },
     bold: Boolean,
     dim: Boolean,
+    hint: {
+      type: [String, Boolean],
+      default: 'default'
+    },
     // Include common layout props (padding, margin, dimensions)
     ...boxProps
   },
@@ -396,7 +400,8 @@ function renderCheckboxVertical(props) {
     focusColor = 'cyan',
     selectedColor = 'green',
     highlightColor = 'yellow',
-    disabled = false
+    disabled = false,
+    hint = 'default'
   } = props;
 
   let output = '';
@@ -492,17 +497,29 @@ function renderCheckboxVertical(props) {
   output += borderStyle('└' + '─'.repeat(innerWidth) + '┘');
 
   // Helper text
-  if (isFocused && !disabled) {
-    const hint = props.direction === 'vertical'
-      ? '↑↓ Navigate • Space/Enter to toggle • Tab to next field'
-      : '←→ Navigate • Space/Enter to toggle • Tab to next field';
-    output += '\n' + chalk.dim(hint);
+  if (isFocused && !disabled && hint !== false) {
+    let hintText = '';
+
+    if (hint === 'default') {
+      hintText = props.direction === 'vertical'
+        ? '↑↓ Navigate • Space/Enter to toggle • Tab to next field'
+        : '←→ Navigate • Space/Enter to toggle • Tab to next field';
+    } else if (hint && hint !== '') {
+      hintText = hint;
+    }
+
+    if (hintText) {
+      output += '\n' + chalk.dim(hintText);
+    }
   }
 
   // Scroll indicator
   if (options.length > height) {
     const scrollPercent = Math.round((scrollOffset / Math.max(1, options.length - height)) * 100);
-    output += '\n' + chalk.dim(`[${scrollPercent}% - showing ${scrollOffset + 1}-${Math.min(scrollOffset + height, options.length)} of ${options.length}]`);
+    const start = scrollOffset + 1;
+    const end = Math.min(scrollOffset + height, options.length);
+    const total = options.length;
+    output += '\n' + chalk.dim(`[${scrollPercent}% - showing ${start}-${end} of ${total}]`);
   }
 
   return output;
@@ -522,7 +539,9 @@ function renderCheckboxHorizontal(props) {
     highlightColor = 'yellow',
     disabled = false,
     width = null,
-    itemSpacing = 2
+    itemSpacing = 2,
+    hint = 'default',
+    direction = 'horizontal'
   } = props;
 
   let output = '';
@@ -597,8 +616,20 @@ function renderCheckboxHorizontal(props) {
   }
 
   // Helper text
-  if (isFocused && !disabled) {
-    output += '\n' + chalk.dim('←→ Navigate • Space/Enter to toggle • Tab to next field');
+  if (isFocused && !disabled && hint !== false) {
+    let hintText = '';
+
+    if (hint === 'default') {
+      hintText = direction === 'horizontal'
+        ? '←→ Navigate • Space/Enter to toggle • Tab to next field'
+        : '↑↓ Navigate • Space/Enter to toggle • Tab to next field';
+    } else if (hint && hint !== '') {
+      hintText = hint;
+    }
+
+    if (hintText) {
+      output += '\n' + chalk.dim(hintText);
+    }
   }
 
   return output;

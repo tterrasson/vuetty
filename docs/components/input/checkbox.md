@@ -102,6 +102,7 @@ const roleOptions = [
 | `height` | `Number` | `10` | Number of visible items (vertical mode only) |
 | `width` | `Number` | `null` | Component width in characters (null = auto) |
 | `itemSpacing` | `Number` | `2` | Spacing between items in characters |
+| `hint` | `String \| Boolean` | `'default'` | Hint text shown when focused. Use `'default'` for standard hints, `false` to disable, or pass custom text |
 
 ### Layout
 
@@ -138,6 +139,58 @@ const roleOptions = [
 | `change` | `Array` | Emitted when selection changes (same as update:modelValue) |
 | `focus` | - | Emitted when component receives keyboard focus |
 | `blur` | - | Emitted when component loses keyboard focus |
+
+## Hints
+
+Checkbox displays helpful keyboard hints when focused. You can customize or disable these hints.
+
+### Controlling Hints
+
+By default, Checkbox shows direction-aware navigation hints:
+
+```vue
+<template>
+  <!-- Default hint - automatically adjusts for direction -->
+  <Checkbox
+    v-model="selected"
+    :options="options"
+    direction="vertical"
+  />
+  <!-- Shows: "↑↓ Navigate • Space/Enter to toggle • Tab to next field" -->
+
+  <!-- Custom hint text -->
+  <Checkbox
+    v-model="selected"
+    :options="options"
+    hint="Press Space to toggle selected items"
+  />
+
+  <!-- Disable hints -->
+  <Checkbox
+    v-model="selected"
+    :options="options"
+    :hint="false"
+  />
+</template>
+
+<script setup>
+import { ref } from 'vue';
+import { Checkbox } from 'vuetty';
+
+const selected = ref([]);
+const options = [
+  { label: 'Option 1', value: 'opt1' },
+  { label: 'Option 2', value: 'opt2' },
+  { label: 'Option 3', value: 'opt3' }
+];
+</script>
+```
+
+::: tip
+Default hints automatically adjust based on the `direction` prop:
+- Vertical: Shows `↑↓` arrow indicators
+- Horizontal: Shows `←→` arrow indicators
+:::
 
 ## Keyboard Navigation
 

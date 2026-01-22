@@ -8,6 +8,7 @@
       direction="horizontal"
       label="Notify:"
       :options="notifyOptions"
+      :hint="false"
     />
   </Col>
 </template>

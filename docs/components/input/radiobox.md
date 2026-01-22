@@ -119,6 +119,7 @@ const membershipOptions = [
 | `height` | `Number` | `10` | Number of visible items (vertical mode only) |
 | `width` | `Number` | `null` | Component width in characters (null = auto) |
 | `itemSpacing` | `Number` | `2` | Spacing between items in characters |
+| `hint` | `String \| Boolean` | `'default'` | Hint text shown when focused. Use `'default'` for standard hints, `false` to disable, or pass custom text |
 
 ### Layout
 
@@ -155,6 +156,58 @@ const membershipOptions = [
 | `change` | `String \| Number \| Object` | Emitted when selection changes (same as update:modelValue) |
 | `focus` | - | Emitted when component receives keyboard focus |
 | `blur` | - | Emitted when component loses keyboard focus |
+
+## Hints
+
+Radiobox displays helpful keyboard hints when focused. You can customize or disable these hints.
+
+### Controlling Hints
+
+By default, Radiobox shows direction-aware navigation hints:
+
+```vue
+<template>
+  <!-- Default hint - automatically adjusts for direction -->
+  <Radiobox
+    v-model="selected"
+    :options="options"
+    direction="vertical"
+  />
+  <!-- Shows: "↑↓ Navigate • Space/Enter to select • Tab to next field" -->
+
+  <!-- Custom hint text -->
+  <Radiobox
+    v-model="selected"
+    :options="options"
+    hint="Use arrow keys to navigate options"
+  />
+
+  <!-- Disable hints -->
+  <Radiobox
+    v-model="selected"
+    :options="options"
+    :hint="false"
+  />
+</template>
+
+<script setup>
+import { ref } from 'vue';
+import { Radiobox } from 'vuetty';
+
+const selected = ref(null);
+const options = [
+  { label: 'Option 1', value: 'opt1' },
+  { label: 'Option 2', value: 'opt2' },
+  { label: 'Option 3', value: 'opt3' }
+];
+</script>
+```
+
+::: tip
+Default hints automatically adjust based on the `direction` prop:
+- Vertical: Shows `↑↓` arrow indicators
+- Horizontal: Shows `←→` arrow indicators
+:::
 
 ## Keyboard Navigation
 

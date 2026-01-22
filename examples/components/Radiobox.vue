@@ -8,6 +8,7 @@
       label="Theme:"
       direction="horizontal"
       :options="themes"
+      :hint="false"
     />
   </Col>
 </template>
