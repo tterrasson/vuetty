@@ -7,12 +7,38 @@ import { boxProps } from '@core/layoutProps.js';
 import { getChalkColorChain } from '@utils/colorUtils.js';
 import { RenderHandler, renderHandlerRegistry } from '@core/renderHandlers.js';
 
-// Tree branch characters
+// Tree branch character themes
 const TREE_CHARS = {
-  branch: '├',      // intermediate child
-  last: '└',        // last child
-  vertical: '│',    // vertical continuation
-  horizontal: '──'  // horizontal line
+  default: {
+    branch: '├',      // intermediate child
+    last: '└',        // last child
+    vertical: '│',    // vertical continuation
+    horizontal: '──'  // horizontal line
+  },
+  rounded: {
+    branch: '├',
+    last: '└',
+    vertical: '│',
+    horizontal: '──'
+  },
+  bold: {
+    branch: '┣',
+    last: '┗',
+    vertical: '┃',
+    horizontal: '━━'
+  },
+  double: {
+    branch: '╠',
+    last: '╚',
+    vertical: '║',
+    horizontal: '══'
+  },
+  classic: {
+    branch: '+',
+    last: '+',
+    vertical: '|',
+    horizontal: '--'
+  }
 };
 
 /**
@@ -35,7 +61,6 @@ export default {
     // Data structure - array of tree nodes
     data: {
       type: Array,
-      required: true,
       default: () => []
     },
 
@@ -55,20 +80,14 @@ export default {
       default: null          // Falls back to color or theme default
     },
 
-    // Text styles
-    bold: Boolean,
-    dim: Boolean,
-
-    // Layout
-    indent: {                // Indentation size per level
-      type: Number,
-      default: 4
-    },
-
     // Display options
     showIcons: {             // Show folder/file icons
       type: Boolean,
       default: false
+    },
+    treeStyle: {             // Tree branch character style
+      type: [String, Object],
+      default: 'default'
     },
 
     // Include common layout props (padding, margin, dimensions, flex item)
@@ -94,11 +113,15 @@ export default {
       const effectiveFolderColor = props.folderColor ?? theme?.components?.tree?.folderColor ?? 'blue';
       const effectiveFileColor = props.fileColor ?? theme?.components?.tree?.fileColor ?? props.color ?? null;
 
+      // Apply theme defaults for treeStyle
+      const effectiveTreeStyle = props.treeStyle ?? theme?.components?.tree?.treeStyle ?? 'default';
+
       return h('tree', {
         ...props,
         branchColor: effectiveBranchColor,
         folderColor: effectiveFolderColor,
         fileColor: effectiveFileColor,
+        treeStyle: effectiveTreeStyle,
         _injectedWidth: injectedWidth,
         _viewportVersion: viewportState ? viewportState.version : 0,
         _nodeSlot: nodeSlot,
@@ -117,12 +140,18 @@ export function renderTree(props) {
     branchColor = 'gray',
     folderColor = 'blue',
     fileColor = null,
-    showIcons = false
+    showIcons = false,
+    treeStyle = 'default'
   } = props;
 
   if (!data || data.length === 0) {
     return '';
   }
+
+  // Get tree characters from theme
+  const treeChars = typeof treeStyle === 'string'
+    ? (TREE_CHARS[treeStyle] || TREE_CHARS.default)
+    : treeStyle;
 
   const lines = [];
   const branchStyle = getChalkColorChain(branchColor) || chalk;
@@ -144,8 +173,8 @@ export function renderTree(props) {
     let connector = '';
     if (depth > 0) {
       connector = isLast
-        ? branchStyle(TREE_CHARS.last + TREE_CHARS.horizontal + ' ')
-        : branchStyle(TREE_CHARS.branch + TREE_CHARS.horizontal + ' ');
+        ? branchStyle(treeChars.last + treeChars.horizontal + ' ')
+        : branchStyle(treeChars.branch + treeChars.horizontal + ' ');
     }
 
     // Build icon if enabled
@@ -189,7 +218,7 @@ export function renderTree(props) {
           newPrefix = '';
         } else {
           // Add continuation character (│ or spaces) to prefix for grandchildren
-          newPrefix = prefix + (isLast ? '    ' : branchStyle(TREE_CHARS.vertical) + '   ');
+          newPrefix = prefix + (isLast ? '    ' : branchStyle(treeChars.vertical) + '   ');
         }
 
         renderNode(child, newPrefix, isChildLast, depth + 1);

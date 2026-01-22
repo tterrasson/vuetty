@@ -369,4 +369,289 @@ describe('Tree component', () => {
       expect(lines.length).toBe(5);
     });
   });
+
+  describe('treeStyle option', () => {
+    const data = [
+      {
+        name: 'folder',
+        children: [
+          { name: 'file1.js' },
+          { name: 'file2.js' }
+        ]
+      }
+    ];
+
+    test('uses default style by default', () => {
+      const result = renderTree({ data });
+      const stripped = stripAnsi(result);
+
+      expect(stripped).toContain('├');
+      expect(stripped).toContain('└');
+      expect(stripped).toContain('──');
+    });
+
+    test('uses bold style when specified', () => {
+      const result = renderTree({ data, treeStyle: 'bold' });
+      const stripped = stripAnsi(result);
+
+      expect(stripped).toContain('┣');
+      expect(stripped).toContain('┗');
+      expect(stripped).toContain('━━');
+    });
+
+    test('uses double style when specified', () => {
+      const result = renderTree({ data, treeStyle: 'double' });
+      const stripped = stripAnsi(result);
+
+      expect(stripped).toContain('╠');
+      expect(stripped).toContain('╚');
+      expect(stripped).toContain('══');
+    });
+
+    test('uses classic style when specified', () => {
+      const result = renderTree({ data, treeStyle: 'classic' });
+      const stripped = stripAnsi(result);
+
+      expect(stripped).toContain('+');
+      expect(stripped).toContain('--');
+    });
+
+    test('uses rounded style when specified', () => {
+      const result = renderTree({ data, treeStyle: 'rounded' });
+      const stripped = stripAnsi(result);
+
+      // Rounded is same as default
+      expect(stripped).toContain('├');
+      expect(stripped).toContain('└');
+      expect(stripped).toContain('──');
+    });
+
+    test('accepts custom style object', () => {
+      const customStyle = {
+        branch: '>',
+        last: '\\',
+        vertical: '|',
+        horizontal: '-'
+      };
+      const result = renderTree({ data, treeStyle: customStyle });
+      const stripped = stripAnsi(result);
+
+      expect(stripped).toContain('>');
+      expect(stripped).toContain('\\');
+      expect(stripped).toContain('-');
+    });
+
+    test('falls back to default for unknown style name', () => {
+      const result = renderTree({ data, treeStyle: 'unknown' });
+      const stripped = stripAnsi(result);
+
+      // Should use default characters
+      expect(stripped).toContain('├');
+      expect(stripped).toContain('└');
+      expect(stripped).toContain('──');
+    });
+
+    test('custom style applies to all tree levels', () => {
+      const deepData = [
+        {
+          name: 'root',
+          children: [
+            {
+              name: 'level1',
+              children: [
+                { name: 'level2' }
+              ]
+            }
+          ]
+        }
+      ];
+      const customStyle = {
+        branch: '*',
+        last: '*',
+        vertical: '!',
+        horizontal: '=='
+      };
+      const result = renderTree({ data: deepData, treeStyle: customStyle });
+      const stripped = stripAnsi(result);
+
+      // Custom characters should appear in nested levels
+      expect(stripped).toContain('*');
+      expect(stripped).toContain('==');
+    });
+
+    test('vertical character appears with nested siblings', () => {
+      const deepData = [
+        {
+          name: 'folder',
+          children: [
+            {
+              name: 'subfolder',
+              children: [
+                { name: 'nested.js' }
+              ]
+            },
+            { name: 'sibling.js' }
+          ]
+        }
+      ];
+      const customStyle = {
+        branch: '>',
+        last: '\\',
+        vertical: '!',
+        horizontal: '--'
+      };
+      const result = renderTree({ data: deepData, treeStyle: customStyle });
+      const stripped = stripAnsi(result);
+
+      // Vertical line should appear between subfolder's children and sibling
+      expect(stripped).toContain('!');
+    });
+
+    test('classic style shows vertical character with nested siblings', () => {
+      const deepData = [
+        {
+          name: 'folder',
+          children: [
+            {
+              name: 'subfolder',
+              children: [
+                { name: 'nested.js' }
+              ]
+            },
+            { name: 'sibling.js' }
+          ]
+        }
+      ];
+      const result = renderTree({ data: deepData, treeStyle: 'classic' });
+      const stripped = stripAnsi(result);
+
+      expect(stripped).toContain('|');
+    });
+  });
+
+  describe('custom colors', () => {
+    test('applies custom node color when specified', () => {
+      const data = [
+        {
+          name: 'custom-file.js',
+          color: 'red'
+        }
+      ];
+      const result = renderTree({ data });
+      // Should not crash and should render the node
+      const stripped = stripAnsi(result);
+      expect(stripped).toContain('custom-file.js');
+    });
+
+    test('applies custom color to folder nodes', () => {
+      const data = [
+        {
+          name: 'custom-folder',
+          color: 'green',
+          children: [
+            { name: 'child.js' }
+          ]
+        }
+      ];
+      const result = renderTree({ data });
+      const stripped = stripAnsi(result);
+      expect(stripped).toContain('custom-folder');
+      expect(stripped).toContain('child.js');
+    });
+
+    test('custom node color overrides default colors', () => {
+      const data = [
+        {
+          name: 'parent',
+          children: [
+            { name: 'normal.js' },
+            { name: 'custom.js', color: 'yellow' }
+          ]
+        }
+      ];
+      const result = renderTree({ data });
+      const stripped = stripAnsi(result);
+      expect(stripped).toContain('normal.js');
+      expect(stripped).toContain('custom.js');
+    });
+
+    test('applies folderColor prop', () => {
+      const data = [
+        {
+          name: 'folder',
+          children: [{ name: 'file.js' }]
+        }
+      ];
+      const result = renderTree({ data, folderColor: 'cyan' });
+      const stripped = stripAnsi(result);
+      expect(stripped).toContain('folder');
+    });
+
+    test('applies fileColor prop', () => {
+      const data = [{ name: 'file.js' }];
+      const result = renderTree({ data, fileColor: 'magenta' });
+      const stripped = stripAnsi(result);
+      expect(stripped).toContain('file.js');
+    });
+
+    test('applies branchColor prop', () => {
+      const data = [
+        {
+          name: 'folder',
+          children: [
+            { name: 'file1.js' },
+            { name: 'file2.js' }
+          ]
+        }
+      ];
+      const result = renderTree({ data, branchColor: 'yellow' });
+      const stripped = stripAnsi(result);
+      expect(stripped).toContain('├');
+      expect(stripped).toContain('└');
+    });
+  });
+
+  describe('color combinations', () => {
+    test('combines showIcons with custom colors', () => {
+      const data = [
+        {
+          name: 'colored-folder',
+          color: 'green',
+          children: [
+            { name: 'colored-file.js', color: 'red' }
+          ]
+        }
+      ];
+      const result = renderTree({ data, showIcons: true });
+      const stripped = stripAnsi(result);
+      expect(stripped).toContain('📁');
+      expect(stripped).toContain('📄');
+      expect(stripped).toContain('colored-folder');
+      expect(stripped).toContain('colored-file.js');
+    });
+
+    test('combines treeStyle with custom colors', () => {
+      const data = [
+        {
+          name: 'folder',
+          children: [
+            { name: 'file1.js' },
+            { name: 'file2.js' }
+          ]
+        }
+      ];
+      const result = renderTree({
+        data,
+        treeStyle: 'bold',
+        folderColor: 'cyan',
+        fileColor: 'yellow',
+        branchColor: 'magenta'
+      });
+      const stripped = stripAnsi(result);
+      expect(stripped).toContain('┣');
+      expect(stripped).toContain('┗');
+      expect(stripped).toContain('folder');
+      expect(stripped).toContain('file1.js');
+    });
+  });
 });

@@ -58,6 +58,7 @@ Tree expects an array of nodes. Each node can include a `name`, optional `childr
 | `color` | `string` | `-` | Fallback color used for files when `fileColor` is not set |
 | `bg` | `string` | `-` | Reserved for future background styling |
 | `showIcons` | `boolean` | `false` | Show folder/file icons before node names |
+| `treeStyle` | `string \| object` | `'default'` | Tree branch character style (see Tree Styles below) |
 | `indent` | `number` | `4` | Indentation size per level (currently fixed at 4 spaces) |
 | `bold` | `boolean` | `false` | Reserved for future text styling |
 | `dim` | `boolean` | `false` | Reserved for future text styling |
@@ -89,6 +90,32 @@ Tree supports the common layout props for sizing and positioning:
 | `flexShrink` | `number` | `null` | Flex shrink value |
 | `flexBasis` | `number \| string` | `null` | Flex basis value |
 | `alignSelf` | `string` | `null` | Self alignment: 'flex-start', 'flex-end', 'center', 'stretch', 'baseline' |
+
+## Tree Styles
+
+The `treeStyle` prop controls the appearance of tree branch characters. You can use predefined styles or create custom ones.
+
+### Predefined Styles
+
+| Style | Characters | Description |
+|-------|------------|-------------|
+| `'default'` or `'rounded'` | `├ └ │ ──` | Standard rounded box-drawing characters |
+| `'bold'` | `┣ ┗ ┃ ━━` | Bold/thick box-drawing characters |
+| `'double'` | `╠ ╚ ║ ══` | Double-line box-drawing characters |
+| `'classic'` | `+ + \| --` | Simple ASCII characters for maximum compatibility |
+
+### Custom Styles
+
+You can provide a custom object with the following properties:
+
+```js
+{
+  branch: '├',      // Character for intermediate children
+  last: '└',        // Character for the last child
+  vertical: '│',    // Vertical continuation line
+  horizontal: '──'  // Horizontal connecting line
+}
+```
 
 ## Styling Examples
 
@@ -164,8 +191,72 @@ const nodes = [
 </script>
 ```
 
+### Different Tree Styles
+
+```vue
+<template>
+  <Col :gap="2">
+    <!-- Default/Rounded style -->
+    <Tree :data="nodes" treeStyle="default" />
+
+    <!-- Bold style -->
+    <Tree :data="nodes" treeStyle="bold" branch-color="cyan" />
+
+    <!-- Double style -->
+    <Tree :data="nodes" treeStyle="double" branch-color="magenta" />
+
+    <!-- Classic ASCII style -->
+    <Tree :data="nodes" treeStyle="classic" branch-color="yellow" />
+  </Col>
+</template>
+
+<script setup>
+import { Col, Tree } from 'vuetty';
+
+const nodes = [
+  {
+    name: 'project',
+    children: [
+      { name: 'src', children: [{ name: 'app.js' }] },
+      { name: 'README.md' }
+    ]
+  }
+];
+</script>
+```
+
+### Custom Tree Style
+
+```vue
+<template>
+  <Tree :data="nodes" :treeStyle="customStyle" branch-color="green" />
+</template>
+
+<script setup>
+import { Tree } from 'vuetty';
+
+const nodes = [
+  {
+    name: 'docs',
+    children: [
+      { name: 'api', children: [{ name: 'index.md' }] },
+      { name: 'guide.md' }
+    ]
+  }
+];
+
+// Define custom tree characters
+const customStyle = {
+  branch: '▸',
+  last: '▹',
+  vertical: '┊',
+  horizontal: '─'
+};
+</script>
+```
+
 ## Notes
 
 - Tree height is computed from the total number of visible nodes.
 - If `width` and `flex` are not set, Tree defaults to full width.
-- Theme defaults can be provided via `theme.components.tree.branchColor`, `folderColor`, and `fileColor`.
+- Theme defaults can be provided via `theme.components.tree.branchColor`, `folderColor`, `fileColor`, and `treeStyle`.
