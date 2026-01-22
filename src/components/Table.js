@@ -33,12 +33,10 @@ export default {
     // Data
     headers: {
       type: Array,
-      required: true,
       default: () => []
     },
     rows: {
       type: Array,
-      required: true,
       default: () => []
     },
 

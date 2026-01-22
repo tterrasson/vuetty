@@ -125,7 +125,7 @@ class MarkdownTokenCache {
 export default {
   name: 'Markdown',
   props: {
-    content: { type: String, required: true, default: '' },
+    content: { type: String, default: '' },
 
     // Heading colors
     h1Color: { type: String, default: 'cyan' },

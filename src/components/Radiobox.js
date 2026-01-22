@@ -35,7 +35,6 @@ export default {
     // Options
     options: {
       type: Array,
-      required: true,
       default: () => []
     },
 
