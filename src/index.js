@@ -7,9 +7,17 @@ export * from './components/index.js';
 
 // Export theme utilities
 export { createTheme, DEFAULT_THEME, resolveThemeColor } from './core/theme.js';
+export { useTheme } from './composables/useTheme.js';
 
 // Export injection keys for advanced usage
-export { VUETTY_INPUT_MANAGER_KEY, VUETTY_THEME_KEY } from './core/vuettyKeys.js';
+export {
+  VUETTY_INPUT_MANAGER_KEY,
+  VUETTY_THEME_KEY,
+  VUETTY_INSTANCE_KEY,
+  VUETTY_RENDERER_KEY,
+  VUETTY_ROUTER_KEY,
+  VUETTY_VIEWPORT_STATE_KEY
+} from './core/vuettyKeys.js';
 
 // Export render handler API for custom components
 export { RenderHandler, RenderContext, renderHandlerRegistry } from './core/renderHandlers.js';
