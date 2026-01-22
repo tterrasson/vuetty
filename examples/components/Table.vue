@@ -15,6 +15,7 @@
       :height="4"
       :striped="false"
       :showHeader="false"
+      :hint="false"
     />
   </Col>
 </template>

@@ -583,6 +583,110 @@ describe('Table component', () => {
                      stripped.includes('Enter/Space');
       expect(hasHelp).toBe(false);
     });
+
+    test('displays custom hint text when provided', () => {
+      const result = renderTable({
+        headers,
+        rows,
+        highlightedIndex: 0,
+        isFocused: true,
+        disabled: false,
+        hint: 'Custom hint message',
+        height: 10
+      });
+      const stripped = stripAnsi(result);
+
+      expect(stripped).toContain('Custom hint message');
+      // Should not show default hint
+      expect(stripped).not.toContain('Navigate');
+    });
+
+    test('hides hint when hint prop is false', () => {
+      const result = renderTable({
+        headers,
+        rows,
+        highlightedIndex: 0,
+        isFocused: true,
+        disabled: false,
+        hint: false,
+        height: 10
+      });
+      const stripped = stripAnsi(result);
+
+      // Should not show any hint
+      expect(stripped).not.toContain('Navigate');
+      expect(stripped).not.toContain('Enter/Space');
+      expect(stripped).not.toContain('Tab to next field');
+    });
+
+    test('shows default hint when hint prop is "default"', () => {
+      const result = renderTable({
+        headers,
+        rows,
+        highlightedIndex: 0,
+        isFocused: true,
+        disabled: false,
+        hint: 'default',
+        height: 10
+      });
+      const stripped = stripAnsi(result);
+
+      expect(stripped).toMatch(/Navigate|Enter|Space|Tab/i);
+    });
+
+    test('handles empty string hint', () => {
+      const result = renderTable({
+        headers,
+        rows,
+        highlightedIndex: 0,
+        isFocused: true,
+        disabled: false,
+        hint: '',
+        height: 10
+      });
+      const stripped = stripAnsi(result);
+
+      // Empty hint should not display anything
+      expect(stripped).not.toContain('Navigate');
+    });
+
+    test('hint=false does not add extra lines', () => {
+      const withoutHint = renderTable({
+        headers,
+        rows,
+        highlightedIndex: 0,
+        isFocused: true,
+        disabled: false,
+        hint: false,
+        height: 10
+      });
+
+      const withHint = renderTable({
+        headers,
+        rows,
+        highlightedIndex: 0,
+        isFocused: true,
+        disabled: false,
+        hint: 'default',
+        height: 10
+      });
+
+      const strippedWithout = stripAnsi(withoutHint);
+      const strippedWith = stripAnsi(withHint);
+
+      // Without hint should have fewer lines than with hint
+      const linesWithout = strippedWithout.split('\n').length;
+      const linesWith = strippedWith.split('\n').length;
+      expect(linesWithout).toBeLessThan(linesWith);
+
+      // Without hint should not contain hint text
+      expect(strippedWithout).not.toContain('Navigate');
+      expect(strippedWithout).not.toContain('Enter/Space');
+      expect(strippedWithout).not.toContain('Tab to next field');
+
+      // With hint should contain hint text
+      expect(strippedWith).toMatch(/Navigate|Enter|Tab/);
+    });
   });
 
   describe('edge cases and special scenarios', () => {

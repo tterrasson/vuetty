@@ -47,6 +47,7 @@ const selectedIndex = ref(null);
 | `stripedColor` | `string` | `'black'` | Striped row background |
 | `bold` | `boolean` | `false` | Bold text |
 | `dim` | `boolean` | `false` | Dimmer text |
+| `hint` | `string\|boolean` | `'default'` | Help text (default, custom string, or false to hide) |
 
 ## Events
 
@@ -373,6 +374,72 @@ import { Table } from 'vuetty';
 const data = [
   ['Item 1', 'Value A'],
   ['Item 2', 'Value B']
+];
+</script>
+```
+
+## Hint Text
+
+### Default Hint
+
+By default, focused tables display navigation help:
+
+```vue
+<template>
+  <Table
+    :headers="['Name', 'Age']"
+    :rows="[['Alice', '28'], ['Bob', '34']]"
+  />
+</template>
+
+<script setup>
+import { Table } from 'vuetty';
+</script>
+```
+
+### Custom Hint
+
+Provide custom help text:
+
+```vue
+<template>
+  <Table
+    :headers="['Action', 'Shortcut']"
+    :rows="shortcuts"
+    hint="Press Enter to execute the selected action"
+  />
+</template>
+
+<script setup>
+import { Table } from 'vuetty';
+
+const shortcuts = [
+  ['Copy', 'Ctrl+C'],
+  ['Paste', 'Ctrl+V'],
+  ['Save', 'Ctrl+S']
+];
+</script>
+```
+
+### Hide Hint
+
+Hide help text completely:
+
+```vue
+<template>
+  <Table
+    :headers="['Item', 'Value']"
+    :rows="data"
+    :hint="false"
+  />
+</template>
+
+<script setup>
+import { Table } from 'vuetty';
+
+const data = [
+  ['A', '1'],
+  ['B', '2']
 ];
 </script>
 ```

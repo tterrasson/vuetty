@@ -93,6 +93,10 @@ export default {
     },
     bold: Boolean,
     dim: Boolean,
+    hint: {
+      type: [String, Boolean],
+      default: 'default'
+    },
     // Include common layout props (padding, margin, dimensions)
     ...boxProps
   },
@@ -539,7 +543,8 @@ export function renderTable(props) {
     highlightColor = 'yellow',
     headerColor = 'white',
     stripedColor = 'black',
-    disabled = false
+    disabled = false,
+    hint = 'default'
   } = props;
 
   let output = '';
@@ -604,8 +609,18 @@ export function renderTable(props) {
   output += renderBottomBorder(colWidths, borderStyle);
 
   // Helper text
-  if (isFocused && !disabled) {
-    output += chalk.dim('↑↓ Navigate • Enter/Space to select • Tab to next field') + '\n';
+  if (isFocused && !disabled && hint !== false) {
+    let hintText = '';
+
+    if (hint === 'default') {
+      hintText = '↑↓ Navigate • Enter/Space to select • Tab to next field';
+    } else if (hint && hint !== '') {
+      hintText = hint;
+    }
+
+    if (hintText) {
+      output += chalk.dim(hintText) + '\n';
+    }
   }
 
   // Scroll indicator
