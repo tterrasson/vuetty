@@ -396,4 +396,163 @@ describe('SelectInput component', () => {
       expect(selectedCount).toBe(1);
     });
   });
+
+  describe('hint text', () => {
+    const options = [
+      { label: 'Option 1', value: 'opt1' },
+      { label: 'Option 2', value: 'opt2' },
+      { label: 'Option 3', value: 'opt3' }
+    ];
+
+    test('displays default hint text when focused', () => {
+      const result = renderSelectInput({
+        options,
+        modelValue: null,
+        highlightedIndex: 0,
+        selectedIndex: -1,
+        isFocused: true,
+        disabled: false,
+        hint: 'default'
+      });
+      const stripped = stripAnsi(result);
+
+      expect(stripped).toMatch(/Navigate|Enter|select|Tab/i);
+    });
+
+    test('does not display hint text when not focused', () => {
+      const result = renderSelectInput({
+        options,
+        modelValue: null,
+        highlightedIndex: 0,
+        selectedIndex: -1,
+        isFocused: false,
+        hint: 'default'
+      });
+      const stripped = stripAnsi(result);
+
+      const hasHelp = stripped.includes('Navigate') ||
+                     stripped.includes('select');
+      expect(hasHelp).toBe(false);
+    });
+
+    test('does not display hint text when disabled', () => {
+      const result = renderSelectInput({
+        options,
+        modelValue: null,
+        highlightedIndex: 0,
+        selectedIndex: -1,
+        isFocused: true,
+        disabled: true,
+        hint: 'default'
+      });
+      const stripped = stripAnsi(result);
+
+      const hasHelp = stripped.includes('Tab to next field');
+      expect(hasHelp).toBe(false);
+    });
+
+    test('displays custom hint text when provided', () => {
+      const result = renderSelectInput({
+        options,
+        modelValue: null,
+        highlightedIndex: 0,
+        selectedIndex: -1,
+        isFocused: true,
+        disabled: false,
+        hint: 'Custom hint message'
+      });
+      const stripped = stripAnsi(result);
+
+      expect(stripped).toContain('Custom hint message');
+      // Should not show default hint
+      expect(stripped).not.toContain('Navigate');
+    });
+
+    test('hides hint when hint prop is false', () => {
+      const result = renderSelectInput({
+        options,
+        modelValue: null,
+        highlightedIndex: 0,
+        selectedIndex: -1,
+        isFocused: true,
+        disabled: false,
+        hint: false
+      });
+      const stripped = stripAnsi(result);
+
+      // Should not show any hint
+      expect(stripped).not.toContain('Navigate');
+      expect(stripped).not.toContain('select');
+      expect(stripped).not.toContain('Tab');
+    });
+
+    test('shows default hint when hint prop is "default"', () => {
+      const result = renderSelectInput({
+        options,
+        modelValue: null,
+        highlightedIndex: 0,
+        selectedIndex: -1,
+        isFocused: true,
+        disabled: false,
+        hint: 'default'
+      });
+      const stripped = stripAnsi(result);
+
+      expect(stripped).toMatch(/Navigate|select|Tab/i);
+    });
+
+    test('handles empty string hint', () => {
+      const result = renderSelectInput({
+        options,
+        modelValue: null,
+        highlightedIndex: 0,
+        selectedIndex: -1,
+        isFocused: true,
+        disabled: false,
+        hint: ''
+      });
+      const stripped = stripAnsi(result);
+
+      // Empty hint should not display anything
+      expect(stripped).not.toContain('Navigate');
+    });
+
+    test('hint=false does not add extra lines', () => {
+      const withoutHint = renderSelectInput({
+        options,
+        modelValue: null,
+        highlightedIndex: 0,
+        selectedIndex: -1,
+        isFocused: true,
+        disabled: false,
+        hint: false
+      });
+
+      const withHint = renderSelectInput({
+        options,
+        modelValue: null,
+        highlightedIndex: 0,
+        selectedIndex: -1,
+        isFocused: true,
+        disabled: false,
+        hint: 'default'
+      });
+
+      const strippedWithout = stripAnsi(withoutHint);
+      const strippedWith = stripAnsi(withHint);
+
+      // Without hint should have fewer lines than with hint
+      const linesWithout = strippedWithout.split('\n').length;
+      const linesWith = strippedWith.split('\n').length;
+      expect(linesWithout).toBeLessThan(linesWith);
+
+      // Without hint should not contain hint text
+      expect(strippedWithout).not.toContain('Navigate');
+      expect(strippedWithout).not.toContain('select');
+      expect(strippedWithout).not.toContain('Tab');
+
+      // With hint should contain hint text
+      expect(strippedWith).toContain('Navigate');
+    });
+  });
 });

@@ -50,6 +50,7 @@ const options = ref([
 | `highlightColor` | `string` | `'yellow'` | Color for highlighted option |
 | `bold` | `boolean` | `false` | Bold text |
 | `dim` | `boolean` | `false` | Dimmed text |
+| `hint` | `string` | `boolean` | `'default'` | Hint text shown when focused. Set to `false` to hide, `'default'` for default hint, or a custom string |
 
 ## Options Format
 
@@ -221,6 +222,54 @@ const selectedOption = ref(null);
 const options = ref([
   { value: 'apple', label: 'Apple' },
   { value: 'banana', label: 'Banana', disabled: true },
+  { value: 'orange', label: 'Orange' }
+]);
+</script>
+```
+
+### Custom Hint Text
+
+```vue
+<template>
+  <SelectInput
+    v-model="selectedOption"
+    :options="options"
+    hint="Use arrow keys to browse options"
+  />
+</template>
+
+<script setup>
+import { ref } from 'vue';
+import { SelectInput } from 'vuetty';
+
+const selectedOption = ref(null);
+const options = ref([
+  { value: 'apple', label: 'Apple' },
+  { value: 'banana', label: 'Banana' },
+  { value: 'orange', label: 'Orange' }
+]);
+</script>
+```
+
+### Hide Hint Text
+
+```vue
+<template>
+  <SelectInput
+    v-model="selectedOption"
+    :options="options"
+    :hint="false"
+  />
+</template>
+
+<script setup>
+import { ref } from 'vue';
+import { SelectInput } from 'vuetty';
+
+const selectedOption = ref(null);
+const options = ref([
+  { value: 'apple', label: 'Apple' },
+  { value: 'banana', label: 'Banana' },
   { value: 'orange', label: 'Orange' }
 ]);
 </script>

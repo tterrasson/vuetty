@@ -74,6 +74,10 @@ export default {
     },
     bold: Boolean,
     dim: Boolean,
+    hint: {
+      type: [String, Boolean],
+      default: 'default'
+    },
     // Include common layout props (padding, margin, dimensions)
     ...boxProps
   },
@@ -387,7 +391,8 @@ export function renderSelectInput(props) {
     focusColor = 'cyan',
     selectedColor = 'green',
     highlightColor = 'yellow',
-    disabled = false
+    disabled = false,
+    hint = 'default'
   } = props;
 
   let output = '';
@@ -481,8 +486,18 @@ export function renderSelectInput(props) {
   output += borderStyle('└' + '─'.repeat(innerWidth) + '┘');
 
   // Helper text
-  if (isFocused && !disabled) {
-    output += '\n' + chalk.dim('↑↓ Navigate • Enter to select • Tab to next field');
+  if (isFocused && !disabled && hint !== false) {
+    let hintText = '';
+
+    if (hint === 'default') {
+      hintText = '↑↓ Navigate • Enter to select • Tab to next field';
+    } else if (hint && hint !== '') {
+      hintText = hint;
+    }
+
+    if (hintText) {
+      output += '\n' + chalk.dim(hintText);
+    }
   }
 
   // Scroll indicator
