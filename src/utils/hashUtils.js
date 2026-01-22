@@ -5,7 +5,7 @@
  * @see https://en.wikipedia.org/wiki/Fowler%E2%80%93Noll%E2%80%93Vo_hash_function
  */
 
-import { LAYOUT_AFFECTING_PROPS } from '@core/memoization.js';
+import { LAYOUT_AFFECTING_PROPS } from '@core/layoutPropRegistry.js';
 
 const FNV_OFFSET_BASIS = 2166136261; // FNV-1a 32-bit offset basis
 const FNV_PRIME = 16777619; // FNV-1a 32-bit prime

@@ -2,7 +2,8 @@
 import { createRenderer } from '@vue/runtime-core';
 import { TUINode, TextNode, CommentNode } from './node.js';
 import { renderToString } from './render.js';
-import { isLayoutAffectingProp, markSelfDirty } from './memoization.js';
+import { markSelfDirty } from './memoization.js';
+import { isLayoutAffectingProp } from './layoutPropRegistry.js';
 
 function isPlainObject(val) {
   return val !== null && typeof val === 'object' && !Array.isArray(val);

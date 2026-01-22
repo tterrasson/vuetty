@@ -8,9 +8,9 @@ import {
   renderChildrenCached,
   cacheOutput,
   markSelfDirty,
-  invalidateCache,
-  isLayoutAffectingProp
+  invalidateCache
 } from '../../src/core/memoization.js';
+import { isLayoutAffectingProp } from '../../src/core/layoutPropRegistry.js';
 import { TUINode } from '../../src/core/node.js';
 
 describe('memoization', () => {

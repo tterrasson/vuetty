@@ -143,26 +143,3 @@ export function deepInvalidate(node) {
     }
   }
 }
-
-/**
- * Layout-affecting prop names
- */
-export const LAYOUT_AFFECTING_PROPS = new Set([
-  'width', 'height', 'flex', 'flexGrow', 'flexShrink', 'flexBasis',
-  'flexDirection', 'gap', 'padding', 'paddingLeft', 'paddingRight',
-  'paddingTop', 'paddingBottom', 'margin', 'marginLeft', 'marginRight',
-  'marginTop', 'marginBottom', 'border', 'borderStyle', 'rows', 'headers', 'options',
-  'showHeader', 'minWidth', 'maxWidth', 'minHeight', 'maxHeight',
-  'justifyContent', 'alignItems', 'alignSelf', 'alignContent',
-  'flexWrap', 'responsive', '_injectedWidth', '_viewportVersion',
-  'label', 'hint', 'validationError', 'isFocused', 'disabled',
-  'direction', 'autoResize', 'minRows', 'maxRows', 'font', 'length',
-  'imageLines', 'count', 'lines', 'text'
-]);
-
-/**
- * Check if a prop change affects layout
- */
-export function isLayoutAffectingProp(propName) {
-  return LAYOUT_AFFECTING_PROPS.has(propName);
-}
