@@ -1,6 +1,6 @@
 {
   "name": "vuetty",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Build reactive Terminal User Interfaces using Vue.js",
   "homepage": "https://tterrasson.github.io/vuetty/",
   "repository": {
