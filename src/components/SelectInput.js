@@ -503,7 +503,10 @@ export function renderSelectInput(props) {
   // Scroll indicator
   if (options.length > height) {
     const scrollPercent = Math.round((scrollOffset / Math.max(1, options.length - height)) * 100);
-    output += '\n' + chalk.dim(`[${scrollPercent}% - showing ${scrollOffset + 1}-${Math.min(scrollOffset + height, options.length)} of ${options.length}]`);
+    const start = scrollOffset + 1;
+    const end = Math.min(scrollOffset + height, options.length);
+    const total = options.length;
+    output += '\n' + chalk.dim(`[${scrollPercent}% - showing ${start}-${end} of ${total}]`);
   }
 
   return output;
