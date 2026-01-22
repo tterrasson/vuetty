@@ -16,76 +16,47 @@ For detailed documentation, component references, and advanced usage, visit the 
 - **Advanced Input Management**: Built-in keyboard and mouse input handling with focus management and interactive form components.
 - **Optimized Performance**: Efficient rendering with smart caching for text, images, and markdown content.
 
-## Installation
+## Demo
 
-```bash
-bun add vuetty vue
-```
+![Vuetty demo](docs/public/images/demo.gif)
 
 ## Quick Start
 
-Create a simple Vue component:
+Use the repository's `simple-app-example` to get a working app with routing and layout in place.
 
-```vue
-<!-- Hello.vue -->
-<template>
-  <Box :padding="1" color="cyan">
-    <TextBox bold>Hello, World!</TextBox>
-  </Box>
-</template>
-
-<script setup>
-import { Box, TextBox } from 'vuetty';
-</script>
-```
-
-Run it with Bun:
-
-```js
-// app.js
-import 'vuetty/loader';
-import { vuetty } from 'vuetty';
-import Hello from './Hello.vue';
-
-const app = vuetty(Hello);
-
-process.on('SIGINT', () => {
-  app.unmount();
-  process.exit(0);
-});
-```
+1) Clone and copy the example
 
 ```bash
-bun app.js
+git clone https://github.com/tterrasson/vuetty
+cd vuetty
+cp -a simple-app-example my-vuetty-app
+cd my-vuetty-app
 ```
 
-## Reactive Counter Example
+2) Install dependencies
 
-```vue
-<template>
-  <Col>
-    <Box :padding="1" color="cyan">
-      <TextBox bold>Counter: {{ count }}</TextBox>
-    </Box>
-    <Box :padding="1" :color="countColor">
-      <TextBox>{{ message }}</TextBox>
-    </Box>
-  </Col>
-</template>
-
-<script setup>
-import { ref, computed, onMounted } from 'vue';
-import { Box, TextBox, Col } from 'vuetty';
-
-const count = ref(0);
-const countColor = computed(() => count.value > 10 ? 'red' : 'green');
-const message = computed(() => count.value < 5 ? 'Just started...' : 'Getting high!');
-
-onMounted(() => {
-  setInterval(() => count.value++, 1000);
-});
-</script>
+```bash
+bun install
 ```
+
+3) Run the example
+
+```bash
+bun run dev
+```
+
+Press `Ctrl+C` to stop it.
+
+## Running examples
+
+From the repo root, list and run component examples:
+
+```bash
+bun run dev --list
+bun run dev box
+```
+
+The available IDs are defined in `examples/examples.js`.
 
 ## Use Cases
 

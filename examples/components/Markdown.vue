@@ -19,6 +19,15 @@ const content = `# Markdown demo
 **Tip:** Use backticks for code.
 _Italic text_ and **bold text** work together.
 
+## Link + Code block
+
+See the [Vuetty docs](https://vuetty.dev) for more.
+
+\`\`\`js
+const value = 42;
+console.log(value);
+\`\`\`
+
 ## Quote + Rule
 
 > This is a blockquote that can span multiple lines
@@ -31,14 +40,5 @@ _Italic text_ and **bold text** work together.
 1. Install deps
 2. Run the app
 3. Ship it
-
-## Link + Code block
-
-See the [Vuetty docs](https://vuetty.dev) for more.
-
-\`\`\`js
-const value = 42;
-console.log(value);
-\`\`\`
 `;
 </script>
