@@ -314,7 +314,8 @@ export function renderButton(props) {
     paddingTop: 0,     // No vertical padding
     paddingBottom: 0,
     bold: isFocused && !disabled,  // Make border bold when focused
-    width: effectiveWidth
+    width: effectiveWidth,
+    align: fullWidth ? 'center' : undefined  // Center text when fullWidth
   };
 
   return renderBox(styledLabel, boxProps, 0);
