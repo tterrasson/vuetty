@@ -18,9 +18,6 @@ const onClick = () => {
 </script>
 ```
 
-<!-- Image placeholder: /images/components/button-basic.png - Basic Button -->
-*A simple button with a click handler*
-
 ## Props
 
 | Name | Type | Default | Description |

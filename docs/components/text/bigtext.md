@@ -14,9 +14,6 @@ import { BigText } from 'vuetty';
 </script>
 ```
 
-<!-- Image placeholder: /images/components/bigtext-basic.png - Basic BigText -->
-*Simple BigText with Slant font*
-
 ## Props
 
 | Name | Type | Default | Description |

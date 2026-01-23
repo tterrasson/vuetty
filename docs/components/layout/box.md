@@ -16,9 +16,6 @@ import { Box, TextBox } from 'vuetty';
 </script>
 ```
 
-<!-- Image placeholder: /images/components/box-basic.png - Basic Box -->
-*A simple box with default rounded border and padding*
-
 ## Props
 
 | Name | Type | Default | Description |
@@ -91,9 +88,6 @@ import { Box, TextBox } from 'vuetty';
 </script>
 ```
 
-<!-- Image placeholder: /images/components/box-border-styles.png - Border Styles -->
-*All six built-in border styles*
-
 ### Custom Border
 
 Define your own border characters:
@@ -141,9 +135,6 @@ Add a title to the top border:
 import { Box, TextBox } from 'vuetty';
 </script>
 ```
-
-<!-- Image placeholder: /images/components/box-titles.png - Title Positioning -->
-*Title alignment options*
 
 ## Colors and Styling
 
@@ -201,9 +192,6 @@ import { Box, TextBox } from 'vuetty';
 </script>
 ```
 
-<!-- Image placeholder: /images/components/box-styling.png - Box Styling -->
-*Color and style variations*
-
 ## Text Alignment
 
 Control how text is aligned within the box:
@@ -227,9 +215,6 @@ Control how text is aligned within the box:
 import { Box, TextBox } from 'vuetty';
 </script>
 ```
-
-<!-- Image placeholder: /images/components/box-alignment.png - Text Alignment -->
-*Text alignment options within boxes*
 
 ## Width Control
 
@@ -308,9 +293,6 @@ Boxes can be nested for complex layouts:
 import { Box, TextBox } from 'vuetty';
 </script>
 ```
-
-<!-- Image placeholder: /images/components/box-nesting.png - Nested Boxes -->
-*Boxes nested within each other*
 
 ## Common Patterns
 

@@ -16,9 +16,6 @@ import { Gradient } from 'vuetty';
 </script>
 ```
 
-<!-- Image placeholder: /images/components/gradient-basic.png - Basic Gradient -->
-*Simple gradient with rainbow preset*
-
 ## Props
 
 | Name | Type | Default | Description |

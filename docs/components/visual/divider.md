@@ -14,9 +14,6 @@ import { Divider } from 'vuetty';
 </script>
 ```
 
-<!-- Image placeholder: /images/components/divider-basic.png - Basic Divider -->
-*A simple horizontal divider*
-
 ## Props
 
 | Name | Type | Default | Description |

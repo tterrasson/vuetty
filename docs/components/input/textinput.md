@@ -17,9 +17,6 @@ const textValue = ref('');
 </script>
 ```
 
-<!-- Image placeholder: /images/components/textinput-basic.png - Basic TextInput -->
-*A simple single-line text input with placeholder*
-
 ## Props
 
 | Name | Type | Default | Description |

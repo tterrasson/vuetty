@@ -14,9 +14,6 @@ import { Image } from 'vuetty';
 </script>
 ```
 
-<!-- Image placeholder: /images/components/image-basic.png - Basic Image -->
-*A simple image displayed in the terminal*
-
 ## Props
 
 | Name | Type | Default | Description |

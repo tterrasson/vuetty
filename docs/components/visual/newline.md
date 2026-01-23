@@ -18,9 +18,6 @@ import { Newline, Col, Text } from 'vuetty';
 </script>
 ```
 
-<!-- Image placeholder: /images/components/newline-basic.png - Basic Newline -->
-*Adding vertical space between lines*
-
 ## Props
 
 | Name | Type | Default | Description |

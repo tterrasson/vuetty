@@ -14,9 +14,6 @@ import { Markdown } from 'vuetty';
 </script>
 ```
 
-<!-- Image placeholder: /images/components/markdown-basic.png - Basic Markdown -->
-*Simple markdown rendering with headings and text styling*
-
 ## Props
 
 | Name | Type | Default | Description |

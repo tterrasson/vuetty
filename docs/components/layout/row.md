@@ -30,9 +30,6 @@ import { Row, Col, Box, TextBox } from 'vuetty';
 </script>
 ```
 
-<!-- Image placeholder: /images/components/row-basic.png - Basic Row -->
-*Three equal-width columns in a row*
-
 ## Props
 
 | Name | Type | Default | Description |
@@ -149,9 +146,6 @@ import { Row, Col, Box, TextBox } from 'vuetty';
 </script>
 ```
 
-<!-- Image placeholder: /images/components/row-flex-ratios.png - Flex Ratios -->
-*Different flex ratio examples*
-
 ## Gap Spacing
 
 Add space between columns:
@@ -181,9 +175,6 @@ Add space between columns:
 import { Row, Col, Box, TextBox } from 'vuetty';
 </script>
 ```
-
-<!-- Image placeholder: /images/components/row-gap.png - Gap Spacing -->
-*Row with gap={2} between columns*
 
 ## Horizontal Alignment (justifyContent)
 
@@ -316,9 +307,6 @@ import { Row, Box, TextBox } from 'vuetty';
 </script>
 ```
 
-<!-- Image placeholder: /images/components/row-justify.png - Justify Content -->
-*justifyContent alignment options*
-
 ## Vertical Alignment (alignItems)
 
 ### stretch (Default)
@@ -407,9 +395,6 @@ import { Row, Box, TextBox } from 'vuetty';
 </script>
 ```
 
-<!-- Image placeholder: /images/components/row-align.png - Align Items -->
-*alignItems vertical alignment options*
-
 ## Wrapping
 
 Allow items to wrap to multiple lines:
@@ -444,9 +429,6 @@ Allow items to wrap to multiple lines:
 import { Row, Col, Box, TextBox } from 'vuetty';
 </script>
 ```
-
-<!-- Image placeholder: /images/components/row-wrap.png - Flex Wrap -->
-*Items wrapping to multiple lines*
 
 ## Responsive Layouts
 
@@ -488,9 +470,6 @@ import { Row, Col, Box, TextBox } from 'vuetty';
 ```
 
 Cards will wrap to new lines when the terminal is too narrow to fit them all.
-
-<!-- Image placeholder: /images/components/row-responsive.png - Responsive Grid -->
-*Responsive card grid that wraps based on terminal width*
 
 ## Common Patterns
 

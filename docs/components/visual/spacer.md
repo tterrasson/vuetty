@@ -18,9 +18,6 @@ import { Spacer, Row, Text } from 'vuetty';
 </script>
 ```
 
-<!-- Image placeholder: /images/components/spacer-basic.png - Basic Spacer -->
-*Adding horizontal space between elements*
-
 ## Props
 
 | Name | Type | Default | Description |
