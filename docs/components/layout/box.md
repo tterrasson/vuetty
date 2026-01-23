@@ -45,6 +45,7 @@ import { Box, TextBox } from 'vuetty';
 | `paddingRight` | `number` | `null` | Right padding |
 | `paddingTop` | `number` | `null` | Top padding |
 | `paddingBottom` | `number` | `null` | Bottom padding |
+| `align` | `string` | `'left'` | Content text alignment: 'left', 'center', 'right' |
 | `margin` | `number` | `null` | Exterior margin |
 | `marginLeft` | `number` | `null` | Left margin |
 | `marginRight` | `number` | `null` | Right margin |
@@ -202,6 +203,33 @@ import { Box, TextBox } from 'vuetty';
 
 <!-- Image placeholder: /images/components/box-styling.png - Box Styling -->
 *Color and style variations*
+
+## Text Alignment
+
+Control how text is aligned within the box:
+
+```vue
+<template>
+  <Box :padding="1" :width="40" align="left">
+    <TextBox>Left aligned (default)</TextBox>
+  </Box>
+
+  <Box :padding="1" :width="40" align="center">
+    <TextBox>Center aligned</TextBox>
+  </Box>
+
+  <Box :padding="1" :width="40" align="right">
+    <TextBox>Right aligned</TextBox>
+  </Box>
+</template>
+
+<script setup>
+import { Box, TextBox } from 'vuetty';
+</script>
+```
+
+<!-- Image placeholder: /images/components/box-alignment.png - Text Alignment -->
+*Text alignment options within boxes*
 
 ## Width Control
 

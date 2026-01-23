@@ -348,7 +348,8 @@ export function renderBox(content, props, _depth) {
     titleAlign = 'left',
     titlePadding = 1,
     bg,
-    color: borderColor
+    color: borderColor,
+    align = 'left'
   } = props;
 
   // Calculate effective padding for each side
@@ -563,7 +564,22 @@ export function renderBox(content, props, _depth) {
       const line = lines[i];
       const visualWidth = getTerminalWidth(line);
       const paddingNeeded = Math.max(0, contentWidth - visualWidth);
-      const rightContentPadStr = getSpaces(paddingNeeded);
+
+      // Calculate left and right padding based on alignment
+      let leftContentPadStr, rightContentPadStr;
+      if (align === 'center') {
+        const leftPad = Math.floor(paddingNeeded / 2);
+        const rightPad = paddingNeeded - leftPad;
+        leftContentPadStr = getSpaces(leftPad);
+        rightContentPadStr = getSpaces(rightPad);
+      } else if (align === 'right') {
+        leftContentPadStr = getSpaces(paddingNeeded);
+        rightContentPadStr = '';
+      } else {
+        // left alignment (default)
+        leftContentPadStr = '';
+        rightContentPadStr = getSpaces(paddingNeeded);
+      }
 
       // Preserve background across any ANSI resets in content (e.g., from syntax highlighting)
       const processedLine = bgAnsiCode ? preserveBackground(line, bgAnsiCode) : line;
@@ -574,12 +590,12 @@ export function renderBox(content, props, _depth) {
         // Structure: [bg+borderFg+border][bg+leftPad+content][bg+rightPad][bg+borderFg+border]
         // Important: re-apply bg before right padding to ensure spaces have background
         fullLine = bgStr + borderFgCode + borderChars.vertical + '\x1b[0m' +
-                   bgStr + leftPadStr + processedLine +
+                   bgStr + leftPadStr + leftContentPadStr + processedLine +
                    bgStr + rightContentPadStr + rightPadStr + '\x1b[0m' +
                    bgStr + borderFgCode + borderChars.vertical;
       } else {
         // No border: apply bg to left padding, content, then re-apply for right padding
-        fullLine = bgStr + leftPadStr + processedLine +
+        fullLine = bgStr + leftPadStr + leftContentPadStr + processedLine +
                    bgStr + rightContentPadStr + rightPadStr;
       }
 

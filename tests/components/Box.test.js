@@ -217,4 +217,35 @@ describe('Box component', () => {
       expect(lines[2]).toContain('D');
     });
   });
+
+  describe('text alignment', () => {
+    test('aligns text to the left by default', () => {
+      const result = renderBox('Hi', { border: true, borderStyle: 'square', width: 20 });
+      const lines = stripAnsi(result).split('\n');
+      const contentLine = lines[1];
+
+      // Content should be left-aligned (closer to left border)
+      expect(contentLine).toMatch(/│\s*Hi\s+│/);
+    });
+
+    test('centers text when align is center', () => {
+      const result = renderBox('Hi', { border: true, borderStyle: 'square', width: 20, align: 'center' });
+      const lines = stripAnsi(result).split('\n');
+      const contentLine = lines[1];
+
+      // Content should be centered with roughly equal padding on both sides
+      // Width is 20, border takes 2, so interior is 18
+      // "Hi" is 2 chars, so padding should be split: 8 left, 8 right
+      expect(contentLine).toMatch(/│\s{7,9}Hi\s{7,9}│/);
+    });
+
+    test('aligns text to the right when align is right', () => {
+      const result = renderBox('Hi', { border: true, borderStyle: 'square', width: 20, align: 'right' });
+      const lines = stripAnsi(result).split('\n');
+      const contentLine = lines[1];
+
+      // Content should be right-aligned (closer to right border)
+      expect(contentLine).toMatch(/│\s+Hi\s*│/);
+    });
+  });
 });
