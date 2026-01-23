@@ -75,35 +75,9 @@ function releaseBuffer(buffer) {
 }
 
 /**
- * String interning cache - LRU with size limit
- */
-const STRING_CACHE = new Map();
-const MAX_STRING_CACHE_SIZE = 50;
-
-function intern(str) {
-  if (str.length === 0) return '';
-  if (str.length > 30) return str;
-
-  const cached = STRING_CACHE.get(str);
-  if (cached !== undefined) {
-    STRING_CACHE.delete(str);
-    STRING_CACHE.set(str, cached);
-    return cached;
-  }
-
-  if (STRING_CACHE.size >= MAX_STRING_CACHE_SIZE) {
-    const firstKey = STRING_CACHE.keys().next().value;
-    STRING_CACHE.delete(firstKey);
-  }
-  STRING_CACHE.set(str, str);
-  return str;
-}
-
-/**
  * Clear all Box caches
  */
 export function clearBoxCaches() {
-  STRING_CACHE.clear();
   bufferPool.length = 0;
 }
 
@@ -112,8 +86,6 @@ export function clearBoxCaches() {
  */
 export function getBoxCacheStats() {
   return {
-    stringCacheSize: STRING_CACHE.size,
-    stringCacheMaxSize: MAX_STRING_CACHE_SIZE,
     bufferPoolSize: bufferPool.length,
     bufferPoolMaxSize: MAX_POOL_SIZE
   };

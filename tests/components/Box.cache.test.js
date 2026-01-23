@@ -10,33 +10,12 @@ describe('Box Caching', () => {
     clearBoxCaches();
   });
 
-  test('caches strings', () => {
-    // Render with specific content
-    renderBox('content', { border: true, borderStyle: 'rounded' });
-
-    const stats = getBoxCacheStats();
-    // String cache should have some entries for spaces and other reused strings
-    expect(stats.stringCacheSize).toBeGreaterThanOrEqual(0);
-  });
-
-  test('different content may increase string cache', () => {
-    renderBox('content 1', { border: true });
-    const size1 = getBoxCacheStats().stringCacheSize;
-
-    renderBox('content 2', { border: true });
-    const size2 = getBoxCacheStats().stringCacheSize;
-
-    // Size may be same or increased depending on string interning
-    expect(size2).toBeGreaterThanOrEqual(size1);
-  });
-
   test('clearBoxCaches resets caches', () => {
     renderBox('content 1', { border: true });
 
     clearBoxCaches();
 
     const stats = getBoxCacheStats();
-    expect(stats.stringCacheSize).toBe(0);
     expect(stats.bufferPoolSize).toBe(0);
   });
 
@@ -55,20 +34,15 @@ describe('Box Caching', () => {
   test('cache stats includes all relevant metrics', () => {
     const stats = getBoxCacheStats();
 
-    expect(stats).toHaveProperty('stringCacheSize');
-    expect(stats).toHaveProperty('stringCacheMaxSize');
     expect(stats).toHaveProperty('bufferPoolSize');
     expect(stats).toHaveProperty('bufferPoolMaxSize');
 
-    expect(typeof stats.stringCacheSize).toBe('number');
-    expect(typeof stats.stringCacheMaxSize).toBe('number');
     expect(typeof stats.bufferPoolSize).toBe('number');
     expect(typeof stats.bufferPoolMaxSize).toBe('number');
   });
 
-  test('string cache has reasonable limits', () => {
+  test('buffer pool has reasonable limits', () => {
     const stats = getBoxCacheStats();
-    expect(stats.stringCacheMaxSize).toBeGreaterThan(0);
     expect(stats.bufferPoolMaxSize).toBeGreaterThan(0);
   });
 });
