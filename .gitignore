@@ -1,5 +1,6 @@
 # dependencies (bun install)
 node_modules
+simple-app-example/bun.lock
 
 # output
 out

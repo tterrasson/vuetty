@@ -14,7 +14,7 @@
   "dependencies": {
     "pinia": "^3.0.4",
     "vue": "^3.5.0",
-    "vuetty": "^0.1.0"
+    "vuetty": "^0.1.2"
   },
   "devDependencies": {
     "@rollup/plugin-alias": "^6.0.0",
