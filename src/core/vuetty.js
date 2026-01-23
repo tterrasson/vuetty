@@ -78,7 +78,7 @@ export class Vuetty {
     this.layoutEngine = null;
     this.logUpdate = null;
 
-    this.scrollThrottleMs = 16; // ~60fps max
+    this.scrollThrottleMs = options.scrollThrottleMs ?? 16; // ~60fps max
     this.lastScrollTime = 0;
     this.pendingScrollRender = null;
     this.lastScrollOffset = 0;
@@ -100,9 +100,9 @@ export class Vuetty {
       enabled: true,
       autoScrollToBottom: true,
       mouseWheelEnabled: true,
-      mouseWheelScrollLines: 3,
+      mouseWheelScrollLines: options.mouseWheelScrollLines ?? 3,
       scrollIndicatorMode: options.scrollIndicatorMode || 'reserved',
-      mouseTrackingEnabled: true,
+      mouseTrackingEnabled: options.mouseTrackingEnabled ?? true,
       ...options.viewport
     };
 
