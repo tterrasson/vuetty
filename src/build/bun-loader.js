@@ -5,14 +5,13 @@
  */
 import { plugin } from 'bun';
 import { compileSFC } from './compiler-core.js';
-import { readFileSync } from 'node:fs';
 
 plugin({
   name: 'vuetty-bun-loader',
 
   setup(build) {
     build.onLoad({ filter: /\.vue$/ }, async ({ path }) => {
-      const source = readFileSync(path, 'utf-8');
+      const source = await Bun.file(path).text();
       const { code, errors } = compileSFC(source, path);
 
       if (errors.length > 0) {
