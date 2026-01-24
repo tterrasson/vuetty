@@ -1,3 +1,13 @@
+<p align="center">
+  <a href="https://tterrasson.github.io/vuetty/" target="_blank" rel="noopener noreferrer">
+    <img src="docs/public/images/logo.webp" alt="Vuetty Logo" width="300" />
+  </a>
+</p>
+<p align="center">
+  <a href="https://www.npmjs.com/package/vuetty"><img src="https://img.shields.io/npm/v/vuetty?logo=npm&style=plastic" alt="npm package"></a>
+</p>
+<br/>
+
 # Vuetty
 
 A Vue.js custom renderer for building Terminal User Interfaces (TUIs). Vuetty brings Vue's reactive system and component model to the terminal, allowing you to build interactive command-line applications using familiar Vue.js syntax.
