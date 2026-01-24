@@ -39,7 +39,8 @@
   "files": [
     "dist",
     "README.md",
-    "LICENSE"
+    "LICENSE",
+    "docs/public/images/logo.webp"
   ],
   "scripts": {
     "build": "bun run scripts/build.js",

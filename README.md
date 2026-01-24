@@ -4,7 +4,9 @@
   </a>
 </p>
 <p align="center">
-  <a href="https://www.npmjs.com/package/vuetty"><img src="https://img.shields.io/npm/v/vuetty?logo=npm&style=plastic" alt="npm package"></a>
+  <a href="https://www.npmjs.com/package/vuetty">
+    <img src="https://img.shields.io/npm/v/vuetty?logo=npm&style=plastic" alt="npm package">
+  </a>
 </p>
 <br/>
 
