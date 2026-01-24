@@ -1,7 +1,7 @@
 <template>
   <Col :gap="1">
     <Box :padding="1" borderStyle="double" color="cyan">
-      <TextBox bold>Theme Carousel (switches every 5 seconds)</TextBox>
+      <TextBox bold>Theme Carousel (switches every 2 seconds)</TextBox>
     </Box>
 
     <Row :gap="1">
@@ -91,7 +91,7 @@ onMounted(() => {
     currentIndex.value = (currentIndex.value + 1) % themes.length;
     applyTheme(currentIndex.value);
     progress.value = (progress.value + 11) % 101;
-  }, 3000);
+  }, 2000);
 });
 
 onUnmounted(() => {
