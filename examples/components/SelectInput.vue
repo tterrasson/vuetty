@@ -1,7 +1,7 @@
 <template>
   <Col :gap="1">
     <TextBox bold color="cyan">SelectInput</TextBox>
-    <SelectInput v-model="selected" label="Pick one" :options="options" :height="6" />
+    <SelectInput v-model="selected" label="Pick one" :options="options" :height="3" />
     <TextBox color="green">Selected: {{ selected }}</TextBox>
     <SelectInput v-model="role" label="Role" :options="roleOptions" :height="4" />
   </Col>

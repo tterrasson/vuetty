@@ -1,17 +1,8 @@
 // src/components/SelectInput.js
-import { h, ref, inject, onUnmounted, watch, computed } from 'vue';
-import { VUETTY_INPUT_MANAGER_KEY, VUETTY_VIEWPORT_STATE_KEY, VUETTY_INSTANCE_KEY } from '@core/vuettyKeys.js';
+import { h, inject, computed } from 'vue';
+import { VUETTY_VIEWPORT_STATE_KEY } from '@core/vuettyKeys.js';
 import { WIDTH_CONTEXT_KEY } from '@core/widthContext.js';
-import {
-  KEY_UP,
-  KEY_DOWN,
-  KEY_ENTER,
-  KEY_HOME,
-  KEY_END,
-  KEY_PAGEUP,
-  KEY_PAGEDOWN,
-  isPrintable
-} from '@utils/keyParser.js';
+import { useNavigableList } from '@composables/useNavigableList.js';
 import chalk from 'chalk';
 import { getTerminalWidth, applyStyles } from '@utils/renderUtils.js';
 import { boxProps } from '@core/layoutProps.js';
@@ -20,11 +11,33 @@ import { RenderHandler, renderHandlerRegistry } from '@core/renderHandlers.js';
 let selectInputIdCounter = 0;
 
 /**
+ * Normalize option to consistent format
+ */
+function normalizeOption(opt, index) {
+  if (typeof opt === 'object' && opt !== null) {
+    return {
+      value: opt.value !== undefined ? opt.value : index,
+      label: opt.label || String(opt.value || opt),
+      disabled: opt.disabled || false
+    };
+  }
+  return {
+    value: opt,
+    label: String(opt),
+    disabled: false
+  };
+}
+
+/**
  * SelectInput component - Interactive selection list
  */
 export default {
   name: 'SelectInput',
   props: {
+    // Include common layout props first (padding, margin, dimensions)
+    // so that SelectInput-specific props can override them
+    ...boxProps,
+
     // v-model
     modelValue: {
       type: [String, Number, Object],
@@ -49,6 +62,16 @@ export default {
     width: {
       type: Number,
       default: undefined
+    },
+
+    // Visual markers
+    marker: {
+      type: String,
+      default: '●'
+    },
+    highlightMarker: {
+      type: String,
+      default: '▸'
     },
 
     // State
@@ -77,17 +100,12 @@ export default {
     hint: {
       type: [String, Boolean],
       default: 'default'
-    },
-    // Include common layout props (padding, margin, dimensions)
-    ...boxProps
+    }
   },
 
   emits: ['update:modelValue', 'change', 'focus', 'blur'],
 
   setup(props, { emit }) {
-    const inputManager = inject(VUETTY_INPUT_MANAGER_KEY);
-    const vuettyInstance = inject(VUETTY_INSTANCE_KEY, null);
-
     // Inject viewport state to trigger re-renders on resize
     const viewportState = inject(VUETTY_VIEWPORT_STATE_KEY, null);
 
@@ -97,258 +115,19 @@ export default {
     // Generate unique component ID
     const componentId = `selectinput-${++selectInputIdCounter}`;
 
-    // Internal state
-    const highlightedIndex = ref(0);
-    const scrollOffset = ref(0);
-
-    // Computed: Find selected index based on modelValue
-    const selectedIndex = computed(() => {
-      if (props.modelValue === null || props.modelValue === undefined) {
-        return -1;
-      }
-
-      return props.options.findIndex(opt => opt.value === props.modelValue);
+    // Normalize options to consistent format
+    const normalizedItems = computed(() => {
+      return props.options.map((opt, index) => normalizeOption(opt, index));
     });
 
-    // Computed: Check if this component is focused (this updates reactively)
-    const isFocused = computed(() => {
-      return inputManager && inputManager.isFocused(componentId);
-    });
-
-    // Watch focus state for events
-    watch(isFocused, (newVal, oldVal) => {
-      if (newVal && !oldVal) {
-        emit('focus');
-      } else if (!newVal && oldVal) {
-        emit('blur');
-      }
-    });
-
-    // Watch options changes to reset highlight if needed
-    watch(() => props.options, () => {
-      if (highlightedIndex.value >= props.options.length) {
-        highlightedIndex.value = Math.max(0, props.options.length - 1);
-        updateScrollOffset();
-      }
-    });
-
-    /**
-     * Update scroll offset to keep highlighted option visible
-     */
-    function updateScrollOffset() {
-      if (highlightedIndex.value < scrollOffset.value) {
-        scrollOffset.value = highlightedIndex.value;
-      } else if (highlightedIndex.value >= scrollOffset.value + props.height) {
-        scrollOffset.value = highlightedIndex.value - props.height + 1;
-      }
-    }
-
-    /**
-     * Move highlight up
-     */
-    function moveUp() {
-      if (highlightedIndex.value > 0) {
-        highlightedIndex.value--;
-
-        // Skip disabled options
-        while (highlightedIndex.value > 0 && props.options[highlightedIndex.value]?.disabled) {
-          highlightedIndex.value--;
-        }
-
-        updateScrollOffset();
-      }
-    }
-
-    /**
-     * Move highlight down
-     */
-    function moveDown() {
-      if (highlightedIndex.value < props.options.length - 1) {
-        highlightedIndex.value++;
-
-        // Skip disabled options
-        while (highlightedIndex.value < props.options.length - 1 && props.options[highlightedIndex.value]?.disabled) {
-          highlightedIndex.value++;
-        }
-
-        updateScrollOffset();
-      }
-    }
-
-    /**
-     * Select the highlighted option
-     */
-    function selectHighlighted() {
-      const option = props.options[highlightedIndex.value];
-
-      if (!option || option.disabled) {
-        return;
-      }
-
-      emit('update:modelValue', option.value);
-      emit('change', option.value);
-    }
-
-    /**
-     * Jump to first option
-     */
-    function jumpToFirst() {
-      highlightedIndex.value = 0;
-
-      // Skip disabled options at the start
-      while (highlightedIndex.value < props.options.length - 1 && props.options[highlightedIndex.value]?.disabled) {
-        highlightedIndex.value++;
-      }
-
-      updateScrollOffset();
-    }
-
-    /**
-     * Jump to last option
-     */
-    function jumpToLast() {
-      highlightedIndex.value = props.options.length - 1;
-
-      // Skip disabled options at the end
-      while (highlightedIndex.value > 0 && props.options[highlightedIndex.value]?.disabled) {
-        highlightedIndex.value--;
-      }
-
-      updateScrollOffset();
-    }
-
-    /**
-     * Jump to option by typing first letter
-     */
-    function jumpByChar(char) {
-      const lowerChar = char.toLowerCase();
-      const currentIndex = highlightedIndex.value;
-
-      // Search from next option forward
-      for (let i = currentIndex + 1; i < props.options.length; i++) {
-        const option = props.options[i];
-        const label = (option.label || String(option.value)).toLowerCase();
-
-        if (label.startsWith(lowerChar) && !option.disabled) {
-          highlightedIndex.value = i;
-          updateScrollOffset();
-          return;
-        }
-      }
-
-      // Wrap around: search from start to current
-      for (let i = 0; i <= currentIndex; i++) {
-        const option = props.options[i];
-        const label = (option.label || String(option.value)).toLowerCase();
-
-        if (label.startsWith(lowerChar) && !option.disabled) {
-          highlightedIndex.value = i;
-          updateScrollOffset();
-          return;
-        }
-      }
-    }
-
-    /**
-     * Key handler
-     */
-    function handleKey(parsedKey) {
-      if (props.disabled) return;
-
-      // Navigation
-      if (parsedKey.key === KEY_UP) {
-        moveUp();
-        return;
-      }
-
-      if (parsedKey.key === KEY_DOWN) {
-        moveDown();
-        return;
-      }
-
-      if (parsedKey.key === KEY_HOME) {
-        jumpToFirst();
-        return;
-      }
-
-      if (parsedKey.key === KEY_END) {
-        jumpToLast();
-        return;
-      }
-
-      if (parsedKey.key === KEY_PAGEUP) {
-        // Move up by height
-        for (let i = 0; i < props.height; i++) {
-          moveUp();
-        }
-        return;
-      }
-
-      if (parsedKey.key === KEY_PAGEDOWN) {
-        // Move down by height
-        for (let i = 0; i < props.height; i++) {
-          moveDown();
-        }
-        return;
-      }
-
-      // Selection
-      if (parsedKey.key === KEY_ENTER || parsedKey.char === ' ') {
-        selectHighlighted();
-        return;
-      }
-
-      // Type to jump
-      if (isPrintable(parsedKey) && parsedKey.char !== ' ') {
-        jumpByChar(parsedKey.char);
-        return;
-      }
-    }
-
-    /**
-     * Mouse click handler - focus on click
-     */
-    function handleClick(mouseEvent) {
-      if (props.disabled) return;
-      inputManager.focus(componentId);
-    }
-
-    // Register component immediately (before first render)
-    if (inputManager) {
-      inputManager.registerComponent(componentId, handleKey, {
-        disabled: props.disabled
-      });
-    }
-
-    // Register click handler
-    if (vuettyInstance) {
-      vuettyInstance.registerClickHandler(componentId, handleClick);
-    }
-
-    // Initialize: If there's a modelValue, highlight it
-    if (selectedIndex.value >= 0) {
-      highlightedIndex.value = selectedIndex.value;
-      updateScrollOffset();
-    } else {
-      // Otherwise, highlight first non-disabled option
-      jumpToFirst();
-    }
-
-    // Lifecycle
-    onUnmounted(() => {
-      if (inputManager) {
-        inputManager.unregisterComponent(componentId);
-      }
-      if (vuettyInstance) {
-        vuettyInstance.unregisterClickHandler(componentId);
-      }
-    });
-
-    // Watch disabled prop
-    watch(() => props.disabled, (newVal) => {
-      if (inputManager) {
-        inputManager.setComponentDisabled(componentId, newVal);
-      }
+    // Use navigable list composable
+    const navigation = useNavigableList({
+      items: normalizedItems,
+      height: computed(() => props.height),
+      modelValue: computed(() => props.modelValue),
+      emit,
+      componentId,
+      disabled: computed(() => props.disabled)
     });
 
     // Render
@@ -364,10 +143,10 @@ export default {
         ...props,
         _componentId: componentId,
         _clickable: true,
-        highlightedIndex: highlightedIndex.value,
-        selectedIndex: selectedIndex.value,
-        scrollOffset: scrollOffset.value,
-        isFocused: isFocused.value,
+        highlightedIndex: navigation.highlightedIndex.value,
+        selectedIndex: navigation.selectedIndex.value,
+        scrollOffset: navigation.scrollOffset.value,
+        isFocused: navigation.isFocused.value,
         _injectedWidth: injectedWidth,
         _viewportVersion: viewportState ? viewportState.version : 0
       });
@@ -392,7 +171,9 @@ export function renderSelectInput(props) {
     selectedColor = 'green',
     highlightColor = 'yellow',
     disabled = false,
-    hint = 'default'
+    hint = 'default',
+    marker = '●',
+    highlightMarker = '▸'
   } = props;
 
   let output = '';
@@ -440,8 +221,11 @@ export function renderSelectInput(props) {
   // Top border
   output += borderStyle('┌' + '─'.repeat(innerWidth) + '┐') + '\n';
 
+  // Always show exactly 'height' rows (or total options if less)
+  const visibleCount = Math.min(height, options.length);
+
   // Render visible options
-  for (let i = 0; i < Math.min(height, options.length); i++) {
+  for (let i = 0; i < visibleCount; i++) {
     const globalIndex = scrollOffset + i;
     const option = options[globalIndex];
 
@@ -453,9 +237,9 @@ export function renderSelectInput(props) {
       // Build indicator
       let indicator = '  ';
       if (isSelected) {
-        indicator = chalk[selectedColor].bold('● ');
+        indicator = chalk[selectedColor].bold(`${marker} `);
       } else if (isHighlighted) {
-        indicator = chalk[highlightColor].bold('▸ ');
+        indicator = chalk[highlightColor].bold(`${highlightMarker} `);
       }
 
       // Build option text - pad to width
@@ -477,8 +261,9 @@ export function renderSelectInput(props) {
 
       output += borderStyle('│') + indicator + optionText + borderStyle('│') + '\n';
     } else {
-      // Empty row
-      output += borderStyle('│') + ' '.repeat(innerWidth) + borderStyle('│') + '\n';
+      // Empty row to maintain consistent height
+      const emptyRow = '  ' + ''.padEnd(contentWidth, ' ');
+      output += borderStyle('│') + emptyRow + borderStyle('│') + '\n';
     }
   }
 

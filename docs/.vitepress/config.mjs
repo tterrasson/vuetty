@@ -70,6 +70,7 @@ export default defineConfig({
         items: [
           { text: 'Table', link: '/components/visual/table' },
           { text: 'Tree', link: '/components/visual/tree' },
+          { text: 'List', link: '/components/visual/list' },
           { text: 'Image', link: '/components/visual/image' },
           { text: 'ProgressBar', link: '/components/visual/progressbar' },
           { text: 'Spinner', link: '/components/visual/spinner' },

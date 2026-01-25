@@ -18,6 +18,7 @@ export const examples = [
   example('checkbox', 'Checkbox', './components/Checkbox.vue'),
   example('radiobox', 'Radiobox', './components/Radiobox.vue'),
   example('table', 'Table', './components/Table.vue'),
+  example('list', 'List', './components/List.vue'),
   example('spinner', 'Spinner', './components/Spinner.vue'),
   example('progress-bar', 'ProgressBar', './components/ProgressBar.vue'),
   example('markdown', 'Markdown', './components/Markdown.vue'),

@@ -1,28 +1,40 @@
 # SelectInput
 
-The SelectInput component provides an interactive dropdown selection list with keyboard navigation. It supports single selection, custom styling, and keyboard shortcuts for efficient navigation.
+The SelectInput component provides an interactive dropdown selection list with keyboard navigation and v-model support. Perfect for forms and user input, it offers single selection with customizable styling and comprehensive keyboard shortcuts.
 
 ## Basic Usage
 
 ```vue
 <template>
-  <SelectInput
-    v-model="selectedOption"
-    :options="options"
-    label="Choose an option"
-  />
+  <Col :gap="1">
+    <TextBox bold color="cyan">SelectInput</TextBox>
+    <SelectInput v-model="selected" label="Pick one" :options="options" :height="6" />
+    <TextBox color="green">Selected: {{ selected }}</TextBox>
+    <SelectInput v-model="role" label="Role" :options="roleOptions" :height="4" />
+  </Col>
 </template>
 
 <script setup>
 import { ref } from 'vue';
-import { SelectInput } from 'vuetty';
+import { Col, SelectInput, TextBox } from 'vuetty';
 
-const selectedOption = ref(null);
-const options = ref([
-  { value: 'option1', label: 'Option 1' },
-  { value: 'option2', label: 'Option 2' },
-  { value: 'option3', label: 'Option 3' }
-]);
+const options = [
+  { label: 'Alpha', value: 'alpha' },
+  { label: 'Beta', value: 'beta' },
+  { label: 'Gamma', value: 'gamma' },
+  { label: 'Delta', value: 'delta' },
+  { label: 'Epsilon', value: 'epsilon' }
+];
+
+const selected = ref('beta');
+
+const roleOptions = [
+  { label: 'Admin', value: 'admin', disabled: true },
+  { label: 'Editor', value: 'editor' },
+  { label: 'Viewer', value: 'viewer' }
+];
+
+const role = ref('viewer');
 </script>
 ```
 
@@ -33,35 +45,42 @@ const options = ref([
 
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
-| `modelValue` | `string` | `number` | `object` | `null` | The selected value (v-model binding) |
+| `modelValue` | `string \\| number \\| object` | `null` | The selected value (v-model binding) |
 | `options` | `array` | `[]` | List of options (required) |
 | `label` | `string` | `''` | Label displayed above the dropdown |
 | `height` | `number` | `10` | Number of visible options in the dropdown |
 | `width` | `number` | `-` | Width of the dropdown in characters |
-| `flex` | `number` | `string` | `-` | Flex layout property |
+| `flex` | `number \\| string` | `-` | Flex layout property |
 | `flexGrow` | `number` | `-` | Flex grow property |
 | `flexShrink` | `number` | `-` | Flex shrink property |
-| `flexBasis` | `number` | `string` | `-` | Flex basis property |
+| `flexBasis` | `number \\| string` | `-` | Flex basis property |
 | `disabled` | `boolean` | `false` | Disable the dropdown |
 | `color` | `string` | `-` | Text color ([chalk color names](https://github.com/chalk/chalk?tab=readme-ov-file#styles)) |
 | `bg` | `string` | `-` | Background color |
 | `focusColor` | `string` | `'cyan'` | Border color when focused |
 | `selectedColor` | `string` | `'green'` | Color for selected option |
 | `highlightColor` | `string` | `'yellow'` | Color for highlighted option |
+| `marker` | `string` | `'●'` | Marker for selected option |
+| `highlightMarker` | `string` | `'▸'` | Marker for highlighted option |
 | `bold` | `boolean` | `false` | Bold text |
 | `dim` | `boolean` | `false` | Dimmed text |
-| `hint` | `string` | `boolean` | `'default'` | Hint text shown when focused. Set to `false` to hide, `'default'` for default hint, or a custom string |
+| `hint` | `string \\| boolean` | `'default'` | Hint text shown when focused. Set to `false` to hide, `'default'` for default hint, or a custom string |
 
 ## Options Format
 
-The `options` prop accepts an array of objects with the following structure:
+The `options` prop accepts an array of objects or primitive values:
 
 ```js
+// Object format (recommended for full control)
 {
   value: any,       // The value returned when selected
   label: string,    // The display text for the option
   disabled: boolean // Optional: disable this option
 }
+
+// Primitive format (label is derived from value)
+'Simple String'
+42
 ```
 
 ## Basic Examples
@@ -275,6 +294,50 @@ const options = ref([
 </script>
 ```
 
+### Custom Markers
+
+```vue
+<template>
+  <SelectInput
+    v-model="selectedOption"
+    :options="options"
+    marker="✓"
+    highlightMarker="→"
+  />
+</template>
+
+<script setup>
+import { ref } from 'vue';
+import { SelectInput } from 'vuetty';
+
+const selectedOption = ref(null);
+const options = ref([
+  { value: 'apple', label: 'Apple' },
+  { value: 'banana', label: 'Banana' },
+  { value: 'orange', label: 'Orange' }
+]);
+</script>
+```
+
+### Primitive Options
+
+```vue
+<template>
+  <SelectInput
+    v-model="selectedFruit"
+    :options="['Apple', 'Banana', 'Cherry']"
+    label="Select a fruit"
+  />
+</template>
+
+<script setup>
+import { ref } from 'vue';
+import { SelectInput } from 'vuetty';
+
+const selectedFruit = ref(null);
+</script>
+```
+
 ## Events
 
 ### Change Event
@@ -469,5 +532,54 @@ const options = ref([
   { value: 'banana', label: 'Banana' },
   { value: 'orange', label: 'Orange' }
 ]);
+</script>
+```
+
+## Comparison with List
+
+Use **SelectInput** when you want to:
+- Let users select from options (forms, user input)
+- Support v-model binding
+- Enable keyboard navigation
+- Handle user interactions
+
+Use **List** when you want to:
+- Display static data (no user interaction)
+- Show information or status
+- Create visual indicators
+
+```vue
+<template>
+  <Row gap="4">
+    <!-- Static display with List -->
+    <Col flex="1">
+      <List
+        :items="features"
+        label="Available Features"
+      />
+    </Col>
+
+    <!-- Interactive selection with SelectInput -->
+    <Col flex="1">
+      <SelectInput
+        v-model="selectedFeature"
+        :options="features"
+        label="Select a feature to enable"
+      />
+    </Col>
+  </Row>
+</template>
+
+<script setup>
+import { ref } from 'vue';
+import { Row, Col, List, SelectInput } from 'vuetty';
+
+const features = ref([
+  { label: 'Authentication', value: 'auth' },
+  { label: 'Database', value: 'db' },
+  { label: 'API', value: 'api' }
+]);
+
+const selectedFeature = ref(null);
 </script>
 ```

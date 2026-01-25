@@ -65,7 +65,8 @@ describe('SelectInput component', () => {
         modelValue: 'opt2',
         highlightedIndex: 0,
         selectedIndex: 1,
-        isFocused: false
+        isFocused: false,
+        marker: '●'
       });
       const stripped = stripAnsi(result);
 
@@ -78,11 +79,69 @@ describe('SelectInput component', () => {
         modelValue: null,
         highlightedIndex: 1,
         selectedIndex: -1,
-        isFocused: true
+        isFocused: true,
+        highlightMarker: '▸'
       });
       const stripped = stripAnsi(result);
 
       expect(stripped).toContain('▸');
+    });
+
+    test('uses custom markers', () => {
+      const result = renderSelectInput({
+        options,
+        modelValue: 'opt2',
+        highlightedIndex: 0,
+        selectedIndex: 1,
+        isFocused: false,
+        marker: '✓',
+        highlightMarker: '→'
+      });
+      const stripped = stripAnsi(result);
+
+      expect(stripped).toContain('✓');
+    });
+
+    test('supports primitive options (strings)', () => {
+      const primitiveOptions = [
+        { label: 'Apple', value: 'Apple' },
+        { label: 'Banana', value: 'Banana' },
+        { label: 'Cherry', value: 'Cherry' }
+      ];
+
+      const result = renderSelectInput({
+        options: primitiveOptions,
+        modelValue: null,
+        highlightedIndex: 0,
+        selectedIndex: -1,
+        isFocused: false
+      });
+      const stripped = stripAnsi(result);
+
+      expect(stripped).toContain('Apple');
+      expect(stripped).toContain('Banana');
+      expect(stripped).toContain('Cherry');
+    });
+
+    test('supports primitive options (numbers)', () => {
+      const primitiveOptions = [
+        { label: '1', value: 1 },
+        { label: '2', value: 2 },
+        { label: '3', value: 3 }
+      ];
+
+      const result = renderSelectInput({
+        options: primitiveOptions,
+        modelValue: null,
+        highlightedIndex: 0,
+        selectedIndex: -1,
+        isFocused: false
+      });
+      const stripped = stripAnsi(result);
+
+      expect(stripped).toContain('1');
+      expect(stripped).toContain('2');
+      expect(stripped).toContain('3');
     });
 
     test('displays all option labels', () => {

@@ -13,6 +13,7 @@ export { default as SelectInput } from './SelectInput.js';
 export { default as Checkbox } from './Checkbox.js';
 export { default as Radiobox } from './Radiobox.js';
 export { default as Table } from './Table.js';
+export { default as List } from './List.js';
 export { default as Markdown } from './Markdown.js';
 export { default as Image } from './Image.js';
 export { default as BigText, clearBigTextCache, getBigTextCacheStats } from './BigText.js';
