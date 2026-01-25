@@ -9,7 +9,9 @@ import {
   waveEffect,
   shimmerEffect,
   effectCache,
-  parsedColorCache
+  parsedColorCache,
+  parsedColorsArrayCache,
+  clearEffectCaches
 } from '../../src/effects/textEffects.js';
 import { stripAnsi } from '../../src/utils/renderUtils.js';
 
@@ -272,6 +274,26 @@ describe('Text Effects', () => {
   });
 
   describe('Effect caching', () => {
+    test('clearEffectCaches() clears all caches', () => {
+      // Populate all caches
+      rainbowEffect('test1', { speed: 1 }, 0);
+      pulseEffect('test2', { color: 'red' }, 0);
+      waveEffect('test3', { colors: ['#FF0000', '#00FF00'] }, 0);
+
+      // Verify caches have data
+      expect(effectCache.size).toBeGreaterThan(0);
+      expect(parsedColorCache.size).toBeGreaterThan(0);
+      expect(parsedColorsArrayCache.size).toBeGreaterThan(0);
+
+      // Clear all caches
+      clearEffectCaches();
+
+      // Verify all caches are empty
+      expect(effectCache.size).toBe(0);
+      expect(parsedColorCache.size).toBe(0);
+      expect(parsedColorsArrayCache.size).toBe(0);
+    });
+
     test('cache stores and retrieves results', () => {
       effectCache.clear();
       expect(effectCache.size).toBe(0);

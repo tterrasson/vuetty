@@ -22,6 +22,7 @@ import { ClickMap } from './clickMap.js';
 import { clearBoxCaches } from '@components/Box.js';
 import { clearMarkdownCaches } from '@components/Markdown.js';
 import { clearRendererCaches } from '@utils/markdownRenderer.js';
+import { clearEffectCaches } from '@effects/textEffects.js';
 import {
   KEY_UP, KEY_DOWN, KEY_PAGEUP, KEY_PAGEDOWN,
   KEY_HOME, KEY_END, KEY_ESCAPE
@@ -1279,6 +1280,9 @@ export class Vuetty {
 
     // Clear markdown renderer caches (style objects)
     clearRendererCaches();
+
+    // Clear text effect caches (effect results, parsed colors)
+    clearEffectCaches();
 
     // Clear visible lines cache
     this.visibleLinesCache = {

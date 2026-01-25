@@ -364,6 +364,16 @@ effectRegistry.register('shimmer', shimmerEffect, {
   defaultInterval: 60
 });
 
+/**
+ * Clear all effect caches
+ * Useful for memory cleanup and testing
+ */
+export function clearEffectCaches() {
+  effectCache.clear();
+  parsedColorCache.clear();
+  parsedColorsArrayCache.clear();
+}
+
 // Export for testing
 export {
   rainbowEffect,
