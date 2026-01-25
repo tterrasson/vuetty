@@ -106,6 +106,7 @@ export default {
         // Render image
         const options = {
           width: displayColumns,
+          height: props.height ?? undefined,
           preserveAspectRatio: props.preserveAspectRatio
         };
 
