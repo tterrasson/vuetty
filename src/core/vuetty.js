@@ -115,7 +115,7 @@ export class Vuetty {
     this.clickMap = new ClickMap();
     this.clickHandlers = new Map(); // componentId → click handler
 
-    // FIXED: Track handler registration order for LRU eviction
+    // Track handler registration order for LRU eviction
     this._handlerOrder = [];
   }
 

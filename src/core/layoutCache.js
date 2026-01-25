@@ -121,7 +121,6 @@ export class LayoutCache {
 
     nodeCache.set(cacheKey, metrics);
 
-    // FIXED: Reduced from 10 to 3 entries per node
     // Most nodes only need 1-2 cache entries (current and previous state)
     if (nodeCache.size > MAX_METRICS_PER_NODE) {
       const firstKey = nodeCache.keys().next().value;
