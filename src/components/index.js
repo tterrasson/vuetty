@@ -20,3 +20,4 @@ export { default as BigText, clearBigTextCache, getBigTextCacheStats } from './B
 export { default as Gradient } from './Gradient.js';
 export { default as Button } from './Button.js';
 export { default as Tree } from './Tree.js';
+export { default as Tabs } from './Tabs.js';

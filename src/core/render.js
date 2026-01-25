@@ -27,6 +27,7 @@ import '@components/SelectInput.js';
 import '@components/Checkbox.js';
 import '@components/Radiobox.js';
 import '@components/Button.js';
+import '@components/Tabs.js';
 import './flexRenderers.js';
 
 // ============================================================
