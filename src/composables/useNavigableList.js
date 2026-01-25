@@ -17,7 +17,8 @@ import {
  * Provides keyboard navigation, selection, and focus management for list-based components
  *
  * @param {Object} options - Configuration options
- * @param {import('vue').ComputedRef<Array>} options.items - Computed ref to normalized items array [{value, label, disabled}]
+ * @param {import('vue').ComputedRef<Array>} options.items
+ *   - Computed ref to normalized items array [{value, label, disabled}]
  * @param {import('vue').ComputedRef<number>} options.height - Computed ref to viewport height
  * @param {import('vue').ComputedRef<*>} options.modelValue - Computed ref to selected value(s)
  * @param {Function} options.emit - Emit function for events

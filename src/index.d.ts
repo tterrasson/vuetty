@@ -226,7 +226,17 @@ export interface ColProps extends LayoutProps {
 }
 
 // Visual Container Components
-export type BorderStyle = 'rounded' | 'square' | 'double' | 'classic' | 'bold' | 'dashed' | 'sparse' | 'light' | 'button' | {
+export type BorderStyle =
+  | 'rounded'
+  | 'square'
+  | 'double'
+  | 'classic'
+  | 'bold'
+  | 'dashed'
+  | 'sparse'
+  | 'light'
+  | 'button'
+  | {
   topLeft: string;
   topRight: string;
   bottomLeft: string;

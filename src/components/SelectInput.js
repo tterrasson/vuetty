@@ -146,7 +146,10 @@ export default {
       // Resolve colors from theme
       const effectiveFocusColor = props.focusColor || theme?.components?.selectInput?.focusColor || 'cyan';
       const effectiveSelectedColor = props.selectedColor || theme?.components?.selectInput?.selectedColor || 'green';
-      const effectiveHighlightColor = props.highlightColor || theme?.components?.selectInput?.highlightColor || 'yellow';
+      const effectiveHighlightColor =
+        props.highlightColor ||
+        theme?.components?.selectInput?.highlightColor ||
+        'yellow';
       const effectiveColor = props.color || theme?.components?.selectInput?.color;
       const effectiveBg = props.bg !== undefined ? props.bg : theme?.components?.selectInput?.bg;
 

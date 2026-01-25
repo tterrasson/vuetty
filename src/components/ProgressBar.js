@@ -76,7 +76,10 @@ export default {
       // Resolve colors from theme
       const effectiveColor = props.color || theme?.components?.progressBar?.color || 'green';
       const effectiveEmptyColor = props.emptyColor || theme?.components?.progressBar?.emptyColor || 'white';
-      const effectivePercentageColor = props.percentageColor || theme?.components?.progressBar?.percentageColor || 'white';
+      const effectivePercentageColor =
+        props.percentageColor ||
+        theme?.components?.progressBar?.percentageColor ||
+        'white';
 
       // Pass injected width and viewport version through props
       // The viewport version creates a reactive dependency - when it changes, Vue re-renders

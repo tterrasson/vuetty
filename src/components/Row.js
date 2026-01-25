@@ -18,7 +18,15 @@ export default {
     justifyContent: {
       type: String,
       default: 'flex-start',
-      validator: val => ['flex-start', 'flex-end', 'center', 'space-between', 'space-around', 'space-evenly'].includes(val)
+      validator: val =>
+        [
+          'flex-start',
+          'flex-end',
+          'center',
+          'space-between',
+          'space-around',
+          'space-evenly',
+        ].includes(val)
     },
     alignItems: {
       type: String,

@@ -237,7 +237,16 @@ const MOUSE_MOD = {
 /**
  * Parse a mouse event from SGR or normal format
  * @param {string} str - Raw input string from stdin
- * @returns {{type: string, action: string, button: number, x: number, y: number, shift: boolean, ctrl: boolean, alt: boolean}|null}
+ * @returns {{
+ *   type: string,
+ *   action: string,
+ *   button: number,
+ *   x: number,
+ *   y: number,
+ *   shift: boolean,
+ *   ctrl: boolean,
+ *   alt: boolean
+ * } | null}
  */
 export function parseMouseEvent(str) {
   // SGR mouse format: \x1b[<button;x;y;M (press) or m (release)

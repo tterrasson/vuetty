@@ -1,7 +1,12 @@
 // src/components/TextInput.js
 import { inject, onUnmounted, watch, computed, reactive, h } from 'vue';
 import chalk from 'chalk';
-import { VUETTY_INPUT_MANAGER_KEY, VUETTY_INSTANCE_KEY, VUETTY_THEME_KEY, VUETTY_VIEWPORT_STATE_KEY } from '@core/vuettyKeys.js';
+import {
+  VUETTY_INPUT_MANAGER_KEY,
+  VUETTY_INSTANCE_KEY,
+  VUETTY_THEME_KEY,
+  VUETTY_VIEWPORT_STATE_KEY
+} from '@core/vuettyKeys.js';
 import { WIDTH_CONTEXT_KEY } from '@core/widthContext.js';
 import {
   KEY_LEFT,
@@ -379,7 +384,8 @@ export default {
     let lastViewportVersion = -1;
 
     return () => {
-      const stateSnapshot = `${state.text}:${state.cursor}:${state.scrollOffset}:${state.isFocused}:${state.validationError}`;
+      const stateSnapshot =
+        `${state.text}:${state.cursor}:${state.scrollOffset}:${state.isFocused}:${state.validationError}`;
 
       // Resolve width context
       const injectedWidth = typeof injectedWidthContext === 'function'
@@ -388,7 +394,12 @@ export default {
 
       const viewportVersion = viewportState ? viewportState.version : 0;
 
-      if (stateSnapshot !== lastStateSnapshot || injectedWidth !== lastInjectedWidth || viewportVersion !== lastViewportVersion || !cachedProps) {
+      if (
+        stateSnapshot !== lastStateSnapshot
+        || injectedWidth !== lastInjectedWidth
+        || viewportVersion !== lastViewportVersion
+        || !cachedProps
+      ) {
         lastStateSnapshot = stateSnapshot;
         lastInjectedWidth = injectedWidth;
         lastViewportVersion = viewportVersion;
@@ -400,7 +411,10 @@ export default {
         const effectiveBorderColor = props.borderColor !== undefined
           ? props.borderColor
           : (theme?.components?.textInput?.borderColor ?? theme?.components?.textInput?.color);
-        const effectiveBg = props.bg !== undefined ? props.bg : (theme?.components?.textInput?.bg ?? theme?.background);
+        const effectiveBg =
+          props.bg !== undefined
+            ? props.bg
+            : (theme?.components?.textInput?.bg ?? theme?.background);
 
         // Build props object - only pass width if explicitly defined by user
         // This allows render.js to inject computed width from layout
@@ -646,7 +660,15 @@ export function renderTextInput(props) {
   releaseVisualLinesArray(visualLines);
 
   // Bottom border
-  lines.push(wrapBgLine(borderStyle(BORDER.bottomLeft + BORDER.horizontal.repeat(effectiveWidth) + BORDER.bottomRight)));
+  lines.push(
+    wrapBgLine(
+      borderStyle(
+        BORDER.bottomLeft +
+          BORDER.horizontal.repeat(effectiveWidth) +
+          BORDER.bottomRight
+      )
+    )
+  );
 
   // Validation / Hints
   if (validationError) {

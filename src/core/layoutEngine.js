@@ -6,7 +6,9 @@
 import Yoga from 'yoga-layout';
 import { layoutCache } from './layoutCache.js';
 import { generateContentHash } from '@utils/hashUtils.js';
-import { componentHandlerRegistry, extractTextContent, calculateTextHeight } from './componentHandlers.js';
+import {
+  componentHandlerRegistry, extractTextContent, calculateTextHeight
+} from './componentHandlers.js';
 
 /**
  * Yoga Layout Engine
@@ -25,7 +27,7 @@ export class YogaLayoutEngine {
       return { width: 0, height: 0, x: 0, y: 0, children: [] };
     }
 
-    // Generate cache key - SIMPLIFIED to reduce string allocations
+    // Generate cache key
     // Only use dimensions + simple content hash, not full key string
     const contentHash = generateContentHash(node);
 

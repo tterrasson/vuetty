@@ -12,7 +12,12 @@
   <div style="height: 100vh; display: flex; flex-direction: column;">
 
     <!-- Header -->
-    <header class="navbar" role="navigation" style="background: var(--bg-secondary); border-bottom: 1px solid var(--border-color); flex-shrink: 0;">
+    <header
+      class="navbar"
+      role="navigation"
+      style="background: var(--bg-secondary);
+             border-bottom: 1px solid var(--border-color);
+             flex-shrink: 0;">
       <div class="navbar-brand">
         <h1 class="navbar-item title is-5 mb-0" style="color: var(--event-render);">Vuetty Debug Server</h1>
       </div>
@@ -45,15 +50,28 @@
     <div class="columns is-gapless" style="flex: 1; overflow: hidden; margin: 0;">
 
       <!-- Left Panel: Event Log -->
-      <div class="column is-two-thirds" style="display: flex; flex-direction: column; border-right: 1px solid var(--border-color); background: var(--bg-panel);">
+      <div
+        class="column is-two-thirds"
+        style="display: flex;
+               flex-direction: column;
+               border-right: 1px solid var(--border-color);
+               background: var(--bg-panel);">
 
         <!-- Panel header -->
-        <div class="panel-heading" style="background: var(--bg-tertiary); border-bottom: 1px solid var(--border-color); flex-shrink: 0;">
+        <div
+          class="panel-heading"
+          style="background: var(--bg-tertiary);
+                 border-bottom: 1px solid var(--border-color);
+                 flex-shrink: 0;">
           <h2 class="title is-6 mb-0" style="color: var(--text-primary);">Event Log</h2>
         </div>
 
         <!-- Search filter -->
-        <div class="panel-block" style="border-bottom: 1px solid var(--border-color); background: var(--bg-secondary); flex-shrink: 0;">
+        <div
+          class="panel-block"
+          style="border-bottom: 1px solid var(--border-color);
+                 background: var(--bg-secondary);
+                 flex-shrink: 0;">
           <div class="control has-icons-left" style="width: 100%;">
             <input
               type="text"
@@ -69,7 +87,14 @@
         </div>
 
         <!-- Event filters (checkboxes) -->
-        <div class="panel-block" style="flex-wrap: wrap; gap: 8px; padding: 10px; background: var(--bg-secondary); border-bottom: 1px solid var(--border-color); flex-shrink: 0;">
+        <div
+          class="panel-block"
+          style="flex-wrap: wrap;
+                 gap: 8px;
+                 padding: 10px;
+                 background: var(--bg-secondary);
+                 border-bottom: 1px solid var(--border-color);
+                 flex-shrink: 0;">
           <label class="checkbox" style="font-size: 12px; margin-right: 8px; color: var(--text-primary);">
             <input type="checkbox" checked data-filter="render">
             Render<span class="event-counter" data-counter="render">0</span>
@@ -108,7 +133,12 @@
       <div class="column is-one-third" style="display: flex; flex-direction: column; background: var(--bg-panel);">
 
         <!-- Tabs -->
-        <div class="tabs" style="margin-bottom: 0; background: var(--bg-tertiary); border-bottom: 1px solid var(--border-color); flex-shrink: 0;">
+        <div
+          class="tabs"
+          style="margin-bottom: 0;
+                 background: var(--bg-tertiary);
+                 border-bottom: 1px solid var(--border-color);
+                 flex-shrink: 0;">
           <ul style="border-bottom: none; margin: 0;">
             <li class="is-active" data-tab="layout">
               <a style="color: var(--text-primary);">Layout Tree</a>

@@ -885,7 +885,9 @@ export class Vuetty {
 
           // Only log to terminal if console not captured
           if (!this.debugServer.consoleInterceptor?.isActive) {
-            console.log(`Debug server running at http://${this.debugServer.config.host}:${this.debugServer.config.port}`);
+            console.log(
+              `Debug server running at http://${this.debugServer.config.host}:${this.debugServer.config.port}`
+            );
           }
 
           // Capture mount event
@@ -1007,7 +1009,7 @@ export class Vuetty {
                  typeof component.setup === 'function';
         });
 
-      components.forEach(([exportName, component]) => {
+      components.forEach(([_exportName, component]) => {
         if (this.app && typeof this.app.component === 'function') {
           this.app.component(component.name, component);
         }
@@ -1077,7 +1079,9 @@ export class Vuetty {
 
     // Auto-scroll to bottom when content grows
     if (this.viewport.autoScrollToBottom && oldContentHeight > 0) {
-      const wasAtBottom = this.viewport.scrollOffset >= Math.max(0, oldContentHeight - this.viewport.terminalHeight) - 1;
+      const wasAtBottom =
+        this.viewport.scrollOffset >=
+          Math.max(0, oldContentHeight - this.viewport.terminalHeight) - 1;
       if (wasAtBottom && this.viewport.contentHeight > oldContentHeight) {
         const maxOffset = Math.max(0, this.viewport.contentHeight - this.viewport.terminalHeight);
         this.viewport.scrollOffset = maxOffset;

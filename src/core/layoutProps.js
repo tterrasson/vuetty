@@ -11,27 +11,37 @@ export const flexContainerProps = {
   justifyContent: {
     type: String,
     default: null,
-    validator: val => val === null || ['flex-start', 'flex-end', 'center', 'space-between', 'space-around', 'space-evenly'].includes(val)
+    validator: val => val === null || [
+      'flex-start', 'flex-end', 'center', 'space-between', 'space-around', 'space-evenly'
+    ].includes(val)
   },
   alignItems: {
     type: String,
     default: null,
-    validator: val => val === null || ['flex-start', 'flex-end', 'center', 'stretch', 'baseline'].includes(val)
+    validator: val => val === null || [
+      'flex-start', 'flex-end', 'center', 'stretch', 'baseline'
+    ].includes(val)
   },
   alignContent: {
     type: String,
     default: null,
-    validator: val => val === null || ['flex-start', 'flex-end', 'center', 'stretch', 'space-between', 'space-around'].includes(val)
+    validator: val => val === null || [
+      'flex-start', 'flex-end', 'center', 'stretch', 'space-between', 'space-around'
+    ].includes(val)
   },
   flexWrap: {
     type: String,
     default: null,
-    validator: val => val === null || ['nowrap', 'wrap', 'wrap-reverse'].includes(val)
+    validator: val => val === null || [
+      'nowrap', 'wrap', 'wrap-reverse'
+    ].includes(val)
   },
   flexDirection: {
     type: String,
     default: null,
-    validator: val => val === null || ['row', 'column', 'row-reverse', 'column-reverse'].includes(val)
+    validator: val => val === null || [
+      'row', 'column', 'row-reverse', 'column-reverse'
+    ].includes(val)
   },
   gap: {
     type: Number,
@@ -62,7 +72,9 @@ export const flexItemProps = {
   alignSelf: {
     type: String,
     default: null,
-    validator: val => val === null || ['auto', 'flex-start', 'flex-end', 'center', 'stretch', 'baseline'].includes(val)
+    validator: val => val === null || [
+      'auto', 'flex-start', 'flex-end', 'center', 'stretch', 'baseline'
+    ].includes(val)
   }
 };
 

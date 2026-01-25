@@ -20,7 +20,10 @@ export function renderFlexRow(node, depth, renderNode) {
   } = node.props || {};
 
   const effectivePaddingTop = paddingTop !== undefined && paddingTop !== null ? paddingTop : (padding || 0);
-  const effectivePaddingBottom = paddingBottom !== undefined && paddingBottom !== null ? paddingBottom : (padding || 0);
+  const effectivePaddingBottom =
+    paddingBottom !== undefined && paddingBottom !== null
+      ? paddingBottom
+      : (padding || 0);
 
   if (!node.children || node.children.length === 0) {
     if (effectivePaddingTop > 0 || effectivePaddingBottom > 0) {
@@ -67,7 +70,13 @@ export function renderFlexRow(node, depth, renderNode) {
 
     // Pass yOffset to callback for accurate Y tracking
     const rendered = shouldConstrainWidth
-      ? renderNodeWithConstrainedWidth(child, childMetrics.width, depth + 1, renderNode, { yOffset: effectivePaddingTop })
+      ? renderNodeWithConstrainedWidth(
+          child,
+          childMetrics.width,
+          depth + 1,
+          renderNode,
+          { yOffset: effectivePaddingTop }
+        )
       : renderNode(child, depth + 1, { yOffset: effectivePaddingTop });
 
     items.push({
@@ -130,7 +139,10 @@ export function renderFlexCol(node, depth, renderNode) {
   } = node.props || {};
 
   const effectivePaddingTop = paddingTop !== undefined && paddingTop !== null ? paddingTop : (padding || 0);
-  const effectivePaddingBottom = paddingBottom !== undefined && paddingBottom !== null ? paddingBottom : (padding || 0);
+  const effectivePaddingBottom =
+    paddingBottom !== undefined && paddingBottom !== null
+      ? paddingBottom
+      : (padding || 0);
 
   if (!node.children || node.children.length === 0) {
     if (effectivePaddingTop > 0 || effectivePaddingBottom > 0) {

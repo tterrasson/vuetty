@@ -263,7 +263,12 @@ export default {
 
       const viewportVersion = viewportState ? viewportState.version : 0;
 
-      if (injectedWidth !== lastInjectedWidth || injectedHeight !== lastInjectedHeight || viewportVersion !== lastViewportVersion || !cachedEnhancedProps) {
+      if (
+        injectedWidth !== lastInjectedWidth ||
+        injectedHeight !== lastInjectedHeight ||
+        viewportVersion !== lastViewportVersion ||
+        !cachedEnhancedProps
+      ) {
         lastInjectedWidth = injectedWidth;
         lastInjectedHeight = injectedHeight;
         lastViewportVersion = viewportVersion;
@@ -456,7 +461,9 @@ export function renderBox(content, props, _depth) {
 
           // Apply border color and background to border sections
           const leftBorderSection = borderChars.topLeft + borderChars.horizontal.repeat(2);
-          const rightBorderSection = borderChars.horizontal.repeat(Math.max(0, remainingWidth - 2)) + borderChars.topRight;
+          const rightBorderSection =
+            borderChars.horizontal.repeat(Math.max(0, remainingWidth - 2)) +
+            borderChars.topRight;
 
           topBorderContent = bgStr + borderFgCode + leftBorderSection + '\x1b[0m' +
                       styledTitle +

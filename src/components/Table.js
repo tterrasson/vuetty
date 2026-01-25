@@ -648,7 +648,10 @@ export function renderTable(props) {
   if (rows.length > height) {
     const scrollPercent = Math.round((scrollOffset / Math.max(1, rows.length - height)) * 100);
     output += chalk.dim(
-      `[${scrollPercent}% - showing ${scrollOffset + 1}-${Math.min(scrollOffset + height, rows.length)} of ${rows.length} rows]`
+      `[${scrollPercent}% - showing ${scrollOffset + 1}-${Math.min(
+        scrollOffset + height,
+        rows.length
+      )} of ${rows.length} rows]`
     ) + '\n';
   }
 
