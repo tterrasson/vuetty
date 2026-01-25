@@ -1,6 +1,6 @@
 # Markdown
 
-The Markdown component renders markdown content in the terminal with full support for headings, lists, code blocks, tables, and more. It provides extensive styling options for customizing the appearance of each element.
+The Markdown component renders Markdown in the terminal with headings, lists, code blocks, tables, and more. Use props to style each element.
 
 ## Basic Usage
 

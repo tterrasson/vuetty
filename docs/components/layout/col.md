@@ -1,6 +1,6 @@
 # Col
 
-The Col component creates a vertical flex container for stacking child components vertically. It serves both as a standalone container and as a flex item within a Row component.
+The Col component creates a vertical flex container for stacking children. It can be a standalone container or a flex item within a Row.
 
 ## Basic Usage
 

@@ -1,10 +1,10 @@
 # Theming
 
-Vuetty provides a comprehensive theming system that allows you to customize the appearance of your terminal applications. The theming system is designed to be flexible, powerful, and easy to use.
+Vuetty includes a theming system for customizing the appearance of terminal apps. It is flexible enough for global styling and precise enough for per-component control.
 
 ## Overview
 
-Vuetty's theming system enables you to:
+With the theming system, you can:
 
 - Define global color schemes with multiple color formats (named, hex, RGB)
 - Customize individual component appearances
@@ -17,7 +17,7 @@ Vuetty's theming system enables you to:
 
 ### Theme Structure
 
-A Vuetty theme is a JavaScript object that defines the visual appearance of your application. Themes are structured hierarchically and support multiple color formats:
+A Vuetty theme is a JavaScript object that defines your application's visual style. Themes are hierarchical and support multiple color formats:
 
 ```javascript
 const theme = {
@@ -57,7 +57,7 @@ const theme = {
 
 ### Supported Color Formats
 
-Vuetty supports three color formats through its `colorUtils.js` module:
+Vuetty supports three color formats through `colorUtils.js`:
 
 1. **Named Colors**: `'red'`, `'blue'`, `'cyan'`, `'magenta'`, `'blackBright'`, etc.
    - Best for standard terminal colors
@@ -72,7 +72,7 @@ Vuetty supports three color formats through its `colorUtils.js` module:
 
 ### Theme Application
 
-Themes are applied when creating your Vuetty application:
+Apply themes when creating your Vuetty app:
 
 ```javascript
 import { vuetty } from 'vuetty';
@@ -85,14 +85,14 @@ const app = vuetty(MyApp, {
 
 ### Theme Inheritance
 
-Vuetty's theming system uses a deep merge strategy:
+Vuetty uses a deep merge strategy:
 
 1. Start with the default theme
 2. Merge in your custom theme
 3. Component-specific settings override global settings
 4. More specific settings override less specific ones
 
-This allows you to customize only what you need while keeping the rest of the default styling.
+This lets you override only what you need and keep the rest of the defaults.
 
 ## Theme Components
 
@@ -116,7 +116,7 @@ Semantic colors provide meaning to your UI elements:
 
 ### Component-Specific Settings
 
-Each component can have its own theme settings. For example:
+Each component can define its own theme settings. For example:
 
 ```javascript
 components: {
@@ -139,7 +139,7 @@ components: {
 
 ### Dynamic Themes
 
-You can change themes dynamically at runtime:
+You can change themes at runtime:
 
 ```javascript
 import { useTheme } from 'vuetty';
@@ -155,7 +155,7 @@ setTheme(lightTheme);
 
 ### Theme Extensions
 
-Extend existing themes rather than creating new ones from scratch:
+Extend existing themes instead of starting from scratch:
 
 ```javascript
 const myTheme = {

@@ -1,10 +1,10 @@
 # Debug Server
 
-The Debug Server provides a web interface to inspect TUI events, layout, and console output. It is useful for debugging and monitoring your Vuetty application during development.
+The Debug Server provides a web UI to inspect TUI events, layout, and console output. Use it to debug and monitor your Vuetty app during development.
 
 ## Enabling the Debug Server
 
-To enable the Debug Server, pass the `debugServer` option when creating your Vuetty application:
+To enable the Debug Server, pass the `debugServer` option when creating your Vuetty app:
 
 ```javascript
 import { vuetty } from 'vuetty';
@@ -17,13 +17,13 @@ const app = vuetty(MyComponent, {
 
 ## Configuration Options
 
-The Debug Server can be configured with the following options:
+The Debug Server supports these options:
 
 - **enabled**: `boolean` (default: `false`)
   Enable or disable the Debug Server.
 
 - **port**: `number` (default: `3000`)
-  The port on which the Debug Server will listen.
+  The port the Debug Server listens on.
 
 - **host**: `string` (default: `'localhost'`)
   The host address for the Debug Server.
@@ -46,26 +46,26 @@ const app = vuetty(MyComponent, {
 
 ## Accessing the Debug Server
 
-Once enabled, the Debug Server will start automatically when your application runs. You can access it by opening your web browser and navigating to:
+Once enabled, the Debug Server starts automatically when your app runs. Open it in your browser at:
 
 ```
 http://localhost:3000
 ```
 
-Replace `localhost` and `3000` with your configured host and port if you customized them.
+Replace `localhost` and `3000` with your configured host and port if needed.
 
 ## Features
 
-The Debug Server provides the following features:
+The Debug Server includes:
 
-- **Event Monitoring**: View real-time events from your Vuetty application.
+- **Event Monitoring**: View real-time events from your Vuetty app.
 - **Layout Inspection**: Inspect the current layout and structure of your TUI.
 - **Console Output**: Capture and view console logs, warnings, and errors.
 - **Interactive Controls**: Clear events and interact with the debug interface.
 
 ## Disabling the Debug Server
 
-To disable the Debug Server, either set `enabled` to `false` or omit the `debugServer` option entirely:
+To disable the Debug Server, set `enabled` to `false` or omit `debugServer` entirely:
 
 ```javascript
 const app = vuetty(MyComponent, {

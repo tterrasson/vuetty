@@ -1,6 +1,6 @@
 # Button
 
-The Button component provides a customizable and interactive button for terminal applications. It supports various style variants, custom styling, keyboard navigation and mouse navigation.
+The Button component provides a customizable, interactive button for terminal apps. It supports style variants, custom styling, and keyboard/mouse navigation.
 
 ## Basic Usage
 

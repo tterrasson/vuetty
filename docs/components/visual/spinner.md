@@ -1,6 +1,6 @@
 # Spinner
 
-A self-animating loading indicator component that provides visual feedback for asynchronous operations. Supports multiple animation types, custom labels, and v-model control.
+The Spinner component is a self-animating loading indicator for async operations. It supports multiple animation types, custom labels, and v-model control.
 
 ## Basic Usage
 

@@ -21,27 +21,27 @@ hero:
 features:
   - icon: ⚡
     title: Vue-Powered Reactivity
-    details: Leverage Vue's reactive system to build dynamic terminal applications. State changes automatically trigger UI updates in real-time.
+    details: Use Vue's reactive system to build dynamic terminal apps. State changes trigger UI updates in real time.
 
   - icon: 📦
     title: Comprehensive Component Library
-    details: Access pre-built components covering layout, text, input, and data visualization needs for terminal interfaces.
+    details: Use prebuilt components for layout, text, input, and data visualization in terminal interfaces.
 
   - icon: 🎨
     title: Flexbox-Inspired Layouts
-    details: Create sophisticated terminal layouts using familiar flexbox concepts with Row, Col, and flex ratio components.
+    details: Build terminal layouts with familiar flexbox concepts, including Row, Col, and flex ratios.
 
   - icon: 📝
     title: Single File Component Support
-    details: Develop with standard Vue SFC syntax using templates, scripts, and styles for organized component development.
+    details: Develop with standard Vue SFC syntax—templates, scripts, and styles stay organized.
 
   - icon: ⌨️
     title: Advanced Input Management
-    details: Built-in keyboard and mouse input handling with focus management, event delegation, and interactive form components for rich terminal interactions.
+    details: Handle keyboard and mouse input with focus management, event delegation, and interactive form components.
 
   - icon: 🚀
     title: Optimized Performance
-    details: Efficient rendering with smart caching for text, images, and markdown content. Optimized viewport management ensures smooth interactions.
+    details: Render efficiently with caching for text, images, and markdown. Optimized viewport management keeps interactions smooth.
 ---
 
 ## Quick Example
@@ -102,7 +102,7 @@ Vuetty enables development of:
 
 ## Get Started
 
-Begin building terminal user interfaces with Vuetty:
+Start building terminal UIs with Vuetty:
 
 <div style="margin-top: 20px;">
   <a href="/guide/getting-started/introduction.html" style="display: inline-block; padding: 12px 24px; background: var(--vp-button-brand-bg); color: white; border-radius: 6px; text-decoration: none; font-weight: 600;">

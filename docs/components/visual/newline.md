@@ -1,6 +1,6 @@
 # Newline
 
-The Newline component adds vertical space by inserting one or more newline characters. It is useful for controlling vertical spacing in terminal applications.
+The Newline component inserts one or more newline characters to control vertical spacing in terminal apps.
 
 ## Basic Usage
 

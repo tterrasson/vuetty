@@ -2,12 +2,12 @@
 
 ## What is Vuetty?
 
-Vuetty is a Vue.js custom renderer that brings the power of Vue's reactive system to Terminal User Interfaces (TUIs). It allows you to build beautiful, interactive command-line applications using familiar Vue.js syntax and patterns.
+Vuetty is a Vue.js custom renderer that brings Vue's reactivity to terminal UIs (TUIs). Build interactive command-line apps with the same Vue syntax and patterns you already use.
 
 ## Why Vuetty?
 
 ### Reactive Terminal UIs
-Traditional terminal applications require manual screen management and complex state handling. Vuetty brings Vue's reactivity to the terminal - your UI automatically updates when your state changes.
+Traditional terminal apps require manual screen management and complex state handling. With Vuetty, the UI updates automatically when state changes.
 
 ```js
 const count = ref(0);
@@ -22,7 +22,7 @@ If you know Vue.js, you already know how to use Vuetty:
 - All your favorite Vue patterns work in the terminal
 
 ### Modern Layout System
-Vuetty uses Flexbox principles for layouts, making it easy to create sophisticated terminal UIs:
+Vuetty uses flexbox principles for layout, so complex terminal UIs are straightforward:
 
 ```vue
 <template>
@@ -39,7 +39,7 @@ Vuetty uses Flexbox principles for layouts, making it easy to create sophisticat
 
 ## Use Cases
 
-Vuetty is perfect for:
+Vuetty works well for:
 
 - **CLI Tools** - Build feature-rich command-line interfaces
 - **Development Tools** - Create interactive dev servers, build tools, and monitors
@@ -58,7 +58,7 @@ Vuetty implements a custom Vue renderer that targets the terminal instead of the
 3. **ANSI Rendering**: Uses ANSI escape codes for colors, styles, and positioning
 4. **Input Management**: Handles keyboard input and focus management
 
-You write Vue components, and Vuetty renders them to your terminal.
+You write Vue components, and Vuetty renders them in the terminal.
 
 ## Next Steps
 

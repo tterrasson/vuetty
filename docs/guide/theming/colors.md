@@ -1,12 +1,12 @@
 # Color Management
 
-Vuetty provides a comprehensive color management system that handles how colors are defined, resolved, and applied in terminal applications. This system is built on top of [chalk](https://github.com/chalk/chalk), a popular terminal string styling library.
+Vuetty includes a color system for defining, resolving, and applying colors in terminal apps. It builds on [chalk](https://github.com/chalk/chalk) for terminal string styling.
 
 ## Color System Overview
 
 ### Supported Color Formats
 
-Vuetty supports multiple color formats through its chalk integration:
+Vuetty supports multiple color formats through chalk:
 
 - **Named colors**: All standard chalk color names (`red`, `green`, `blue`, `yellow`, `cyan`, `magenta`, `white`, `black`, `gray`, `blackBright`, `redBright`, `greenBright`, etc.)
 - **Hex colors**: 3-digit (`#F00`) or 6-digit hexadecimal codes (`#FF5733`, `#4a4a4a`)
@@ -23,11 +23,11 @@ When you specify a color in Vuetty:
 5. **ANSI Code Generation**: Appropriate ANSI escape codes are generated
 6. **Terminal Rendering**: The codes are applied to the terminal output
 
-This process ensures maximum compatibility and performance across different terminal emulators.
+This process keeps output compatible across terminal emulators while staying efficient.
 
 ### Color Resolution Process
 
-Vuetty uses a sophisticated color resolution algorithm:
+Vuetty uses a deterministic color resolution flow:
 
 **For Foreground Colors:**
 1. Check if it's a named color (e.g., `red`, `blue`)
@@ -44,7 +44,7 @@ All invalid colors return `null` and fall back to defaults.
 
 ### Color Usage
 
-Colors can be applied to components through the theme configuration. Mix and match different formats based on your needs:
+Apply colors through the theme configuration. Mix formats as needed:
 
 ```javascript
 // In your theme configuration
@@ -115,7 +115,7 @@ components: {
 
 ### Chalk Integration
 
-Vuetty uses chalk under the hood for all color operations via the `colorUtils.js` module. Chalk provides:
+Vuetty uses chalk under the hood for color operations via `colorUtils.js`. Chalk provides:
 
 - **Cross-platform support**: Works across different terminal emulators
 - **Color detection**: Automatically detects terminal color support (16, 256, or 16M colors)

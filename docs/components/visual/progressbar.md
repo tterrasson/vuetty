@@ -1,6 +1,6 @@
 # ProgressBar
 
-A visual progress indicator component that displays the progress of an operation with customizable styling, labels, and percentage display.
+The ProgressBar component visualizes operation progress with customizable styling, labels, and percentage display.
 
 ## Basic Usage
 

@@ -1,6 +1,6 @@
 # SelectInput
 
-The SelectInput component provides an interactive dropdown selection list with keyboard navigation and v-model support. Perfect for forms and user input, it offers single selection with customizable styling and comprehensive keyboard shortcuts.
+The SelectInput component provides an interactive dropdown list with keyboard navigation and v-model support. Use it for single or multi-select with customizable styling and keyboard shortcuts.
 
 ## Basic Usage
 
@@ -106,7 +106,7 @@ The `options` prop accepts an array of objects or primitive values:
 42
 ```
 
-## Basic Examples
+## Examples
 
 ### Simple Dropdown
 

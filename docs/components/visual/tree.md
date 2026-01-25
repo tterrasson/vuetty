@@ -1,6 +1,6 @@
 # Tree
 
-The Tree component renders hierarchical data structures as a text-based tree with optional icons and per-node styling.
+The Tree component renders hierarchical data as a text tree with optional icons and per-node styling.
 
 ## Basic Usage
 

@@ -1,6 +1,6 @@
 # Image
 
-The Image component displays images in terminal applications using ANSI block rendering. It supports loading images from files or buffers, resizing, and error handling.
+The Image component displays images in terminal apps using ANSI block rendering. It supports file or buffer sources, resizing, and error handling.
 
 ## Basic Usage
 

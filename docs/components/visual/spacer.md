@@ -1,6 +1,6 @@
 # Spacer
 
-The Spacer component adds horizontal space by inserting one or more space characters. It is useful for controlling horizontal spacing in terminal applications.
+The Spacer component inserts one or more spaces to control horizontal spacing in terminal apps.
 
 ## Basic Usage
 

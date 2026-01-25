@@ -1,6 +1,6 @@
 # Checkbox
 
-An interactive multi-select checkbox list component that allows users to select one or more options from a list. Supports keyboard navigation, custom styling, and responsive layouts.
+The Checkbox component provides an interactive multi-select list. It supports keyboard navigation, custom styling, and responsive layouts.
 
 ## Basic Usage
 

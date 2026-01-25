@@ -1,8 +1,8 @@
 # Quick Start
 
-This quick start uses the repository's `simple-app-example` as the base for a minimal Vuetty app. You will clone the repo, copy the example, run it, then trim it down to the smallest useful app.
+This quick start uses the repository's `simple-app-example` as the base for a minimal Vuetty app. You'll clone the repo, copy the example, run it, then trim it to the essentials.
 
-## 1) Clone and copy the example
+## 1) Clone the repo and copy the example
 
 ```bash
 git clone https://github.com/tterrasson/vuetty
@@ -25,7 +25,7 @@ bun run dev
 
 You should see the example UI in your terminal. Press `Ctrl+C` to stop it.
 
-## 4) Create the minimal app
+## 4) Create a minimal app
 
 The example already includes the runtime setup in `src/index.js`. Keep that file and replace the page with a minimal component.
 
@@ -49,7 +49,7 @@ Run it again:
 bun run dev
 ```
 
-You now have the smallest working Vuetty app: one component, one box, one line of text.
+You now have a minimal working Vuetty app: one component, one box, one line of text.
 
 ## 5) What this example gives you
 

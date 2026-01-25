@@ -1,6 +1,6 @@
 # Box
 
-The Box component is a visual container that provides borders, padding, titles, and color styling. It's one of the most fundamental components in Vuetty.
+The Box component is a visual container that provides borders, padding, titles, and color styling. Use it as a base container in most layouts.
 
 ## Basic Usage
 

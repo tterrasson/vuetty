@@ -1,8 +1,8 @@
 # TextBox
 
-The TextBox component renders styled text content with support for colors, text effects, and automatic wrapping. It's the primary component for displaying text in terminal UIs.
+The TextBox component renders styled text with colors, effects, and automatic wrapping. Use it as the primary text component in terminal UIs.
 
-For static multi-color text, see the Gradient component in `docs/components/text/gradient.md`.
+For static multicolor text, see the Gradient component in `docs/components/text/gradient.md`.
 
 ## Basic Usage
 
@@ -163,7 +163,7 @@ import { Col, TextBox } from 'vuetty';
 
 ## Text Effects (Animated)
 
-TextBox also supports animated effects via the `effect` prop. When an effect is set, TextBox applies the effect instead of the base text styles (color, bold, italic, underline, dim). Padding and wrapping still apply.
+TextBox supports animated effects via the `effect` prop. When an effect is set, TextBox applies the effect instead of the base text styles (color, bold, italic, underline, dim). Padding and wrapping still apply.
 
 ### Basic Usage
 

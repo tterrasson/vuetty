@@ -1,6 +1,6 @@
 # BigText
 
-The BigText component renders text as large ASCII art using figlet fonts. It supports custom fonts, alignment, and styling options.
+The BigText component renders text as ASCII art using figlet fonts. It supports font selection, alignment, and text styling.
 
 ## Basic Usage
 

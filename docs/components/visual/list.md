@@ -1,8 +1,8 @@
 # List
 
-The List component renders a static, non-interactive list for displaying data. Unlike SelectInput, it doesn't support keyboard navigation or selection - it's purely for display purposes.
+The List component renders a static, non-interactive list for display. Unlike SelectInput, it doesn't support keyboard navigation or selection.
 
-## Basic Example
+## Basic Usage
 
 ```vue
 <template>

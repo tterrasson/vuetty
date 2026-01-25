@@ -1,6 +1,6 @@
 # Divider
 
-The Divider component adds a horizontal line to visually separate content in terminal applications. It supports customization of the character used, length, and styling.
+The Divider component renders a horizontal line to separate content in terminal apps. Customize the character, length, and color.
 
 ## Basic Usage
 

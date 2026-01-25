@@ -1,6 +1,6 @@
 # Row
 
-The Row component creates a horizontal flex container for laying out components side-by-side. It's essential for creating multi-column layouts in terminal UIs.
+The Row component creates a horizontal flex container for laying out components side by side. Use it for multi-column layouts in terminal UIs.
 
 ## Basic Usage
 

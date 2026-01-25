@@ -1,6 +1,6 @@
 # Tabs
 
-The Tabs component provides tabbed navigation with an optional panel area. It supports v-model, keyboard and mouse navigation, and flexible tab definitions.
+The Tabs component provides tabbed navigation with an optional panel area. Use it with v-model for keyboard and mouse navigation and flexible tab definitions.
 
 ## Basic Usage
 

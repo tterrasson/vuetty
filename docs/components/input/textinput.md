@@ -1,6 +1,6 @@
 # TextInput
 
-The TextInput component provides a customizable text input field for single-line and multi-line text entry. It supports validation, styling, and keyboard navigation.
+The TextInput component provides a configurable text input field for single-line and multi-line entry. It supports validation, styling, and keyboard navigation.
 
 ## Basic Usage
 

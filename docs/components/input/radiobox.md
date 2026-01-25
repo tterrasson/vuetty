@@ -1,6 +1,6 @@
 # Radiobox
 
-An interactive single-select radio button list component that allows users to select exactly one option from a list. Supports keyboard navigation, custom styling, and responsive layouts.
+The Radiobox component provides an interactive single-select list. It supports keyboard navigation, custom styling, and responsive layouts.
 
 ## Basic Usage
 

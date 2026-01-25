@@ -1,8 +1,8 @@
 # Table
 
-The Table component renders an interactive, keyboard-navigable table with row selection, highlighting, and comprehensive styling options. It's designed for displaying and interacting with tabular data in terminal UIs.
+The Table component renders an interactive, keyboard-navigable table with row selection, highlighting, and styling options. Use it to display and interact with tabular data in terminal UIs.
 
-## Basic Example
+## Basic Usage
 
 ```vue
 <template>
