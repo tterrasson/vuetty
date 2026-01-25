@@ -22,8 +22,6 @@ import { Box, TextBox } from 'vuetty';
 |------|------|---------|-------------|
 | `border` | `boolean` | `true` | Show border around the box |
 | `borderStyle` | `string \| object` | `'rounded'` | Border style: 'rounded', 'square', 'double', 'classic', 'bold', 'dashed', 'sparse', 'light' or custom object |
-| `padding` | `number` | `0` | Interior padding (spaces from border to content) |
-| `width` | `number` | `null` | Fixed width in characters (auto if not set) |
 | `title` | `string` | `null` | Title text displayed in the top border |
 | `titleAlign` | `string` | `'left'` | Title alignment: 'left', 'center', 'right' |
 | `titlePadding` | `number` | `1` | Padding around the title text |
@@ -33,26 +31,33 @@ import { Box, TextBox } from 'vuetty';
 | `italic` | `boolean` | `false` | Italic text |
 | `underline` | `boolean` | `false` | Underlined text |
 | `dim` | `boolean` | `false` | Dimmed text |
-| `height` | `number` | `null` | Fixed height in characters (auto if not set) |
-| `minWidth` | `number` | `0` | Minimum width |
+| `padding` | `number` | `0` | Interior padding (spaces from border to content) |
+
+## Layout Props (Box Props)
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| `flex` | `number \| string` | `null` | Flex shorthand when inside a flex container |
+| `flexGrow` | `number` | `null` | Flex grow factor |
+| `flexShrink` | `number` | `null` | Flex shrink factor |
+| `flexBasis` | `number \| string` | `null` | Flex basis |
+| `alignSelf` | `string` | `null` | Self alignment: 'auto', 'flex-start', 'flex-end', 'center', 'stretch', 'baseline' |
+| `width` | `number \| string` | `null` | Width (chars or %) |
+| `height` | `number \| string` | `null` | Height (rows) |
+| `minWidth` | `number` | `null` | Minimum width |
 | `maxWidth` | `number` | `null` | Maximum width |
-| `minHeight` | `number` | `0` | Minimum height |
+| `minHeight` | `number` | `null` | Minimum height |
 | `maxHeight` | `number` | `null` | Maximum height |
+| `padding` | `number` | `0` | Padding |
 | `paddingLeft` | `number` | `null` | Left padding |
 | `paddingRight` | `number` | `null` | Right padding |
 | `paddingTop` | `number` | `null` | Top padding |
 | `paddingBottom` | `number` | `null` | Bottom padding |
-| `align` | `string` | `'left'` | Content text alignment: 'left', 'center', 'right' |
-| `margin` | `number` | `null` | Exterior margin |
+| `margin` | `number` | `null` | Margin |
 | `marginLeft` | `number` | `null` | Left margin |
 | `marginRight` | `number` | `null` | Right margin |
 | `marginTop` | `number` | `null` | Top margin |
 | `marginBottom` | `number` | `null` | Bottom margin |
-| `flex` | `number \| string` | `null` | Flex grow factor when inside a flex container |
-| `flexGrow` | `number` | `null` | Flex grow value |
-| `flexShrink` | `number` | `null` | Flex shrink value |
-| `flexBasis` | `number \| string` | `null` | Flex basis value |
-| `alignSelf` | `string` | `null` | Vertical alignment: 'flex-start', 'flex-end', 'center', 'stretch', 'baseline' |
 
 ## Border Styles
 

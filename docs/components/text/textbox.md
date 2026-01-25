@@ -26,11 +26,36 @@ import { TextBox } from 'vuetty';
 | `italic` | `boolean` | `false` | Make text italic |
 | `underline` | `boolean` | `false` | Underline text |
 | `dim` | `boolean` | `false` | Make text dimmer |
-| `width` | `number` | - | Force specific width (enables wrapping) |
 | `effect` | `string` | - | Apply a text effect (`rainbow`, `pulse`, `wave`, `shimmer`) |
 | `effectProps` | `object` | - | Effect-specific options (see effects below) |
 | `animated` | `boolean` | `false` | Enable animation for animated effects |
 | `animationInterval` | `number` | - | Override the effect's default frame interval (ms) |
+
+## Layout Props (Box Props)
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| `flex` | `number \| string` | `null` | Flex shorthand when inside a flex container |
+| `flexGrow` | `number` | `null` | Flex grow factor |
+| `flexShrink` | `number` | `null` | Flex shrink factor |
+| `flexBasis` | `number \| string` | `null` | Flex basis |
+| `alignSelf` | `string` | `null` | Self alignment: 'auto', 'flex-start', 'flex-end', 'center', 'stretch', 'baseline' |
+| `width` | `number \| string` | `null` | Width (chars or %) |
+| `height` | `number \| string` | `null` | Height (rows) |
+| `minWidth` | `number` | `null` | Minimum width |
+| `maxWidth` | `number` | `null` | Maximum width |
+| `minHeight` | `number` | `null` | Minimum height |
+| `maxHeight` | `number` | `null` | Maximum height |
+| `padding` | `number` | `null` | Padding |
+| `paddingLeft` | `number` | `null` | Left padding |
+| `paddingRight` | `number` | `null` | Right padding |
+| `paddingTop` | `number` | `null` | Top padding |
+| `paddingBottom` | `number` | `null` | Bottom padding |
+| `margin` | `number` | `null` | Margin |
+| `marginLeft` | `number` | `null` | Left margin |
+| `marginRight` | `number` | `null` | Right margin |
+| `marginTop` | `number` | `null` | Top margin |
+| `marginBottom` | `number` | `null` | Bottom margin |
 
 ## Text Colors
 

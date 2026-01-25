@@ -46,14 +46,10 @@ const role = ref('viewer');
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
 | `modelValue` | `string \\| number \\| object \\| array` | `null` | The selected value (v-model binding). Use an array for multi-selection |
-| `options` | `array` | `[]` | List of options (required) |
+| `options` | `array` | `[]` | List of options |
 | `label` | `string` | `''` | Label displayed above the dropdown |
 | `height` | `number` | `10` | Number of visible options in the dropdown |
-| `width` | `number` | `-` | Width of the dropdown in characters |
-| `flex` | `number \\| string` | `-` | Flex layout property |
-| `flexGrow` | `number` | `-` | Flex grow property |
-| `flexShrink` | `number` | `-` | Flex shrink property |
-| `flexBasis` | `number \\| string` | `-` | Flex basis property |
+| `width` | `number` | `undefined` | Width of the dropdown in characters |
 | `disabled` | `boolean` | `false` | Disable the dropdown |
 | `multiple` | `boolean` | `false` | Enable multi-selection mode |
 | `color` | `string` | `-` | Text color ([chalk color names](https://github.com/chalk/chalk?tab=readme-ov-file#styles)) |
@@ -66,6 +62,32 @@ const role = ref('viewer');
 | `bold` | `boolean` | `false` | Bold text |
 | `dim` | `boolean` | `false` | Dimmed text |
 | `hint` | `string \\| boolean` | `'default'` | Hint text shown when focused. Set to `false` to hide, `'default'` for default hint, or a custom string |
+
+## Layout Props (Box Props)
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| `flex` | `number \\| string` | `null` | Flex shorthand when inside a flex container |
+| `flexGrow` | `number` | `null` | Flex grow factor |
+| `flexShrink` | `number` | `null` | Flex shrink factor |
+| `flexBasis` | `number \\| string` | `null` | Flex basis |
+| `alignSelf` | `string` | `null` | Self alignment: 'auto', 'flex-start', 'flex-end', 'center', 'stretch', 'baseline' |
+| `width` | `number \\| string` | `undefined` | Width (chars or %) |
+| `height` | `number \\| string` | `10` | Height (rows) |
+| `minWidth` | `number` | `null` | Minimum width |
+| `maxWidth` | `number` | `null` | Maximum width |
+| `minHeight` | `number` | `null` | Minimum height |
+| `maxHeight` | `number` | `null` | Maximum height |
+| `padding` | `number` | `null` | Padding |
+| `paddingLeft` | `number` | `null` | Left padding |
+| `paddingRight` | `number` | `null` | Right padding |
+| `paddingTop` | `number` | `null` | Top padding |
+| `paddingBottom` | `number` | `null` | Bottom padding |
+| `margin` | `number` | `null` | Margin |
+| `marginLeft` | `number` | `null` | Left margin |
+| `marginRight` | `number` | `null` | Right margin |
+| `marginTop` | `number` | `null` | Top margin |
+| `marginBottom` | `number` | `null` | Bottom margin |
 
 ## Options Format
 

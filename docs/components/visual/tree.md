@@ -51,7 +51,7 @@ Tree expects an array of nodes. Each node can include a `name`, optional `childr
 
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
-| `data` | `array` | `[]` | Tree nodes (required) |
+| `data` | `array` | `[]` | Tree nodes |
 | `branchColor` | `string` | `'gray'` | Color for branch characters (the connecting lines) |
 | `folderColor` | `string` | `'blue'` | Color for nodes with children |
 | `fileColor` | `string` | `null` | Color for leaf nodes (falls back to `color` or theme default) |
@@ -59,37 +59,32 @@ Tree expects an array of nodes. Each node can include a `name`, optional `childr
 | `bg` | `string` | `-` | Reserved for future background styling |
 | `showIcons` | `boolean` | `false` | Show folder/file icons before node names |
 | `treeStyle` | `string \| object` | `'default'` | Tree branch character style (see Tree Styles below) |
-| `indent` | `number` | `4` | Indentation size per level (currently fixed at 4 spaces) |
-| `bold` | `boolean` | `false` | Reserved for future text styling |
-| `dim` | `boolean` | `false` | Reserved for future text styling |
 
-### Layout
-
-Tree supports the common layout props for sizing and positioning:
+### Layout Props (Box Props)
 
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
-| `width` | `number \| string` | `null` | Fixed width or percentage |
-| `height` | `number \| string` | `null` | Fixed height |
+| `flex` | `number \| string` | `null` | Flex shorthand when inside a flex container |
+| `flexGrow` | `number` | `null` | Flex grow factor |
+| `flexShrink` | `number` | `null` | Flex shrink factor |
+| `flexBasis` | `number \| string` | `null` | Flex basis |
+| `alignSelf` | `string` | `null` | Self alignment: 'auto', 'flex-start', 'flex-end', 'center', 'stretch', 'baseline' |
+| `width` | `number \| string` | `null` | Width (chars or %) |
+| `height` | `number \| string` | `null` | Height (rows) |
 | `minWidth` | `number` | `null` | Minimum width |
 | `maxWidth` | `number` | `null` | Maximum width |
 | `minHeight` | `number` | `null` | Minimum height |
 | `maxHeight` | `number` | `null` | Maximum height |
-| `padding` | `number` | `null` | Padding around the tree |
+| `padding` | `number` | `null` | Padding |
 | `paddingLeft` | `number` | `null` | Left padding |
 | `paddingRight` | `number` | `null` | Right padding |
 | `paddingTop` | `number` | `null` | Top padding |
 | `paddingBottom` | `number` | `null` | Bottom padding |
-| `margin` | `number` | `null` | Margin around the tree |
+| `margin` | `number` | `null` | Margin |
 | `marginLeft` | `number` | `null` | Left margin |
 | `marginRight` | `number` | `null` | Right margin |
 | `marginTop` | `number` | `null` | Top margin |
 | `marginBottom` | `number` | `null` | Bottom margin |
-| `flex` | `number \| string` | `null` | Flex grow factor when inside a flex container |
-| `flexGrow` | `number` | `null` | Flex grow value |
-| `flexShrink` | `number` | `null` | Flex shrink value |
-| `flexBasis` | `number \| string` | `null` | Flex basis value |
-| `alignSelf` | `string` | `null` | Self alignment: 'flex-start', 'flex-end', 'center', 'stretch', 'baseline' |
 
 ## Tree Styles
 

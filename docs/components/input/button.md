@@ -22,6 +22,7 @@ const onClick = () => {
 
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
+| `label` | `string` | required | Button text |
 | `variant` | `string` | `'primary'` | Style variant (primary, secondary, danger, warning, info, success) |
 | `color` | `string` | `-` | Text color ([chalk color names](https://github.com/chalk/chalk?tab=readme-ov-file#styles)) |
 | `bg` | `string` | `-` | Background color |
@@ -30,13 +31,34 @@ const onClick = () => {
 | `dim` | `boolean` | `false` | Dimmed text |
 | `disabled` | `boolean` | `false` | Disable button |
 | `fullWidth` | `boolean` | `false` | Expand button to fill parent container width |
-| `flex` | `number` | `string` | `-` | Flex layout property |
-| `flexGrow` | `number` | `-` | Flex grow property |
-| `flexShrink` | `number` | `-` | Flex shrink property |
-| `flexBasis` | `number` | `string` | `-` | Flex basis property |
 | `focusColor` | `string` | `'brightYellow'` | Border color when focused |
 | `focusBg` | `string` | `null` | Background color when focused |
-| `underline` | `boolean` | `false` | Underlined text |
+
+## Layout Props (Box Props)
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| `flex` | `number \| string` | `null` | Flex shorthand when inside a flex container |
+| `flexGrow` | `number` | `null` | Flex grow factor |
+| `flexShrink` | `number` | `null` | Flex shrink factor |
+| `flexBasis` | `number \| string` | `null` | Flex basis |
+| `alignSelf` | `string` | `null` | Self alignment: 'auto', 'flex-start', 'flex-end', 'center', 'stretch', 'baseline' |
+| `width` | `number \| string` | `null` | Width (chars or %) |
+| `height` | `number \| string` | `null` | Height (rows) |
+| `minWidth` | `number` | `null` | Minimum width |
+| `maxWidth` | `number` | `null` | Maximum width |
+| `minHeight` | `number` | `null` | Minimum height |
+| `maxHeight` | `number` | `null` | Maximum height |
+| `padding` | `number` | `null` | Padding |
+| `paddingLeft` | `number` | `null` | Left padding |
+| `paddingRight` | `number` | `null` | Right padding |
+| `paddingTop` | `number` | `null` | Top padding |
+| `paddingBottom` | `number` | `null` | Bottom padding |
+| `margin` | `number` | `null` | Margin |
+| `marginLeft` | `number` | `null` | Left margin |
+| `marginRight` | `number` | `null` | Right margin |
+| `marginTop` | `number` | `null` | Top margin |
+| `marginBottom` | `number` | `null` | Bottom margin |
 
 ## Style Variants
 
@@ -96,7 +118,7 @@ Customize button appearance with colors and text effects:
     <Button label="Bold Text" bold @click="onClick" />
     <Button label="Italic Text" italic @click="onClick" />
     <Button label="Bold + Custom" bold color="yellow" @click="onClick" />
-    <Button label="Underlined" underline @click="onClick" />
+    <Button label="Dim Text" dim @click="onClick" />
   </Col>
 </template>
 

@@ -31,7 +31,7 @@ const statusItems = [
 
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
-| `items` | `array` | `[]` | List items (required) |
+| `items` | `array` | `[]` | List items |
 | `label` | `string` | `''` | Label displayed above the list |
 | `height` | `number` | `undefined` | Max number of items to display (shows counter if exceeded) |
 | `width` | `number` | `undefined` | Content width in characters |
@@ -42,10 +42,32 @@ const statusItems = [
 | `highlightColor` | `string` | `'cyan'` | Color for highlighted item |
 | `bold` | `boolean` | `false` | Bold text |
 | `dim` | `boolean` | `false` | Dimmed text |
-| `flex` | `number \| string` | `undefined` | Flex layout shorthand |
-| `flexGrow` | `number` | `undefined` | Flex grow factor |
-| `flexShrink` | `number` | `undefined` | Flex shrink factor |
-| `flexBasis` | `number \| string` | `undefined` | Flex basis value |
+
+## Layout Props (Box Props)
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| `flex` | `number \| string` | `null` | Flex shorthand when inside a flex container |
+| `flexGrow` | `number` | `null` | Flex grow factor |
+| `flexShrink` | `number` | `null` | Flex shrink factor |
+| `flexBasis` | `number \| string` | `null` | Flex basis |
+| `alignSelf` | `string` | `null` | Self alignment: 'auto', 'flex-start', 'flex-end', 'center', 'stretch', 'baseline' |
+| `width` | `number \| string` | `undefined` | Width (chars or %) |
+| `height` | `number \| string` | `undefined` | Height (rows) |
+| `minWidth` | `number` | `null` | Minimum width |
+| `maxWidth` | `number` | `null` | Maximum width |
+| `minHeight` | `number` | `null` | Minimum height |
+| `maxHeight` | `number` | `null` | Maximum height |
+| `padding` | `number` | `null` | Padding |
+| `paddingLeft` | `number` | `null` | Left padding |
+| `paddingRight` | `number` | `null` | Right padding |
+| `paddingTop` | `number` | `null` | Top padding |
+| `paddingBottom` | `number` | `null` | Bottom padding |
+| `margin` | `number` | `null` | Margin |
+| `marginLeft` | `number` | `null` | Left margin |
+| `marginRight` | `number` | `null` | Right margin |
+| `marginTop` | `number` | `null` | Top margin |
+| `marginBottom` | `number` | `null` | Bottom margin |
 
 ## Items Format
 

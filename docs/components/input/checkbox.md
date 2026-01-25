@@ -82,7 +82,7 @@ const roleOptions = [
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `options` | `Array` | `[]` (required) | Array of option objects. Each option must have `label` and `value` properties. Can also include `disabled: true` to disable individual options. |
+| `options` | `Array` | `[]` | Array of option objects. Each option must have `label` and `value` properties. Can also include `disabled: true` to disable individual options. |
 
 **Option Object Structure:**
 ```javascript
@@ -99,19 +99,10 @@ const roleOptions = [
 |------|------|---------|-------------|
 | `label` | `String` | `''` | Label displayed above the checkbox list |
 | `direction` | `String` | `'vertical'` | Layout direction: `'vertical'` or `'horizontal'` |
-| `height` | `Number` | `10` | Number of visible items (vertical mode only) |
-| `width` | `Number` | `null` | Component width in characters (null = auto) |
+| `height` | `Number \| String` | `null` | Number of visible items (vertical mode only) |
+| `width` | `Number \| String` | `null` | Component width in characters (null = auto) |
 | `itemSpacing` | `Number` | `2` | Spacing between items in characters |
 | `hint` | `String \| Boolean` | `'default'` | Hint text shown when focused. Use `'default'` for standard hints, `false` to disable, or pass custom text |
-
-### Layout
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `flex` | `Number \| String` | `undefined` | Flex shorthand value |
-| `flexGrow` | `Number` | `undefined` | Flex grow factor |
-| `flexShrink` | `Number` | `undefined` | Flex shrink factor |
-| `flexBasis` | `Number \| String` | `undefined` | Flex basis value |
 
 ### State
 
@@ -130,6 +121,32 @@ const roleOptions = [
 | `highlightColor` | `String` | `'yellow'` | Color for highlighted item cursor |
 | `bold` | `Boolean` | `false` | Bold text |
 | `dim` | `Boolean` | `false` | Dimmed text |
+
+### Layout Props (Box Props)
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `flex` | `Number \| String` | `null` | Flex shorthand when inside a flex container |
+| `flexGrow` | `Number` | `null` | Flex grow factor |
+| `flexShrink` | `Number` | `null` | Flex shrink factor |
+| `flexBasis` | `Number \| String` | `null` | Flex basis |
+| `alignSelf` | `String` | `null` | Self alignment: 'auto', 'flex-start', 'flex-end', 'center', 'stretch', 'baseline' |
+| `width` | `Number \| String` | `null` | Width (chars or %) |
+| `height` | `Number \| String` | `null` | Height (rows) |
+| `minWidth` | `Number` | `null` | Minimum width |
+| `maxWidth` | `Number` | `null` | Maximum width |
+| `minHeight` | `Number` | `null` | Minimum height |
+| `maxHeight` | `Number` | `null` | Maximum height |
+| `padding` | `Number` | `null` | Padding |
+| `paddingLeft` | `Number` | `null` | Left padding |
+| `paddingRight` | `Number` | `null` | Right padding |
+| `paddingTop` | `Number` | `null` | Top padding |
+| `paddingBottom` | `Number` | `null` | Bottom padding |
+| `margin` | `Number` | `null` | Margin |
+| `marginLeft` | `Number` | `null` | Left margin |
+| `marginRight` | `Number` | `null` | Right margin |
+| `marginTop` | `Number` | `null` | Top margin |
+| `marginBottom` | `Number` | `null` | Bottom margin |
 
 ## Events
 

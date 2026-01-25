@@ -18,9 +18,7 @@ import { Markdown } from 'vuetty';
 
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
-| `content` | `string` | `''` | Markdown content to render (required) |
-| `width` | `number` | `null` | Fixed width in characters (auto if not set) |
-| `padding` | `number` | `0` | Interior padding (spaces from border to content) |
+| `content` | `string` | `''` | Markdown content to render |
 | `h1Color` | `string` | `'cyan'` | Color for H1 headings |
 | `h2Color` | `string` | `'cyan'` | Color for H2 headings |
 | `h3Color` | `string` | `'blue'` | Color for H3 headings |
@@ -28,7 +26,7 @@ import { Markdown } from 'vuetty';
 | `h5Color` | `string` | `'blue'` | Color for H5 headings |
 | `h6Color` | `string` | `'blue'` | Color for H6 headings |
 | `codeColor` | `string` | `'yellow'` | Code text color |
-| `codeBg` | `string` | `'black'` | Code background color |
+| `codeBg` | `string` | `'#1a1a24'` | Code background color |
 | `linkColor` | `string` | `'blue'` | Link color |
 | `emphasisColor` | `string` | `'white'` | Emphasis (italic) color |
 | `strongColor` | `string` | `'white'` | Strong (bold) color |
@@ -46,6 +44,32 @@ import { Markdown } from 'vuetty';
 | `bold` | `boolean` | `false` | Bold text |
 | `italic` | `boolean` | `false` | Italic text |
 | `dim` | `boolean` | `false` | Dimmed text |
+
+## Layout Props (Box Props)
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| `flex` | `number \| string` | `null` | Flex shorthand when inside a flex container |
+| `flexGrow` | `number` | `null` | Flex grow factor |
+| `flexShrink` | `number` | `null` | Flex shrink factor |
+| `flexBasis` | `number \| string` | `null` | Flex basis |
+| `alignSelf` | `string` | `null` | Self alignment: 'auto', 'flex-start', 'flex-end', 'center', 'stretch', 'baseline' |
+| `width` | `number \| string` | `null` | Width (chars or %) |
+| `height` | `number \| string` | `null` | Height (rows) |
+| `minWidth` | `number` | `null` | Minimum width |
+| `maxWidth` | `number` | `null` | Maximum width |
+| `minHeight` | `number` | `null` | Minimum height |
+| `maxHeight` | `number` | `null` | Maximum height |
+| `padding` | `number` | `0` | Padding |
+| `paddingLeft` | `number` | `null` | Left padding |
+| `paddingRight` | `number` | `null` | Right padding |
+| `paddingTop` | `number` | `null` | Top padding |
+| `paddingBottom` | `number` | `null` | Bottom padding |
+| `margin` | `number` | `null` | Margin |
+| `marginLeft` | `number` | `null` | Left margin |
+| `marginRight` | `number` | `null` | Right margin |
+| `marginTop` | `number` | `null` | Top margin |
+| `marginBottom` | `number` | `null` | Bottom margin |
 
 ## Basic Markdown Elements
 

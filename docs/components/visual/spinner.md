@@ -39,28 +39,12 @@ setTimeout(() => {
 <template>
   <Spinner
     type="line"
-    :frame="frame"
     label="Processing..."
     color="cyan"
     bold
+    :interval="80"
   />
 </template>
-
-<script setup>
-import { ref, onMounted } from 'vue';
-import { Spinner } from 'vuetty';
-
-const frame = ref(0);
-
-onMounted(() => {
-  const interval = setInterval(() => {
-    frame.value++;
-  }, 80);
-
-  // Cleanup when component unmounts
-  onUnmounted(() => clearInterval(interval));
-});
-</script>
 ```
 
 ## Animation Types
@@ -70,49 +54,49 @@ The Spinner component supports 7 different animation types:
 ### dots
 
 ```vue
-<Spinner type="dots" :frame="frame" label="Dots spinner" />
+<Spinner type="dots" label="Dots spinner" />
 ```
 Frames: `⠋`, `⠙`, `⠹`, `⠸`, `⠼`, `⠴`, `⠦`, `⠧`, `⠇`, `⠏`
 
 ### line
 
 ```vue
-<Spinner type="line" :frame="frame" label="Line spinner" />
+<Spinner type="line" label="Line spinner" />
 ```
 Frames: `-`, `\`, `|`, `/`
 
 ### arc
 
 ```vue
-<Spinner type="arc" :frame="frame" label="Arc spinner" />
+<Spinner type="arc" label="Arc spinner" />
 ```
 Frames: `◐`, `◓`, `◑`, `◒`
 
 ### arrow
 
 ```vue
-<Spinner type="arrow" :frame="frame" label="Arrow spinner" />
+<Spinner type="arrow" label="Arrow spinner" />
 ```
 Frames: `▹`, `▸`, `▹`, `▸`
 
 ### bounce
 
 ```vue
-<Spinner type="bounce" :frame="frame" label="Bounce spinner" />
+<Spinner type="bounce" label="Bounce spinner" />
 ```
 Frames: `⠁`, `⠈`, `⠐`, `⠠`, `⢀`, `⡀`, `⠄`, `⠂`
 
 ### clock
 
 ```vue
-<Spinner type="clock" :frame="frame" label="Clock spinner" />
+<Spinner type="clock" label="Clock spinner" />
 ```
 Frames: `🕐`, `🕑`, `🕒`, `🕓`, `🕔`, `🕕`, `🕖`, `🕗`, `🕘`, `🕙`, `🕚`, `🕛`
 
 ### box
 
 ```vue
-<Spinner type="box" :frame="frame" label="Box spinner" />
+<Spinner type="box" label="Box spinner" />
 ```
 Frames: `▖`, `▘`, `▝`, `▗`
 
@@ -123,7 +107,7 @@ Frames: `▖`, `▘`, `▝`, `▗`
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `type` | `String` | `'dots'` | Spinner animation type. Options: `'dots'`, `'line'`, `'arc'`, `'arrow'`, `'bounce'`, `'clock'`, `'box'` |
-| `modelValue` | `Boolean` | `false` | Control animation state when using v-model. `true` starts animation, `false` stops it |
+| `modelValue` | `Boolean` | `true` | Control animation state when using v-model. `true` starts animation, `false` stops it |
 | `interval` | `Number` | `100` | Animation interval in milliseconds (must be greater than 0) |
 
 ### Display
@@ -142,6 +126,32 @@ Frames: `▖`, `▘`, `▝`, `▗`
 | `italic` | `Boolean` | `false` | Italic text |
 | `underline` | `Boolean` | `false` | Underlined text |
 | `dim` | `Boolean` | `false` | Dimmed text |
+
+## Layout Props (Box Props)
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `flex` | `Number \| String` | `null` | Flex shorthand when inside a flex container |
+| `flexGrow` | `Number` | `null` | Flex grow factor |
+| `flexShrink` | `Number` | `null` | Flex shrink factor |
+| `flexBasis` | `Number \| String` | `null` | Flex basis |
+| `alignSelf` | `String` | `null` | Self alignment: 'auto', 'flex-start', 'flex-end', 'center', 'stretch', 'baseline' |
+| `width` | `Number \| String` | `null` | Width (chars or %) |
+| `height` | `Number \| String` | `null` | Height (rows) |
+| `minWidth` | `Number` | `null` | Minimum width |
+| `maxWidth` | `Number` | `null` | Maximum width |
+| `minHeight` | `Number` | `null` | Minimum height |
+| `maxHeight` | `Number` | `null` | Maximum height |
+| `padding` | `Number` | `null` | Padding |
+| `paddingLeft` | `Number` | `null` | Left padding |
+| `paddingRight` | `Number` | `null` | Right padding |
+| `paddingTop` | `Number` | `null` | Top padding |
+| `paddingBottom` | `Number` | `null` | Bottom padding |
+| `margin` | `Number` | `null` | Margin |
+| `marginLeft` | `Number` | `null` | Left margin |
+| `marginRight` | `Number` | `null` | Right margin |
+| `marginTop` | `Number` | `null` | Top margin |
+| `marginBottom` | `Number` | `null` | Bottom margin |
 
 ## Events
 
@@ -220,27 +230,18 @@ setTimeout(() => {
       <Text bold>Available Spinner Types</Text>
     </Box>
 
-    <Spinner type="dots" :frame="frame" label="dots" color="cyan" />
-    <Spinner type="line" :frame="frame" label="line" color="green" />
-    <Spinner type="arc" :frame="frame" label="arc" color="yellow" />
-    <Spinner type="arrow" :frame="frame" label="arrow" color="red" />
-    <Spinner type="bounce" :frame="frame" label="bounce" color="blue" />
-    <Spinner type="clock" :frame="frame" label="clock" color="magenta" />
-    <Spinner type="box" :frame="frame" label="box" color="white" />
+    <Spinner type="dots" label="dots" color="cyan" />
+    <Spinner type="line" label="line" color="green" />
+    <Spinner type="arc" label="arc" color="yellow" />
+    <Spinner type="arrow" label="arrow" color="red" />
+    <Spinner type="bounce" label="bounce" color="blue" />
+    <Spinner type="clock" label="clock" color="magenta" />
+    <Spinner type="box" label="box" color="white" />
   </Col>
 </template>
-
+ 
 <script setup>
-import { ref, onMounted } from 'vue';
 import { Spinner, Box, Text, Col } from 'vuetty';
-
-const frame = ref(0);
-
-onMounted(() => {
-  setInterval(() => {
-    frame.value++;
-  }, 100);
-});
 </script>
 ```
 
@@ -317,7 +318,6 @@ fetchData();
   <Col>
     <Spinner
       type="arrow"
-      :frame="frame"
       label="Right position (default)"
       label-position="right"
       color="cyan"
@@ -325,7 +325,6 @@ fetchData();
 
     <Spinner
       type="arrow"
-      :frame="frame"
       label="Left position"
       label-position="left"
       color="green"
@@ -333,23 +332,13 @@ fetchData();
 
     <Spinner
       type="dots"
-      :frame="frame"
       label=""
       color="yellow"
     />
   </Col>
 </template>
-
+ 
 <script setup>
-import { ref, onMounted } from 'vue';
 import { Spinner, Col } from 'vuetty';
-
-const frame = ref(0);
-
-onMounted(() => {
-  setInterval(() => {
-    frame.value++;
-  }, 100);
-});
 </script>
 ```

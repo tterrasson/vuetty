@@ -26,31 +26,39 @@ import { Col, Box, TextBox } from 'vuetty';
 
 ## Props
 
+### Flex Container Props
+
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
-| `flex` | `number \| string` | `'1'` | Flex grow factor when inside a flex container |
-| `flexGrow` | `number` | `null` | Flex grow value |
-| `flexShrink` | `number` | `null` | Flex shrink value |
-| `flexBasis` | `number \| string` | `null` | Flex basis value |
-| `alignSelf` | `string` | `null` | Vertical alignment: 'flex-start', 'flex-end', 'center', 'stretch', 'baseline' |
-| `width` | `number \| string` | `null` | Explicit width |
-| `height` | `number` | `null` | Explicit height |
-| `minWidth` | `number` | `0` | Minimum width |
-| `maxWidth` | `number` | `null` | Maximum width |
-| `minHeight` | `number` | `0` | Minimum height |
-| `maxHeight` | `number` | `null` | Maximum height |
 | `gap` | `number` | `0` | Space between child elements |
 | `justifyContent` | `string` | `'flex-start'` | Vertical alignment: 'flex-start', 'flex-end', 'center', 'space-between', 'space-around', 'space-evenly' |
 | `alignItems` | `string` | `'stretch'` | Horizontal alignment: 'flex-start', 'flex-end', 'center', 'stretch', 'baseline' |
 | `alignContent` | `string` | `null` | Multi-line content alignment (when wrapping) |
 | `flexWrap` | `string` | `'nowrap'` | Wrap behavior: 'nowrap', 'wrap', 'wrap-reverse' |
+| `flexDirection` | `string` | `null` | Direction: 'row', 'column', 'row-reverse', 'column-reverse' |
 | `responsive` | `boolean` | `false` | Enable responsive behavior |
-| `padding` | `number` | `null` | Interior padding |
+
+### Layout Props (Flex Item + Box Props)
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| `flex` | `number \| string` | `'1'` | Flex shorthand when inside a flex container |
+| `flexGrow` | `number` | `null` | Flex grow factor |
+| `flexShrink` | `number` | `null` | Flex shrink factor |
+| `flexBasis` | `number \| string` | `null` | Flex basis |
+| `alignSelf` | `string` | `null` | Self alignment: 'auto', 'flex-start', 'flex-end', 'center', 'stretch', 'baseline' |
+| `width` | `number \| string` | `null` | Width (chars or %) |
+| `height` | `number \| string` | `null` | Height (rows) |
+| `minWidth` | `number` | `null` | Minimum width |
+| `maxWidth` | `number` | `null` | Maximum width |
+| `minHeight` | `number` | `null` | Minimum height |
+| `maxHeight` | `number` | `null` | Maximum height |
+| `padding` | `number` | `null` | Padding |
 | `paddingLeft` | `number` | `null` | Left padding |
 | `paddingRight` | `number` | `null` | Right padding |
 | `paddingTop` | `number` | `null` | Top padding |
 | `paddingBottom` | `number` | `null` | Bottom padding |
-| `margin` | `number` | `null` | Exterior margin |
+| `margin` | `number` | `null` | Margin |
 | `marginLeft` | `number` | `null` | Left margin |
 | `marginRight` | `number` | `null` | Right margin |
 | `marginTop` | `number` | `null` | Top margin |
@@ -149,7 +157,7 @@ Items align to the top:
 
 ```vue
 <template>
-  <Col :height="10" justifyContent="flex-start" border>
+  <Col :height="10" justifyContent="flex-start">
     <Box :padding="1" color="cyan">
       <TextBox>Top aligned</TextBox>
     </Box>
@@ -167,7 +175,7 @@ Items align to the middle:
 
 ```vue
 <template>
-  <Col :height="10" justifyContent="center" border>
+  <Col :height="10" justifyContent="center">
     <Box :padding="1" color="green">
       <TextBox>Centered</TextBox>
     </Box>
@@ -185,7 +193,7 @@ Items align to the bottom:
 
 ```vue
 <template>
-  <Col :height="10" justifyContent="flex-end" border>
+  <Col :height="10" justifyContent="flex-end">
     <Box :padding="1" color="blue">
       <TextBox>Bottom aligned</TextBox>
     </Box>
@@ -203,7 +211,7 @@ Items distributed with space between them:
 
 ```vue
 <template>
-  <Col :height="10" justifyContent="space-between" border>
+  <Col :height="10" justifyContent="space-between">
     <Box :padding="1" color="cyan">
       <TextBox>Top</TextBox>
     </Box>

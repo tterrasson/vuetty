@@ -32,6 +32,8 @@ import { Row, Col, Box, TextBox } from 'vuetty';
 
 ## Props
 
+### Flex Container Props
+
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
 | `gap` | `number` | `0` | Space between child elements |
@@ -39,23 +41,30 @@ import { Row, Col, Box, TextBox } from 'vuetty';
 | `alignItems` | `string` | `'stretch'` | Vertical alignment: 'flex-start', 'flex-end', 'center', 'stretch', 'baseline' |
 | `alignContent` | `string` | `null` | Multi-line content alignment (when wrapping) |
 | `flexWrap` | `string` | `'nowrap'` | Wrap behavior: 'nowrap', 'wrap', 'wrap-reverse' |
+| `flexDirection` | `string` | `null` | Direction: 'row', 'column', 'row-reverse', 'column-reverse' |
 | `responsive` | `boolean` | `false` | Enable responsive behavior (wraps based on child minWidth) |
-| `width` | `number` | `null` | Container width (defaults to full terminal width) |
-| `flex` | `number \| string` | - | Flex value when Row is inside another flex container |
-| `flexGrow` | `number` | - | Flex grow factor |
-| `flexShrink` | `number` | - | Flex shrink factor |
-| `flexBasis` | `number \| string` | - | Flex basis value |
-| `height` | `number` | `null` | Container height |
-| `minWidth` | `number` | `0` | Minimum width |
+
+### Layout Props (Flex Item + Box Props)
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| `flex` | `number \| string` | `null` | Flex shorthand when inside a flex container |
+| `flexGrow` | `number` | `null` | Flex grow factor |
+| `flexShrink` | `number` | `null` | Flex shrink factor |
+| `flexBasis` | `number \| string` | `null` | Flex basis |
+| `alignSelf` | `string` | `null` | Self alignment: 'auto', 'flex-start', 'flex-end', 'center', 'stretch', 'baseline' |
+| `width` | `number \| string` | `null` | Width (chars or %) |
+| `height` | `number \| string` | `null` | Height (rows) |
+| `minWidth` | `number` | `null` | Minimum width |
 | `maxWidth` | `number` | `null` | Maximum width |
-| `minHeight` | `number` | `0` | Minimum height |
+| `minHeight` | `number` | `null` | Minimum height |
 | `maxHeight` | `number` | `null` | Maximum height |
-| `padding` | `number` | `null` | Interior padding |
+| `padding` | `number` | `null` | Padding |
 | `paddingLeft` | `number` | `null` | Left padding |
 | `paddingRight` | `number` | `null` | Right padding |
 | `paddingTop` | `number` | `null` | Top padding |
 | `paddingBottom` | `number` | `null` | Bottom padding |
-| `margin` | `number` | `null` | Exterior margin |
+| `margin` | `number` | `null` | Margin |
 | `marginLeft` | `number` | `null` | Left margin |
 | `marginRight` | `number` | `null` | Right margin |
 | `marginTop` | `number` | `null` | Top margin |

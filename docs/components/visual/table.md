@@ -30,10 +30,10 @@ const selectedIndex = ref(null);
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
 | `modelValue` | `number` | `null` | v-model: selected row index |
-| `headers` | `array` | `[]` | Column header labels (required) |
-| `rows` | `array` | `[]` | Row data as array of arrays (required) |
+| `headers` | `array` | `[]` | Column header labels |
+| `rows` | `array` | `[]` | Row data as array of arrays |
 | `label` | `string` | `''` | Optional label displayed above the table |
-| `height` | `number` | `10` | Number of visible rows |
+| `height` | `number \| string` | `null` | Number of visible rows |
 | `columnWidths` | `array` | `null` | Manual column widths (auto-calculated if null) |
 | `striped` | `boolean` | `true` | Alternate row background colors |
 | `showHeader` | `boolean` | `true` | Display header row |
@@ -48,6 +48,32 @@ const selectedIndex = ref(null);
 | `bold` | `boolean` | `false` | Bold text |
 | `dim` | `boolean` | `false` | Dimmer text |
 | `hint` | `string\|boolean` | `'default'` | Help text (default, custom string, or false to hide) |
+
+## Layout Props (Box Props)
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| `flex` | `number \| string` | `null` | Flex shorthand when inside a flex container |
+| `flexGrow` | `number` | `null` | Flex grow factor |
+| `flexShrink` | `number` | `null` | Flex shrink factor |
+| `flexBasis` | `number \| string` | `null` | Flex basis |
+| `alignSelf` | `string` | `null` | Self alignment: 'auto', 'flex-start', 'flex-end', 'center', 'stretch', 'baseline' |
+| `width` | `number \| string` | `null` | Width (chars or %) |
+| `height` | `number \| string` | `null` | Height (rows) |
+| `minWidth` | `number` | `null` | Minimum width |
+| `maxWidth` | `number` | `null` | Maximum width |
+| `minHeight` | `number` | `null` | Minimum height |
+| `maxHeight` | `number` | `null` | Maximum height |
+| `padding` | `number` | `null` | Padding |
+| `paddingLeft` | `number` | `null` | Left padding |
+| `paddingRight` | `number` | `null` | Right padding |
+| `paddingTop` | `number` | `null` | Top padding |
+| `paddingBottom` | `number` | `null` | Bottom padding |
+| `margin` | `number` | `null` | Margin |
+| `marginLeft` | `number` | `null` | Left margin |
+| `marginRight` | `number` | `null` | Right margin |
+| `marginTop` | `number` | `null` | Top margin |
+| `marginBottom` | `number` | `null` | Bottom margin |
 
 ## Events
 

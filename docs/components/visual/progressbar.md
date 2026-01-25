@@ -81,14 +81,14 @@ import { ProgressBar, Col } from 'vuetty';
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `value` | `Number` | `0` (required) | Current progress value |
+| `value` | `Number` | `0` | Current progress value |
 | `max` | `Number` | `100` | Maximum value for progress calculation |
 
 ### Display
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `width` | `Number` | `40` | Width of the progress bar in characters |
+| `width` | `Number \| String` | `null` | Width of the progress bar in characters |
 | `char` | `String` | `'█'` | Character used for filled portion |
 | `emptyChar` | `String` | `'░'` | Character used for empty portion |
 | `showPercentage` | `Boolean` | `true` | Display percentage after the bar |
@@ -112,6 +112,32 @@ import { ProgressBar, Col } from 'vuetty';
 | `italic` | `Boolean` | `false` | Italic text |
 | `underline` | `Boolean` | `false` | Underlined text |
 | `dim` | `Boolean` | `false` | Dimmed text |
+
+## Layout Props (Box Props)
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `flex` | `Number \| String` | `null` | Flex shorthand when inside a flex container |
+| `flexGrow` | `Number` | `null` | Flex grow factor |
+| `flexShrink` | `Number` | `null` | Flex shrink factor |
+| `flexBasis` | `Number \| String` | `null` | Flex basis |
+| `alignSelf` | `String` | `null` | Self alignment: 'auto', 'flex-start', 'flex-end', 'center', 'stretch', 'baseline' |
+| `width` | `Number \| String` | `null` | Width (chars or %) |
+| `height` | `Number \| String` | `null` | Height (rows) |
+| `minWidth` | `Number` | `null` | Minimum width |
+| `maxWidth` | `Number` | `null` | Maximum width |
+| `minHeight` | `Number` | `null` | Minimum height |
+| `maxHeight` | `Number` | `null` | Maximum height |
+| `padding` | `Number` | `null` | Padding |
+| `paddingLeft` | `Number` | `null` | Left padding |
+| `paddingRight` | `Number` | `null` | Right padding |
+| `paddingTop` | `Number` | `null` | Top padding |
+| `paddingBottom` | `Number` | `null` | Bottom padding |
+| `margin` | `Number` | `null` | Margin |
+| `marginLeft` | `Number` | `null` | Left margin |
+| `marginRight` | `Number` | `null` | Right margin |
+| `marginTop` | `Number` | `null` | Top margin |
+| `marginBottom` | `Number` | `null` | Bottom margin |
 
 ## Advanced Examples
 
