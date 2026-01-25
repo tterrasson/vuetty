@@ -19,7 +19,7 @@ import {
   KEY_CTRL_ENTER,
   isPrintable
 } from '@utils/keyParser.js';
-import { getChalkColor, getAnsiBgCode } from '@utils/colorUtils.js';
+import { getChalkColor, getAnsiBgCode, preserveBackground } from '@utils/colorUtils.js';
 import { boxProps } from '@core/layoutProps.js';
 import { RenderHandler, renderHandlerRegistry } from '@core/renderHandlers.js';
 
@@ -341,7 +341,7 @@ export default {
       return false;
     }
 
-    function handleClick(mouseEvent) {
+    function handleClick(_mouseEvent) {
       if (props.disabled || props.readonly) return;
       inputManager.focus(componentId);
     }
@@ -504,15 +504,6 @@ function wrapTextWithIndices(text, width) {
   }
 
   return visualLines;
-}
-
-/**
- * Preserve background color across ANSI resets in content
- * Replaces \x1b[0m with \x1b[0m + bgCode to maintain background
- */
-function preserveBackground(content, bgCode) {
-  if (!bgCode || !content) return content;
-  return content.replace(/\x1b\[0m/g, '\x1b[0m' + bgCode);
 }
 
 /**

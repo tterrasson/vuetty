@@ -149,6 +149,19 @@ export function normalizeColorForCache(color) {
 }
 
 /**
+ * Preserve background color across ANSI resets in content
+ * Replaces \x1b[0m with \x1b[0m + bgCode to maintain background
+ * @param {string} content - Content with potential ANSI resets
+ * @param {string} bgCode - Background ANSI code to preserve
+ * @returns {string} Content with preserved background
+ */
+export function preserveBackground(content, bgCode) {
+  if (!bgCode || !content) return content;
+  // After every full reset, re-apply the background
+  return content.replace(/\x1b\[0m/g, '\x1b[0m' + bgCode);
+}
+
+/**
  * Get raw ANSI foreground color code for a color
  * Returns the ANSI escape sequence without reset
  * Used for inline coloring without disrupting background

@@ -12,7 +12,7 @@ import { WIDTH_CONTEXT_KEY } from '@core/widthContext.js';
 import { HEIGHT_CONTEXT_KEY } from '@core/heightContext.js';
 import { getViewportWidth } from '@core/renderContext.js';
 import { VUETTY_VIEWPORT_STATE_KEY, VUETTY_THEME_KEY } from '@core/vuettyKeys.js';
-import { getAnsiFgCode, getAnsiBgCode } from '@utils/colorUtils.js';
+import { getAnsiFgCode, getAnsiBgCode, preserveBackground } from '@utils/colorUtils.js';
 import { boxProps } from '@core/layoutProps.js';
 import { RenderHandler, renderHandlerRegistry } from '@core/renderHandlers.js';
 import { renderChildrenCached } from '@core/memoization.js';
@@ -290,16 +290,6 @@ export default {
     };
   }
 };
-
-/**
- * Preserve background color across ANSI resets in content
- * Replaces \x1b[0m with \x1b[0m + bgCode to maintain background
- */
-function preserveBackground(content, bgCode) {
-  if (!bgCode || !content) return content;
-  // After every full reset, re-apply the background
-  return content.replace(/\x1b\[0m/g, '\x1b[0m' + bgCode);
-}
 
 /**
  * Render a box with optional border
@@ -580,9 +570,8 @@ export function renderBox(content, props, _depth) {
 
       if (border) {
         const innerContent = getSpaces(interiorWidth);
-        emptyLine = bgStr + borderFgCode + borderChars.vertical +
-                   bgStr + innerContent +
-                   bgStr + borderFgCode + borderChars.vertical;
+        emptyLine = bgStr + borderFgCode + borderChars.vertical
+          + bgStr + innerContent + bgStr + borderFgCode + borderChars.vertical;
       } else {
         emptyLine = bgStr + getSpaces(interiorWidth);
       }
@@ -592,11 +581,12 @@ export function renderBox(content, props, _depth) {
     // Add paddingBottom empty lines
     if (effectivePaddingBottom > 0) {
       let emptyLine;
+
       if (border) {
         const innerContent = getSpaces(interiorWidth);
-        emptyLine = bgStr + borderFgCode + borderChars.vertical + '\x1b[0m' +
-                   bgStr + innerContent + '\x1b[0m' +
-                   bgStr + borderFgCode + borderChars.vertical + '\x1b[0m';
+        emptyLine = bgStr + borderFgCode + borderChars.vertical + '\x1b[0m'
+          + bgStr + innerContent + '\x1b[0m'
+          + bgStr + borderFgCode + borderChars.vertical + '\x1b[0m';
       } else {
         emptyLine = bgStr + getSpaces(interiorWidth) + '\x1b[0m';
       }
@@ -607,7 +597,9 @@ export function renderBox(content, props, _depth) {
 
     // Bottom border
     if (border) {
-      const bottomBorderContent = borderChars.bottomLeft + borderChars.horizontal.repeat(interiorWidth) + borderChars.bottomRight;
+      const bottomBorderContent = borderChars.bottomLeft
+        + borderChars.horizontal.repeat(interiorWidth)
+        + borderChars.bottomRight;
       buffer.append(bgStr + borderFgCode + bottomBorderContent + '\x1b[0m');
     }
 

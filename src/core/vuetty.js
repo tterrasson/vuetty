@@ -401,7 +401,7 @@ export class Vuetty {
       this.viewport.terminalWidth,
       getTerminalWidth,
       truncateWithAnsi,
-      this.themeBgCode  // <-- NEW
+      this.themeBgCode
     );
 
     let displayOutput = croppedLines.join('\n');
@@ -1102,7 +1102,7 @@ export class Vuetty {
       this.viewport.terminalWidth,
       getTerminalWidth,
       truncateWithAnsi,
-      this.themeBgCode  // <-- NEW: pass theme background
+      this.themeBgCode
     );
 
     // Add scroll indicator
