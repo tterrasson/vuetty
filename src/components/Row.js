@@ -31,7 +31,13 @@ export default {
     alignItems: {
       type: String,
       default: 'stretch',
-      validator: val => ['flex-start', 'flex-end', 'center', 'stretch', 'baseline'].includes(val)
+      validator: val => [
+        'flex-start',
+        'flex-end',
+        'center',
+        'stretch',
+        'baseline'
+      ].includes(val)
     },
     flexWrap: {
       type: String,

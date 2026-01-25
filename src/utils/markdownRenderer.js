@@ -671,12 +671,12 @@ export function renderTable(token, components, props, contentWidth = null) {
   // If we have a width constraint, try to fit the table
   if (contentWidth) {
     const totalWidth = colWidths.reduce((a, b) => a + b, 0) + colWidths.length + 1; // +borders
-    
+
     if (totalWidth > contentWidth) {
       // Need to shrink columns
       const availableForContent = contentWidth - colWidths.length - 1;
       const totalContentWidth = colWidths.reduce((a, b) => a + b, 0);
-      
+
       if (availableForContent > 0) {
         // Proportionally shrink columns
         const ratio = availableForContent / totalContentWidth;
@@ -692,7 +692,7 @@ export function renderTable(token, components, props, contentWidth = null) {
     const str = String(text || '');
     const textWidth = getTerminalWidth(str);
     const innerWidth = width - 2; // -2 for padding spaces
-    
+
     if (textWidth > innerWidth) {
       // Truncate
       let truncated = '';
@@ -705,7 +705,7 @@ export function renderTable(token, components, props, contentWidth = null) {
       }
       return ' ' + truncated + '…' + ' '.repeat(Math.max(0, innerWidth - w - 1));
     }
-    
+
     return ' ' + str + ' '.repeat(Math.max(0, innerWidth - textWidth + 1));
   };
 

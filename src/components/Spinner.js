@@ -27,7 +27,15 @@ export default {
     type: {
       type: String,
       default: 'dots',
-      validator: (value) => ['dots', 'line', 'arc', 'arrow', 'bounce', 'clock', 'box'].includes(value)
+      validator: (value) => [
+        'dots',
+        'line',
+        'arc',
+        'arrow',
+        'bounce',
+        'clock',
+        'box'
+      ].includes(value)
     },
     modelValue: {
       type: Boolean,

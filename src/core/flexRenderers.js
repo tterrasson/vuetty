@@ -266,7 +266,6 @@ export function renderFlexCol(node, depth, renderNode) {
   return result;
 }
 
-// Simple line counter (faster than split)
 function countLinesSimple(str) {
   if (!str) return 0;
   let count = 1;

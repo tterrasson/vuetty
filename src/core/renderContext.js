@@ -62,7 +62,7 @@ export function getViewportHeight() {
  * ============================================================
  * Click Region Tracking
  * ============================================================
- * 
+ *
  * Collects clickable regions during render using Yoga-computed
  * absolute positions. No linear Y tracking - positions come
  * directly from layout metrics.

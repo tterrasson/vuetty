@@ -138,7 +138,7 @@ export default {
       return lastEffectPropsHash;
     };
 
-    // Simple props hash for change detection (no JSON.stringify)
+    // Simple props hash for change detection
     const getPropsHash = () => {
       const effectPropsHash = getEffectPropsHash(props.effectProps);
       return `${props.color}|${props.bg}|${props.bold}|${props.italic}|` +
