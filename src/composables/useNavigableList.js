@@ -33,7 +33,8 @@ export function useNavigableList(options) {
     modelValue,
     emit,
     componentId,
-    disabled
+    disabled,
+    multiple
   } = options;
 
   // Inject dependencies
@@ -53,7 +54,30 @@ export function useNavigableList(options) {
       return -1;
     }
 
+    // For multi-select with array, return first selected
+    if (multiple?.value && Array.isArray(currentValue) && currentValue.length > 0) {
+      return currentItems.findIndex(item => currentValue.includes(item.value));
+    }
+
     return currentItems.findIndex(item => item.value === currentValue);
+  });
+
+  // Computed: Find all selected indices for multi-select
+  const selectedIndices = computed(() => {
+    if (!multiple?.value) {
+      return [];
+    }
+
+    const currentItems = items.value;
+    const currentValue = modelValue.value;
+
+    if (!Array.isArray(currentValue)) {
+      return [];
+    }
+
+    return currentItems
+      .map((item, index) => currentValue.includes(item.value) ? index : -1)
+      .filter(index => index !== -1);
   });
 
   // Computed: Check if this component is focused (reactive)
@@ -152,8 +176,27 @@ export function useNavigableList(options) {
       return;
     }
 
-    emit('update:modelValue', item.value);
-    emit('change', item.value);
+    if (multiple?.value) {
+      // Multi-select mode: toggle selection
+      const currentValue = Array.isArray(modelValue.value) ? modelValue.value : [];
+      const itemValue = item.value;
+
+      let newValue;
+      if (currentValue.includes(itemValue)) {
+        // Remove from selection
+        newValue = currentValue.filter(v => v !== itemValue);
+      } else {
+        // Add to selection
+        newValue = [...currentValue, itemValue];
+      }
+
+      emit('update:modelValue', newValue);
+      emit('change', newValue);
+    } else {
+      // Single select mode
+      emit('update:modelValue', item.value);
+      emit('change', item.value);
+    }
   }
 
   /**
@@ -338,6 +381,11 @@ export function useNavigableList(options) {
 
   // Watch modelValue changes to sync highlighted index
   watch(modelValue, () => {
+    // For multi-select, don't auto-highlight on selection change
+    if (multiple?.value) {
+      return;
+    }
+
     const newSelectedIndex = selectedIndex.value;
     if (newSelectedIndex >= 0 && newSelectedIndex !== highlightedIndex.value) {
       highlightedIndex.value = newSelectedIndex;
@@ -374,6 +422,7 @@ export function useNavigableList(options) {
     highlightedIndex,
     scrollOffset,
     selectedIndex,
+    selectedIndices,
     isFocused,
 
     // Navigation methods

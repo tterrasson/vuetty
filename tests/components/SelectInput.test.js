@@ -456,6 +456,146 @@ describe('SelectInput component', () => {
     });
   });
 
+  describe('multi-selection', () => {
+    const options = [
+      { label: 'Option 1', value: 'opt1' },
+      { label: 'Option 2', value: 'opt2' },
+      { label: 'Option 3', value: 'opt3' }
+    ];
+
+    test('renders with multiple prop enabled', () => {
+      const result = renderSelectInput({
+        options,
+        modelValue: [],
+        highlightedIndex: 0,
+        selectedIndex: -1,
+        selectedIndices: [],
+        isFocused: false,
+        multiple: true
+      });
+      const stripped = stripAnsi(result);
+
+      expect(result).toBeTruthy();
+      expect(typeof result).toBe('string');
+      expect(stripped).toContain('Option 1');
+    });
+
+    test('shows multiple selected options', () => {
+      const result = renderSelectInput({
+        options,
+        modelValue: ['opt1', 'opt3'],
+        highlightedIndex: 0,
+        selectedIndex: 0,
+        selectedIndices: [0, 2],
+        isFocused: false,
+        multiple: true,
+        marker: '●'
+      });
+      const stripped = stripAnsi(result);
+
+      // Should have two selected markers
+      const selectedCount = (stripped.match(/●/g) || []).length;
+      expect(selectedCount).toBe(2);
+    });
+
+    test('displays custom hint text for multi-select when focused', () => {
+      const result = renderSelectInput({
+        options,
+        modelValue: [],
+        highlightedIndex: 0,
+        selectedIndex: -1,
+        selectedIndices: [],
+        isFocused: true,
+        disabled: false,
+        multiple: true,
+        hint: 'default'
+      });
+      const stripped = stripAnsi(result);
+
+      expect(stripped).toContain('toggle');
+      expect(stripped).toContain('confirm');
+    });
+
+    test('handles empty selection in multi-select mode', () => {
+      const result = renderSelectInput({
+        options,
+        modelValue: [],
+        highlightedIndex: 0,
+        selectedIndex: -1,
+        selectedIndices: [],
+        isFocused: false,
+        multiple: true
+      });
+      const stripped = stripAnsi(result);
+
+      expect(result).toBeTruthy();
+      expect(typeof result).toBe('string');
+      // No selected markers should be present
+      const selectedCount = (stripped.match(/●/g) || []).length;
+      expect(selectedCount).toBe(0);
+    });
+
+    test('handles all options selected in multi-select mode', () => {
+      const result = renderSelectInput({
+        options,
+        modelValue: ['opt1', 'opt2', 'opt3'],
+        highlightedIndex: 0,
+        selectedIndex: 0,
+        selectedIndices: [0, 1, 2],
+        isFocused: false,
+        multiple: true,
+        marker: '●'
+      });
+      const stripped = stripAnsi(result);
+
+      // All three options should be selected
+      const selectedCount = (stripped.match(/●/g) || []).length;
+      expect(selectedCount).toBe(3);
+    });
+
+    test('multi-select mode with highlighted and selected options', () => {
+      const result = renderSelectInput({
+        options,
+        modelValue: ['opt1'],
+        highlightedIndex: 1,
+        selectedIndex: 0,
+        selectedIndices: [0],
+        isFocused: true,
+        multiple: true,
+        marker: '●',
+        highlightMarker: '▸'
+      });
+      const stripped = stripAnsi(result);
+
+      // Should have selected marker and highlight marker
+      expect(stripped).toContain('●');
+      expect(stripped).toContain('▸');
+    });
+
+    test('respects disabled options in multi-select mode', () => {
+      const disabledOptions = [
+        { label: 'Option 1', value: 'opt1', disabled: false },
+        { label: 'Option 2', value: 'opt2', disabled: true },
+        { label: 'Option 3', value: 'opt3', disabled: false }
+      ];
+
+      const result = renderSelectInput({
+        options: disabledOptions,
+        modelValue: ['opt1', 'opt3'],
+        highlightedIndex: 0,
+        selectedIndex: 0,
+        selectedIndices: [0, 2],
+        isFocused: false,
+        multiple: true
+      });
+      const stripped = stripAnsi(result);
+
+      expect(result).toBeTruthy();
+      expect(typeof result).toBe('string');
+      expect(stripped).toContain('Option 2');
+    });
+  });
+
   describe('hint text', () => {
     const options = [
       { label: 'Option 1', value: 'opt1' },

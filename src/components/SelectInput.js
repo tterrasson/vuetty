@@ -40,7 +40,7 @@ export default {
 
     // v-model
     modelValue: {
-      type: [String, Number, Object],
+      type: [String, Number, Object, Array],
       default: null
     },
 
@@ -76,6 +76,10 @@ export default {
 
     // State
     disabled: {
+      type: Boolean,
+      default: false
+    },
+    multiple: {
       type: Boolean,
       default: false
     },
@@ -127,7 +131,8 @@ export default {
       modelValue: computed(() => props.modelValue),
       emit,
       componentId,
-      disabled: computed(() => props.disabled)
+      disabled: computed(() => props.disabled),
+      multiple: computed(() => props.multiple)
     });
 
     // Render
@@ -145,6 +150,7 @@ export default {
         _clickable: true,
         highlightedIndex: navigation.highlightedIndex.value,
         selectedIndex: navigation.selectedIndex.value,
+        selectedIndices: navigation.selectedIndices.value,
         scrollOffset: navigation.scrollOffset.value,
         isFocused: navigation.isFocused.value,
         _injectedWidth: injectedWidth,
@@ -165,6 +171,7 @@ export function renderSelectInput(props) {
     height = 10,
     highlightedIndex = 0,
     selectedIndex = -1,
+    selectedIndices = [],
     scrollOffset = 0,
     isFocused = false,
     focusColor = 'cyan',
@@ -173,7 +180,8 @@ export function renderSelectInput(props) {
     disabled = false,
     hint = 'default',
     marker = '●',
-    highlightMarker = '▸'
+    highlightMarker = '▸',
+    multiple = false
   } = props;
 
   let output = '';
@@ -231,7 +239,21 @@ export function renderSelectInput(props) {
 
     if (option) {
       const isHighlighted = isFocused && globalIndex === highlightedIndex;
-      const isSelected = globalIndex === selectedIndex || option.value === modelValue;
+
+      // Check if option is selected (handle both single and multi-select)
+      let isSelected = false;
+      if (multiple) {
+        // Multi-select: check if value is in modelValue array or selectedIndices
+        if (Array.isArray(modelValue)) {
+          isSelected = modelValue.includes(option.value);
+        } else if (selectedIndices && selectedIndices.length > 0) {
+          isSelected = selectedIndices.includes(globalIndex);
+        }
+      } else {
+        // Single select: check selectedIndex or modelValue match
+        isSelected = globalIndex === selectedIndex || option.value === modelValue;
+      }
+
       const optionLabel = option.label || String(option.value);
 
       // Build indicator
@@ -275,7 +297,11 @@ export function renderSelectInput(props) {
     let hintText = '';
 
     if (hint === 'default') {
-      hintText = '↑↓ Navigate • Enter to select • Tab to next field';
+      if (multiple) {
+        hintText = '↑↓ Navigate • Space to toggle • Enter to confirm • Tab to next field';
+      } else {
+        hintText = '↑↓ Navigate • Enter to select • Tab to next field';
+      }
     } else if (hint && hint !== '') {
       hintText = hint;
     }

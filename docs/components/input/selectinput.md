@@ -45,7 +45,7 @@ const role = ref('viewer');
 
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
-| `modelValue` | `string \\| number \\| object` | `null` | The selected value (v-model binding) |
+| `modelValue` | `string \\| number \\| object \\| array` | `null` | The selected value (v-model binding). Use an array for multi-selection |
 | `options` | `array` | `[]` | List of options (required) |
 | `label` | `string` | `''` | Label displayed above the dropdown |
 | `height` | `number` | `10` | Number of visible options in the dropdown |
@@ -55,6 +55,7 @@ const role = ref('viewer');
 | `flexShrink` | `number` | `-` | Flex shrink property |
 | `flexBasis` | `number \\| string` | `-` | Flex basis property |
 | `disabled` | `boolean` | `false` | Disable the dropdown |
+| `multiple` | `boolean` | `false` | Enable multi-selection mode |
 | `color` | `string` | `-` | Text color ([chalk color names](https://github.com/chalk/chalk?tab=readme-ov-file#styles)) |
 | `bg` | `string` | `-` | Background color |
 | `focusColor` | `string` | `'cyan'` | Border color when focused |
@@ -158,17 +159,94 @@ const options = ref([
 </script>
 ```
 
+## Multi-Selection
+
+Enable multi-selection mode by setting the `multiple` prop to `true`. In this mode, the `modelValue` should be an array of selected values.
+
+### Basic Multi-Select
+
+```vue
+<template>
+  <Col :gap="1">
+    <SelectInput
+      v-model="selectedFruits"
+      :options="fruits"
+      label="Select your favorite fruits"
+      :height="6"
+      multiple
+    />
+    <TextBox color="green">Selected: {{ selectedFruits.join(', ') }}</TextBox>
+  </Col>
+</template>
+
+<script setup>
+import { ref } from 'vue';
+import { Col, SelectInput, TextBox } from 'vuetty';
+
+const fruits = [
+  { label: 'Apple', value: 'apple' },
+  { label: 'Banana', value: 'banana' },
+  { label: 'Cherry', value: 'cherry' },
+  { label: 'Date', value: 'date' },
+  { label: 'Elderberry', value: 'elderberry' }
+];
+
+const selectedFruits = ref(['apple', 'cherry']);
+</script>
+```
+
+### Multi-Select with Initial Selection
+
+```vue
+<template>
+  <SelectInput
+    v-model="selectedTags"
+    :options="tags"
+    label="Select tags"
+    :height="5"
+    multiple
+  />
+</template>
+
+<script setup>
+import { ref } from 'vue';
+import { SelectInput } from 'vuetty';
+
+const tags = [
+  { label: 'JavaScript', value: 'js' },
+  { label: 'TypeScript', value: 'ts' },
+  { label: 'Vue.js', value: 'vue' },
+  { label: 'React', value: 'react' },
+  { label: 'Node.js', value: 'node' }
+];
+
+const selectedTags = ref(['vue', 'ts']);
+</script>
+```
+
 ## Keyboard Navigation
 
 The SelectInput component supports the following keyboard shortcuts:
 
+### Single Selection Mode
 - **↑ (Up Arrow)**: Move highlight up
 - **↓ (Down Arrow)**: Move highlight down
 - **Home**: Jump to first option
 - **End**: Jump to last option
 - **Page Up**: Move up by page height
 - **Page Down**: Move down by page height
-- **Enter/Space**: Select highlighted option
+- **Enter**: Select highlighted option
+- **Type characters**: Jump to option starting with typed character
+
+### Multi-Selection Mode
+- **↑ (Up Arrow)**: Move highlight up
+- **↓ (Down Arrow)**: Move highlight down
+- **Home**: Jump to first option
+- **End**: Jump to last option
+- **Page Up**: Move up by page height
+- **Page Down**: Move down by page height
+- **Space**: Toggle selection of highlighted option
+- **Enter**: Confirm selection (moves focus to next field)
 - **Type characters**: Jump to option starting with typed character
 
 ## Customization
@@ -431,43 +509,44 @@ const roles = ref([
 </script>
 ```
 
-### Multi-Select Workaround
+### Multi-Select Form
 
 ```vue
 <template>
   <Col gap="1">
     <SelectInput
-      v-model="selectedOption"
-      :options="availableOptions"
-      label="Select an option"
+      v-model="selectedTechnologies"
+      :options="technologies"
+      label="Select technologies you know"
+      :height="8"
+      multiple
     />
-    <Box>
-      <TextBox>Selected Options:</TextBox>
+    <Box v-if="selectedTechnologies.length > 0">
+      <TextBox bold color="cyan">You selected:</TextBox>
       <Newline />
-      <TextBox v-for="option in selectedOptions" :key="option">
-        {{ option }}
+      <TextBox v-for="tech in selectedTechnologies" :key="tech" color="green">
+        • {{ technologies.find(t => t.value === tech)?.label }}
       </TextBox>
     </Box>
   </Col>
 </template>
 
 <script setup>
-import { ref, watch } from 'vue';
+import { ref } from 'vue';
 import { Col, SelectInput, Box, TextBox, Newline } from 'vuetty';
 
-const selectedOption = ref(null);
-const selectedOptions = ref([]);
-const availableOptions = ref([
-  { value: 'apple', label: 'Apple' },
-  { value: 'banana', label: 'Banana' },
-  { value: 'orange', label: 'Orange' }
+const technologies = ref([
+  { value: 'js', label: 'JavaScript' },
+  { value: 'ts', label: 'TypeScript' },
+  { value: 'vue', label: 'Vue.js' },
+  { value: 'react', label: 'React' },
+  { value: 'node', label: 'Node.js' },
+  { value: 'python', label: 'Python' },
+  { value: 'rust', label: 'Rust' },
+  { value: 'go', label: 'Go' }
 ]);
 
-watch(selectedOption, (newVal) => {
-  if (newVal && !selectedOptions.value.includes(newVal)) {
-    selectedOptions.value.push(newVal);
-  }
-});
+const selectedTechnologies = ref([]);
 </script>
 ```
 

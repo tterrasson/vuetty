@@ -1,8 +1,13 @@
 <template>
   <Col :gap="1">
-    <TextBox bold color="cyan">SelectInput</TextBox>
+    <TextBox bold color="cyan">SelectInput - Single Selection</TextBox>
     <SelectInput v-model="selected" label="Pick one" :options="options" :height="3" />
     <TextBox color="green">Selected: {{ selected }}</TextBox>
+
+    <TextBox bold color="cyan">SelectInput - Multi Selection</TextBox>
+    <SelectInput v-model="selectedMultiple" label="Pick multiple" :options="options" :height="5" multiple />
+    <TextBox color="green">Selected: {{ selectedMultiple.join(', ') }}</TextBox>
+
     <SelectInput v-model="role" label="Role" :options="roleOptions" :height="4" />
   </Col>
 </template>
@@ -20,6 +25,7 @@ const options = [
 ];
 
 const selected = ref('beta');
+const selectedMultiple = ref(['alpha', 'gamma']);
 
 const roleOptions = [
   { label: 'Admin', value: 'admin', disabled: true },
