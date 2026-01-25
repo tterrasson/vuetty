@@ -28,5 +28,6 @@ export const examples = [
   example('image', 'Image', './components/Image.vue'),
   example('tree', 'Tree', './components/Tree.vue'),
   example('tabs', 'Tabs', './components/Tabs.vue'),
-  example('theming', 'Theming', './components/Theming.vue')
+  example('theming', 'Theming', './components/Theming.vue'),
+  example('textbox-effect', 'Theming', './components/TextBoxEffects.vue')
 ];

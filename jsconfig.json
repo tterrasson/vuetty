@@ -24,6 +24,7 @@
       "@composables/*": ["./src/composables/*"],
       "@core/*": ["./src/core/*"],
       "@utils/*": ["./src/utils/*"],
+      "@effects/*": ["./src/effects/*"],
       "@build/*": ["./src/build/*"]
     },
 

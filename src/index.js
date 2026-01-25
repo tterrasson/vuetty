@@ -21,3 +21,9 @@ export {
 
 // Export render handler API for custom components
 export { RenderHandler, RenderContext, renderHandlerRegistry } from './core/renderHandlers.js';
+
+// Export effect system for custom text effects
+export { effectRegistry } from './effects/index.js';
+export {
+  parseColor, interpolateColor, adjustBrightness, hslToRgb, rgbToHex, rgbToHsl
+} from './utils/colorUtils.js';

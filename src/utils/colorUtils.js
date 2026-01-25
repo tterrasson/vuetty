@@ -333,3 +333,263 @@ export function colorToOSC11(color) {
 
   return `rgb:${r16}/${g16}/${b16}`;
 }
+
+// ==========================================
+// Effect utilities (for text effects)
+// ==========================================
+
+/**
+ * Parse color string to RGB object
+ * Supports: hex (#RGB, #RRGGBB), rgb(r,g,b), named colors
+ * @param {string} color - Color string
+ * @returns {{ r: number, g: number, b: number } | null}
+ */
+export function parseColor(color) {
+  if (!color) return null;
+
+  // Named colors
+  if (NAMED_COLOR_RGB[color]) {
+    const [r, g, b] = NAMED_COLOR_RGB[color];
+    return { r, g, b };
+  }
+
+  // Hex color: #RGB or #RRGGBB
+  if (HEX_COLOR_REGEX.test(color)) {
+    let hex = color.slice(1);
+    if (hex.length === 3) {
+      hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
+    }
+    return {
+      r: parseInt(hex.slice(0, 2), 16),
+      g: parseInt(hex.slice(2, 4), 16),
+      b: parseInt(hex.slice(4, 6), 16)
+    };
+  }
+
+  // RGB format: rgb(r, g, b)
+  const rgbMatch = color.match(RGB_COLOR_REGEX);
+  if (rgbMatch) {
+    return {
+      r: parseInt(rgbMatch[1], 10),
+      g: parseInt(rgbMatch[2], 10),
+      b: parseInt(rgbMatch[3], 10)
+    };
+  }
+
+  return null;
+}
+
+/**
+ * Convert RGB to hex string
+ * @param {number} r
+ * @param {number} g
+ * @param {number} b
+ * @returns {string}
+ */
+export function rgbToHex(r, g, b) {
+  const toHex = n => Math.round(Math.max(0, Math.min(255, n))).toString(16).padStart(2, '0');
+  return '#' + toHex(r) + toHex(g) + toHex(b);
+}
+
+/**
+ * Convert HSL to RGB
+ * @param {number} h - Hue (0-1)
+ * @param {number} s - Saturation (0-1)
+ * @param {number} l - Lightness (0-1)
+ * @returns {{ r: number, g: number, b: number }}
+ */
+export function hslToRgb(h, s, l) {
+  let r, g, b;
+
+  if (s === 0) {
+    r = g = b = l;
+  } else {
+    const hue2rgb = (p, q, t) => {
+      if (t < 0) t += 1;
+      if (t > 1) t -= 1;
+      if (t < 1/6) return p + (q - p) * 6 * t;
+      if (t < 1/2) return q;
+      if (t < 2/3) return p + (q - p) * (2/3 - t) * 6;
+      return p;
+    };
+
+    const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+    const p = 2 * l - q;
+    r = hue2rgb(p, q, h + 1/3);
+    g = hue2rgb(p, q, h);
+    b = hue2rgb(p, q, h - 1/3);
+  }
+
+  return {
+    r: Math.round(r * 255),
+    g: Math.round(g * 255),
+    b: Math.round(b * 255)
+  };
+}
+
+/**
+ * Convert RGB to HSL
+ * @param {number} r - Red (0-255)
+ * @param {number} g - Green (0-255)
+ * @param {number} b - Blue (0-255)
+ * @returns {{ h: number, s: number, l: number }}
+ */
+export function rgbToHsl(r, g, b) {
+  r /= 255;
+  g /= 255;
+  b /= 255;
+
+  const max = Math.max(r, g, b);
+  const min = Math.min(r, g, b);
+  let h, s;
+  const l = (max + min) / 2;
+
+  if (max === min) {
+    h = s = 0;
+  } else {
+    const d = max - min;
+    s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+
+    switch (max) {
+      case r: h = ((g - b) / d + (g < b ? 6 : 0)) / 6; break;
+      case g: h = ((b - r) / d + 2) / 6; break;
+      case b: h = ((r - g) / d + 4) / 6; break;
+    }
+  }
+
+  return { h, s, l };
+}
+
+/**
+ * Interpolate between two RGB colors
+ * @param {{ r: number, g: number, b: number }} color1
+ * @param {{ r: number, g: number, b: number }} color2
+ * @param {number} ratio - 0.0 to 1.0
+ * @returns {{ r: number, g: number, b: number }}
+ */
+function interpolateRgbColors(color1, color2, ratio) {
+  return {
+    r: Math.round(color1.r + (color2.r - color1.r) * ratio),
+    g: Math.round(color1.g + (color2.g - color1.g) * ratio),
+    b: Math.round(color1.b + (color2.b - color1.b) * ratio)
+  };
+}
+
+/**
+ * Interpolate between two colors in HSV space
+ * @param {{ r: number, g: number, b: number }} color1
+ * @param {{ r: number, g: number, b: number }} color2
+ * @param {number} ratio - 0.0 to 1.0
+ * @returns {{ r: number, g: number, b: number }}
+ */
+function interpolateHsvColors(color1, color2, ratio) {
+  const hsl1 = rgbToHsl(color1.r, color1.g, color1.b);
+  const hsl2 = rgbToHsl(color2.r, color2.g, color2.b);
+
+  // Handle hue wrapping for shortest path
+  let h1 = hsl1.h, h2 = hsl2.h;
+  if (Math.abs(h2 - h1) > 0.5) {
+    if (h1 < h2) h1 += 1;
+    else h2 += 1;
+  }
+
+  const h = (h1 + (h2 - h1) * ratio) % 1;
+  const s = hsl1.s + (hsl2.s - hsl1.s) * ratio;
+  const l = hsl1.l + (hsl2.l - hsl1.l) * ratio;
+
+  return hslToRgb(h, s, l);
+}
+
+/**
+ * Interpolate between colors array
+ * @param {string[]} colors - Array of color strings
+ * @param {number} ratio - 0.0 to 1.0
+ * @param {'rgb' | 'hsv'} [interpolation='rgb']
+ * @returns {string} Hex color string
+ */
+export function interpolateColor(colors, ratio, interpolation = 'rgb') {
+  if (!colors || colors.length === 0) return '#FFFFFF';
+  if (colors.length === 1) {
+    const parsed = parseColor(colors[0]);
+    return parsed ? rgbToHex(parsed.r, parsed.g, parsed.b) : '#FFFFFF';
+  }
+
+  // Clamp ratio
+  ratio = Math.max(0, Math.min(1, ratio));
+
+  // Map ratio to color segment
+  const segmentCount = colors.length - 1;
+  const segmentRatio = ratio * segmentCount;
+  const segmentIndex = Math.min(Math.floor(segmentRatio), segmentCount - 1);
+  const localRatio = segmentRatio - segmentIndex;
+
+  const color1 = parseColor(colors[segmentIndex]);
+  const color2 = parseColor(colors[segmentIndex + 1]);
+
+  if (!color1 || !color2) return '#FFFFFF';
+
+  const result = interpolation === 'hsv'
+    ? interpolateHsvColors(color1, color2, localRatio)
+    : interpolateRgbColors(color1, color2, localRatio);
+
+  return rgbToHex(result.r, result.g, result.b);
+}
+
+/**
+ * Adjust color brightness
+ * @param {{ r: number, g: number, b: number }} color
+ * @param {number} factor - Brightness factor (0.0 to 2.0, where 1.0 is unchanged)
+ * @returns {{ r: number, g: number, b: number }}
+ */
+export function adjustBrightness(color, factor) {
+  return {
+    r: Math.round(Math.max(0, Math.min(255, color.r * factor))),
+    g: Math.round(Math.max(0, Math.min(255, color.g * factor))),
+    b: Math.round(Math.max(0, Math.min(255, color.b * factor)))
+  };
+}
+
+// ==========================================
+// Pre-computed palettes for performance
+// ==========================================
+
+/**
+ * Pre-computed rainbow palette (360 colors at full saturation/lightness)
+ * Avoids calling hslToRgb for each character in rainbow effect
+ */
+export const RAINBOW_PALETTE = Array.from({ length: 360 }, (_, i) =>
+  hslToRgb(i / 360, 1, 0.5)
+);
+
+/**
+ * Interpolate between colors array and return RGB object directly
+ * Avoids hex string creation and re-parsing overhead
+ * @param {string[]} colors - Array of color strings
+ * @param {number} ratio - 0.0 to 1.0
+ * @param {'rgb' | 'hsv'} [interpolation='rgb']
+ * @returns {{ r: number, g: number, b: number }}
+ */
+export function interpolateColorRgb(colors, ratio, interpolation = 'rgb') {
+  if (!colors || colors.length === 0) return { r: 255, g: 255, b: 255 };
+  if (colors.length === 1) {
+    return parseColor(colors[0]) || { r: 255, g: 255, b: 255 };
+  }
+
+  // Clamp ratio
+  ratio = Math.max(0, Math.min(1, ratio));
+
+  // Map ratio to color segment
+  const segmentCount = colors.length - 1;
+  const segmentRatio = ratio * segmentCount;
+  const segmentIndex = Math.min(Math.floor(segmentRatio), segmentCount - 1);
+  const localRatio = segmentRatio - segmentIndex;
+
+  const color1 = parseColor(colors[segmentIndex]);
+  const color2 = parseColor(colors[segmentIndex + 1]);
+
+  if (!color1 || !color2) return { r: 255, g: 255, b: 255 };
+
+  return interpolation === 'hsv'
+    ? interpolateHsvColors(color1, color2, localRatio)
+    : interpolateRgbColors(color1, color2, localRatio);
+}

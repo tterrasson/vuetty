@@ -58,6 +58,7 @@ export default [
           { find: '@composables', replacement: pathResolve(__dirname, 'src/composables') },
           { find: '@core', replacement: pathResolve(__dirname, 'src/core') },
           { find: '@utils', replacement: pathResolve(__dirname, 'src/utils') },
+          { find: '@effects', replacement: pathResolve(__dirname, 'src/effects') },
           { find: '@build', replacement: pathResolve(__dirname, 'src/build') }
         ]
       }),
@@ -88,8 +89,10 @@ export default [
       alias({
         entries: [
           { find: '@components', replacement: pathResolve(__dirname, 'src/components') },
+          { find: '@composables', replacement: pathResolve(__dirname, 'src/composables') },
           { find: '@core', replacement: pathResolve(__dirname, 'src/core') },
           { find: '@utils', replacement: pathResolve(__dirname, 'src/utils') },
+          { find: '@effects', replacement: pathResolve(__dirname, 'src/effects') },
           { find: '@build', replacement: pathResolve(__dirname, 'src/build') }
         ]
       }),

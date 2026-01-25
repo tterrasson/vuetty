@@ -2,6 +2,8 @@
 
 The Gradient component applies gradient colors to text and other components. It supports preset gradients, custom color arrays, and interpolation modes.
 
+For animated text effects (rainbow, pulse, wave, shimmer), see the TextBox effects section in `docs/components/text/textbox.md`.
+
 ## Basic Usage
 
 ```vue

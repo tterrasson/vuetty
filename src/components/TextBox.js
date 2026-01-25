@@ -1,5 +1,5 @@
 // src/components/TextBox.js
-import { h, inject } from 'vue';
+import { h, inject, ref, watch, onUnmounted } from 'vue';
 import { applyStyles, wrapText, getTerminalWidth, getSpaces } from '@utils/renderUtils.js';
 import { adjustToHeight } from '@utils/heightUtils.js';
 import { VUETTY_VIEWPORT_STATE_KEY, VUETTY_THEME_KEY } from '@core/vuettyKeys.js';
@@ -7,6 +7,7 @@ import { WIDTH_CONTEXT_KEY } from '@core/widthContext.js';
 import { boxProps } from '@core/layoutProps.js';
 import { RenderHandler, renderHandlerRegistry } from '@core/renderHandlers.js';
 import { renderChildrenCached } from '@core/memoization.js';
+import { effectRegistry } from '@effects/effectRegistry.js';
 
 /**
  * TextBox component - Styled text
@@ -20,6 +21,23 @@ export default {
     italic: Boolean,
     underline: Boolean,
     dim: Boolean,
+    // Effect props
+    effect: {
+      type: String,
+      default: null
+    },
+    effectProps: {
+      type: Object,
+      default: null
+    },
+    animated: {
+      type: Boolean,
+      default: false
+    },
+    animationInterval: {
+      type: Number,
+      default: null
+    },
     // Include box props (padding, margin, dimensions, flex item props)
     ...boxProps
   },
@@ -28,15 +46,104 @@ export default {
     const injectedWidthContext = inject(WIDTH_CONTEXT_KEY, null);
     const theme = inject(VUETTY_THEME_KEY, null);
 
+    // Animation state for animated effects
+    const currentFrame = ref(0);
+    let animationTimerId = null;
+
+    function startAnimation(interval) {
+      if (animationTimerId !== null) return;
+
+      const animate = () => {
+        currentFrame.value++;
+        animationTimerId = setTimeout(animate, interval);
+      };
+      animate();
+    }
+
+    function stopAnimation() {
+      if (animationTimerId !== null) {
+        clearTimeout(animationTimerId);
+        animationTimerId = null;
+      }
+      currentFrame.value = 0;
+    }
+
+    // Watch effect + animated + effectProps to start/stop animation
+    watch(
+      [() => props.effect, () => props.animated, () => props.effectProps],
+      ([effect, animated]) => {
+        stopAnimation(); // Always stop first to ensure clean state
+        if (effect && animated) {
+          const effectDef = effectRegistry.get(effect);
+          if (effectDef?.animated) {
+            const interval = props.animationInterval || effectDef.defaultInterval;
+            startAnimation(interval);
+          }
+        }
+      },
+      { immediate: true }
+    );
+
+    // Watch interval changes to restart with new interval
+    watch(
+      () => props.animationInterval,
+      () => {
+        if (props.effect && props.animated && animationTimerId !== null) {
+          stopAnimation();
+          const effectDef = effectRegistry.get(props.effect);
+          if (effectDef?.animated) {
+            const interval = props.animationInterval || effectDef.defaultInterval;
+            startAnimation(interval);
+          }
+        }
+      }
+    );
+
+    // Cleanup on unmount
+    onUnmounted(() => stopAnimation());
+
     // Cache for enhanced props to avoid allocations
     let lastInjectedWidth = undefined;
     let lastViewportVersion = -1;
     let lastPropsHash = '';
     let cachedEnhancedProps = null;
+    let basePropsChanged = false;
 
-    // Simple props hash for change detection
+    // Track last effectProps reference for shallow comparison
+    let lastEffectProps = null;
+    let lastEffectPropsHash = '';
+
+    /**
+     * Generate hash for effectProps using shallow comparison
+     */
+    const getEffectPropsHash = (effectProps) => {
+      if (!effectProps) return '';
+      // If same reference, return cached hash
+      if (effectProps === lastEffectProps) return lastEffectPropsHash;
+
+      // Build hash from known effect prop keys (shallow)
+      const parts = [];
+      if (effectProps.speed !== undefined) parts.push(`s:${effectProps.speed}`);
+      if (effectProps.color !== undefined) parts.push(`c:${effectProps.color}`);
+      if (effectProps.colors !== undefined) parts.push(`cs:${effectProps.colors.join(',')}`);
+      if (effectProps.minBrightness !== undefined) parts.push(`minB:${effectProps.minBrightness}`);
+      if (effectProps.maxBrightness !== undefined) parts.push(`maxB:${effectProps.maxBrightness}`);
+      if (effectProps.wavelength !== undefined) parts.push(`wl:${effectProps.wavelength}`);
+      if (effectProps.baseColor !== undefined) parts.push(`bc:${effectProps.baseColor}`);
+      if (effectProps.highlightColor !== undefined) parts.push(`hc:${effectProps.highlightColor}`);
+      if (effectProps.width !== undefined) parts.push(`w:${effectProps.width}`);
+
+      lastEffectProps = effectProps;
+      lastEffectPropsHash = parts.join('|');
+      return lastEffectPropsHash;
+    };
+
+    // Simple props hash for change detection (no JSON.stringify)
     const getPropsHash = () => {
-      return `${props.color}|${props.bg}|${props.bold}|${props.italic}|${props.underline}|${props.dim}|${props.width}`;
+      const effectPropsHash = getEffectPropsHash(props.effectProps);
+      return `${props.color}|${props.bg}|${props.bold}|${props.italic}|` +
+        `${props.underline}|${props.dim}|${props.width}|${props.effect}|` +
+        `${props.animated}|${effectPropsHash}`;
     };
 
     return () => {
@@ -49,14 +156,17 @@ export default {
 
       const viewportVersion = viewportState ? viewportState.version : 0;
       const propsHash = getPropsHash();
+      const frame = currentFrame.value;
 
-      // Only recreate enhanced props if something changed
-      if (
+      // Only recreate enhanced props if something changed (excluding frame for caching)
+      basePropsChanged = (
         injectedWidth !== lastInjectedWidth ||
         viewportVersion !== lastViewportVersion ||
         propsHash !== lastPropsHash ||
         !cachedEnhancedProps
-      ) {
+      );
+
+      if (basePropsChanged) {
         lastInjectedWidth = injectedWidth;
         lastViewportVersion = viewportVersion;
         lastPropsHash = propsHash;
@@ -80,6 +190,8 @@ export default {
           paddingRight: props.paddingRight,
           paddingTop: props.paddingTop,
           paddingBottom: props.paddingBottom,
+          effect: props.effect,
+          effectProps: props.effectProps,
           _injectedWidth: injectedWidth,
           _viewportVersion: viewportVersion
         };
@@ -91,6 +203,15 @@ export default {
         if (effectiveBg !== undefined && effectiveBg !== null) {
           cachedEnhancedProps.bg = effectiveBg;
         }
+      }
+
+      // For animated effects, always create a new props object with the current frame
+      // This ensures Vue detects the change and triggers re-render
+      if (props.effect && props.animated) {
+        return h('textbox', {
+          ...cachedEnhancedProps,
+          _effectFrame: frame
+        }, children);
       }
 
       return h('textbox', cachedEnhancedProps, children);
@@ -107,12 +228,15 @@ export function renderText(content, props) {
   const {
     _injectedWidth,
     _targetHeight,
+    _effectFrame = 0,
     width,
     paddingTop,
     paddingBottom,
     paddingLeft,
     paddingRight,
-    padding = 0
+    padding = 0,
+    effect,
+    effectProps
   } = props || {};
 
   // Calculate effective padding for each side
@@ -141,8 +265,14 @@ export function renderText(content, props) {
     }
   }
 
-  // Apply styles
-  result = applyStyles(result, props || {});
+  // Apply effect OR styles (effects handle their own coloring)
+  if (effect && effectRegistry.has(effect)) {
+    const effectDef = effectRegistry.get(effect);
+    result = effectDef.fn(result, effectProps || {}, _effectFrame);
+  } else {
+    // Apply styles only if no effect
+    result = applyStyles(result, props || {});
+  }
 
   // Apply horizontal padding to each line
   if (effectivePaddingLeft > 0 || effectivePaddingRight > 0) {
@@ -150,7 +280,10 @@ export function renderText(content, props) {
     const leftPad = getSpaces(effectivePaddingLeft);
     const paddedLines = lines.map(line => {
       const visualWidth = getTerminalWidth(line);
-      const rightPadWidth = effectivePaddingRight + (effectiveWidth ? Math.max(0, effectiveWidth - effectivePaddingLeft - effectivePaddingRight - visualWidth) : 0);
+      const widthDiff = effectiveWidth
+        ? Math.max(0, effectiveWidth - effectivePaddingLeft - effectivePaddingRight - visualWidth)
+        : 0;
+      const rightPadWidth = effectivePaddingRight + widthDiff;
       const rightPad = getSpaces(rightPadWidth);
       return leftPad + line + rightPad;
     });

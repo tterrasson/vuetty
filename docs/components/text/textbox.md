@@ -2,6 +2,8 @@
 
 The TextBox component renders styled text content with support for colors, text effects, and automatic wrapping. It's the primary component for displaying text in terminal UIs.
 
+For static multi-color text, see the Gradient component in `docs/components/text/gradient.md`.
+
 ## Basic Usage
 
 ```vue
@@ -25,6 +27,10 @@ import { TextBox } from 'vuetty';
 | `underline` | `boolean` | `false` | Underline text |
 | `dim` | `boolean` | `false` | Make text dimmer |
 | `width` | `number` | - | Force specific width (enables wrapping) |
+| `effect` | `string` | - | Apply a text effect (`rainbow`, `pulse`, `wave`, `shimmer`) |
+| `effectProps` | `object` | - | Effect-specific options (see effects below) |
+| `animated` | `boolean` | `false` | Enable animation for animated effects |
+| `animationInterval` | `number` | - | Override the effect's default frame interval (ms) |
 
 ## Text Colors
 
@@ -127,6 +133,167 @@ import { Col, TextBox } from 'vuetty';
 
 <script setup>
 import { Col, TextBox } from 'vuetty';
+</script>
+```
+
+## Text Effects (Animated)
+
+TextBox also supports animated effects via the `effect` prop. When an effect is set, TextBox applies the effect instead of the base text styles (color, bold, italic, underline, dim). Padding and wrapping still apply.
+
+### Basic Usage
+
+```vue
+<template>
+  <TextBox
+    effect="rainbow"
+    :animated="true"
+    :effectProps="{ speed: 1 }"
+  >
+    Animated rainbow text
+  </TextBox>
+</template>
+
+<script setup>
+import { TextBox } from 'vuetty';
+</script>
+```
+
+### Available Effects
+
+#### Rainbow
+
+Animated rainbow gradient that scrolls across the text.
+
+`effectProps`:
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `speed` | `number` | `1` | Animation speed multiplier |
+
+```vue
+<template>
+  <TextBox effect="rainbow" :animated="true" :effectProps="{ speed: 2 }">
+    Faster rainbow
+  </TextBox>
+</template>
+
+<script setup>
+import { TextBox } from 'vuetty';
+</script>
+```
+
+#### Pulse
+
+Smooth brightness pulsing of a single color.
+
+`effectProps`:
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `color` | `string` | `'white'` | Base color to pulse |
+| `minBrightness` | `number` | `0.4` | Minimum brightness (0 to 1) |
+| `maxBrightness` | `number` | `1.0` | Maximum brightness (0 to 1) |
+
+```vue
+<template>
+  <TextBox
+    effect="pulse"
+    :animated="true"
+    :effectProps="{ color: '#00FFFF', minBrightness: 0.3, maxBrightness: 1.0 }"
+  >
+    Cyan pulse
+  </TextBox>
+</template>
+
+<script setup>
+import { TextBox } from 'vuetty';
+</script>
+```
+
+#### Wave
+
+Animated color wave flowing across the text.
+
+`effectProps`:
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `colors` | `string[]` | `['#00FFFF', '#FF00FF']` | Gradient colors |
+| `wavelength` | `number` | `10` | Wave length in characters |
+| `speed` | `number` | `1` | Animation speed multiplier |
+
+```vue
+<template>
+  <TextBox
+    effect="wave"
+    :animated="true"
+    :effectProps="{ colors: ['#00FFFF', '#FF00FF'], wavelength: 8, speed: 1 }"
+  >
+    Color wave
+  </TextBox>
+</template>
+
+<script setup>
+import { TextBox } from 'vuetty';
+</script>
+```
+
+#### Shimmer
+
+Animated highlight that sweeps across the text.
+
+`effectProps`:
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `baseColor` | `string` | `'#666666'` | Base text color |
+| `highlightColor` | `string` | `'#FFFFFF'` | Highlight color |
+| `width` | `number` | `3` | Highlight width (characters) |
+| `speed` | `number` | `1` | Animation speed multiplier |
+
+```vue
+<template>
+  <TextBox
+    effect="shimmer"
+    :animated="true"
+    :effectProps="{ baseColor: '#444444', highlightColor: '#FFFFFF', width: 5, speed: 1 }"
+  >
+    Shimmering text
+  </TextBox>
+</template>
+
+<script setup>
+import { TextBox } from 'vuetty';
+</script>
+```
+
+### Animation Interval
+
+Each animated effect has a default frame interval:
+
+| Effect | Default interval |
+|--------|------------------|
+| `rainbow` | `100ms` |
+| `pulse` | `50ms` |
+| `wave` | `80ms` |
+| `shimmer` | `60ms` |
+
+Override the interval per instance:
+
+```vue
+<template>
+  <TextBox
+    effect="pulse"
+    :animated="true"
+    :animationInterval="120"
+    :effectProps="{ color: '#FF6B35' }"
+  >
+    Slower pulse
+  </TextBox>
+</template>
+
+<script setup>
+import { TextBox } from 'vuetty';
 </script>
 ```
 
