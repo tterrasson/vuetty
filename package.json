@@ -49,7 +49,7 @@
     "build:debug-assets": "bun run scripts/build-debug.js",
     "clean": "rm -rf ./dist && mkdir -p ./dist",
     "dev": "bun run examples/run.js",
-    "test": "bun test",
+    "test": "bun test tests/ --reporter=dots --only-failures",
     "pack": "bun run build && bunx npm pack",
     "prepublishOnly": "bun run build",
     "docs:dev": "bun vitepress dev docs",
