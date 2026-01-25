@@ -5,94 +5,8 @@
  */
 
 import Yoga from 'yoga-layout';
-import { getTerminalWidth } from '@utils/renderUtils.js';
-
-/**
- * Calculate how many lines text will occupy when wrapped to a given width
- */
-function calculateTextHeight(text, maxWidth) {
-  if (!text) return 0;
-  if (maxWidth <= 0) return 1;
-
-  const hasNewlines = text.indexOf('\n') !== -1;
-  if (!hasNewlines) {
-    const textWidth = getTerminalWidth(text);
-    if (textWidth <= maxWidth) return 1;
-    return Math.ceil(textWidth / maxWidth);
-  }
-
-  const paragraphs = text.split('\n');
-  let totalLines = 0;
-
-  for (let i = 0; i < paragraphs.length; i++) {
-    const paragraph = paragraphs[i];
-    if (paragraph.length === 0) {
-      totalLines += 1;
-      continue;
-    }
-
-    const textWidth = getTerminalWidth(paragraph);
-    if (textWidth <= maxWidth) {
-      totalLines += 1;
-    } else {
-      totalLines += Math.ceil(textWidth / maxWidth);
-    }
-  }
-
-  return Math.max(1, totalLines);
-}
-
-/**
- * Calculate BigText height by estimating figlet output
- */
-function calculateBigTextHeight(text, font) {
-  if (!text) return 0;
-
-  const fontHeights = {
-    'Standard': 6, 'Big': 8, 'Slant': 6, 'Small': 5, 'Banner': 8,
-    'Block': 8, 'Bubble': 7, 'Digital': 6, 'Ivrit': 6, 'Lean': 7,
-    'Mini': 4, 'Script': 6, 'Shadow': 7, 'Smscript': 5, 'Smshadow': 6,
-    'Smslant': 5, 'Terrace': 6, 'Thick': 6
-  };
-
-  return fontHeights[font] || 6;
-}
-
-/**
- * Extract text content from a TUI node's children
- */
-function extractTextContent(node) {
-  if (!node) return '';
-  if (node.text) return node.text;
-  if (node.props?.text) return node.props.text;
-
-  const children = node.children;
-  if (!children || children.length === 0) return '';
-
-  // Single child optimization
-  if (children.length === 1) {
-    const child = children[0];
-    if (typeof child === 'string') return child;
-    if (child?.type === 'text') return child.text || '';
-    return extractTextContent(child);
-  }
-
-  // Multiple children - reuse array if possible
-  const parts = [];
-  for (let i = 0; i < children.length; i++) {
-    const child = children[i];
-    if (typeof child === 'string') {
-      parts.push(child);
-    } else if (child?.type === 'text') {
-      if (child.text) parts.push(child.text);
-    } else if (child) {
-      const text = extractTextContent(child);
-      if (text) parts.push(text);
-    }
-  }
-
-  return parts.join('');
-}
+import { getTerminalWidth, extractTextContent } from '@utils/renderUtils.js';
+import { calculateTextHeight, calculateBigTextHeight } from '@utils/heightUtils.js';
 
 /**
  * Base class for component handlers
@@ -672,6 +586,3 @@ export const componentHandlerRegistry = new ComponentHandlerRegistry();
 
 // Export base class for extensions
 export { ComponentHandler };
-
-// Export utility functions used by layoutEngine
-export { extractTextContent, calculateTextHeight, calculateBigTextHeight };

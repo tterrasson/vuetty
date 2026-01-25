@@ -6,9 +6,9 @@
 import Yoga from 'yoga-layout';
 import { layoutCache } from './layoutCache.js';
 import { generateContentHash } from '@utils/hashUtils.js';
-import {
-  componentHandlerRegistry, extractTextContent, calculateTextHeight
-} from './componentHandlers.js';
+import { componentHandlerRegistry } from './componentHandlers.js';
+import { extractTextContent } from '@utils/renderUtils.js';
+import { calculateTextHeight } from '@utils/heightUtils.js';
 
 /**
  * Yoga Layout Engine

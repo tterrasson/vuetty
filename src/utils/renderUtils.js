@@ -255,3 +255,41 @@ export function applyStyles(text, props) {
 
   return styled(text);
 }
+
+/**
+ * Extract text content from a TUI node's children
+ * @param {Object} node - TUI node
+ * @returns {string} Extracted text content
+ */
+export function extractTextContent(node) {
+  if (!node) return '';
+  if (node.text) return node.text;
+  if (node.props?.text) return node.props.text;
+
+  const children = node.children;
+  if (!children || children.length === 0) return '';
+
+  // Single child optimization
+  if (children.length === 1) {
+    const child = children[0];
+    if (typeof child === 'string') return child;
+    if (child?.type === 'text') return child.text || '';
+    return extractTextContent(child);
+  }
+
+  // Multiple children - reuse array if possible
+  const parts = [];
+  for (let i = 0; i < children.length; i++) {
+    const child = children[i];
+    if (typeof child === 'string') {
+      parts.push(child);
+    } else if (child?.type === 'text') {
+      if (child.text) parts.push(child.text);
+    } else if (child) {
+      const text = extractTextContent(child);
+      if (text) parts.push(text);
+    }
+  }
+
+  return parts.join('');
+}
