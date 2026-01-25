@@ -1,5 +1,6 @@
 // src/components/Spinner.js
-import { h, ref, watch, onUnmounted, nextTick } from 'vue';
+import { h, ref, watch, onUnmounted, nextTick, inject } from 'vue';
+import { VUETTY_THEME_KEY } from '@core/vuettyKeys.js';
 import { applyStyles } from '@utils/renderUtils.js';
 import { boxProps } from '@core/layoutProps.js';
 import { RenderHandler, renderHandlerRegistry } from '@core/renderHandlers.js';
@@ -56,6 +57,7 @@ export default {
   },
   emits: ['update:modelValue'],
   setup(props) {
+    const theme = inject(VUETTY_THEME_KEY, null);
     const currentFrame = ref(0);
     const isAnimating = ref(false);
     let animationTimerId = null;
@@ -128,7 +130,13 @@ export default {
     });
 
     return () => {
-      return h('spinner', { ...props, frame: currentFrame.value });
+      const effectiveColor = props.color || theme?.components?.spinner?.color;
+
+      return h('spinner', {
+        ...props,
+        color: effectiveColor,
+        frame: currentFrame.value
+      });
     };
   }
 };

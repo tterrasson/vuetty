@@ -1,6 +1,10 @@
 // src/components/Radiobox.js
 import { h, ref, inject, onUnmounted, watch, computed } from 'vue';
-import { VUETTY_INPUT_MANAGER_KEY, VUETTY_INSTANCE_KEY } from '@core/vuettyKeys.js';
+import {
+  VUETTY_INPUT_MANAGER_KEY,
+  VUETTY_INSTANCE_KEY,
+  VUETTY_THEME_KEY
+} from '@core/vuettyKeys.js';
 import {
   KEY_UP,
   KEY_DOWN,
@@ -97,6 +101,7 @@ export default {
   setup(props, { emit }) {
     const inputManager = inject(VUETTY_INPUT_MANAGER_KEY);
     const vuettyInstance = inject(VUETTY_INSTANCE_KEY, null);
+    const theme = inject(VUETTY_THEME_KEY, null);
 
     // Generate unique component ID
     const componentId = `radiobox-${++radioboxIdCounter}`;
@@ -358,15 +363,27 @@ export default {
     });
 
     // Render
-    return () => h('radiobox', {
-      ...props,
-      _componentId: componentId,
-      _clickable: true,
-      highlightedIndex: highlightedIndex.value,
-      selectedIndex: selectedIndex.value,
-      scrollOffset: scrollOffset.value,
-      isFocused: isFocused.value
-    });
+    return () => {
+      // Resolve colors from theme
+      const effectiveFocusColor = props.focusColor || theme?.components?.radiobox?.focusColor || 'cyan';
+      const effectiveSelectedColor = props.selectedColor || theme?.components?.radiobox?.selectedColor || 'green';
+      const effectiveHighlightColor = props.highlightColor || theme?.components?.radiobox?.highlightColor || 'yellow';
+      const effectiveColor = props.color || theme?.components?.radiobox?.color;
+
+      return h('radiobox', {
+        ...props,
+        _componentId: componentId,
+        _clickable: true,
+        highlightedIndex: highlightedIndex.value,
+        selectedIndex: selectedIndex.value,
+        scrollOffset: scrollOffset.value,
+        isFocused: isFocused.value,
+        focusColor: effectiveFocusColor,
+        selectedColor: effectiveSelectedColor,
+        highlightColor: effectiveHighlightColor,
+        color: effectiveColor
+      });
+    };
   }
 };
 

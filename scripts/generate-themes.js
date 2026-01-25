@@ -95,13 +95,54 @@ function mapToVuettyTheme(tomlData, themeName) {
       },
       checkbox: {
         color: normal.black || bright.black || '#5a617a',
-        checkedColor: bright.magenta || normal.magenta || '#7d5fff',
-        uncheckedColor: normal.black || bright.black || '#4a4f6a'
+        focusColor: bright.magenta || normal.magenta || '#7d5fff',
+        selectedColor: bright.magenta || normal.magenta || '#7d5fff',
+        highlightColor: normal.yellow || bright.yellow || '#c97945'
       },
       radiobox: {
         color: normal.black || bright.black || '#5a617a',
+        focusColor: bright.magenta || normal.magenta || '#7d5fff',
         selectedColor: bright.magenta || normal.magenta || '#7d5fff',
-        unselectedColor: normal.black || bright.black || '#4a4f6a'
+        highlightColor: normal.yellow || bright.yellow || '#c97945'
+      },
+      list: {
+        color: primary.foreground || '#e6e8f0',
+        bg: null,
+        highlightColor: bright.magenta || normal.magenta || '#7d5fff'
+      },
+      selectInput: {
+        color: normal.black || bright.black || '#5a617a',
+        bg: null,
+        focusColor: bright.magenta || normal.magenta || '#7d5fff',
+        selectedColor: normal.green || bright.green || '#4ecca3',
+        highlightColor: normal.yellow || bright.yellow || '#c97945'
+      },
+      table: {
+        color: normal.black || bright.black || '#5a617a',
+        bg: null,
+        focusColor: bright.magenta || normal.magenta || '#7d5fff',
+        selectedColor: normal.green || bright.green || '#4ecca3',
+        highlightColor: normal.yellow || bright.yellow || '#c97945',
+        headerColor: primary.foreground || '#e6e8f0',
+        stripedColor: primary.background || '#0a0a0f'
+      },
+      progressBar: {
+        color: normal.green || bright.green || '#4ecca3',
+        emptyColor: normal.black || bright.black || '#4a4f6a',
+        percentageColor: primary.foreground || '#e6e8f0'
+      },
+      spinner: {
+        color: bright.magenta || normal.magenta || '#7d5fff'
+      },
+      tabs: {
+        focusColor: bright.magenta || normal.magenta || '#7d5fff',
+        activeColor: normal.green || bright.green || '#4ecca3',
+        highlightColor: normal.yellow || bright.yellow || '#c97945'
+      },
+      tree: {
+        focusColor: bright.magenta || normal.magenta || '#7d5fff',
+        selectedColor: normal.green || bright.green || '#4ecca3',
+        highlightColor: normal.yellow || bright.yellow || '#c97945'
       }
     }
   };

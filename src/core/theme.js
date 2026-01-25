@@ -45,14 +45,55 @@ export const DEFAULT_THEME = {
       }
     },
     checkbox: {
-      color: '#5a617a',
-      checkedColor: '#7d5fff',   // Deep purple
-      uncheckedColor: '#4a4f6a'
+      color: '#5a617a',          // Base text/border
+      focusColor: '#7d5fff',     // Border when focused
+      selectedColor: '#7d5fff',  // Checkmark color (renamed from checkedColor)
+      highlightColor: '#c97945'  // Highlighted option
     },
     radiobox: {
-      color: '#5a617a',
-      selectedColor: '#7d5fff',  // Deep purple
-      unselectedColor: '#4a4f6a'
+      color: '#5a617a',          // Base text/border
+      focusColor: '#7d5fff',     // Border when focused
+      selectedColor: '#7d5fff',  // Selected radio
+      highlightColor: '#c97945'  // Highlighted option
+    },
+    list: {
+      color: '#e6e8f0',
+      bg: null,
+      highlightColor: '#7d5fff'  // Highlighted item marker
+    },
+    selectInput: {
+      color: '#5a617a',          // Border color
+      bg: null,
+      focusColor: '#7d5fff',     // Border when focused
+      selectedColor: '#4ecca3',  // Selected item indicator
+      highlightColor: '#c97945'  // Current navigation position
+    },
+    table: {
+      color: '#5a617a',          // Base border
+      bg: null,
+      focusColor: '#7d5fff',     // Border when focused
+      selectedColor: '#4ecca3',  // Selected row
+      highlightColor: '#c97945', // Highlighted row
+      headerColor: '#e6e8f0',    // Header text
+      stripedColor: '#0a0a0f'    // Striped row background
+    },
+    progressBar: {
+      color: '#4ecca3',          // Filled portion
+      emptyColor: '#4a4f6a',     // Empty portion
+      percentageColor: '#e6e8f0' // Percentage text
+    },
+    spinner: {
+      color: '#7d5fff'           // Spinner character color
+    },
+    tabs: {
+      focusColor: '#7d5fff',
+      activeColor: '#4ecca3',
+      highlightColor: '#c97945'
+    },
+    tree: {
+      focusColor: '#7d5fff',
+      selectedColor: '#4ecca3',
+      highlightColor: '#c97945'
     }
   }
 };

@@ -1,6 +1,6 @@
 // src/components/SelectInput.js
 import { h, inject, computed } from 'vue';
-import { VUETTY_VIEWPORT_STATE_KEY } from '@core/vuettyKeys.js';
+import { VUETTY_VIEWPORT_STATE_KEY, VUETTY_THEME_KEY } from '@core/vuettyKeys.js';
 import { WIDTH_CONTEXT_KEY } from '@core/widthContext.js';
 import { useNavigableList } from '@composables/useNavigableList.js';
 import chalk from 'chalk';
@@ -112,6 +112,7 @@ export default {
   setup(props, { emit }) {
     // Inject viewport state to trigger re-renders on resize
     const viewportState = inject(VUETTY_VIEWPORT_STATE_KEY, null);
+    const theme = inject(VUETTY_THEME_KEY, null);
 
     // Inject width context from parent (Box, etc.)
     const injectedWidthContext = inject(WIDTH_CONTEXT_KEY, null);
@@ -142,6 +143,13 @@ export default {
         ? injectedWidthContext()
         : injectedWidthContext;
 
+      // Resolve colors from theme
+      const effectiveFocusColor = props.focusColor || theme?.components?.selectInput?.focusColor || 'cyan';
+      const effectiveSelectedColor = props.selectedColor || theme?.components?.selectInput?.selectedColor || 'green';
+      const effectiveHighlightColor = props.highlightColor || theme?.components?.selectInput?.highlightColor || 'yellow';
+      const effectiveColor = props.color || theme?.components?.selectInput?.color;
+      const effectiveBg = props.bg !== undefined ? props.bg : theme?.components?.selectInput?.bg;
+
       // Pass injected width and viewport version through props
       // The viewport version creates a reactive dependency - when it changes, Vue re-renders
       return h('selectinput', {
@@ -153,6 +161,11 @@ export default {
         selectedIndices: navigation.selectedIndices.value,
         scrollOffset: navigation.scrollOffset.value,
         isFocused: navigation.isFocused.value,
+        focusColor: effectiveFocusColor,
+        selectedColor: effectiveSelectedColor,
+        highlightColor: effectiveHighlightColor,
+        color: effectiveColor,
+        bg: effectiveBg,
         _injectedWidth: injectedWidth,
         _viewportVersion: viewportState ? viewportState.version : 0
       });

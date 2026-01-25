@@ -1,6 +1,6 @@
 // src/components/List.js
 import { h, inject, computed } from 'vue';
-import { VUETTY_VIEWPORT_STATE_KEY } from '@core/vuettyKeys.js';
+import { VUETTY_VIEWPORT_STATE_KEY, VUETTY_THEME_KEY } from '@core/vuettyKeys.js';
 import { WIDTH_CONTEXT_KEY } from '@core/widthContext.js';
 import chalk from 'chalk';
 import { getTerminalWidth, applyStyles } from '@utils/renderUtils.js';
@@ -81,6 +81,7 @@ export default {
   setup(props) {
     // Inject viewport state to trigger re-renders on resize
     const viewportState = inject(VUETTY_VIEWPORT_STATE_KEY, null);
+    const theme = inject(VUETTY_THEME_KEY, null);
 
     // Inject width context from parent (Box, etc.)
     const injectedWidthContext = inject(WIDTH_CONTEXT_KEY, null);
@@ -100,12 +101,20 @@ export default {
         ? injectedWidthContext()
         : injectedWidthContext;
 
+      // Resolve colors from theme
+      const effectiveHighlightColor = props.highlightColor || theme?.components?.list?.highlightColor || 'cyan';
+      const effectiveColor = props.color || theme?.components?.list?.color;
+      const effectiveBg = props.bg !== undefined ? props.bg : theme?.components?.list?.bg;
+
       // Pass injected width and viewport version through props
       // The viewport version creates a reactive dependency - when it changes, Vue re-renders
       return h('list', {
         ...props,
         _componentId: componentId,
         items: normalizedItems.value,
+        highlightColor: effectiveHighlightColor,
+        color: effectiveColor,
+        bg: effectiveBg,
         _injectedWidth: injectedWidth,
         _viewportVersion: viewportState ? viewportState.version : 0
       });

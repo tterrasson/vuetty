@@ -1,6 +1,10 @@
 // src/components/Table.js
 import { h, ref, inject, onUnmounted, watch, computed } from 'vue';
-import { VUETTY_INPUT_MANAGER_KEY, VUETTY_VIEWPORT_STATE_KEY, VUETTY_INSTANCE_KEY } from '@core/vuettyKeys.js';
+import {
+  VUETTY_INPUT_MANAGER_KEY,
+  VUETTY_VIEWPORT_STATE_KEY,
+  VUETTY_INSTANCE_KEY, VUETTY_THEME_KEY
+} from '@core/vuettyKeys.js';
 import { WIDTH_CONTEXT_KEY } from '@core/widthContext.js';
 import {
   KEY_UP,
@@ -106,6 +110,7 @@ export default {
   setup(props, { emit }) {
     const inputManager = inject(VUETTY_INPUT_MANAGER_KEY);
     const vuettyInstance = inject(VUETTY_INSTANCE_KEY, null);
+    const theme = inject(VUETTY_THEME_KEY, null);
 
     // Inject viewport state to trigger re-renders on resize
     const viewportState = inject(VUETTY_VIEWPORT_STATE_KEY, null);
@@ -318,6 +323,15 @@ export default {
         ? injectedWidthContext()
         : injectedWidthContext;
 
+      // Resolve colors from theme
+      const effectiveFocusColor = props.focusColor || theme?.components?.table?.focusColor || 'cyan';
+      const effectiveSelectedColor = props.selectedColor || theme?.components?.table?.selectedColor || 'green';
+      const effectiveHighlightColor = props.highlightColor || theme?.components?.table?.highlightColor || 'yellow';
+      const effectiveHeaderColor = props.headerColor || theme?.components?.table?.headerColor || 'white';
+      const effectiveStripedColor = props.stripedColor || theme?.components?.table?.stripedColor || 'black';
+      const effectiveColor = props.color || theme?.components?.table?.color;
+      const effectiveBg = props.bg !== undefined ? props.bg : theme?.components?.table?.bg;
+
       // Access props.rows and props.headers to create reactive dependencies
       // This ensures Vue re-renders when these arrays change
       const rows = props.rows;
@@ -333,6 +347,13 @@ export default {
         selectedIndex: selectedIndex.value,
         scrollOffset: scrollOffset.value,
         isFocused: isFocused.value,
+        focusColor: effectiveFocusColor,
+        selectedColor: effectiveSelectedColor,
+        highlightColor: effectiveHighlightColor,
+        headerColor: effectiveHeaderColor,
+        stripedColor: effectiveStripedColor,
+        color: effectiveColor,
+        bg: effectiveBg,
         _componentId: componentId,
         _clickable: true,
         _injectedWidth: injectedWidth,

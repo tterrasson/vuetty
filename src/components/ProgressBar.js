@@ -1,7 +1,7 @@
 // src/components/ProgressBar.js
 import { h, inject } from 'vue';
 import { applyStyles } from '@utils/renderUtils.js';
-import { VUETTY_VIEWPORT_STATE_KEY } from '@core/vuettyKeys.js';
+import { VUETTY_VIEWPORT_STATE_KEY, VUETTY_THEME_KEY } from '@core/vuettyKeys.js';
 import { WIDTH_CONTEXT_KEY } from '@core/widthContext.js';
 import { boxProps } from '@core/layoutProps.js';
 import { RenderHandler, renderHandlerRegistry } from '@core/renderHandlers.js';
@@ -62,6 +62,7 @@ export default {
   setup(props) {
     // Inject viewport state to trigger re-renders on resize
     const viewportState = inject(VUETTY_VIEWPORT_STATE_KEY, null);
+    const theme = inject(VUETTY_THEME_KEY, null);
 
     // Inject width context from parent (Box, etc.)
     const injectedWidthContext = inject(WIDTH_CONTEXT_KEY, null);
@@ -72,10 +73,18 @@ export default {
         ? injectedWidthContext()
         : injectedWidthContext;
 
+      // Resolve colors from theme
+      const effectiveColor = props.color || theme?.components?.progressBar?.color || 'green';
+      const effectiveEmptyColor = props.emptyColor || theme?.components?.progressBar?.emptyColor || 'white';
+      const effectivePercentageColor = props.percentageColor || theme?.components?.progressBar?.percentageColor || 'white';
+
       // Pass injected width and viewport version through props
       // The viewport version creates a reactive dependency - when it changes, Vue re-renders
       const enhancedProps = {
         ...props,
+        color: effectiveColor,
+        emptyColor: effectiveEmptyColor,
+        percentageColor: effectivePercentageColor,
         _injectedWidth: injectedWidth,
         _viewportVersion: viewportState ? viewportState.version : 0
       };

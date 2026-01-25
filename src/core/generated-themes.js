@@ -1,5 +1,5 @@
 // Auto-generated themes from TOML files
-// Generated on: 2026-01-20T17:38:19.092Z
+// Generated on: 2026-01-25T18:10:12.447Z
 
 export const TOMORROW_NIGHT_EIGHTIES = {
   "name": "TOMORROW_NIGHT_EIGHTIES",
@@ -62,13 +62,54 @@ export const TOMORROW_NIGHT_EIGHTIES = {
     },
     "checkbox": {
       "color": "#000000",
-      "checkedColor": "#cc99cc",
-      "uncheckedColor": "#000000"
+      "focusColor": "#cc99cc",
+      "selectedColor": "#cc99cc",
+      "highlightColor": "#ffcc66"
     },
     "radiobox": {
       "color": "#000000",
+      "focusColor": "#cc99cc",
       "selectedColor": "#cc99cc",
-      "unselectedColor": "#000000"
+      "highlightColor": "#ffcc66"
+    },
+    "list": {
+      "color": "#cccccc",
+      "bg": null,
+      "highlightColor": "#cc99cc"
+    },
+    "selectInput": {
+      "color": "#000000",
+      "bg": null,
+      "focusColor": "#cc99cc",
+      "selectedColor": "#99cc99",
+      "highlightColor": "#ffcc66"
+    },
+    "table": {
+      "color": "#000000",
+      "bg": null,
+      "focusColor": "#cc99cc",
+      "selectedColor": "#99cc99",
+      "highlightColor": "#ffcc66",
+      "headerColor": "#cccccc",
+      "stripedColor": "#2d2d2d"
+    },
+    "progressBar": {
+      "color": "#99cc99",
+      "emptyColor": "#000000",
+      "percentageColor": "#cccccc"
+    },
+    "spinner": {
+      "color": "#cc99cc"
+    },
+    "tabs": {
+      "focusColor": "#cc99cc",
+      "activeColor": "#99cc99",
+      "highlightColor": "#ffcc66"
+    },
+    "tree": {
+      "focusColor": "#cc99cc",
+      "selectedColor": "#99cc99",
+      "highlightColor": "#ffcc66"
     }
   }
 };
@@ -134,13 +175,54 @@ export const GITHUB_LIGHT = {
     },
     "checkbox": {
       "color": "#24292f",
-      "checkedColor": "#a475f9",
-      "uncheckedColor": "#24292f"
+      "focusColor": "#a475f9",
+      "selectedColor": "#a475f9",
+      "highlightColor": "#4d2d00"
     },
     "radiobox": {
       "color": "#24292f",
+      "focusColor": "#a475f9",
       "selectedColor": "#a475f9",
-      "unselectedColor": "#24292f"
+      "highlightColor": "#4d2d00"
+    },
+    "list": {
+      "color": "#1f2328",
+      "bg": null,
+      "highlightColor": "#a475f9"
+    },
+    "selectInput": {
+      "color": "#24292f",
+      "bg": null,
+      "focusColor": "#a475f9",
+      "selectedColor": "#116329",
+      "highlightColor": "#4d2d00"
+    },
+    "table": {
+      "color": "#24292f",
+      "bg": null,
+      "focusColor": "#a475f9",
+      "selectedColor": "#116329",
+      "highlightColor": "#4d2d00",
+      "headerColor": "#1f2328",
+      "stripedColor": "#f6f8fa"
+    },
+    "progressBar": {
+      "color": "#116329",
+      "emptyColor": "#24292f",
+      "percentageColor": "#1f2328"
+    },
+    "spinner": {
+      "color": "#a475f9"
+    },
+    "tabs": {
+      "focusColor": "#a475f9",
+      "activeColor": "#116329",
+      "highlightColor": "#4d2d00"
+    },
+    "tree": {
+      "focusColor": "#a475f9",
+      "selectedColor": "#116329",
+      "highlightColor": "#4d2d00"
     }
   }
 };
@@ -206,13 +288,54 @@ export const DEUS_DEFAULT = {
     },
     "checkbox": {
       "color": "#242a32",
-      "checkedColor": "#c858e9",
-      "uncheckedColor": "#242a32"
+      "focusColor": "#c858e9",
+      "selectedColor": "#c858e9",
+      "highlightColor": "#e5c07b"
     },
     "radiobox": {
       "color": "#242a32",
+      "focusColor": "#c858e9",
       "selectedColor": "#c858e9",
-      "unselectedColor": "#242a32"
+      "highlightColor": "#e5c07b"
+    },
+    "list": {
+      "color": "#eaeaea",
+      "bg": null,
+      "highlightColor": "#c858e9"
+    },
+    "selectInput": {
+      "color": "#242a32",
+      "bg": null,
+      "focusColor": "#c858e9",
+      "selectedColor": "#98c379",
+      "highlightColor": "#e5c07b"
+    },
+    "table": {
+      "color": "#242a32",
+      "bg": null,
+      "focusColor": "#c858e9",
+      "selectedColor": "#98c379",
+      "highlightColor": "#e5c07b",
+      "headerColor": "#eaeaea",
+      "stripedColor": "#2c323b"
+    },
+    "progressBar": {
+      "color": "#98c379",
+      "emptyColor": "#242a32",
+      "percentageColor": "#eaeaea"
+    },
+    "spinner": {
+      "color": "#c858e9"
+    },
+    "tabs": {
+      "focusColor": "#c858e9",
+      "activeColor": "#98c379",
+      "highlightColor": "#e5c07b"
+    },
+    "tree": {
+      "focusColor": "#c858e9",
+      "selectedColor": "#98c379",
+      "highlightColor": "#e5c07b"
     }
   }
 };
@@ -278,13 +401,54 @@ export const DRACULA_SOFT = {
     },
     "checkbox": {
       "color": "#262626",
-      "checkedColor": "#f49dda",
-      "uncheckedColor": "#262626"
+      "focusColor": "#f49dda",
+      "selectedColor": "#f49dda",
+      "highlightColor": "#e7ee98"
     },
     "radiobox": {
       "color": "#262626",
+      "focusColor": "#f49dda",
       "selectedColor": "#f49dda",
-      "unselectedColor": "#262626"
+      "highlightColor": "#e7ee98"
+    },
+    "list": {
+      "color": "#f6f6f4",
+      "bg": null,
+      "highlightColor": "#f49dda"
+    },
+    "selectInput": {
+      "color": "#262626",
+      "bg": null,
+      "focusColor": "#f49dda",
+      "selectedColor": "#62e884",
+      "highlightColor": "#e7ee98"
+    },
+    "table": {
+      "color": "#262626",
+      "bg": null,
+      "focusColor": "#f49dda",
+      "selectedColor": "#62e884",
+      "highlightColor": "#e7ee98",
+      "headerColor": "#f6f6f4",
+      "stripedColor": "#282a36"
+    },
+    "progressBar": {
+      "color": "#62e884",
+      "emptyColor": "#262626",
+      "percentageColor": "#f6f6f4"
+    },
+    "spinner": {
+      "color": "#f49dda"
+    },
+    "tabs": {
+      "focusColor": "#f49dda",
+      "activeColor": "#62e884",
+      "highlightColor": "#e7ee98"
+    },
+    "tree": {
+      "focusColor": "#f49dda",
+      "selectedColor": "#62e884",
+      "highlightColor": "#e7ee98"
     }
   }
 };
@@ -350,13 +514,54 @@ export const GRUVBOX_DARK_SOFT_CONTRAST = {
     },
     "checkbox": {
       "color": "#32302f",
-      "checkedColor": "#d3869b",
-      "uncheckedColor": "#32302f"
+      "focusColor": "#d3869b",
+      "selectedColor": "#d3869b",
+      "highlightColor": "#d79921"
     },
     "radiobox": {
       "color": "#32302f",
+      "focusColor": "#d3869b",
       "selectedColor": "#d3869b",
-      "unselectedColor": "#32302f"
+      "highlightColor": "#d79921"
+    },
+    "list": {
+      "color": "#ebdbb2",
+      "bg": null,
+      "highlightColor": "#d3869b"
+    },
+    "selectInput": {
+      "color": "#32302f",
+      "bg": null,
+      "focusColor": "#d3869b",
+      "selectedColor": "#98971a",
+      "highlightColor": "#d79921"
+    },
+    "table": {
+      "color": "#32302f",
+      "bg": null,
+      "focusColor": "#d3869b",
+      "selectedColor": "#98971a",
+      "highlightColor": "#d79921",
+      "headerColor": "#ebdbb2",
+      "stripedColor": "#32302f"
+    },
+    "progressBar": {
+      "color": "#98971a",
+      "emptyColor": "#32302f",
+      "percentageColor": "#ebdbb2"
+    },
+    "spinner": {
+      "color": "#d3869b"
+    },
+    "tabs": {
+      "focusColor": "#d3869b",
+      "activeColor": "#98971a",
+      "highlightColor": "#d79921"
+    },
+    "tree": {
+      "focusColor": "#d3869b",
+      "selectedColor": "#98971a",
+      "highlightColor": "#d79921"
     }
   }
 };
@@ -422,13 +627,54 @@ export const NOCTIS_OBSCURO = {
     },
     "checkbox": {
       "color": "#324a4d",
-      "checkedColor": "#e798b3",
-      "uncheckedColor": "#324a4d"
+      "focusColor": "#e798b3",
+      "selectedColor": "#e798b3",
+      "highlightColor": "#e4b781"
     },
     "radiobox": {
       "color": "#324a4d",
+      "focusColor": "#e798b3",
       "selectedColor": "#e798b3",
-      "unselectedColor": "#324a4d"
+      "highlightColor": "#e4b781"
+    },
+    "list": {
+      "color": "#b2cacd",
+      "bg": null,
+      "highlightColor": "#e798b3"
+    },
+    "selectInput": {
+      "color": "#324a4d",
+      "bg": null,
+      "focusColor": "#e798b3",
+      "selectedColor": "#49e9a6",
+      "highlightColor": "#e4b781"
+    },
+    "table": {
+      "color": "#324a4d",
+      "bg": null,
+      "focusColor": "#e798b3",
+      "selectedColor": "#49e9a6",
+      "highlightColor": "#e4b781",
+      "headerColor": "#b2cacd",
+      "stripedColor": "#020c0e"
+    },
+    "progressBar": {
+      "color": "#49e9a6",
+      "emptyColor": "#324a4d",
+      "percentageColor": "#b2cacd"
+    },
+    "spinner": {
+      "color": "#e798b3"
+    },
+    "tabs": {
+      "focusColor": "#e798b3",
+      "activeColor": "#49e9a6",
+      "highlightColor": "#e4b781"
+    },
+    "tree": {
+      "focusColor": "#e798b3",
+      "selectedColor": "#49e9a6",
+      "highlightColor": "#e4b781"
     }
   }
 };
@@ -494,13 +740,54 @@ export const GOTHAM_DEFAULT = {
     },
     "checkbox": {
       "color": "#0c1014",
-      "checkedColor": "#4e5166",
-      "uncheckedColor": "#0c1014"
+      "focusColor": "#4e5166",
+      "selectedColor": "#4e5166",
+      "highlightColor": "#edb443"
     },
     "radiobox": {
       "color": "#0c1014",
+      "focusColor": "#4e5166",
       "selectedColor": "#4e5166",
-      "unselectedColor": "#0c1014"
+      "highlightColor": "#edb443"
+    },
+    "list": {
+      "color": "#99d1ce",
+      "bg": null,
+      "highlightColor": "#4e5166"
+    },
+    "selectInput": {
+      "color": "#0c1014",
+      "bg": null,
+      "focusColor": "#4e5166",
+      "selectedColor": "#2aa889",
+      "highlightColor": "#edb443"
+    },
+    "table": {
+      "color": "#0c1014",
+      "bg": null,
+      "focusColor": "#4e5166",
+      "selectedColor": "#2aa889",
+      "highlightColor": "#edb443",
+      "headerColor": "#99d1ce",
+      "stripedColor": "#0c1014"
+    },
+    "progressBar": {
+      "color": "#2aa889",
+      "emptyColor": "#0c1014",
+      "percentageColor": "#99d1ce"
+    },
+    "spinner": {
+      "color": "#4e5166"
+    },
+    "tabs": {
+      "focusColor": "#4e5166",
+      "activeColor": "#2aa889",
+      "highlightColor": "#edb443"
+    },
+    "tree": {
+      "focusColor": "#4e5166",
+      "selectedColor": "#2aa889",
+      "highlightColor": "#edb443"
     }
   }
 };
@@ -566,13 +853,54 @@ export const ZENBONES_TOKYOBONES_LIGHT = {
     },
     "checkbox": {
       "color": "#d6d7dc",
-      "checkedColor": "#503875",
-      "uncheckedColor": "#d6d7dc"
+      "focusColor": "#503875",
+      "selectedColor": "#503875",
+      "highlightColor": "#8f5e14"
     },
     "radiobox": {
       "color": "#d6d7dc",
+      "focusColor": "#503875",
       "selectedColor": "#503875",
-      "unselectedColor": "#d6d7dc"
+      "highlightColor": "#8f5e14"
+    },
+    "list": {
+      "color": "#333a57",
+      "bg": null,
+      "highlightColor": "#503875"
+    },
+    "selectInput": {
+      "color": "#d6d7dc",
+      "bg": null,
+      "focusColor": "#503875",
+      "selectedColor": "#34645d",
+      "highlightColor": "#8f5e14"
+    },
+    "table": {
+      "color": "#d6d7dc",
+      "bg": null,
+      "focusColor": "#503875",
+      "selectedColor": "#34645d",
+      "highlightColor": "#8f5e14",
+      "headerColor": "#333a57",
+      "stripedColor": "#d6d7dc"
+    },
+    "progressBar": {
+      "color": "#34645d",
+      "emptyColor": "#d6d7dc",
+      "percentageColor": "#333a57"
+    },
+    "spinner": {
+      "color": "#503875"
+    },
+    "tabs": {
+      "focusColor": "#503875",
+      "activeColor": "#34645d",
+      "highlightColor": "#8f5e14"
+    },
+    "tree": {
+      "focusColor": "#503875",
+      "selectedColor": "#34645d",
+      "highlightColor": "#8f5e14"
     }
   }
 };
@@ -638,13 +966,54 @@ export const NOCTIS_HIBERNUS = {
     },
     "checkbox": {
       "color": "#003b42",
-      "checkedColor": "#ff6b9f",
-      "uncheckedColor": "#003b42"
+      "focusColor": "#ff6b9f",
+      "selectedColor": "#ff6b9f",
+      "highlightColor": "#f49725"
     },
     "radiobox": {
       "color": "#003b42",
+      "focusColor": "#ff6b9f",
       "selectedColor": "#ff6b9f",
-      "unselectedColor": "#003b42"
+      "highlightColor": "#f49725"
+    },
+    "list": {
+      "color": "#005661",
+      "bg": null,
+      "highlightColor": "#ff6b9f"
+    },
+    "selectInput": {
+      "color": "#003b42",
+      "bg": null,
+      "focusColor": "#ff6b9f",
+      "selectedColor": "#00b368",
+      "highlightColor": "#f49725"
+    },
+    "table": {
+      "color": "#003b42",
+      "bg": null,
+      "focusColor": "#ff6b9f",
+      "selectedColor": "#00b368",
+      "highlightColor": "#f49725",
+      "headerColor": "#005661",
+      "stripedColor": "#e1eeef"
+    },
+    "progressBar": {
+      "color": "#00b368",
+      "emptyColor": "#003b42",
+      "percentageColor": "#005661"
+    },
+    "spinner": {
+      "color": "#ff6b9f"
+    },
+    "tabs": {
+      "focusColor": "#ff6b9f",
+      "activeColor": "#00b368",
+      "highlightColor": "#f49725"
+    },
+    "tree": {
+      "focusColor": "#ff6b9f",
+      "selectedColor": "#00b368",
+      "highlightColor": "#f49725"
     }
   }
 };
@@ -710,13 +1079,54 @@ export const GRUVBOX_LIGHT_SOFT_CONTRAST = {
     },
     "checkbox": {
       "color": "#f2e5bc",
-      "checkedColor": "#8f3f71",
-      "uncheckedColor": "#f2e5bc"
+      "focusColor": "#8f3f71",
+      "selectedColor": "#8f3f71",
+      "highlightColor": "#d79921"
     },
     "radiobox": {
       "color": "#f2e5bc",
+      "focusColor": "#8f3f71",
       "selectedColor": "#8f3f71",
-      "unselectedColor": "#f2e5bc"
+      "highlightColor": "#d79921"
+    },
+    "list": {
+      "color": "#3c3836",
+      "bg": null,
+      "highlightColor": "#8f3f71"
+    },
+    "selectInput": {
+      "color": "#f2e5bc",
+      "bg": null,
+      "focusColor": "#8f3f71",
+      "selectedColor": "#98971a",
+      "highlightColor": "#d79921"
+    },
+    "table": {
+      "color": "#f2e5bc",
+      "bg": null,
+      "focusColor": "#8f3f71",
+      "selectedColor": "#98971a",
+      "highlightColor": "#d79921",
+      "headerColor": "#3c3836",
+      "stripedColor": "#f2e5bc"
+    },
+    "progressBar": {
+      "color": "#98971a",
+      "emptyColor": "#f2e5bc",
+      "percentageColor": "#3c3836"
+    },
+    "spinner": {
+      "color": "#8f3f71"
+    },
+    "tabs": {
+      "focusColor": "#8f3f71",
+      "activeColor": "#98971a",
+      "highlightColor": "#d79921"
+    },
+    "tree": {
+      "focusColor": "#8f3f71",
+      "selectedColor": "#98971a",
+      "highlightColor": "#d79921"
     }
   }
 };
@@ -782,13 +1192,54 @@ export const SONOKAI_ATLANTIS = {
     },
     "checkbox": {
       "color": "#181a1c",
-      "checkedColor": "#ba9cf3",
-      "uncheckedColor": "#181a1c"
+      "focusColor": "#ba9cf3",
+      "selectedColor": "#ba9cf3",
+      "highlightColor": "#eacb64"
     },
     "radiobox": {
       "color": "#181a1c",
+      "focusColor": "#ba9cf3",
       "selectedColor": "#ba9cf3",
-      "unselectedColor": "#181a1c"
+      "highlightColor": "#eacb64"
+    },
+    "list": {
+      "color": "#e1e3e4",
+      "bg": null,
+      "highlightColor": "#ba9cf3"
+    },
+    "selectInput": {
+      "color": "#181a1c",
+      "bg": null,
+      "focusColor": "#ba9cf3",
+      "selectedColor": "#9dd274",
+      "highlightColor": "#eacb64"
+    },
+    "table": {
+      "color": "#181a1c",
+      "bg": null,
+      "focusColor": "#ba9cf3",
+      "selectedColor": "#9dd274",
+      "highlightColor": "#eacb64",
+      "headerColor": "#e1e3e4",
+      "stripedColor": "#2a2f38"
+    },
+    "progressBar": {
+      "color": "#9dd274",
+      "emptyColor": "#181a1c",
+      "percentageColor": "#e1e3e4"
+    },
+    "spinner": {
+      "color": "#ba9cf3"
+    },
+    "tabs": {
+      "focusColor": "#ba9cf3",
+      "activeColor": "#9dd274",
+      "highlightColor": "#eacb64"
+    },
+    "tree": {
+      "focusColor": "#ba9cf3",
+      "selectedColor": "#9dd274",
+      "highlightColor": "#eacb64"
     }
   }
 };
@@ -854,13 +1305,54 @@ export const TOKYO_NIGHT_DAY = {
     },
     "checkbox": {
       "color": "#b4b5b9",
-      "checkedColor": "#9854f1",
-      "uncheckedColor": "#b4b5b9"
+      "focusColor": "#9854f1",
+      "selectedColor": "#9854f1",
+      "highlightColor": "#8c6c3e"
     },
     "radiobox": {
       "color": "#b4b5b9",
+      "focusColor": "#9854f1",
       "selectedColor": "#9854f1",
-      "unselectedColor": "#b4b5b9"
+      "highlightColor": "#8c6c3e"
+    },
+    "list": {
+      "color": "#3760bf",
+      "bg": null,
+      "highlightColor": "#9854f1"
+    },
+    "selectInput": {
+      "color": "#b4b5b9",
+      "bg": null,
+      "focusColor": "#9854f1",
+      "selectedColor": "#587539",
+      "highlightColor": "#8c6c3e"
+    },
+    "table": {
+      "color": "#b4b5b9",
+      "bg": null,
+      "focusColor": "#9854f1",
+      "selectedColor": "#587539",
+      "highlightColor": "#8c6c3e",
+      "headerColor": "#3760bf",
+      "stripedColor": "#e1e2e7"
+    },
+    "progressBar": {
+      "color": "#587539",
+      "emptyColor": "#b4b5b9",
+      "percentageColor": "#3760bf"
+    },
+    "spinner": {
+      "color": "#9854f1"
+    },
+    "tabs": {
+      "focusColor": "#9854f1",
+      "activeColor": "#587539",
+      "highlightColor": "#8c6c3e"
+    },
+    "tree": {
+      "focusColor": "#9854f1",
+      "selectedColor": "#587539",
+      "highlightColor": "#8c6c3e"
     }
   }
 };
@@ -926,13 +1418,54 @@ export const ZENBONES_TOKYOBONES_DARK = {
     },
     "checkbox": {
       "color": "#1a1b26",
-      "checkedColor": "#c6acfa",
-      "uncheckedColor": "#1a1b26"
+      "focusColor": "#c6acfa",
+      "selectedColor": "#c6acfa",
+      "highlightColor": "#e1b068"
     },
     "radiobox": {
       "color": "#1a1b26",
+      "focusColor": "#c6acfa",
       "selectedColor": "#c6acfa",
-      "unselectedColor": "#1a1b26"
+      "highlightColor": "#e1b068"
+    },
+    "list": {
+      "color": "#c0caf5",
+      "bg": null,
+      "highlightColor": "#c6acfa"
+    },
+    "selectInput": {
+      "color": "#1a1b26",
+      "bg": null,
+      "focusColor": "#c6acfa",
+      "selectedColor": "#74dbcb",
+      "highlightColor": "#e1b068"
+    },
+    "table": {
+      "color": "#1a1b26",
+      "bg": null,
+      "focusColor": "#c6acfa",
+      "selectedColor": "#74dbcb",
+      "highlightColor": "#e1b068",
+      "headerColor": "#c0caf5",
+      "stripedColor": "#1a1b26"
+    },
+    "progressBar": {
+      "color": "#74dbcb",
+      "emptyColor": "#1a1b26",
+      "percentageColor": "#c0caf5"
+    },
+    "spinner": {
+      "color": "#c6acfa"
+    },
+    "tabs": {
+      "focusColor": "#c6acfa",
+      "activeColor": "#74dbcb",
+      "highlightColor": "#e1b068"
+    },
+    "tree": {
+      "focusColor": "#c6acfa",
+      "selectedColor": "#74dbcb",
+      "highlightColor": "#e1b068"
     }
   }
 };
@@ -998,13 +1531,54 @@ export const TOMORROW_DEFAULT = {
     },
     "checkbox": {
       "color": "#000000",
-      "checkedColor": "#8959a8",
-      "uncheckedColor": "#000000"
+      "focusColor": "#8959a8",
+      "selectedColor": "#8959a8",
+      "highlightColor": "#eab700"
     },
     "radiobox": {
       "color": "#000000",
+      "focusColor": "#8959a8",
       "selectedColor": "#8959a8",
-      "unselectedColor": "#000000"
+      "highlightColor": "#eab700"
+    },
+    "list": {
+      "color": "#4d4d4c",
+      "bg": null,
+      "highlightColor": "#8959a8"
+    },
+    "selectInput": {
+      "color": "#000000",
+      "bg": null,
+      "focusColor": "#8959a8",
+      "selectedColor": "#718c00",
+      "highlightColor": "#eab700"
+    },
+    "table": {
+      "color": "#000000",
+      "bg": null,
+      "focusColor": "#8959a8",
+      "selectedColor": "#718c00",
+      "highlightColor": "#eab700",
+      "headerColor": "#4d4d4c",
+      "stripedColor": "#ffffff"
+    },
+    "progressBar": {
+      "color": "#718c00",
+      "emptyColor": "#000000",
+      "percentageColor": "#4d4d4c"
+    },
+    "spinner": {
+      "color": "#8959a8"
+    },
+    "tabs": {
+      "focusColor": "#8959a8",
+      "activeColor": "#718c00",
+      "highlightColor": "#eab700"
+    },
+    "tree": {
+      "focusColor": "#8959a8",
+      "selectedColor": "#718c00",
+      "highlightColor": "#eab700"
     }
   }
 };
@@ -1070,13 +1644,54 @@ export const NIGHTFOX_DAWNFOX = {
     },
     "checkbox": {
       "color": "#575279",
-      "checkedColor": "#9a80b9",
-      "uncheckedColor": "#575279"
+      "focusColor": "#9a80b9",
+      "selectedColor": "#9a80b9",
+      "highlightColor": "#ea9d34"
     },
     "radiobox": {
       "color": "#575279",
+      "focusColor": "#9a80b9",
       "selectedColor": "#9a80b9",
-      "unselectedColor": "#575279"
+      "highlightColor": "#ea9d34"
+    },
+    "list": {
+      "color": "#575279",
+      "bg": null,
+      "highlightColor": "#9a80b9"
+    },
+    "selectInput": {
+      "color": "#575279",
+      "bg": null,
+      "focusColor": "#9a80b9",
+      "selectedColor": "#618774",
+      "highlightColor": "#ea9d34"
+    },
+    "table": {
+      "color": "#575279",
+      "bg": null,
+      "focusColor": "#9a80b9",
+      "selectedColor": "#618774",
+      "highlightColor": "#ea9d34",
+      "headerColor": "#575279",
+      "stripedColor": "#faf4ed"
+    },
+    "progressBar": {
+      "color": "#618774",
+      "emptyColor": "#575279",
+      "percentageColor": "#575279"
+    },
+    "spinner": {
+      "color": "#9a80b9"
+    },
+    "tabs": {
+      "focusColor": "#9a80b9",
+      "activeColor": "#618774",
+      "highlightColor": "#ea9d34"
+    },
+    "tree": {
+      "focusColor": "#9a80b9",
+      "selectedColor": "#618774",
+      "highlightColor": "#ea9d34"
     }
   }
 };
@@ -1142,13 +1757,54 @@ export const ZENBONES_ROSEBONES_LIGHT = {
     },
     "checkbox": {
       "color": "#fbf6f0",
-      "checkedColor": "#855aac",
-      "uncheckedColor": "#fbf6f0"
+      "focusColor": "#855aac",
+      "selectedColor": "#855aac",
+      "highlightColor": "#ec9d33"
     },
     "radiobox": {
       "color": "#fbf6f0",
+      "focusColor": "#855aac",
       "selectedColor": "#855aac",
-      "unselectedColor": "#fbf6f0"
+      "highlightColor": "#ec9d33"
+    },
+    "list": {
+      "color": "#724341",
+      "bg": null,
+      "highlightColor": "#855aac"
+    },
+    "selectInput": {
+      "color": "#fbf6f0",
+      "bg": null,
+      "focusColor": "#855aac",
+      "selectedColor": "#286a84",
+      "highlightColor": "#ec9d33"
+    },
+    "table": {
+      "color": "#fbf6f0",
+      "bg": null,
+      "focusColor": "#855aac",
+      "selectedColor": "#286a84",
+      "highlightColor": "#ec9d33",
+      "headerColor": "#724341",
+      "stripedColor": "#fbf6f0"
+    },
+    "progressBar": {
+      "color": "#286a84",
+      "emptyColor": "#fbf6f0",
+      "percentageColor": "#724341"
+    },
+    "spinner": {
+      "color": "#855aac"
+    },
+    "tabs": {
+      "focusColor": "#855aac",
+      "activeColor": "#286a84",
+      "highlightColor": "#ec9d33"
+    },
+    "tree": {
+      "focusColor": "#855aac",
+      "selectedColor": "#286a84",
+      "highlightColor": "#ec9d33"
     }
   }
 };
@@ -1214,13 +1870,54 @@ export const PANDA_DEFAULT = {
     },
     "checkbox": {
       "color": "#000000",
-      "checkedColor": "#ff9ac1",
-      "uncheckedColor": "#000000"
+      "focusColor": "#ff9ac1",
+      "selectedColor": "#ff9ac1",
+      "highlightColor": "#ffb86c"
     },
     "radiobox": {
       "color": "#000000",
+      "focusColor": "#ff9ac1",
       "selectedColor": "#ff9ac1",
-      "unselectedColor": "#000000"
+      "highlightColor": "#ffb86c"
+    },
+    "list": {
+      "color": "#cccccc",
+      "bg": null,
+      "highlightColor": "#ff9ac1"
+    },
+    "selectInput": {
+      "color": "#000000",
+      "bg": null,
+      "focusColor": "#ff9ac1",
+      "selectedColor": "#19f9d8",
+      "highlightColor": "#ffb86c"
+    },
+    "table": {
+      "color": "#000000",
+      "bg": null,
+      "focusColor": "#ff9ac1",
+      "selectedColor": "#19f9d8",
+      "highlightColor": "#ffb86c",
+      "headerColor": "#cccccc",
+      "stripedColor": "#292a2b"
+    },
+    "progressBar": {
+      "color": "#19f9d8",
+      "emptyColor": "#000000",
+      "percentageColor": "#cccccc"
+    },
+    "spinner": {
+      "color": "#ff9ac1"
+    },
+    "tabs": {
+      "focusColor": "#ff9ac1",
+      "activeColor": "#19f9d8",
+      "highlightColor": "#ffb86c"
+    },
+    "tree": {
+      "focusColor": "#ff9ac1",
+      "selectedColor": "#19f9d8",
+      "highlightColor": "#ffb86c"
     }
   }
 };
@@ -1286,13 +1983,54 @@ export const SOLARIZED_DARK = {
     },
     "checkbox": {
       "color": "#073642",
-      "checkedColor": "#6c71c4",
-      "uncheckedColor": "#073642"
+      "focusColor": "#6c71c4",
+      "selectedColor": "#6c71c4",
+      "highlightColor": "#b58900"
     },
     "radiobox": {
       "color": "#073642",
+      "focusColor": "#6c71c4",
       "selectedColor": "#6c71c4",
-      "unselectedColor": "#073642"
+      "highlightColor": "#b58900"
+    },
+    "list": {
+      "color": "#839496",
+      "bg": null,
+      "highlightColor": "#6c71c4"
+    },
+    "selectInput": {
+      "color": "#073642",
+      "bg": null,
+      "focusColor": "#6c71c4",
+      "selectedColor": "#859900",
+      "highlightColor": "#b58900"
+    },
+    "table": {
+      "color": "#073642",
+      "bg": null,
+      "focusColor": "#6c71c4",
+      "selectedColor": "#859900",
+      "highlightColor": "#b58900",
+      "headerColor": "#839496",
+      "stripedColor": "#002b36"
+    },
+    "progressBar": {
+      "color": "#859900",
+      "emptyColor": "#073642",
+      "percentageColor": "#839496"
+    },
+    "spinner": {
+      "color": "#6c71c4"
+    },
+    "tabs": {
+      "focusColor": "#6c71c4",
+      "activeColor": "#859900",
+      "highlightColor": "#b58900"
+    },
+    "tree": {
+      "focusColor": "#6c71c4",
+      "selectedColor": "#859900",
+      "highlightColor": "#b58900"
     }
   }
 };
@@ -1358,13 +2096,54 @@ export const NORD_DEFAULT = {
     },
     "checkbox": {
       "color": "#3b4252",
-      "checkedColor": "#b48ead",
-      "uncheckedColor": "#3b4252"
+      "focusColor": "#b48ead",
+      "selectedColor": "#b48ead",
+      "highlightColor": "#ebcb8b"
     },
     "radiobox": {
       "color": "#3b4252",
+      "focusColor": "#b48ead",
       "selectedColor": "#b48ead",
-      "unselectedColor": "#3b4252"
+      "highlightColor": "#ebcb8b"
+    },
+    "list": {
+      "color": "#d8dee9",
+      "bg": null,
+      "highlightColor": "#b48ead"
+    },
+    "selectInput": {
+      "color": "#3b4252",
+      "bg": null,
+      "focusColor": "#b48ead",
+      "selectedColor": "#a3be8c",
+      "highlightColor": "#ebcb8b"
+    },
+    "table": {
+      "color": "#3b4252",
+      "bg": null,
+      "focusColor": "#b48ead",
+      "selectedColor": "#a3be8c",
+      "highlightColor": "#ebcb8b",
+      "headerColor": "#d8dee9",
+      "stripedColor": "#2e3440"
+    },
+    "progressBar": {
+      "color": "#a3be8c",
+      "emptyColor": "#3b4252",
+      "percentageColor": "#d8dee9"
+    },
+    "spinner": {
+      "color": "#b48ead"
+    },
+    "tabs": {
+      "focusColor": "#b48ead",
+      "activeColor": "#a3be8c",
+      "highlightColor": "#ebcb8b"
+    },
+    "tree": {
+      "focusColor": "#b48ead",
+      "selectedColor": "#a3be8c",
+      "highlightColor": "#ebcb8b"
     }
   }
 };
@@ -1430,13 +2209,54 @@ export const NIGHTFOX_TERAFOX = {
     },
     "checkbox": {
       "color": "#2f3239",
-      "checkedColor": "#b97490",
-      "uncheckedColor": "#2f3239"
+      "focusColor": "#b97490",
+      "selectedColor": "#b97490",
+      "highlightColor": "#fda47f"
     },
     "radiobox": {
       "color": "#2f3239",
+      "focusColor": "#b97490",
       "selectedColor": "#b97490",
-      "unselectedColor": "#2f3239"
+      "highlightColor": "#fda47f"
+    },
+    "list": {
+      "color": "#e6eaea",
+      "bg": null,
+      "highlightColor": "#b97490"
+    },
+    "selectInput": {
+      "color": "#2f3239",
+      "bg": null,
+      "focusColor": "#b97490",
+      "selectedColor": "#7aa4a1",
+      "highlightColor": "#fda47f"
+    },
+    "table": {
+      "color": "#2f3239",
+      "bg": null,
+      "focusColor": "#b97490",
+      "selectedColor": "#7aa4a1",
+      "highlightColor": "#fda47f",
+      "headerColor": "#e6eaea",
+      "stripedColor": "#152528"
+    },
+    "progressBar": {
+      "color": "#7aa4a1",
+      "emptyColor": "#2f3239",
+      "percentageColor": "#e6eaea"
+    },
+    "spinner": {
+      "color": "#b97490"
+    },
+    "tabs": {
+      "focusColor": "#b97490",
+      "activeColor": "#7aa4a1",
+      "highlightColor": "#fda47f"
+    },
+    "tree": {
+      "focusColor": "#b97490",
+      "selectedColor": "#7aa4a1",
+      "highlightColor": "#fda47f"
     }
   }
 };
@@ -1502,13 +2322,54 @@ export const MIASMA_DEFAULT = {
     },
     "checkbox": {
       "color": "#000000",
-      "checkedColor": "#bb7744",
-      "uncheckedColor": "#000000"
+      "focusColor": "#bb7744",
+      "selectedColor": "#bb7744",
+      "highlightColor": "#b36d43"
     },
     "radiobox": {
       "color": "#000000",
+      "focusColor": "#bb7744",
       "selectedColor": "#bb7744",
-      "unselectedColor": "#000000"
+      "highlightColor": "#b36d43"
+    },
+    "list": {
+      "color": "#c2c2b0",
+      "bg": null,
+      "highlightColor": "#bb7744"
+    },
+    "selectInput": {
+      "color": "#000000",
+      "bg": null,
+      "focusColor": "#bb7744",
+      "selectedColor": "#5f875f",
+      "highlightColor": "#b36d43"
+    },
+    "table": {
+      "color": "#000000",
+      "bg": null,
+      "focusColor": "#bb7744",
+      "selectedColor": "#5f875f",
+      "highlightColor": "#b36d43",
+      "headerColor": "#c2c2b0",
+      "stripedColor": "#222222"
+    },
+    "progressBar": {
+      "color": "#5f875f",
+      "emptyColor": "#000000",
+      "percentageColor": "#c2c2b0"
+    },
+    "spinner": {
+      "color": "#bb7744"
+    },
+    "tabs": {
+      "focusColor": "#bb7744",
+      "activeColor": "#5f875f",
+      "highlightColor": "#b36d43"
+    },
+    "tree": {
+      "focusColor": "#bb7744",
+      "selectedColor": "#5f875f",
+      "highlightColor": "#b36d43"
     }
   }
 };
@@ -1574,13 +2435,54 @@ export const SEOUL256_DARK = {
     },
     "checkbox": {
       "color": "#4e4e4e",
-      "checkedColor": "#ffafaf",
-      "uncheckedColor": "#4e4e4e"
+      "focusColor": "#ffafaf",
+      "selectedColor": "#ffafaf",
+      "highlightColor": "#d8af5f"
     },
     "radiobox": {
       "color": "#4e4e4e",
+      "focusColor": "#ffafaf",
       "selectedColor": "#ffafaf",
-      "unselectedColor": "#4e4e4e"
+      "highlightColor": "#d8af5f"
+    },
+    "list": {
+      "color": "#d0d0d0",
+      "bg": null,
+      "highlightColor": "#ffafaf"
+    },
+    "selectInput": {
+      "color": "#4e4e4e",
+      "bg": null,
+      "focusColor": "#ffafaf",
+      "selectedColor": "#5f865f",
+      "highlightColor": "#d8af5f"
+    },
+    "table": {
+      "color": "#4e4e4e",
+      "bg": null,
+      "focusColor": "#ffafaf",
+      "selectedColor": "#5f865f",
+      "highlightColor": "#d8af5f",
+      "headerColor": "#d0d0d0",
+      "stripedColor": "#3a3a3a"
+    },
+    "progressBar": {
+      "color": "#5f865f",
+      "emptyColor": "#4e4e4e",
+      "percentageColor": "#d0d0d0"
+    },
+    "spinner": {
+      "color": "#ffafaf"
+    },
+    "tabs": {
+      "focusColor": "#ffafaf",
+      "activeColor": "#5f865f",
+      "highlightColor": "#d8af5f"
+    },
+    "tree": {
+      "focusColor": "#ffafaf",
+      "selectedColor": "#5f865f",
+      "highlightColor": "#d8af5f"
     }
   }
 };
@@ -1646,13 +2548,54 @@ export const GITHUB_LIGHT_LEGACY = {
     },
     "checkbox": {
       "color": "#24292e",
-      "checkedColor": "#5a32a3",
-      "uncheckedColor": "#24292e"
+      "focusColor": "#5a32a3",
+      "selectedColor": "#5a32a3",
+      "highlightColor": "#dbab09"
     },
     "radiobox": {
       "color": "#24292e",
+      "focusColor": "#5a32a3",
       "selectedColor": "#5a32a3",
-      "unselectedColor": "#24292e"
+      "highlightColor": "#dbab09"
+    },
+    "list": {
+      "color": "#586069",
+      "bg": null,
+      "highlightColor": "#5a32a3"
+    },
+    "selectInput": {
+      "color": "#24292e",
+      "bg": null,
+      "focusColor": "#5a32a3",
+      "selectedColor": "#28a745",
+      "highlightColor": "#dbab09"
+    },
+    "table": {
+      "color": "#24292e",
+      "bg": null,
+      "focusColor": "#5a32a3",
+      "selectedColor": "#28a745",
+      "highlightColor": "#dbab09",
+      "headerColor": "#586069",
+      "stripedColor": "#f6f8fa"
+    },
+    "progressBar": {
+      "color": "#28a745",
+      "emptyColor": "#24292e",
+      "percentageColor": "#586069"
+    },
+    "spinner": {
+      "color": "#5a32a3"
+    },
+    "tabs": {
+      "focusColor": "#5a32a3",
+      "activeColor": "#28a745",
+      "highlightColor": "#dbab09"
+    },
+    "tree": {
+      "focusColor": "#5a32a3",
+      "selectedColor": "#28a745",
+      "highlightColor": "#dbab09"
     }
   }
 };
@@ -1718,13 +2661,54 @@ export const ONE_HALF_DARK = {
     },
     "checkbox": {
       "color": "#282c34",
-      "checkedColor": "#c678dd",
-      "uncheckedColor": "#282c34"
+      "focusColor": "#c678dd",
+      "selectedColor": "#c678dd",
+      "highlightColor": "#e5c07b"
     },
     "radiobox": {
       "color": "#282c34",
+      "focusColor": "#c678dd",
       "selectedColor": "#c678dd",
-      "unselectedColor": "#282c34"
+      "highlightColor": "#e5c07b"
+    },
+    "list": {
+      "color": "#dcdfe4",
+      "bg": null,
+      "highlightColor": "#c678dd"
+    },
+    "selectInput": {
+      "color": "#282c34",
+      "bg": null,
+      "focusColor": "#c678dd",
+      "selectedColor": "#98c379",
+      "highlightColor": "#e5c07b"
+    },
+    "table": {
+      "color": "#282c34",
+      "bg": null,
+      "focusColor": "#c678dd",
+      "selectedColor": "#98c379",
+      "highlightColor": "#e5c07b",
+      "headerColor": "#dcdfe4",
+      "stripedColor": "#282c34"
+    },
+    "progressBar": {
+      "color": "#98c379",
+      "emptyColor": "#282c34",
+      "percentageColor": "#dcdfe4"
+    },
+    "spinner": {
+      "color": "#c678dd"
+    },
+    "tabs": {
+      "focusColor": "#c678dd",
+      "activeColor": "#98c379",
+      "highlightColor": "#e5c07b"
+    },
+    "tree": {
+      "focusColor": "#c678dd",
+      "selectedColor": "#98c379",
+      "highlightColor": "#e5c07b"
     }
   }
 };
@@ -1790,13 +2774,54 @@ export const ICEBERG_LIGHT = {
     },
     "checkbox": {
       "color": "#dcdfe7",
-      "checkedColor": "#6845ad",
-      "uncheckedColor": "#dcdfe7"
+      "focusColor": "#6845ad",
+      "selectedColor": "#6845ad",
+      "highlightColor": "#c57339"
     },
     "radiobox": {
       "color": "#dcdfe7",
+      "focusColor": "#6845ad",
       "selectedColor": "#6845ad",
-      "unselectedColor": "#dcdfe7"
+      "highlightColor": "#c57339"
+    },
+    "list": {
+      "color": "#33374c",
+      "bg": null,
+      "highlightColor": "#6845ad"
+    },
+    "selectInput": {
+      "color": "#dcdfe7",
+      "bg": null,
+      "focusColor": "#6845ad",
+      "selectedColor": "#668e3d",
+      "highlightColor": "#c57339"
+    },
+    "table": {
+      "color": "#dcdfe7",
+      "bg": null,
+      "focusColor": "#6845ad",
+      "selectedColor": "#668e3d",
+      "highlightColor": "#c57339",
+      "headerColor": "#33374c",
+      "stripedColor": "#e8e9ec"
+    },
+    "progressBar": {
+      "color": "#668e3d",
+      "emptyColor": "#dcdfe7",
+      "percentageColor": "#33374c"
+    },
+    "spinner": {
+      "color": "#6845ad"
+    },
+    "tabs": {
+      "focusColor": "#6845ad",
+      "activeColor": "#668e3d",
+      "highlightColor": "#c57339"
+    },
+    "tree": {
+      "focusColor": "#6845ad",
+      "selectedColor": "#668e3d",
+      "highlightColor": "#c57339"
     }
   }
 };
@@ -1862,13 +2887,54 @@ export const SRCERY_DEFAULT = {
     },
     "checkbox": {
       "color": "#1c1b19",
-      "checkedColor": "#ff5c8f",
-      "uncheckedColor": "#1c1b19"
+      "focusColor": "#ff5c8f",
+      "selectedColor": "#ff5c8f",
+      "highlightColor": "#fbb829"
     },
     "radiobox": {
       "color": "#1c1b19",
+      "focusColor": "#ff5c8f",
       "selectedColor": "#ff5c8f",
-      "unselectedColor": "#1c1b19"
+      "highlightColor": "#fbb829"
+    },
+    "list": {
+      "color": "#fce8c3",
+      "bg": null,
+      "highlightColor": "#ff5c8f"
+    },
+    "selectInput": {
+      "color": "#1c1b19",
+      "bg": null,
+      "focusColor": "#ff5c8f",
+      "selectedColor": "#519f50",
+      "highlightColor": "#fbb829"
+    },
+    "table": {
+      "color": "#1c1b19",
+      "bg": null,
+      "focusColor": "#ff5c8f",
+      "selectedColor": "#519f50",
+      "highlightColor": "#fbb829",
+      "headerColor": "#fce8c3",
+      "stripedColor": "#1c1b19"
+    },
+    "progressBar": {
+      "color": "#519f50",
+      "emptyColor": "#1c1b19",
+      "percentageColor": "#fce8c3"
+    },
+    "spinner": {
+      "color": "#ff5c8f"
+    },
+    "tabs": {
+      "focusColor": "#ff5c8f",
+      "activeColor": "#519f50",
+      "highlightColor": "#fbb829"
+    },
+    "tree": {
+      "focusColor": "#ff5c8f",
+      "selectedColor": "#519f50",
+      "highlightColor": "#fbb829"
     }
   }
 };
@@ -1934,13 +3000,54 @@ export const TOMORROW_NIGHT = {
     },
     "checkbox": {
       "color": "#000000",
-      "checkedColor": "#b294bb",
-      "uncheckedColor": "#000000"
+      "focusColor": "#b294bb",
+      "selectedColor": "#b294bb",
+      "highlightColor": "#f0c674"
     },
     "radiobox": {
       "color": "#000000",
+      "focusColor": "#b294bb",
       "selectedColor": "#b294bb",
-      "unselectedColor": "#000000"
+      "highlightColor": "#f0c674"
+    },
+    "list": {
+      "color": "#c5c8c6",
+      "bg": null,
+      "highlightColor": "#b294bb"
+    },
+    "selectInput": {
+      "color": "#000000",
+      "bg": null,
+      "focusColor": "#b294bb",
+      "selectedColor": "#b5bd68",
+      "highlightColor": "#f0c674"
+    },
+    "table": {
+      "color": "#000000",
+      "bg": null,
+      "focusColor": "#b294bb",
+      "selectedColor": "#b5bd68",
+      "highlightColor": "#f0c674",
+      "headerColor": "#c5c8c6",
+      "stripedColor": "#1d1f21"
+    },
+    "progressBar": {
+      "color": "#b5bd68",
+      "emptyColor": "#000000",
+      "percentageColor": "#c5c8c6"
+    },
+    "spinner": {
+      "color": "#b294bb"
+    },
+    "tabs": {
+      "focusColor": "#b294bb",
+      "activeColor": "#b5bd68",
+      "highlightColor": "#f0c674"
+    },
+    "tree": {
+      "focusColor": "#b294bb",
+      "selectedColor": "#b5bd68",
+      "highlightColor": "#f0c674"
     }
   }
 };
@@ -2006,13 +3113,54 @@ export const ZENBONES_NEOBONES_LIGHT = {
     },
     "checkbox": {
       "color": "#e5ede6",
-      "checkedColor": "#7b3b70",
-      "uncheckedColor": "#e5ede6"
+      "focusColor": "#7b3b70",
+      "selectedColor": "#7b3b70",
+      "highlightColor": "#944927"
     },
     "radiobox": {
       "color": "#e5ede6",
+      "focusColor": "#7b3b70",
       "selectedColor": "#7b3b70",
-      "unselectedColor": "#e5ede6"
+      "highlightColor": "#944927"
+    },
+    "list": {
+      "color": "#202e18",
+      "bg": null,
+      "highlightColor": "#7b3b70"
+    },
+    "selectInput": {
+      "color": "#e5ede6",
+      "bg": null,
+      "focusColor": "#7b3b70",
+      "selectedColor": "#567a30",
+      "highlightColor": "#944927"
+    },
+    "table": {
+      "color": "#e5ede6",
+      "bg": null,
+      "focusColor": "#7b3b70",
+      "selectedColor": "#567a30",
+      "highlightColor": "#944927",
+      "headerColor": "#202e18",
+      "stripedColor": "#e5ede6"
+    },
+    "progressBar": {
+      "color": "#567a30",
+      "emptyColor": "#e5ede6",
+      "percentageColor": "#202e18"
+    },
+    "spinner": {
+      "color": "#7b3b70"
+    },
+    "tabs": {
+      "focusColor": "#7b3b70",
+      "activeColor": "#567a30",
+      "highlightColor": "#944927"
+    },
+    "tree": {
+      "focusColor": "#7b3b70",
+      "selectedColor": "#567a30",
+      "highlightColor": "#944927"
     }
   }
 };
@@ -2078,13 +3226,54 @@ export const KANAGAWA_WAVE = {
     },
     "checkbox": {
       "color": "#16161d",
-      "checkedColor": "#938aa9",
-      "uncheckedColor": "#16161d"
+      "focusColor": "#938aa9",
+      "selectedColor": "#938aa9",
+      "highlightColor": "#c0a36e"
     },
     "radiobox": {
       "color": "#16161d",
+      "focusColor": "#938aa9",
       "selectedColor": "#938aa9",
-      "unselectedColor": "#16161d"
+      "highlightColor": "#c0a36e"
+    },
+    "list": {
+      "color": "#dcd7ba",
+      "bg": null,
+      "highlightColor": "#938aa9"
+    },
+    "selectInput": {
+      "color": "#16161d",
+      "bg": null,
+      "focusColor": "#938aa9",
+      "selectedColor": "#76946a",
+      "highlightColor": "#c0a36e"
+    },
+    "table": {
+      "color": "#16161d",
+      "bg": null,
+      "focusColor": "#938aa9",
+      "selectedColor": "#76946a",
+      "highlightColor": "#c0a36e",
+      "headerColor": "#dcd7ba",
+      "stripedColor": "#1f1f28"
+    },
+    "progressBar": {
+      "color": "#76946a",
+      "emptyColor": "#16161d",
+      "percentageColor": "#dcd7ba"
+    },
+    "spinner": {
+      "color": "#938aa9"
+    },
+    "tabs": {
+      "focusColor": "#938aa9",
+      "activeColor": "#76946a",
+      "highlightColor": "#c0a36e"
+    },
+    "tree": {
+      "focusColor": "#938aa9",
+      "selectedColor": "#76946a",
+      "highlightColor": "#c0a36e"
     }
   }
 };
@@ -2150,13 +3339,54 @@ export const NIGHTFOX_NORDFOX = {
     },
     "checkbox": {
       "color": "#3b4252",
-      "checkedColor": "#c895bf",
-      "uncheckedColor": "#3b4252"
+      "focusColor": "#c895bf",
+      "selectedColor": "#c895bf",
+      "highlightColor": "#ebcb8b"
     },
     "radiobox": {
       "color": "#3b4252",
+      "focusColor": "#c895bf",
       "selectedColor": "#c895bf",
-      "unselectedColor": "#3b4252"
+      "highlightColor": "#ebcb8b"
+    },
+    "list": {
+      "color": "#cdcecf",
+      "bg": null,
+      "highlightColor": "#c895bf"
+    },
+    "selectInput": {
+      "color": "#3b4252",
+      "bg": null,
+      "focusColor": "#c895bf",
+      "selectedColor": "#a3be8c",
+      "highlightColor": "#ebcb8b"
+    },
+    "table": {
+      "color": "#3b4252",
+      "bg": null,
+      "focusColor": "#c895bf",
+      "selectedColor": "#a3be8c",
+      "highlightColor": "#ebcb8b",
+      "headerColor": "#cdcecf",
+      "stripedColor": "#2e3440"
+    },
+    "progressBar": {
+      "color": "#a3be8c",
+      "emptyColor": "#3b4252",
+      "percentageColor": "#cdcecf"
+    },
+    "spinner": {
+      "color": "#c895bf"
+    },
+    "tabs": {
+      "focusColor": "#c895bf",
+      "activeColor": "#a3be8c",
+      "highlightColor": "#ebcb8b"
+    },
+    "tree": {
+      "focusColor": "#c895bf",
+      "selectedColor": "#a3be8c",
+      "highlightColor": "#ebcb8b"
     }
   }
 };
@@ -2222,13 +3452,54 @@ export const ZENBONES_DUCKBONES = {
     },
     "checkbox": {
       "color": "#0e101a",
-      "checkedColor": "#b3a1e6",
-      "uncheckedColor": "#0e101a"
+      "focusColor": "#b3a1e6",
+      "selectedColor": "#b3a1e6",
+      "highlightColor": "#e39500"
     },
     "radiobox": {
       "color": "#0e101a",
+      "focusColor": "#b3a1e6",
       "selectedColor": "#b3a1e6",
-      "unselectedColor": "#0e101a"
+      "highlightColor": "#e39500"
+    },
+    "list": {
+      "color": "#ebefc0",
+      "bg": null,
+      "highlightColor": "#b3a1e6"
+    },
+    "selectInput": {
+      "color": "#0e101a",
+      "bg": null,
+      "focusColor": "#b3a1e6",
+      "selectedColor": "#5dcd97",
+      "highlightColor": "#e39500"
+    },
+    "table": {
+      "color": "#0e101a",
+      "bg": null,
+      "focusColor": "#b3a1e6",
+      "selectedColor": "#5dcd97",
+      "highlightColor": "#e39500",
+      "headerColor": "#ebefc0",
+      "stripedColor": "#0e101a"
+    },
+    "progressBar": {
+      "color": "#5dcd97",
+      "emptyColor": "#0e101a",
+      "percentageColor": "#ebefc0"
+    },
+    "spinner": {
+      "color": "#b3a1e6"
+    },
+    "tabs": {
+      "focusColor": "#b3a1e6",
+      "activeColor": "#5dcd97",
+      "highlightColor": "#e39500"
+    },
+    "tree": {
+      "focusColor": "#b3a1e6",
+      "selectedColor": "#5dcd97",
+      "highlightColor": "#e39500"
     }
   }
 };
@@ -2294,13 +3565,54 @@ export const SONOKAI_DEFAULT = {
     },
     "checkbox": {
       "color": "#181819",
-      "checkedColor": "#b39df3",
-      "uncheckedColor": "#181819"
+      "focusColor": "#b39df3",
+      "selectedColor": "#b39df3",
+      "highlightColor": "#e7c664"
     },
     "radiobox": {
       "color": "#181819",
+      "focusColor": "#b39df3",
       "selectedColor": "#b39df3",
-      "unselectedColor": "#181819"
+      "highlightColor": "#e7c664"
+    },
+    "list": {
+      "color": "#e2e2e3",
+      "bg": null,
+      "highlightColor": "#b39df3"
+    },
+    "selectInput": {
+      "color": "#181819",
+      "bg": null,
+      "focusColor": "#b39df3",
+      "selectedColor": "#9ed072",
+      "highlightColor": "#e7c664"
+    },
+    "table": {
+      "color": "#181819",
+      "bg": null,
+      "focusColor": "#b39df3",
+      "selectedColor": "#9ed072",
+      "highlightColor": "#e7c664",
+      "headerColor": "#e2e2e3",
+      "stripedColor": "#2c2e34"
+    },
+    "progressBar": {
+      "color": "#9ed072",
+      "emptyColor": "#181819",
+      "percentageColor": "#e2e2e3"
+    },
+    "spinner": {
+      "color": "#b39df3"
+    },
+    "tabs": {
+      "focusColor": "#b39df3",
+      "activeColor": "#9ed072",
+      "highlightColor": "#e7c664"
+    },
+    "tree": {
+      "focusColor": "#b39df3",
+      "selectedColor": "#9ed072",
+      "highlightColor": "#e7c664"
     }
   }
 };
@@ -2366,13 +3678,54 @@ export const GRUVBOX_LIGHT_HARD_CONTRAST = {
     },
     "checkbox": {
       "color": "#f9f5d7",
-      "checkedColor": "#8f3f71",
-      "uncheckedColor": "#f9f5d7"
+      "focusColor": "#8f3f71",
+      "selectedColor": "#8f3f71",
+      "highlightColor": "#d79921"
     },
     "radiobox": {
       "color": "#f9f5d7",
+      "focusColor": "#8f3f71",
       "selectedColor": "#8f3f71",
-      "unselectedColor": "#f9f5d7"
+      "highlightColor": "#d79921"
+    },
+    "list": {
+      "color": "#3c3836",
+      "bg": null,
+      "highlightColor": "#8f3f71"
+    },
+    "selectInput": {
+      "color": "#f9f5d7",
+      "bg": null,
+      "focusColor": "#8f3f71",
+      "selectedColor": "#98971a",
+      "highlightColor": "#d79921"
+    },
+    "table": {
+      "color": "#f9f5d7",
+      "bg": null,
+      "focusColor": "#8f3f71",
+      "selectedColor": "#98971a",
+      "highlightColor": "#d79921",
+      "headerColor": "#3c3836",
+      "stripedColor": "#f9f5d7"
+    },
+    "progressBar": {
+      "color": "#98971a",
+      "emptyColor": "#f9f5d7",
+      "percentageColor": "#3c3836"
+    },
+    "spinner": {
+      "color": "#8f3f71"
+    },
+    "tabs": {
+      "focusColor": "#8f3f71",
+      "activeColor": "#98971a",
+      "highlightColor": "#d79921"
+    },
+    "tree": {
+      "focusColor": "#8f3f71",
+      "selectedColor": "#98971a",
+      "highlightColor": "#d79921"
     }
   }
 };
@@ -2438,13 +3791,54 @@ export const SONOKAI_ESPRESSO = {
     },
     "checkbox": {
       "color": "#1f1e1c",
-      "checkedColor": "#9fa0e1",
-      "uncheckedColor": "#1f1e1c"
+      "focusColor": "#9fa0e1",
+      "selectedColor": "#9fa0e1",
+      "highlightColor": "#f0c66f"
     },
     "radiobox": {
       "color": "#1f1e1c",
+      "focusColor": "#9fa0e1",
       "selectedColor": "#9fa0e1",
-      "unselectedColor": "#1f1e1c"
+      "highlightColor": "#f0c66f"
+    },
+    "list": {
+      "color": "#e4e3e1",
+      "bg": null,
+      "highlightColor": "#9fa0e1"
+    },
+    "selectInput": {
+      "color": "#1f1e1c",
+      "bg": null,
+      "focusColor": "#9fa0e1",
+      "selectedColor": "#a6cd77",
+      "highlightColor": "#f0c66f"
+    },
+    "table": {
+      "color": "#1f1e1c",
+      "bg": null,
+      "focusColor": "#9fa0e1",
+      "selectedColor": "#a6cd77",
+      "highlightColor": "#f0c66f",
+      "headerColor": "#e4e3e1",
+      "stripedColor": "#312c2b"
+    },
+    "progressBar": {
+      "color": "#a6cd77",
+      "emptyColor": "#1f1e1c",
+      "percentageColor": "#e4e3e1"
+    },
+    "spinner": {
+      "color": "#9fa0e1"
+    },
+    "tabs": {
+      "focusColor": "#9fa0e1",
+      "activeColor": "#a6cd77",
+      "highlightColor": "#f0c66f"
+    },
+    "tree": {
+      "focusColor": "#9fa0e1",
+      "selectedColor": "#a6cd77",
+      "highlightColor": "#f0c66f"
     }
   }
 };
@@ -2510,13 +3904,54 @@ export const TOKYO_NIGHT_STORM = {
     },
     "checkbox": {
       "color": "#1d202f",
-      "checkedColor": "#bb9af7",
-      "uncheckedColor": "#1d202f"
+      "focusColor": "#bb9af7",
+      "selectedColor": "#bb9af7",
+      "highlightColor": "#e0af68"
     },
     "radiobox": {
       "color": "#1d202f",
+      "focusColor": "#bb9af7",
       "selectedColor": "#bb9af7",
-      "unselectedColor": "#1d202f"
+      "highlightColor": "#e0af68"
+    },
+    "list": {
+      "color": "#c0caf5",
+      "bg": null,
+      "highlightColor": "#bb9af7"
+    },
+    "selectInput": {
+      "color": "#1d202f",
+      "bg": null,
+      "focusColor": "#bb9af7",
+      "selectedColor": "#9ece6a",
+      "highlightColor": "#e0af68"
+    },
+    "table": {
+      "color": "#1d202f",
+      "bg": null,
+      "focusColor": "#bb9af7",
+      "selectedColor": "#9ece6a",
+      "highlightColor": "#e0af68",
+      "headerColor": "#c0caf5",
+      "stripedColor": "#24283b"
+    },
+    "progressBar": {
+      "color": "#9ece6a",
+      "emptyColor": "#1d202f",
+      "percentageColor": "#c0caf5"
+    },
+    "spinner": {
+      "color": "#bb9af7"
+    },
+    "tabs": {
+      "focusColor": "#bb9af7",
+      "activeColor": "#9ece6a",
+      "highlightColor": "#e0af68"
+    },
+    "tree": {
+      "focusColor": "#bb9af7",
+      "selectedColor": "#9ece6a",
+      "highlightColor": "#e0af68"
     }
   }
 };
@@ -2582,13 +4017,54 @@ export const SONOKAI_SHUSIA = {
     },
     "checkbox": {
       "color": "#1a181a",
-      "checkedColor": "#ab9df2",
-      "uncheckedColor": "#1a181a"
+      "focusColor": "#ab9df2",
+      "selectedColor": "#ab9df2",
+      "highlightColor": "#e5c463"
     },
     "radiobox": {
       "color": "#1a181a",
+      "focusColor": "#ab9df2",
       "selectedColor": "#ab9df2",
-      "unselectedColor": "#1a181a"
+      "highlightColor": "#e5c463"
+    },
+    "list": {
+      "color": "#e3e1e4",
+      "bg": null,
+      "highlightColor": "#ab9df2"
+    },
+    "selectInput": {
+      "color": "#1a181a",
+      "bg": null,
+      "focusColor": "#ab9df2",
+      "selectedColor": "#9ecd6f",
+      "highlightColor": "#e5c463"
+    },
+    "table": {
+      "color": "#1a181a",
+      "bg": null,
+      "focusColor": "#ab9df2",
+      "selectedColor": "#9ecd6f",
+      "highlightColor": "#e5c463",
+      "headerColor": "#e3e1e4",
+      "stripedColor": "#2d2a2e"
+    },
+    "progressBar": {
+      "color": "#9ecd6f",
+      "emptyColor": "#1a181a",
+      "percentageColor": "#e3e1e4"
+    },
+    "spinner": {
+      "color": "#ab9df2"
+    },
+    "tabs": {
+      "focusColor": "#ab9df2",
+      "activeColor": "#9ecd6f",
+      "highlightColor": "#e5c463"
+    },
+    "tree": {
+      "focusColor": "#ab9df2",
+      "selectedColor": "#9ecd6f",
+      "highlightColor": "#e5c463"
     }
   }
 };
@@ -2654,13 +4130,54 @@ export const AYU_MIRAGE = {
     },
     "checkbox": {
       "color": "#171b24",
-      "checkedColor": "#dfbfff",
-      "uncheckedColor": "#171b24"
+      "focusColor": "#dfbfff",
+      "selectedColor": "#dfbfff",
+      "highlightColor": "#facc6e"
     },
     "radiobox": {
       "color": "#171b24",
+      "focusColor": "#dfbfff",
       "selectedColor": "#dfbfff",
-      "unselectedColor": "#171b24"
+      "highlightColor": "#facc6e"
+    },
+    "list": {
+      "color": "#cccac2",
+      "bg": null,
+      "highlightColor": "#dfbfff"
+    },
+    "selectInput": {
+      "color": "#171b24",
+      "bg": null,
+      "focusColor": "#dfbfff",
+      "selectedColor": "#87d96c",
+      "highlightColor": "#facc6e"
+    },
+    "table": {
+      "color": "#171b24",
+      "bg": null,
+      "focusColor": "#dfbfff",
+      "selectedColor": "#87d96c",
+      "highlightColor": "#facc6e",
+      "headerColor": "#cccac2",
+      "stripedColor": "#1f2430"
+    },
+    "progressBar": {
+      "color": "#87d96c",
+      "emptyColor": "#171b24",
+      "percentageColor": "#cccac2"
+    },
+    "spinner": {
+      "color": "#dfbfff"
+    },
+    "tabs": {
+      "focusColor": "#dfbfff",
+      "activeColor": "#87d96c",
+      "highlightColor": "#facc6e"
+    },
+    "tree": {
+      "focusColor": "#dfbfff",
+      "selectedColor": "#87d96c",
+      "highlightColor": "#facc6e"
     }
   }
 };
@@ -2726,13 +4243,54 @@ export const ZENBONES_VIMBONES = {
     },
     "checkbox": {
       "color": "#f0f0ca",
-      "checkedColor": "#7b3b70",
-      "uncheckedColor": "#f0f0ca"
+      "focusColor": "#7b3b70",
+      "selectedColor": "#7b3b70",
+      "highlightColor": "#944927"
     },
     "radiobox": {
       "color": "#f0f0ca",
+      "focusColor": "#7b3b70",
       "selectedColor": "#7b3b70",
-      "unselectedColor": "#f0f0ca"
+      "highlightColor": "#944927"
+    },
+    "list": {
+      "color": "#353535",
+      "bg": null,
+      "highlightColor": "#7b3b70"
+    },
+    "selectInput": {
+      "color": "#f0f0ca",
+      "bg": null,
+      "focusColor": "#7b3b70",
+      "selectedColor": "#4f6c31",
+      "highlightColor": "#944927"
+    },
+    "table": {
+      "color": "#f0f0ca",
+      "bg": null,
+      "focusColor": "#7b3b70",
+      "selectedColor": "#4f6c31",
+      "highlightColor": "#944927",
+      "headerColor": "#353535",
+      "stripedColor": "#f0f0ca"
+    },
+    "progressBar": {
+      "color": "#4f6c31",
+      "emptyColor": "#f0f0ca",
+      "percentageColor": "#353535"
+    },
+    "spinner": {
+      "color": "#7b3b70"
+    },
+    "tabs": {
+      "focusColor": "#7b3b70",
+      "activeColor": "#4f6c31",
+      "highlightColor": "#944927"
+    },
+    "tree": {
+      "focusColor": "#7b3b70",
+      "selectedColor": "#4f6c31",
+      "highlightColor": "#944927"
     }
   }
 };
@@ -2798,13 +4356,54 @@ export const SONOKAI_ANDROMEDA = {
     },
     "checkbox": {
       "color": "#181a1c",
-      "checkedColor": "#bb97ee",
-      "uncheckedColor": "#181a1c"
+      "focusColor": "#bb97ee",
+      "selectedColor": "#bb97ee",
+      "highlightColor": "#edc763"
     },
     "radiobox": {
       "color": "#181a1c",
+      "focusColor": "#bb97ee",
       "selectedColor": "#bb97ee",
-      "unselectedColor": "#181a1c"
+      "highlightColor": "#edc763"
+    },
+    "list": {
+      "color": "#e1e3e4",
+      "bg": null,
+      "highlightColor": "#bb97ee"
+    },
+    "selectInput": {
+      "color": "#181a1c",
+      "bg": null,
+      "focusColor": "#bb97ee",
+      "selectedColor": "#9ed06c",
+      "highlightColor": "#edc763"
+    },
+    "table": {
+      "color": "#181a1c",
+      "bg": null,
+      "focusColor": "#bb97ee",
+      "selectedColor": "#9ed06c",
+      "highlightColor": "#edc763",
+      "headerColor": "#e1e3e4",
+      "stripedColor": "#2b2d3a"
+    },
+    "progressBar": {
+      "color": "#9ed06c",
+      "emptyColor": "#181a1c",
+      "percentageColor": "#e1e3e4"
+    },
+    "spinner": {
+      "color": "#bb97ee"
+    },
+    "tabs": {
+      "focusColor": "#bb97ee",
+      "activeColor": "#9ed06c",
+      "highlightColor": "#edc763"
+    },
+    "tree": {
+      "focusColor": "#bb97ee",
+      "selectedColor": "#9ed06c",
+      "highlightColor": "#edc763"
     }
   }
 };
@@ -2870,13 +4469,54 @@ export const NOCTIS_DEFAULT = {
     },
     "checkbox": {
       "color": "#324a4d",
-      "checkedColor": "#e798b3",
-      "uncheckedColor": "#324a4d"
+      "focusColor": "#e798b3",
+      "selectedColor": "#e798b3",
+      "highlightColor": "#e4b781"
     },
     "radiobox": {
       "color": "#324a4d",
+      "focusColor": "#e798b3",
       "selectedColor": "#e798b3",
-      "unselectedColor": "#324a4d"
+      "highlightColor": "#e4b781"
+    },
+    "list": {
+      "color": "#b2cacd",
+      "bg": null,
+      "highlightColor": "#e798b3"
+    },
+    "selectInput": {
+      "color": "#324a4d",
+      "bg": null,
+      "focusColor": "#e798b3",
+      "selectedColor": "#49e9a6",
+      "highlightColor": "#e4b781"
+    },
+    "table": {
+      "color": "#324a4d",
+      "bg": null,
+      "focusColor": "#e798b3",
+      "selectedColor": "#49e9a6",
+      "highlightColor": "#e4b781",
+      "headerColor": "#b2cacd",
+      "stripedColor": "#03191b"
+    },
+    "progressBar": {
+      "color": "#49e9a6",
+      "emptyColor": "#324a4d",
+      "percentageColor": "#b2cacd"
+    },
+    "spinner": {
+      "color": "#e798b3"
+    },
+    "tabs": {
+      "focusColor": "#e798b3",
+      "activeColor": "#49e9a6",
+      "highlightColor": "#e4b781"
+    },
+    "tree": {
+      "focusColor": "#e798b3",
+      "selectedColor": "#49e9a6",
+      "highlightColor": "#e4b781"
     }
   }
 };
@@ -2942,13 +4582,54 @@ export const AYU_LIGHT = {
     },
     "checkbox": {
       "color": "#000000",
-      "checkedColor": "#a37acc",
-      "uncheckedColor": "#000000"
+      "focusColor": "#a37acc",
+      "selectedColor": "#a37acc",
+      "highlightColor": "#eca944"
     },
     "radiobox": {
       "color": "#000000",
+      "focusColor": "#a37acc",
       "selectedColor": "#a37acc",
-      "unselectedColor": "#000000"
+      "highlightColor": "#eca944"
+    },
+    "list": {
+      "color": "#5c6166",
+      "bg": null,
+      "highlightColor": "#a37acc"
+    },
+    "selectInput": {
+      "color": "#000000",
+      "bg": null,
+      "focusColor": "#a37acc",
+      "selectedColor": "#6cbf43",
+      "highlightColor": "#eca944"
+    },
+    "table": {
+      "color": "#000000",
+      "bg": null,
+      "focusColor": "#a37acc",
+      "selectedColor": "#6cbf43",
+      "highlightColor": "#eca944",
+      "headerColor": "#5c6166",
+      "stripedColor": "#f8f9fa"
+    },
+    "progressBar": {
+      "color": "#6cbf43",
+      "emptyColor": "#000000",
+      "percentageColor": "#5c6166"
+    },
+    "spinner": {
+      "color": "#a37acc"
+    },
+    "tabs": {
+      "focusColor": "#a37acc",
+      "activeColor": "#6cbf43",
+      "highlightColor": "#eca944"
+    },
+    "tree": {
+      "focusColor": "#a37acc",
+      "selectedColor": "#6cbf43",
+      "highlightColor": "#eca944"
     }
   }
 };
@@ -3014,13 +4695,54 @@ export const GRUVBOX_DARK_HARD_CONTRAST = {
     },
     "checkbox": {
       "color": "#1d2021",
-      "checkedColor": "#d3869b",
-      "uncheckedColor": "#1d2021"
+      "focusColor": "#d3869b",
+      "selectedColor": "#d3869b",
+      "highlightColor": "#d79921"
     },
     "radiobox": {
       "color": "#1d2021",
+      "focusColor": "#d3869b",
       "selectedColor": "#d3869b",
-      "unselectedColor": "#1d2021"
+      "highlightColor": "#d79921"
+    },
+    "list": {
+      "color": "#ebdbb2",
+      "bg": null,
+      "highlightColor": "#d3869b"
+    },
+    "selectInput": {
+      "color": "#1d2021",
+      "bg": null,
+      "focusColor": "#d3869b",
+      "selectedColor": "#98971a",
+      "highlightColor": "#d79921"
+    },
+    "table": {
+      "color": "#1d2021",
+      "bg": null,
+      "focusColor": "#d3869b",
+      "selectedColor": "#98971a",
+      "highlightColor": "#d79921",
+      "headerColor": "#ebdbb2",
+      "stripedColor": "#1d2021"
+    },
+    "progressBar": {
+      "color": "#98971a",
+      "emptyColor": "#1d2021",
+      "percentageColor": "#ebdbb2"
+    },
+    "spinner": {
+      "color": "#d3869b"
+    },
+    "tabs": {
+      "focusColor": "#d3869b",
+      "activeColor": "#98971a",
+      "highlightColor": "#d79921"
+    },
+    "tree": {
+      "focusColor": "#d3869b",
+      "selectedColor": "#98971a",
+      "highlightColor": "#d79921"
     }
   }
 };
@@ -3086,13 +4808,54 @@ export const SHADES_OF_PURPLE_DEFAULT = {
     },
     "checkbox": {
       "color": "#000000",
-      "checkedColor": "#fb94ff",
-      "uncheckedColor": "#000000"
+      "focusColor": "#fb94ff",
+      "selectedColor": "#fb94ff",
+      "highlightColor": "#fad000"
     },
     "radiobox": {
       "color": "#000000",
+      "focusColor": "#fb94ff",
       "selectedColor": "#fb94ff",
-      "unselectedColor": "#000000"
+      "highlightColor": "#fad000"
+    },
+    "list": {
+      "color": "#ffffff",
+      "bg": null,
+      "highlightColor": "#fb94ff"
+    },
+    "selectInput": {
+      "color": "#000000",
+      "bg": null,
+      "focusColor": "#fb94ff",
+      "selectedColor": "#3ad900",
+      "highlightColor": "#fad000"
+    },
+    "table": {
+      "color": "#000000",
+      "bg": null,
+      "focusColor": "#fb94ff",
+      "selectedColor": "#3ad900",
+      "highlightColor": "#fad000",
+      "headerColor": "#ffffff",
+      "stripedColor": "#1e1e3f"
+    },
+    "progressBar": {
+      "color": "#3ad900",
+      "emptyColor": "#000000",
+      "percentageColor": "#ffffff"
+    },
+    "spinner": {
+      "color": "#fb94ff"
+    },
+    "tabs": {
+      "focusColor": "#fb94ff",
+      "activeColor": "#3ad900",
+      "highlightColor": "#fad000"
+    },
+    "tree": {
+      "focusColor": "#fb94ff",
+      "selectedColor": "#3ad900",
+      "highlightColor": "#fad000"
     }
   }
 };
@@ -3158,13 +4921,54 @@ export const JELLYBEANS_DEFAULT = {
     },
     "checkbox": {
       "color": "#929292",
-      "checkedColor": "#fbdaff",
-      "uncheckedColor": "#929292"
+      "focusColor": "#fbdaff",
+      "selectedColor": "#fbdaff",
+      "highlightColor": "#ffba7b"
     },
     "radiobox": {
       "color": "#929292",
+      "focusColor": "#fbdaff",
       "selectedColor": "#fbdaff",
-      "unselectedColor": "#929292"
+      "highlightColor": "#ffba7b"
+    },
+    "list": {
+      "color": "#dedede",
+      "bg": null,
+      "highlightColor": "#fbdaff"
+    },
+    "selectInput": {
+      "color": "#929292",
+      "bg": null,
+      "focusColor": "#fbdaff",
+      "selectedColor": "#94b979",
+      "highlightColor": "#ffba7b"
+    },
+    "table": {
+      "color": "#929292",
+      "bg": null,
+      "focusColor": "#fbdaff",
+      "selectedColor": "#94b979",
+      "highlightColor": "#ffba7b",
+      "headerColor": "#dedede",
+      "stripedColor": "#121212"
+    },
+    "progressBar": {
+      "color": "#94b979",
+      "emptyColor": "#929292",
+      "percentageColor": "#dedede"
+    },
+    "spinner": {
+      "color": "#fbdaff"
+    },
+    "tabs": {
+      "focusColor": "#fbdaff",
+      "activeColor": "#94b979",
+      "highlightColor": "#ffba7b"
+    },
+    "tree": {
+      "focusColor": "#fbdaff",
+      "selectedColor": "#94b979",
+      "highlightColor": "#ffba7b"
     }
   }
 };
@@ -3230,13 +5034,54 @@ export const NIGHTFOX_CARBONFOX = {
     },
     "checkbox": {
       "color": "#282828",
-      "checkedColor": "#c8a5ff",
-      "uncheckedColor": "#282828"
+      "focusColor": "#c8a5ff",
+      "selectedColor": "#c8a5ff",
+      "highlightColor": "#08bdba"
     },
     "radiobox": {
       "color": "#282828",
+      "focusColor": "#c8a5ff",
       "selectedColor": "#c8a5ff",
-      "unselectedColor": "#282828"
+      "highlightColor": "#08bdba"
+    },
+    "list": {
+      "color": "#f2f4f8",
+      "bg": null,
+      "highlightColor": "#c8a5ff"
+    },
+    "selectInput": {
+      "color": "#282828",
+      "bg": null,
+      "focusColor": "#c8a5ff",
+      "selectedColor": "#25be6a",
+      "highlightColor": "#08bdba"
+    },
+    "table": {
+      "color": "#282828",
+      "bg": null,
+      "focusColor": "#c8a5ff",
+      "selectedColor": "#25be6a",
+      "highlightColor": "#08bdba",
+      "headerColor": "#f2f4f8",
+      "stripedColor": "#161616"
+    },
+    "progressBar": {
+      "color": "#25be6a",
+      "emptyColor": "#282828",
+      "percentageColor": "#f2f4f8"
+    },
+    "spinner": {
+      "color": "#c8a5ff"
+    },
+    "tabs": {
+      "focusColor": "#c8a5ff",
+      "activeColor": "#25be6a",
+      "highlightColor": "#08bdba"
+    },
+    "tree": {
+      "focusColor": "#c8a5ff",
+      "selectedColor": "#25be6a",
+      "highlightColor": "#08bdba"
     }
   }
 };
@@ -3302,13 +5147,54 @@ export const MOONFLY_DEFAULT = {
     },
     "checkbox": {
       "color": "#323437",
-      "checkedColor": "#ae81ff",
-      "uncheckedColor": "#323437"
+      "focusColor": "#ae81ff",
+      "selectedColor": "#ae81ff",
+      "highlightColor": "#e3c78a"
     },
     "radiobox": {
       "color": "#323437",
+      "focusColor": "#ae81ff",
       "selectedColor": "#ae81ff",
-      "unselectedColor": "#323437"
+      "highlightColor": "#e3c78a"
+    },
+    "list": {
+      "color": "#bdbdbd",
+      "bg": null,
+      "highlightColor": "#ae81ff"
+    },
+    "selectInput": {
+      "color": "#323437",
+      "bg": null,
+      "focusColor": "#ae81ff",
+      "selectedColor": "#8cc85f",
+      "highlightColor": "#e3c78a"
+    },
+    "table": {
+      "color": "#323437",
+      "bg": null,
+      "focusColor": "#ae81ff",
+      "selectedColor": "#8cc85f",
+      "highlightColor": "#e3c78a",
+      "headerColor": "#bdbdbd",
+      "stripedColor": "#080808"
+    },
+    "progressBar": {
+      "color": "#8cc85f",
+      "emptyColor": "#323437",
+      "percentageColor": "#bdbdbd"
+    },
+    "spinner": {
+      "color": "#ae81ff"
+    },
+    "tabs": {
+      "focusColor": "#ae81ff",
+      "activeColor": "#8cc85f",
+      "highlightColor": "#e3c78a"
+    },
+    "tree": {
+      "focusColor": "#ae81ff",
+      "selectedColor": "#8cc85f",
+      "highlightColor": "#e3c78a"
     }
   }
 };
@@ -3374,13 +5260,54 @@ export const SONOKAI_MAIA = {
     },
     "checkbox": {
       "color": "#1c1e1f",
-      "checkedColor": "#baa0f8",
-      "uncheckedColor": "#1c1e1f"
+      "focusColor": "#baa0f8",
+      "selectedColor": "#baa0f8",
+      "highlightColor": "#e3d367"
     },
     "radiobox": {
       "color": "#1c1e1f",
+      "focusColor": "#baa0f8",
       "selectedColor": "#baa0f8",
-      "unselectedColor": "#1c1e1f"
+      "highlightColor": "#e3d367"
+    },
+    "list": {
+      "color": "#e1e2e3",
+      "bg": null,
+      "highlightColor": "#baa0f8"
+    },
+    "selectInput": {
+      "color": "#1c1e1f",
+      "bg": null,
+      "focusColor": "#baa0f8",
+      "selectedColor": "#9cd57b",
+      "highlightColor": "#e3d367"
+    },
+    "table": {
+      "color": "#1c1e1f",
+      "bg": null,
+      "focusColor": "#baa0f8",
+      "selectedColor": "#9cd57b",
+      "highlightColor": "#e3d367",
+      "headerColor": "#e1e2e3",
+      "stripedColor": "#273136"
+    },
+    "progressBar": {
+      "color": "#9cd57b",
+      "emptyColor": "#1c1e1f",
+      "percentageColor": "#e1e2e3"
+    },
+    "spinner": {
+      "color": "#baa0f8"
+    },
+    "tabs": {
+      "focusColor": "#baa0f8",
+      "activeColor": "#9cd57b",
+      "highlightColor": "#e3d367"
+    },
+    "tree": {
+      "focusColor": "#baa0f8",
+      "selectedColor": "#9cd57b",
+      "highlightColor": "#e3d367"
     }
   }
 };
@@ -3446,13 +5373,54 @@ export const ZENBONES_FORESTBONES_LIGHT = {
     },
     "checkbox": {
       "color": "#faf3e1",
-      "checkedColor": "#ca43a3",
-      "uncheckedColor": "#faf3e1"
+      "focusColor": "#ca43a3",
+      "selectedColor": "#ca43a3",
+      "highlightColor": "#dea000"
     },
     "radiobox": {
       "color": "#faf3e1",
+      "focusColor": "#ca43a3",
       "selectedColor": "#ca43a3",
-      "unselectedColor": "#faf3e1"
+      "highlightColor": "#dea000"
+    },
+    "list": {
+      "color": "#4f5b62",
+      "bg": null,
+      "highlightColor": "#ca43a3"
+    },
+    "selectInput": {
+      "color": "#faf3e1",
+      "bg": null,
+      "focusColor": "#ca43a3",
+      "selectedColor": "#8da200",
+      "highlightColor": "#dea000"
+    },
+    "table": {
+      "color": "#faf3e1",
+      "bg": null,
+      "focusColor": "#ca43a3",
+      "selectedColor": "#8da200",
+      "highlightColor": "#dea000",
+      "headerColor": "#4f5b62",
+      "stripedColor": "#faf3e1"
+    },
+    "progressBar": {
+      "color": "#8da200",
+      "emptyColor": "#faf3e1",
+      "percentageColor": "#4f5b62"
+    },
+    "spinner": {
+      "color": "#ca43a3"
+    },
+    "tabs": {
+      "focusColor": "#ca43a3",
+      "activeColor": "#8da200",
+      "highlightColor": "#dea000"
+    },
+    "tree": {
+      "focusColor": "#ca43a3",
+      "selectedColor": "#8da200",
+      "highlightColor": "#dea000"
     }
   }
 };
@@ -3518,13 +5486,54 @@ export const NOCTIS_LUX = {
     },
     "checkbox": {
       "color": "#003b42",
-      "checkedColor": "#ff6b9f",
-      "uncheckedColor": "#003b42"
+      "focusColor": "#ff6b9f",
+      "selectedColor": "#ff6b9f",
+      "highlightColor": "#f49725"
     },
     "radiobox": {
       "color": "#003b42",
+      "focusColor": "#ff6b9f",
       "selectedColor": "#ff6b9f",
-      "unselectedColor": "#003b42"
+      "highlightColor": "#f49725"
+    },
+    "list": {
+      "color": "#005661",
+      "bg": null,
+      "highlightColor": "#ff6b9f"
+    },
+    "selectInput": {
+      "color": "#003b42",
+      "bg": null,
+      "focusColor": "#ff6b9f",
+      "selectedColor": "#00b368",
+      "highlightColor": "#f49725"
+    },
+    "table": {
+      "color": "#003b42",
+      "bg": null,
+      "focusColor": "#ff6b9f",
+      "selectedColor": "#00b368",
+      "highlightColor": "#f49725",
+      "headerColor": "#005661",
+      "stripedColor": "#f6edda"
+    },
+    "progressBar": {
+      "color": "#00b368",
+      "emptyColor": "#003b42",
+      "percentageColor": "#005661"
+    },
+    "spinner": {
+      "color": "#ff6b9f"
+    },
+    "tabs": {
+      "focusColor": "#ff6b9f",
+      "activeColor": "#00b368",
+      "highlightColor": "#f49725"
+    },
+    "tree": {
+      "focusColor": "#ff6b9f",
+      "selectedColor": "#00b368",
+      "highlightColor": "#f49725"
     }
   }
 };
@@ -3590,13 +5599,54 @@ export const CATPPUCCIN_LATTE = {
     },
     "checkbox": {
       "color": "#5c5f77",
-      "checkedColor": "#fe85d8",
-      "uncheckedColor": "#5c5f77"
+      "focusColor": "#fe85d8",
+      "selectedColor": "#fe85d8",
+      "highlightColor": "#df8e1d"
     },
     "radiobox": {
       "color": "#5c5f77",
+      "focusColor": "#fe85d8",
       "selectedColor": "#fe85d8",
-      "unselectedColor": "#5c5f77"
+      "highlightColor": "#df8e1d"
+    },
+    "list": {
+      "color": "#4c4f69",
+      "bg": null,
+      "highlightColor": "#fe85d8"
+    },
+    "selectInput": {
+      "color": "#5c5f77",
+      "bg": null,
+      "focusColor": "#fe85d8",
+      "selectedColor": "#40a02b",
+      "highlightColor": "#df8e1d"
+    },
+    "table": {
+      "color": "#5c5f77",
+      "bg": null,
+      "focusColor": "#fe85d8",
+      "selectedColor": "#40a02b",
+      "highlightColor": "#df8e1d",
+      "headerColor": "#4c4f69",
+      "stripedColor": "#eff1f5"
+    },
+    "progressBar": {
+      "color": "#40a02b",
+      "emptyColor": "#5c5f77",
+      "percentageColor": "#4c4f69"
+    },
+    "spinner": {
+      "color": "#fe85d8"
+    },
+    "tabs": {
+      "focusColor": "#fe85d8",
+      "activeColor": "#40a02b",
+      "highlightColor": "#df8e1d"
+    },
+    "tree": {
+      "focusColor": "#fe85d8",
+      "selectedColor": "#40a02b",
+      "highlightColor": "#df8e1d"
     }
   }
 };
@@ -3662,13 +5712,54 @@ export const ONE_HALF_LIGHT = {
     },
     "checkbox": {
       "color": "#383a42",
-      "checkedColor": "#c678dd",
-      "uncheckedColor": "#383a42"
+      "focusColor": "#c678dd",
+      "selectedColor": "#c678dd",
+      "highlightColor": "#c18401"
     },
     "radiobox": {
       "color": "#383a42",
+      "focusColor": "#c678dd",
       "selectedColor": "#c678dd",
-      "unselectedColor": "#383a42"
+      "highlightColor": "#c18401"
+    },
+    "list": {
+      "color": "#383a42",
+      "bg": null,
+      "highlightColor": "#c678dd"
+    },
+    "selectInput": {
+      "color": "#383a42",
+      "bg": null,
+      "focusColor": "#c678dd",
+      "selectedColor": "#50a14f",
+      "highlightColor": "#c18401"
+    },
+    "table": {
+      "color": "#383a42",
+      "bg": null,
+      "focusColor": "#c678dd",
+      "selectedColor": "#50a14f",
+      "highlightColor": "#c18401",
+      "headerColor": "#383a42",
+      "stripedColor": "#fafafa"
+    },
+    "progressBar": {
+      "color": "#50a14f",
+      "emptyColor": "#383a42",
+      "percentageColor": "#383a42"
+    },
+    "spinner": {
+      "color": "#c678dd"
+    },
+    "tabs": {
+      "focusColor": "#c678dd",
+      "activeColor": "#50a14f",
+      "highlightColor": "#c18401"
+    },
+    "tree": {
+      "focusColor": "#c678dd",
+      "selectedColor": "#50a14f",
+      "highlightColor": "#c18401"
     }
   }
 };
@@ -3734,13 +5825,54 @@ export const NIGHTFOX_DEFAULT = {
     },
     "checkbox": {
       "color": "#393b44",
-      "checkedColor": "#baa1e2",
-      "uncheckedColor": "#393b44"
+      "focusColor": "#baa1e2",
+      "selectedColor": "#baa1e2",
+      "highlightColor": "#dbc074"
     },
     "radiobox": {
       "color": "#393b44",
+      "focusColor": "#baa1e2",
       "selectedColor": "#baa1e2",
-      "unselectedColor": "#393b44"
+      "highlightColor": "#dbc074"
+    },
+    "list": {
+      "color": "#cdcecf",
+      "bg": null,
+      "highlightColor": "#baa1e2"
+    },
+    "selectInput": {
+      "color": "#393b44",
+      "bg": null,
+      "focusColor": "#baa1e2",
+      "selectedColor": "#81b29a",
+      "highlightColor": "#dbc074"
+    },
+    "table": {
+      "color": "#393b44",
+      "bg": null,
+      "focusColor": "#baa1e2",
+      "selectedColor": "#81b29a",
+      "highlightColor": "#dbc074",
+      "headerColor": "#cdcecf",
+      "stripedColor": "#192330"
+    },
+    "progressBar": {
+      "color": "#81b29a",
+      "emptyColor": "#393b44",
+      "percentageColor": "#cdcecf"
+    },
+    "spinner": {
+      "color": "#baa1e2"
+    },
+    "tabs": {
+      "focusColor": "#baa1e2",
+      "activeColor": "#81b29a",
+      "highlightColor": "#dbc074"
+    },
+    "tree": {
+      "focusColor": "#baa1e2",
+      "selectedColor": "#81b29a",
+      "highlightColor": "#dbc074"
     }
   }
 };
@@ -3806,13 +5938,54 @@ export const COBALT2_DEFAULT = {
     },
     "checkbox": {
       "color": "#000000",
-      "checkedColor": "#fb94ff",
-      "uncheckedColor": "#000000"
+      "focusColor": "#fb94ff",
+      "selectedColor": "#fb94ff",
+      "highlightColor": "#ffc600"
     },
     "radiobox": {
       "color": "#000000",
+      "focusColor": "#fb94ff",
       "selectedColor": "#fb94ff",
-      "unselectedColor": "#000000"
+      "highlightColor": "#ffc600"
+    },
+    "list": {
+      "color": "#ffffff",
+      "bg": null,
+      "highlightColor": "#fb94ff"
+    },
+    "selectInput": {
+      "color": "#000000",
+      "bg": null,
+      "focusColor": "#fb94ff",
+      "selectedColor": "#3ad900",
+      "highlightColor": "#ffc600"
+    },
+    "table": {
+      "color": "#000000",
+      "bg": null,
+      "focusColor": "#fb94ff",
+      "selectedColor": "#3ad900",
+      "highlightColor": "#ffc600",
+      "headerColor": "#ffffff",
+      "stripedColor": "#122738"
+    },
+    "progressBar": {
+      "color": "#3ad900",
+      "emptyColor": "#000000",
+      "percentageColor": "#ffffff"
+    },
+    "spinner": {
+      "color": "#fb94ff"
+    },
+    "tabs": {
+      "focusColor": "#fb94ff",
+      "activeColor": "#3ad900",
+      "highlightColor": "#ffc600"
+    },
+    "tree": {
+      "focusColor": "#fb94ff",
+      "selectedColor": "#3ad900",
+      "highlightColor": "#ffc600"
     }
   }
 };
@@ -3878,13 +6051,54 @@ export const POSTERPOLE_DEFAULT = {
     },
     "checkbox": {
       "color": "#2c2c30",
-      "checkedColor": "#ccb3c6",
-      "uncheckedColor": "#2c2c30"
+      "focusColor": "#ccb3c6",
+      "selectedColor": "#ccb3c6",
+      "highlightColor": "#cc9166"
     },
     "radiobox": {
       "color": "#2c2c30",
+      "focusColor": "#ccb3c6",
       "selectedColor": "#ccb3c6",
-      "unselectedColor": "#2c2c30"
+      "highlightColor": "#cc9166"
+    },
+    "list": {
+      "color": "#c6c0b9",
+      "bg": null,
+      "highlightColor": "#ccb3c6"
+    },
+    "selectInput": {
+      "color": "#2c2c30",
+      "bg": null,
+      "focusColor": "#ccb3c6",
+      "selectedColor": "#778c73",
+      "highlightColor": "#cc9166"
+    },
+    "table": {
+      "color": "#2c2c30",
+      "bg": null,
+      "focusColor": "#ccb3c6",
+      "selectedColor": "#778c73",
+      "highlightColor": "#cc9166",
+      "headerColor": "#c6c0b9",
+      "stripedColor": "#25222a"
+    },
+    "progressBar": {
+      "color": "#778c73",
+      "emptyColor": "#2c2c30",
+      "percentageColor": "#c6c0b9"
+    },
+    "spinner": {
+      "color": "#ccb3c6"
+    },
+    "tabs": {
+      "focusColor": "#ccb3c6",
+      "activeColor": "#778c73",
+      "highlightColor": "#cc9166"
+    },
+    "tree": {
+      "focusColor": "#ccb3c6",
+      "selectedColor": "#778c73",
+      "highlightColor": "#cc9166"
     }
   }
 };
@@ -3950,13 +6164,54 @@ export const ONE_DARK = {
     },
     "checkbox": {
       "color": "#1e2127",
-      "checkedColor": "#c678dd",
-      "uncheckedColor": "#1e2127"
+      "focusColor": "#c678dd",
+      "selectedColor": "#c678dd",
+      "highlightColor": "#d19a66"
     },
     "radiobox": {
       "color": "#1e2127",
+      "focusColor": "#c678dd",
       "selectedColor": "#c678dd",
-      "unselectedColor": "#1e2127"
+      "highlightColor": "#d19a66"
+    },
+    "list": {
+      "color": "#abb2bf",
+      "bg": null,
+      "highlightColor": "#c678dd"
+    },
+    "selectInput": {
+      "color": "#1e2127",
+      "bg": null,
+      "focusColor": "#c678dd",
+      "selectedColor": "#98c379",
+      "highlightColor": "#d19a66"
+    },
+    "table": {
+      "color": "#1e2127",
+      "bg": null,
+      "focusColor": "#c678dd",
+      "selectedColor": "#98c379",
+      "highlightColor": "#d19a66",
+      "headerColor": "#abb2bf",
+      "stripedColor": "#282c34"
+    },
+    "progressBar": {
+      "color": "#98c379",
+      "emptyColor": "#1e2127",
+      "percentageColor": "#abb2bf"
+    },
+    "spinner": {
+      "color": "#c678dd"
+    },
+    "tabs": {
+      "focusColor": "#c678dd",
+      "activeColor": "#98c379",
+      "highlightColor": "#d19a66"
+    },
+    "tree": {
+      "focusColor": "#c678dd",
+      "selectedColor": "#98c379",
+      "highlightColor": "#d19a66"
     }
   }
 };
@@ -4022,13 +6277,54 @@ export const NIGHTFLY_DEFAULT = {
     },
     "checkbox": {
       "color": "#1d3b53",
-      "checkedColor": "#ae81ff",
-      "uncheckedColor": "#1d3b53"
+      "focusColor": "#ae81ff",
+      "selectedColor": "#ae81ff",
+      "highlightColor": "#e7d37a"
     },
     "radiobox": {
       "color": "#1d3b53",
+      "focusColor": "#ae81ff",
       "selectedColor": "#ae81ff",
-      "unselectedColor": "#1d3b53"
+      "highlightColor": "#e7d37a"
+    },
+    "list": {
+      "color": "#bdc1c6",
+      "bg": null,
+      "highlightColor": "#ae81ff"
+    },
+    "selectInput": {
+      "color": "#1d3b53",
+      "bg": null,
+      "focusColor": "#ae81ff",
+      "selectedColor": "#a1cd5e",
+      "highlightColor": "#e7d37a"
+    },
+    "table": {
+      "color": "#1d3b53",
+      "bg": null,
+      "focusColor": "#ae81ff",
+      "selectedColor": "#a1cd5e",
+      "highlightColor": "#e7d37a",
+      "headerColor": "#bdc1c6",
+      "stripedColor": "#011627"
+    },
+    "progressBar": {
+      "color": "#a1cd5e",
+      "emptyColor": "#1d3b53",
+      "percentageColor": "#bdc1c6"
+    },
+    "spinner": {
+      "color": "#ae81ff"
+    },
+    "tabs": {
+      "focusColor": "#ae81ff",
+      "activeColor": "#a1cd5e",
+      "highlightColor": "#e7d37a"
+    },
+    "tree": {
+      "focusColor": "#ae81ff",
+      "selectedColor": "#a1cd5e",
+      "highlightColor": "#e7d37a"
     }
   }
 };
@@ -4094,13 +6390,54 @@ export const TOKYO_NIGHT_MOON = {
     },
     "checkbox": {
       "color": "#1b1d2b",
-      "checkedColor": "#c099ff",
-      "uncheckedColor": "#1b1d2b"
+      "focusColor": "#c099ff",
+      "selectedColor": "#c099ff",
+      "highlightColor": "#ffc777"
     },
     "radiobox": {
       "color": "#1b1d2b",
+      "focusColor": "#c099ff",
       "selectedColor": "#c099ff",
-      "unselectedColor": "#1b1d2b"
+      "highlightColor": "#ffc777"
+    },
+    "list": {
+      "color": "#c8d3f5",
+      "bg": null,
+      "highlightColor": "#c099ff"
+    },
+    "selectInput": {
+      "color": "#1b1d2b",
+      "bg": null,
+      "focusColor": "#c099ff",
+      "selectedColor": "#c3e88d",
+      "highlightColor": "#ffc777"
+    },
+    "table": {
+      "color": "#1b1d2b",
+      "bg": null,
+      "focusColor": "#c099ff",
+      "selectedColor": "#c3e88d",
+      "highlightColor": "#ffc777",
+      "headerColor": "#c8d3f5",
+      "stripedColor": "#222436"
+    },
+    "progressBar": {
+      "color": "#c3e88d",
+      "emptyColor": "#1b1d2b",
+      "percentageColor": "#c8d3f5"
+    },
+    "spinner": {
+      "color": "#c099ff"
+    },
+    "tabs": {
+      "focusColor": "#c099ff",
+      "activeColor": "#c3e88d",
+      "highlightColor": "#ffc777"
+    },
+    "tree": {
+      "focusColor": "#c099ff",
+      "selectedColor": "#c3e88d",
+      "highlightColor": "#ffc777"
     }
   }
 };
@@ -4166,13 +6503,54 @@ export const NOCTIS_MINIMUS = {
     },
     "checkbox": {
       "color": "#182a35",
-      "checkedColor": "#c88da2",
-      "uncheckedColor": "#182a35"
+      "focusColor": "#c88da2",
+      "selectedColor": "#c88da2",
+      "highlightColor": "#c8a984"
     },
     "radiobox": {
       "color": "#182a35",
+      "focusColor": "#c88da2",
       "selectedColor": "#c88da2",
-      "unselectedColor": "#182a35"
+      "highlightColor": "#c8a984"
+    },
+    "list": {
+      "color": "#c5cdd3",
+      "bg": null,
+      "highlightColor": "#c88da2"
+    },
+    "selectInput": {
+      "color": "#182a35",
+      "bg": null,
+      "focusColor": "#c88da2",
+      "selectedColor": "#72c09f",
+      "highlightColor": "#c8a984"
+    },
+    "table": {
+      "color": "#182a35",
+      "bg": null,
+      "focusColor": "#c88da2",
+      "selectedColor": "#72c09f",
+      "highlightColor": "#c8a984",
+      "headerColor": "#c5cdd3",
+      "stripedColor": "#0e1920"
+    },
+    "progressBar": {
+      "color": "#72c09f",
+      "emptyColor": "#182a35",
+      "percentageColor": "#c5cdd3"
+    },
+    "spinner": {
+      "color": "#c88da2"
+    },
+    "tabs": {
+      "focusColor": "#c88da2",
+      "activeColor": "#72c09f",
+      "highlightColor": "#c8a984"
+    },
+    "tree": {
+      "focusColor": "#c88da2",
+      "selectedColor": "#72c09f",
+      "highlightColor": "#c8a984"
     }
   }
 };
@@ -4238,13 +6616,54 @@ export const NIGHTFOX_DUSKFOX = {
     },
     "checkbox": {
       "color": "#393552",
-      "checkedColor": "#ccb1ed",
-      "uncheckedColor": "#393552"
+      "focusColor": "#ccb1ed",
+      "selectedColor": "#ccb1ed",
+      "highlightColor": "#f6c177"
     },
     "radiobox": {
       "color": "#393552",
+      "focusColor": "#ccb1ed",
       "selectedColor": "#ccb1ed",
-      "unselectedColor": "#393552"
+      "highlightColor": "#f6c177"
+    },
+    "list": {
+      "color": "#e0def4",
+      "bg": null,
+      "highlightColor": "#ccb1ed"
+    },
+    "selectInput": {
+      "color": "#393552",
+      "bg": null,
+      "focusColor": "#ccb1ed",
+      "selectedColor": "#a3be8c",
+      "highlightColor": "#f6c177"
+    },
+    "table": {
+      "color": "#393552",
+      "bg": null,
+      "focusColor": "#ccb1ed",
+      "selectedColor": "#a3be8c",
+      "highlightColor": "#f6c177",
+      "headerColor": "#e0def4",
+      "stripedColor": "#232136"
+    },
+    "progressBar": {
+      "color": "#a3be8c",
+      "emptyColor": "#393552",
+      "percentageColor": "#e0def4"
+    },
+    "spinner": {
+      "color": "#ccb1ed"
+    },
+    "tabs": {
+      "focusColor": "#ccb1ed",
+      "activeColor": "#a3be8c",
+      "highlightColor": "#f6c177"
+    },
+    "tree": {
+      "focusColor": "#ccb1ed",
+      "selectedColor": "#a3be8c",
+      "highlightColor": "#f6c177"
     }
   }
 };
@@ -4310,13 +6729,54 @@ export const SEOUL256_LIGHT = {
     },
     "checkbox": {
       "color": "#4e4e4e",
-      "checkedColor": "#87025f",
-      "uncheckedColor": "#4e4e4e"
+      "focusColor": "#87025f",
+      "selectedColor": "#87025f",
+      "highlightColor": "#af8760"
     },
     "radiobox": {
       "color": "#4e4e4e",
+      "focusColor": "#87025f",
       "selectedColor": "#87025f",
-      "unselectedColor": "#4e4e4e"
+      "highlightColor": "#af8760"
+    },
+    "list": {
+      "color": "#4e4e4e",
+      "bg": null,
+      "highlightColor": "#87025f"
+    },
+    "selectInput": {
+      "color": "#4e4e4e",
+      "bg": null,
+      "focusColor": "#87025f",
+      "selectedColor": "#5f885f",
+      "highlightColor": "#af8760"
+    },
+    "table": {
+      "color": "#4e4e4e",
+      "bg": null,
+      "focusColor": "#87025f",
+      "selectedColor": "#5f885f",
+      "highlightColor": "#af8760",
+      "headerColor": "#4e4e4e",
+      "stripedColor": "#dadada"
+    },
+    "progressBar": {
+      "color": "#5f885f",
+      "emptyColor": "#4e4e4e",
+      "percentageColor": "#4e4e4e"
+    },
+    "spinner": {
+      "color": "#87025f"
+    },
+    "tabs": {
+      "focusColor": "#87025f",
+      "activeColor": "#5f885f",
+      "highlightColor": "#af8760"
+    },
+    "tree": {
+      "focusColor": "#87025f",
+      "selectedColor": "#5f885f",
+      "highlightColor": "#af8760"
     }
   }
 };
@@ -4382,13 +6842,54 @@ export const NOCTIS_BORDO = {
     },
     "checkbox": {
       "color": "#47393e",
-      "checkedColor": "#e798b3",
-      "uncheckedColor": "#47393e"
+      "focusColor": "#e798b3",
+      "selectedColor": "#e798b3",
+      "highlightColor": "#e4b781"
     },
     "radiobox": {
       "color": "#47393e",
+      "focusColor": "#e798b3",
       "selectedColor": "#e798b3",
-      "unselectedColor": "#47393e"
+      "highlightColor": "#e4b781"
+    },
+    "list": {
+      "color": "#cbbec2",
+      "bg": null,
+      "highlightColor": "#e798b3"
+    },
+    "selectInput": {
+      "color": "#47393e",
+      "bg": null,
+      "focusColor": "#e798b3",
+      "selectedColor": "#49e9a6",
+      "highlightColor": "#e4b781"
+    },
+    "table": {
+      "color": "#47393e",
+      "bg": null,
+      "focusColor": "#e798b3",
+      "selectedColor": "#49e9a6",
+      "highlightColor": "#e4b781",
+      "headerColor": "#cbbec2",
+      "stripedColor": "#272022"
+    },
+    "progressBar": {
+      "color": "#49e9a6",
+      "emptyColor": "#47393e",
+      "percentageColor": "#cbbec2"
+    },
+    "spinner": {
+      "color": "#e798b3"
+    },
+    "tabs": {
+      "focusColor": "#e798b3",
+      "activeColor": "#49e9a6",
+      "highlightColor": "#e4b781"
+    },
+    "tree": {
+      "focusColor": "#e798b3",
+      "selectedColor": "#49e9a6",
+      "highlightColor": "#e4b781"
     }
   }
 };
@@ -4454,13 +6955,54 @@ export const SHADES_OF_PURPLE_SUPER_DARK = {
     },
     "checkbox": {
       "color": "#000000",
-      "checkedColor": "#fb94ff",
-      "uncheckedColor": "#000000"
+      "focusColor": "#fb94ff",
+      "selectedColor": "#fb94ff",
+      "highlightColor": "#fad000"
     },
     "radiobox": {
       "color": "#000000",
+      "focusColor": "#fb94ff",
       "selectedColor": "#fb94ff",
-      "unselectedColor": "#000000"
+      "highlightColor": "#fad000"
+    },
+    "list": {
+      "color": "#ffffff",
+      "bg": null,
+      "highlightColor": "#fb94ff"
+    },
+    "selectInput": {
+      "color": "#000000",
+      "bg": null,
+      "focusColor": "#fb94ff",
+      "selectedColor": "#3ad900",
+      "highlightColor": "#fad000"
+    },
+    "table": {
+      "color": "#000000",
+      "bg": null,
+      "focusColor": "#fb94ff",
+      "selectedColor": "#3ad900",
+      "highlightColor": "#fad000",
+      "headerColor": "#ffffff",
+      "stripedColor": "#15152b"
+    },
+    "progressBar": {
+      "color": "#3ad900",
+      "emptyColor": "#000000",
+      "percentageColor": "#ffffff"
+    },
+    "spinner": {
+      "color": "#fb94ff"
+    },
+    "tabs": {
+      "focusColor": "#fb94ff",
+      "activeColor": "#3ad900",
+      "highlightColor": "#fad000"
+    },
+    "tree": {
+      "focusColor": "#fb94ff",
+      "selectedColor": "#3ad900",
+      "highlightColor": "#fad000"
     }
   }
 };
@@ -4526,13 +7068,54 @@ export const ZENBONES_NEOBONES_DARK = {
     },
     "checkbox": {
       "color": "#0f191f",
-      "checkedColor": "#cf86c1",
-      "uncheckedColor": "#0f191f"
+      "focusColor": "#cf86c1",
+      "selectedColor": "#cf86c1",
+      "highlightColor": "#b77e64"
     },
     "radiobox": {
       "color": "#0f191f",
+      "focusColor": "#cf86c1",
       "selectedColor": "#cf86c1",
-      "unselectedColor": "#0f191f"
+      "highlightColor": "#b77e64"
+    },
+    "list": {
+      "color": "#c6d5cf",
+      "bg": null,
+      "highlightColor": "#cf86c1"
+    },
+    "selectInput": {
+      "color": "#0f191f",
+      "bg": null,
+      "focusColor": "#cf86c1",
+      "selectedColor": "#90ff6b",
+      "highlightColor": "#b77e64"
+    },
+    "table": {
+      "color": "#0f191f",
+      "bg": null,
+      "focusColor": "#cf86c1",
+      "selectedColor": "#90ff6b",
+      "highlightColor": "#b77e64",
+      "headerColor": "#c6d5cf",
+      "stripedColor": "#0f191f"
+    },
+    "progressBar": {
+      "color": "#90ff6b",
+      "emptyColor": "#0f191f",
+      "percentageColor": "#c6d5cf"
+    },
+    "spinner": {
+      "color": "#cf86c1"
+    },
+    "tabs": {
+      "focusColor": "#cf86c1",
+      "activeColor": "#90ff6b",
+      "highlightColor": "#b77e64"
+    },
+    "tree": {
+      "focusColor": "#cf86c1",
+      "selectedColor": "#90ff6b",
+      "highlightColor": "#b77e64"
     }
   }
 };
@@ -4598,13 +7181,54 @@ export const NOCTIS_SERENO = {
     },
     "checkbox": {
       "color": "#324a4d",
-      "checkedColor": "#e798b3",
-      "uncheckedColor": "#324a4d"
+      "focusColor": "#e798b3",
+      "selectedColor": "#e798b3",
+      "highlightColor": "#e4b781"
     },
     "radiobox": {
       "color": "#324a4d",
+      "focusColor": "#e798b3",
       "selectedColor": "#e798b3",
-      "unselectedColor": "#324a4d"
+      "highlightColor": "#e4b781"
+    },
+    "list": {
+      "color": "#b2cacd",
+      "bg": null,
+      "highlightColor": "#e798b3"
+    },
+    "selectInput": {
+      "color": "#324a4d",
+      "bg": null,
+      "focusColor": "#e798b3",
+      "selectedColor": "#49e9a6",
+      "highlightColor": "#e4b781"
+    },
+    "table": {
+      "color": "#324a4d",
+      "bg": null,
+      "focusColor": "#e798b3",
+      "selectedColor": "#49e9a6",
+      "highlightColor": "#e4b781",
+      "headerColor": "#b2cacd",
+      "stripedColor": "#041d20"
+    },
+    "progressBar": {
+      "color": "#49e9a6",
+      "emptyColor": "#324a4d",
+      "percentageColor": "#b2cacd"
+    },
+    "spinner": {
+      "color": "#e798b3"
+    },
+    "tabs": {
+      "focusColor": "#e798b3",
+      "activeColor": "#49e9a6",
+      "highlightColor": "#e4b781"
+    },
+    "tree": {
+      "focusColor": "#e798b3",
+      "selectedColor": "#49e9a6",
+      "highlightColor": "#e4b781"
     }
   }
 };
@@ -4670,13 +7294,54 @@ export const GRUVBOX_DARK = {
     },
     "checkbox": {
       "color": "#282828",
-      "checkedColor": "#d3869b",
-      "uncheckedColor": "#282828"
+      "focusColor": "#d3869b",
+      "selectedColor": "#d3869b",
+      "highlightColor": "#d79921"
     },
     "radiobox": {
       "color": "#282828",
+      "focusColor": "#d3869b",
       "selectedColor": "#d3869b",
-      "unselectedColor": "#282828"
+      "highlightColor": "#d79921"
+    },
+    "list": {
+      "color": "#ebdbb2",
+      "bg": null,
+      "highlightColor": "#d3869b"
+    },
+    "selectInput": {
+      "color": "#282828",
+      "bg": null,
+      "focusColor": "#d3869b",
+      "selectedColor": "#98971a",
+      "highlightColor": "#d79921"
+    },
+    "table": {
+      "color": "#282828",
+      "bg": null,
+      "focusColor": "#d3869b",
+      "selectedColor": "#98971a",
+      "highlightColor": "#d79921",
+      "headerColor": "#ebdbb2",
+      "stripedColor": "#282828"
+    },
+    "progressBar": {
+      "color": "#98971a",
+      "emptyColor": "#282828",
+      "percentageColor": "#ebdbb2"
+    },
+    "spinner": {
+      "color": "#d3869b"
+    },
+    "tabs": {
+      "focusColor": "#d3869b",
+      "activeColor": "#98971a",
+      "highlightColor": "#d79921"
+    },
+    "tree": {
+      "focusColor": "#d3869b",
+      "selectedColor": "#98971a",
+      "highlightColor": "#d79921"
     }
   }
 };
@@ -4742,13 +7407,54 @@ export const SOLARIZED_LIGHT = {
     },
     "checkbox": {
       "color": "#073642",
-      "checkedColor": "#6c71c4",
-      "uncheckedColor": "#073642"
+      "focusColor": "#6c71c4",
+      "selectedColor": "#6c71c4",
+      "highlightColor": "#b58900"
     },
     "radiobox": {
       "color": "#073642",
+      "focusColor": "#6c71c4",
       "selectedColor": "#6c71c4",
-      "unselectedColor": "#073642"
+      "highlightColor": "#b58900"
+    },
+    "list": {
+      "color": "#657b83",
+      "bg": null,
+      "highlightColor": "#6c71c4"
+    },
+    "selectInput": {
+      "color": "#073642",
+      "bg": null,
+      "focusColor": "#6c71c4",
+      "selectedColor": "#859900",
+      "highlightColor": "#b58900"
+    },
+    "table": {
+      "color": "#073642",
+      "bg": null,
+      "focusColor": "#6c71c4",
+      "selectedColor": "#859900",
+      "highlightColor": "#b58900",
+      "headerColor": "#657b83",
+      "stripedColor": "#fdf6e3"
+    },
+    "progressBar": {
+      "color": "#859900",
+      "emptyColor": "#073642",
+      "percentageColor": "#657b83"
+    },
+    "spinner": {
+      "color": "#6c71c4"
+    },
+    "tabs": {
+      "focusColor": "#6c71c4",
+      "activeColor": "#859900",
+      "highlightColor": "#b58900"
+    },
+    "tree": {
+      "focusColor": "#6c71c4",
+      "selectedColor": "#859900",
+      "highlightColor": "#b58900"
     }
   }
 };
@@ -4814,13 +7520,54 @@ export const ZENBONES_ZENWRITTEN_LIGHT = {
     },
     "checkbox": {
       "color": "#eeeeee",
-      "checkedColor": "#7b3b70",
-      "uncheckedColor": "#eeeeee"
+      "focusColor": "#7b3b70",
+      "selectedColor": "#7b3b70",
+      "highlightColor": "#944927"
     },
     "radiobox": {
       "color": "#eeeeee",
+      "focusColor": "#7b3b70",
       "selectedColor": "#7b3b70",
-      "unselectedColor": "#eeeeee"
+      "highlightColor": "#944927"
+    },
+    "list": {
+      "color": "#353535",
+      "bg": null,
+      "highlightColor": "#7b3b70"
+    },
+    "selectInput": {
+      "color": "#eeeeee",
+      "bg": null,
+      "focusColor": "#7b3b70",
+      "selectedColor": "#4f6c31",
+      "highlightColor": "#944927"
+    },
+    "table": {
+      "color": "#eeeeee",
+      "bg": null,
+      "focusColor": "#7b3b70",
+      "selectedColor": "#4f6c31",
+      "highlightColor": "#944927",
+      "headerColor": "#353535",
+      "stripedColor": "#eeeeee"
+    },
+    "progressBar": {
+      "color": "#4f6c31",
+      "emptyColor": "#eeeeee",
+      "percentageColor": "#353535"
+    },
+    "spinner": {
+      "color": "#7b3b70"
+    },
+    "tabs": {
+      "focusColor": "#7b3b70",
+      "activeColor": "#4f6c31",
+      "highlightColor": "#944927"
+    },
+    "tree": {
+      "focusColor": "#7b3b70",
+      "selectedColor": "#4f6c31",
+      "highlightColor": "#944927"
     }
   }
 };
@@ -4886,13 +7633,54 @@ export const NIGHT_OWL_DARK = {
     },
     "checkbox": {
       "color": "#011627",
-      "checkedColor": "#c792ea",
-      "uncheckedColor": "#011627"
+      "focusColor": "#c792ea",
+      "selectedColor": "#c792ea",
+      "highlightColor": "#c5e478"
     },
     "radiobox": {
       "color": "#011627",
+      "focusColor": "#c792ea",
       "selectedColor": "#c792ea",
-      "unselectedColor": "#011627"
+      "highlightColor": "#c5e478"
+    },
+    "list": {
+      "color": "#cccccc",
+      "bg": null,
+      "highlightColor": "#c792ea"
+    },
+    "selectInput": {
+      "color": "#011627",
+      "bg": null,
+      "focusColor": "#c792ea",
+      "selectedColor": "#22da6e",
+      "highlightColor": "#c5e478"
+    },
+    "table": {
+      "color": "#011627",
+      "bg": null,
+      "focusColor": "#c792ea",
+      "selectedColor": "#22da6e",
+      "highlightColor": "#c5e478",
+      "headerColor": "#cccccc",
+      "stripedColor": "#011627"
+    },
+    "progressBar": {
+      "color": "#22da6e",
+      "emptyColor": "#011627",
+      "percentageColor": "#cccccc"
+    },
+    "spinner": {
+      "color": "#c792ea"
+    },
+    "tabs": {
+      "focusColor": "#c792ea",
+      "activeColor": "#22da6e",
+      "highlightColor": "#c5e478"
+    },
+    "tree": {
+      "focusColor": "#c792ea",
+      "selectedColor": "#22da6e",
+      "highlightColor": "#c5e478"
     }
   }
 };
@@ -4958,13 +7746,54 @@ export const NIGHT_OWL_LIGHT = {
     },
     "checkbox": {
       "color": "#403f53",
-      "checkedColor": "#d6438a",
-      "uncheckedColor": "#403f53"
+      "focusColor": "#d6438a",
+      "selectedColor": "#d6438a",
+      "highlightColor": "#e0af02"
     },
     "radiobox": {
       "color": "#403f53",
+      "focusColor": "#d6438a",
       "selectedColor": "#d6438a",
-      "unselectedColor": "#403f53"
+      "highlightColor": "#e0af02"
+    },
+    "list": {
+      "color": "#403f53",
+      "bg": null,
+      "highlightColor": "#d6438a"
+    },
+    "selectInput": {
+      "color": "#403f53",
+      "bg": null,
+      "focusColor": "#d6438a",
+      "selectedColor": "#08916a",
+      "highlightColor": "#e0af02"
+    },
+    "table": {
+      "color": "#403f53",
+      "bg": null,
+      "focusColor": "#d6438a",
+      "selectedColor": "#08916a",
+      "highlightColor": "#e0af02",
+      "headerColor": "#403f53",
+      "stripedColor": "#f6f6f6"
+    },
+    "progressBar": {
+      "color": "#08916a",
+      "emptyColor": "#403f53",
+      "percentageColor": "#403f53"
+    },
+    "spinner": {
+      "color": "#d6438a"
+    },
+    "tabs": {
+      "focusColor": "#d6438a",
+      "activeColor": "#08916a",
+      "highlightColor": "#e0af02"
+    },
+    "tree": {
+      "focusColor": "#d6438a",
+      "selectedColor": "#08916a",
+      "highlightColor": "#e0af02"
     }
   }
 };
@@ -5030,13 +7859,54 @@ export const POSTERPOLE_GRAY = {
     },
     "checkbox": {
       "color": "#2c2c30",
-      "checkedColor": "#ccb3c6",
-      "uncheckedColor": "#2c2c30"
+      "focusColor": "#ccb3c6",
+      "selectedColor": "#ccb3c6",
+      "highlightColor": "#cc9166"
     },
     "radiobox": {
       "color": "#2c2c30",
+      "focusColor": "#ccb3c6",
       "selectedColor": "#ccb3c6",
-      "unselectedColor": "#2c2c30"
+      "highlightColor": "#cc9166"
+    },
+    "list": {
+      "color": "#c6c0b9",
+      "bg": null,
+      "highlightColor": "#ccb3c6"
+    },
+    "selectInput": {
+      "color": "#2c2c30",
+      "bg": null,
+      "focusColor": "#ccb3c6",
+      "selectedColor": "#778c73",
+      "highlightColor": "#cc9166"
+    },
+    "table": {
+      "color": "#2c2c30",
+      "bg": null,
+      "focusColor": "#ccb3c6",
+      "selectedColor": "#778c73",
+      "highlightColor": "#cc9166",
+      "headerColor": "#c6c0b9",
+      "stripedColor": "#1f1f1f"
+    },
+    "progressBar": {
+      "color": "#778c73",
+      "emptyColor": "#2c2c30",
+      "percentageColor": "#c6c0b9"
+    },
+    "spinner": {
+      "color": "#ccb3c6"
+    },
+    "tabs": {
+      "focusColor": "#ccb3c6",
+      "activeColor": "#778c73",
+      "highlightColor": "#cc9166"
+    },
+    "tree": {
+      "focusColor": "#ccb3c6",
+      "selectedColor": "#778c73",
+      "highlightColor": "#cc9166"
     }
   }
 };
@@ -5102,13 +7972,54 @@ export const APPRENTICE_DEFAULT = {
     },
     "checkbox": {
       "color": "#1c1c1c",
-      "checkedColor": "#8787af",
-      "uncheckedColor": "#1c1c1c"
+      "focusColor": "#8787af",
+      "selectedColor": "#8787af",
+      "highlightColor": "#87875f"
     },
     "radiobox": {
       "color": "#1c1c1c",
+      "focusColor": "#8787af",
       "selectedColor": "#8787af",
-      "unselectedColor": "#1c1c1c"
+      "highlightColor": "#87875f"
+    },
+    "list": {
+      "color": "#bcbcbc",
+      "bg": null,
+      "highlightColor": "#8787af"
+    },
+    "selectInput": {
+      "color": "#1c1c1c",
+      "bg": null,
+      "focusColor": "#8787af",
+      "selectedColor": "#5f875f",
+      "highlightColor": "#87875f"
+    },
+    "table": {
+      "color": "#1c1c1c",
+      "bg": null,
+      "focusColor": "#8787af",
+      "selectedColor": "#5f875f",
+      "highlightColor": "#87875f",
+      "headerColor": "#bcbcbc",
+      "stripedColor": "#262626"
+    },
+    "progressBar": {
+      "color": "#5f875f",
+      "emptyColor": "#1c1c1c",
+      "percentageColor": "#bcbcbc"
+    },
+    "spinner": {
+      "color": "#8787af"
+    },
+    "tabs": {
+      "focusColor": "#8787af",
+      "activeColor": "#5f875f",
+      "highlightColor": "#87875f"
+    },
+    "tree": {
+      "focusColor": "#8787af",
+      "selectedColor": "#5f875f",
+      "highlightColor": "#87875f"
     }
   }
 };
@@ -5174,13 +8085,54 @@ export const ZENBONES_KANAGAWABONES = {
     },
     "checkbox": {
       "color": "#1f1f28",
-      "checkedColor": "#a98fd2",
-      "uncheckedColor": "#1f1f28"
+      "focusColor": "#a98fd2",
+      "selectedColor": "#a98fd2",
+      "highlightColor": "#e5c283"
     },
     "radiobox": {
       "color": "#1f1f28",
+      "focusColor": "#a98fd2",
       "selectedColor": "#a98fd2",
-      "unselectedColor": "#1f1f28"
+      "highlightColor": "#e5c283"
+    },
+    "list": {
+      "color": "#ddd8bb",
+      "bg": null,
+      "highlightColor": "#a98fd2"
+    },
+    "selectInput": {
+      "color": "#1f1f28",
+      "bg": null,
+      "focusColor": "#a98fd2",
+      "selectedColor": "#98bc6d",
+      "highlightColor": "#e5c283"
+    },
+    "table": {
+      "color": "#1f1f28",
+      "bg": null,
+      "focusColor": "#a98fd2",
+      "selectedColor": "#98bc6d",
+      "highlightColor": "#e5c283",
+      "headerColor": "#ddd8bb",
+      "stripedColor": "#1f1f28"
+    },
+    "progressBar": {
+      "color": "#98bc6d",
+      "emptyColor": "#1f1f28",
+      "percentageColor": "#ddd8bb"
+    },
+    "spinner": {
+      "color": "#a98fd2"
+    },
+    "tabs": {
+      "focusColor": "#a98fd2",
+      "activeColor": "#98bc6d",
+      "highlightColor": "#e5c283"
+    },
+    "tree": {
+      "focusColor": "#a98fd2",
+      "selectedColor": "#98bc6d",
+      "highlightColor": "#e5c283"
     }
   }
 };
@@ -5246,13 +8198,54 @@ export const EVERFOREST_DARK = {
     },
     "checkbox": {
       "color": "#343f44",
-      "checkedColor": "#d699b6",
-      "uncheckedColor": "#343f44"
+      "focusColor": "#d699b6",
+      "selectedColor": "#d699b6",
+      "highlightColor": "#dbbc7f"
     },
     "radiobox": {
       "color": "#343f44",
+      "focusColor": "#d699b6",
       "selectedColor": "#d699b6",
-      "unselectedColor": "#343f44"
+      "highlightColor": "#dbbc7f"
+    },
+    "list": {
+      "color": "#d3c6aa",
+      "bg": null,
+      "highlightColor": "#d699b6"
+    },
+    "selectInput": {
+      "color": "#343f44",
+      "bg": null,
+      "focusColor": "#d699b6",
+      "selectedColor": "#a7c080",
+      "highlightColor": "#dbbc7f"
+    },
+    "table": {
+      "color": "#343f44",
+      "bg": null,
+      "focusColor": "#d699b6",
+      "selectedColor": "#a7c080",
+      "highlightColor": "#dbbc7f",
+      "headerColor": "#d3c6aa",
+      "stripedColor": "#2d353b"
+    },
+    "progressBar": {
+      "color": "#a7c080",
+      "emptyColor": "#343f44",
+      "percentageColor": "#d3c6aa"
+    },
+    "spinner": {
+      "color": "#d699b6"
+    },
+    "tabs": {
+      "focusColor": "#d699b6",
+      "activeColor": "#a7c080",
+      "highlightColor": "#dbbc7f"
+    },
+    "tree": {
+      "focusColor": "#d699b6",
+      "selectedColor": "#a7c080",
+      "highlightColor": "#dbbc7f"
     }
   }
 };
@@ -5318,13 +8311,54 @@ export const ROSE_PINE_MOON = {
     },
     "checkbox": {
       "color": "#393552",
-      "checkedColor": "#c4a7e7",
-      "uncheckedColor": "#393552"
+      "focusColor": "#c4a7e7",
+      "selectedColor": "#c4a7e7",
+      "highlightColor": "#f6c177"
     },
     "radiobox": {
       "color": "#393552",
+      "focusColor": "#c4a7e7",
       "selectedColor": "#c4a7e7",
-      "unselectedColor": "#393552"
+      "highlightColor": "#f6c177"
+    },
+    "list": {
+      "color": "#e0def4",
+      "bg": null,
+      "highlightColor": "#c4a7e7"
+    },
+    "selectInput": {
+      "color": "#393552",
+      "bg": null,
+      "focusColor": "#c4a7e7",
+      "selectedColor": "#3e8fb0",
+      "highlightColor": "#f6c177"
+    },
+    "table": {
+      "color": "#393552",
+      "bg": null,
+      "focusColor": "#c4a7e7",
+      "selectedColor": "#3e8fb0",
+      "highlightColor": "#f6c177",
+      "headerColor": "#e0def4",
+      "stripedColor": "#2a273f"
+    },
+    "progressBar": {
+      "color": "#3e8fb0",
+      "emptyColor": "#393552",
+      "percentageColor": "#e0def4"
+    },
+    "spinner": {
+      "color": "#c4a7e7"
+    },
+    "tabs": {
+      "focusColor": "#c4a7e7",
+      "activeColor": "#3e8fb0",
+      "highlightColor": "#f6c177"
+    },
+    "tree": {
+      "focusColor": "#c4a7e7",
+      "selectedColor": "#3e8fb0",
+      "highlightColor": "#f6c177"
     }
   }
 };
@@ -5390,13 +8424,54 @@ export const NOCTIS_UVA = {
     },
     "checkbox": {
       "color": "#302f3d",
-      "checkedColor": "#e798b3",
-      "uncheckedColor": "#302f3d"
+      "focusColor": "#e798b3",
+      "selectedColor": "#e798b3",
+      "highlightColor": "#e4b781"
     },
     "radiobox": {
       "color": "#302f3d",
+      "focusColor": "#e798b3",
       "selectedColor": "#e798b3",
-      "unselectedColor": "#302f3d"
+      "highlightColor": "#e4b781"
+    },
+    "list": {
+      "color": "#c5c2d6",
+      "bg": null,
+      "highlightColor": "#e798b3"
+    },
+    "selectInput": {
+      "color": "#302f3d",
+      "bg": null,
+      "focusColor": "#e798b3",
+      "selectedColor": "#49e9a6",
+      "highlightColor": "#e4b781"
+    },
+    "table": {
+      "color": "#302f3d",
+      "bg": null,
+      "focusColor": "#e798b3",
+      "selectedColor": "#49e9a6",
+      "highlightColor": "#e4b781",
+      "headerColor": "#c5c2d6",
+      "stripedColor": "#1f1d30"
+    },
+    "progressBar": {
+      "color": "#49e9a6",
+      "emptyColor": "#302f3d",
+      "percentageColor": "#c5c2d6"
+    },
+    "spinner": {
+      "color": "#e798b3"
+    },
+    "tabs": {
+      "focusColor": "#e798b3",
+      "activeColor": "#49e9a6",
+      "highlightColor": "#e4b781"
+    },
+    "tree": {
+      "focusColor": "#e798b3",
+      "selectedColor": "#49e9a6",
+      "highlightColor": "#e4b781"
     }
   }
 };
@@ -5462,13 +8537,54 @@ export const TOMORROW_NIGHT_BRIGHT = {
     },
     "checkbox": {
       "color": "#000000",
-      "checkedColor": "#c397d8",
-      "uncheckedColor": "#000000"
+      "focusColor": "#c397d8",
+      "selectedColor": "#c397d8",
+      "highlightColor": "#e7c547"
     },
     "radiobox": {
       "color": "#000000",
+      "focusColor": "#c397d8",
       "selectedColor": "#c397d8",
-      "unselectedColor": "#000000"
+      "highlightColor": "#e7c547"
+    },
+    "list": {
+      "color": "#eaeaea",
+      "bg": null,
+      "highlightColor": "#c397d8"
+    },
+    "selectInput": {
+      "color": "#000000",
+      "bg": null,
+      "focusColor": "#c397d8",
+      "selectedColor": "#b9ca4a",
+      "highlightColor": "#e7c547"
+    },
+    "table": {
+      "color": "#000000",
+      "bg": null,
+      "focusColor": "#c397d8",
+      "selectedColor": "#b9ca4a",
+      "highlightColor": "#e7c547",
+      "headerColor": "#eaeaea",
+      "stripedColor": "#000000"
+    },
+    "progressBar": {
+      "color": "#b9ca4a",
+      "emptyColor": "#000000",
+      "percentageColor": "#eaeaea"
+    },
+    "spinner": {
+      "color": "#c397d8"
+    },
+    "tabs": {
+      "focusColor": "#c397d8",
+      "activeColor": "#b9ca4a",
+      "highlightColor": "#e7c547"
+    },
+    "tree": {
+      "focusColor": "#c397d8",
+      "selectedColor": "#b9ca4a",
+      "highlightColor": "#e7c547"
     }
   }
 };
@@ -5534,13 +8650,54 @@ export const EVERFOREST_LIGHT = {
     },
     "checkbox": {
       "color": "#5c6a72",
-      "checkedColor": "#df69ba",
-      "uncheckedColor": "#5c6a72"
+      "focusColor": "#df69ba",
+      "selectedColor": "#df69ba",
+      "highlightColor": "#dfa000"
     },
     "radiobox": {
       "color": "#5c6a72",
+      "focusColor": "#df69ba",
       "selectedColor": "#df69ba",
-      "unselectedColor": "#5c6a72"
+      "highlightColor": "#dfa000"
+    },
+    "list": {
+      "color": "#5c6a72",
+      "bg": null,
+      "highlightColor": "#df69ba"
+    },
+    "selectInput": {
+      "color": "#5c6a72",
+      "bg": null,
+      "focusColor": "#df69ba",
+      "selectedColor": "#8da101",
+      "highlightColor": "#dfa000"
+    },
+    "table": {
+      "color": "#5c6a72",
+      "bg": null,
+      "focusColor": "#df69ba",
+      "selectedColor": "#8da101",
+      "highlightColor": "#dfa000",
+      "headerColor": "#5c6a72",
+      "stripedColor": "#fdf6e3"
+    },
+    "progressBar": {
+      "color": "#8da101",
+      "emptyColor": "#5c6a72",
+      "percentageColor": "#5c6a72"
+    },
+    "spinner": {
+      "color": "#df69ba"
+    },
+    "tabs": {
+      "focusColor": "#df69ba",
+      "activeColor": "#8da101",
+      "highlightColor": "#dfa000"
+    },
+    "tree": {
+      "focusColor": "#df69ba",
+      "selectedColor": "#8da101",
+      "highlightColor": "#dfa000"
     }
   }
 };
@@ -5606,13 +8763,54 @@ export const GITHUB_LIGHT_HIGH_CONTRAST = {
     },
     "checkbox": {
       "color": "#0e1116",
-      "checkedColor": "#844ae7",
-      "uncheckedColor": "#0e1116"
+      "focusColor": "#844ae7",
+      "selectedColor": "#844ae7",
+      "highlightColor": "#3f2200"
     },
     "radiobox": {
       "color": "#0e1116",
+      "focusColor": "#844ae7",
       "selectedColor": "#844ae7",
-      "unselectedColor": "#0e1116"
+      "highlightColor": "#3f2200"
+    },
+    "list": {
+      "color": "#0e1116",
+      "bg": null,
+      "highlightColor": "#844ae7"
+    },
+    "selectInput": {
+      "color": "#0e1116",
+      "bg": null,
+      "focusColor": "#844ae7",
+      "selectedColor": "#024c1a",
+      "highlightColor": "#3f2200"
+    },
+    "table": {
+      "color": "#0e1116",
+      "bg": null,
+      "focusColor": "#844ae7",
+      "selectedColor": "#024c1a",
+      "highlightColor": "#3f2200",
+      "headerColor": "#0e1116",
+      "stripedColor": "#ffffff"
+    },
+    "progressBar": {
+      "color": "#024c1a",
+      "emptyColor": "#0e1116",
+      "percentageColor": "#0e1116"
+    },
+    "spinner": {
+      "color": "#844ae7"
+    },
+    "tabs": {
+      "focusColor": "#844ae7",
+      "activeColor": "#024c1a",
+      "highlightColor": "#3f2200"
+    },
+    "tree": {
+      "focusColor": "#844ae7",
+      "selectedColor": "#024c1a",
+      "highlightColor": "#3f2200"
     }
   }
 };
@@ -5678,13 +8876,54 @@ export const CATPPUCCIN_MOCHA = {
     },
     "checkbox": {
       "color": "#45475a",
-      "checkedColor": "#f2aede",
-      "uncheckedColor": "#45475a"
+      "focusColor": "#f2aede",
+      "selectedColor": "#f2aede",
+      "highlightColor": "#f9e2af"
     },
     "radiobox": {
       "color": "#45475a",
+      "focusColor": "#f2aede",
       "selectedColor": "#f2aede",
-      "unselectedColor": "#45475a"
+      "highlightColor": "#f9e2af"
+    },
+    "list": {
+      "color": "#cdd6f4",
+      "bg": null,
+      "highlightColor": "#f2aede"
+    },
+    "selectInput": {
+      "color": "#45475a",
+      "bg": null,
+      "focusColor": "#f2aede",
+      "selectedColor": "#a6e3a1",
+      "highlightColor": "#f9e2af"
+    },
+    "table": {
+      "color": "#45475a",
+      "bg": null,
+      "focusColor": "#f2aede",
+      "selectedColor": "#a6e3a1",
+      "highlightColor": "#f9e2af",
+      "headerColor": "#cdd6f4",
+      "stripedColor": "#1e1e2e"
+    },
+    "progressBar": {
+      "color": "#a6e3a1",
+      "emptyColor": "#45475a",
+      "percentageColor": "#cdd6f4"
+    },
+    "spinner": {
+      "color": "#f2aede"
+    },
+    "tabs": {
+      "focusColor": "#f2aede",
+      "activeColor": "#a6e3a1",
+      "highlightColor": "#f9e2af"
+    },
+    "tree": {
+      "focusColor": "#f2aede",
+      "selectedColor": "#a6e3a1",
+      "highlightColor": "#f9e2af"
     }
   }
 };
@@ -5750,13 +8989,54 @@ export const ONE_LIGHT = {
     },
     "checkbox": {
       "color": "#000000",
-      "checkedColor": "#a00095",
-      "uncheckedColor": "#000000"
+      "focusColor": "#a00095",
+      "selectedColor": "#a00095",
+      "highlightColor": "#d2b67b"
     },
     "radiobox": {
       "color": "#000000",
+      "focusColor": "#a00095",
       "selectedColor": "#a00095",
-      "unselectedColor": "#000000"
+      "highlightColor": "#d2b67b"
+    },
+    "list": {
+      "color": "#2a2b33",
+      "bg": null,
+      "highlightColor": "#a00095"
+    },
+    "selectInput": {
+      "color": "#000000",
+      "bg": null,
+      "focusColor": "#a00095",
+      "selectedColor": "#3e953a",
+      "highlightColor": "#d2b67b"
+    },
+    "table": {
+      "color": "#000000",
+      "bg": null,
+      "focusColor": "#a00095",
+      "selectedColor": "#3e953a",
+      "highlightColor": "#d2b67b",
+      "headerColor": "#2a2b33",
+      "stripedColor": "#f8f8f8"
+    },
+    "progressBar": {
+      "color": "#3e953a",
+      "emptyColor": "#000000",
+      "percentageColor": "#2a2b33"
+    },
+    "spinner": {
+      "color": "#a00095"
+    },
+    "tabs": {
+      "focusColor": "#a00095",
+      "activeColor": "#3e953a",
+      "highlightColor": "#d2b67b"
+    },
+    "tree": {
+      "focusColor": "#a00095",
+      "selectedColor": "#3e953a",
+      "highlightColor": "#d2b67b"
     }
   }
 };
@@ -5822,13 +9102,54 @@ export const GITHUB_DARK_LEGACY = {
     },
     "checkbox": {
       "color": "#586069",
-      "checkedColor": "#b392f0",
-      "uncheckedColor": "#586069"
+      "focusColor": "#b392f0",
+      "selectedColor": "#b392f0",
+      "highlightColor": "#ffea7f"
     },
     "radiobox": {
       "color": "#586069",
+      "focusColor": "#b392f0",
       "selectedColor": "#b392f0",
-      "unselectedColor": "#586069"
+      "highlightColor": "#ffea7f"
+    },
+    "list": {
+      "color": "#d1d5da",
+      "bg": null,
+      "highlightColor": "#b392f0"
+    },
+    "selectInput": {
+      "color": "#586069",
+      "bg": null,
+      "focusColor": "#b392f0",
+      "selectedColor": "#34d058",
+      "highlightColor": "#ffea7f"
+    },
+    "table": {
+      "color": "#586069",
+      "bg": null,
+      "focusColor": "#b392f0",
+      "selectedColor": "#34d058",
+      "highlightColor": "#ffea7f",
+      "headerColor": "#d1d5da",
+      "stripedColor": "#1f2428"
+    },
+    "progressBar": {
+      "color": "#34d058",
+      "emptyColor": "#586069",
+      "percentageColor": "#d1d5da"
+    },
+    "spinner": {
+      "color": "#b392f0"
+    },
+    "tabs": {
+      "focusColor": "#b392f0",
+      "activeColor": "#34d058",
+      "highlightColor": "#ffea7f"
+    },
+    "tree": {
+      "focusColor": "#b392f0",
+      "selectedColor": "#34d058",
+      "highlightColor": "#ffea7f"
     }
   }
 };
@@ -5894,13 +9215,54 @@ export const ICEBERG_DARK = {
     },
     "checkbox": {
       "color": "#1e2132",
-      "checkedColor": "#ada0d3",
-      "uncheckedColor": "#1e2132"
+      "focusColor": "#ada0d3",
+      "selectedColor": "#ada0d3",
+      "highlightColor": "#e2a478"
     },
     "radiobox": {
       "color": "#1e2132",
+      "focusColor": "#ada0d3",
       "selectedColor": "#ada0d3",
-      "unselectedColor": "#1e2132"
+      "highlightColor": "#e2a478"
+    },
+    "list": {
+      "color": "#c6c8d1",
+      "bg": null,
+      "highlightColor": "#ada0d3"
+    },
+    "selectInput": {
+      "color": "#1e2132",
+      "bg": null,
+      "focusColor": "#ada0d3",
+      "selectedColor": "#b4be82",
+      "highlightColor": "#e2a478"
+    },
+    "table": {
+      "color": "#1e2132",
+      "bg": null,
+      "focusColor": "#ada0d3",
+      "selectedColor": "#b4be82",
+      "highlightColor": "#e2a478",
+      "headerColor": "#c6c8d1",
+      "stripedColor": "#161821"
+    },
+    "progressBar": {
+      "color": "#b4be82",
+      "emptyColor": "#1e2132",
+      "percentageColor": "#c6c8d1"
+    },
+    "spinner": {
+      "color": "#ada0d3"
+    },
+    "tabs": {
+      "focusColor": "#ada0d3",
+      "activeColor": "#b4be82",
+      "highlightColor": "#e2a478"
+    },
+    "tree": {
+      "focusColor": "#ada0d3",
+      "selectedColor": "#b4be82",
+      "highlightColor": "#e2a478"
     }
   }
 };
@@ -5966,13 +9328,54 @@ export const TOKYO_NIGHT_DEFAULT = {
     },
     "checkbox": {
       "color": "#15161e",
-      "checkedColor": "#bb9af7",
-      "uncheckedColor": "#15161e"
+      "focusColor": "#bb9af7",
+      "selectedColor": "#bb9af7",
+      "highlightColor": "#e0af68"
     },
     "radiobox": {
       "color": "#15161e",
+      "focusColor": "#bb9af7",
       "selectedColor": "#bb9af7",
-      "unselectedColor": "#15161e"
+      "highlightColor": "#e0af68"
+    },
+    "list": {
+      "color": "#c0caf5",
+      "bg": null,
+      "highlightColor": "#bb9af7"
+    },
+    "selectInput": {
+      "color": "#15161e",
+      "bg": null,
+      "focusColor": "#bb9af7",
+      "selectedColor": "#9ece6a",
+      "highlightColor": "#e0af68"
+    },
+    "table": {
+      "color": "#15161e",
+      "bg": null,
+      "focusColor": "#bb9af7",
+      "selectedColor": "#9ece6a",
+      "highlightColor": "#e0af68",
+      "headerColor": "#c0caf5",
+      "stripedColor": "#1a1b26"
+    },
+    "progressBar": {
+      "color": "#9ece6a",
+      "emptyColor": "#15161e",
+      "percentageColor": "#c0caf5"
+    },
+    "spinner": {
+      "color": "#bb9af7"
+    },
+    "tabs": {
+      "focusColor": "#bb9af7",
+      "activeColor": "#9ece6a",
+      "highlightColor": "#e0af68"
+    },
+    "tree": {
+      "focusColor": "#bb9af7",
+      "selectedColor": "#9ece6a",
+      "highlightColor": "#e0af68"
     }
   }
 };
@@ -6038,13 +9441,54 @@ export const CATPPUCCIN_MACCHIATO = {
     },
     "checkbox": {
       "color": "#494d64",
-      "checkedColor": "#f2a9dd",
-      "uncheckedColor": "#494d64"
+      "focusColor": "#f2a9dd",
+      "selectedColor": "#f2a9dd",
+      "highlightColor": "#eed49f"
     },
     "radiobox": {
       "color": "#494d64",
+      "focusColor": "#f2a9dd",
       "selectedColor": "#f2a9dd",
-      "unselectedColor": "#494d64"
+      "highlightColor": "#eed49f"
+    },
+    "list": {
+      "color": "#cad3f5",
+      "bg": null,
+      "highlightColor": "#f2a9dd"
+    },
+    "selectInput": {
+      "color": "#494d64",
+      "bg": null,
+      "focusColor": "#f2a9dd",
+      "selectedColor": "#a6da95",
+      "highlightColor": "#eed49f"
+    },
+    "table": {
+      "color": "#494d64",
+      "bg": null,
+      "focusColor": "#f2a9dd",
+      "selectedColor": "#a6da95",
+      "highlightColor": "#eed49f",
+      "headerColor": "#cad3f5",
+      "stripedColor": "#24273a"
+    },
+    "progressBar": {
+      "color": "#a6da95",
+      "emptyColor": "#494d64",
+      "percentageColor": "#cad3f5"
+    },
+    "spinner": {
+      "color": "#f2a9dd"
+    },
+    "tabs": {
+      "focusColor": "#f2a9dd",
+      "activeColor": "#a6da95",
+      "highlightColor": "#eed49f"
+    },
+    "tree": {
+      "focusColor": "#f2a9dd",
+      "selectedColor": "#a6da95",
+      "highlightColor": "#eed49f"
     }
   }
 };
@@ -6110,13 +9554,54 @@ export const NIGHTFOX_DAYFOX = {
     },
     "checkbox": {
       "color": "#352c24",
-      "checkedColor": "#8452d5",
-      "uncheckedColor": "#352c24"
+      "focusColor": "#8452d5",
+      "selectedColor": "#8452d5",
+      "highlightColor": "#ac5402"
     },
     "radiobox": {
       "color": "#352c24",
+      "focusColor": "#8452d5",
       "selectedColor": "#8452d5",
-      "unselectedColor": "#352c24"
+      "highlightColor": "#ac5402"
+    },
+    "list": {
+      "color": "#3d2b5a",
+      "bg": null,
+      "highlightColor": "#8452d5"
+    },
+    "selectInput": {
+      "color": "#352c24",
+      "bg": null,
+      "focusColor": "#8452d5",
+      "selectedColor": "#396847",
+      "highlightColor": "#ac5402"
+    },
+    "table": {
+      "color": "#352c24",
+      "bg": null,
+      "focusColor": "#8452d5",
+      "selectedColor": "#396847",
+      "highlightColor": "#ac5402",
+      "headerColor": "#3d2b5a",
+      "stripedColor": "#f6f2ee"
+    },
+    "progressBar": {
+      "color": "#396847",
+      "emptyColor": "#352c24",
+      "percentageColor": "#3d2b5a"
+    },
+    "spinner": {
+      "color": "#8452d5"
+    },
+    "tabs": {
+      "focusColor": "#8452d5",
+      "activeColor": "#396847",
+      "highlightColor": "#ac5402"
+    },
+    "tree": {
+      "focusColor": "#8452d5",
+      "selectedColor": "#396847",
+      "highlightColor": "#ac5402"
     }
   }
 };
@@ -6182,13 +9667,54 @@ export const NOCTIS_LILAC = {
     },
     "checkbox": {
       "color": "#0c006b",
-      "checkedColor": "#ff6b9f",
-      "uncheckedColor": "#0c006b"
+      "focusColor": "#ff6b9f",
+      "selectedColor": "#ff6b9f",
+      "highlightColor": "#f49725"
     },
     "radiobox": {
       "color": "#0c006b",
+      "focusColor": "#ff6b9f",
       "selectedColor": "#ff6b9f",
-      "unselectedColor": "#0c006b"
+      "highlightColor": "#f49725"
+    },
+    "list": {
+      "color": "#0c006b",
+      "bg": null,
+      "highlightColor": "#ff6b9f"
+    },
+    "selectInput": {
+      "color": "#0c006b",
+      "bg": null,
+      "focusColor": "#ff6b9f",
+      "selectedColor": "#00b368",
+      "highlightColor": "#f49725"
+    },
+    "table": {
+      "color": "#0c006b",
+      "bg": null,
+      "focusColor": "#ff6b9f",
+      "selectedColor": "#00b368",
+      "highlightColor": "#f49725",
+      "headerColor": "#0c006b",
+      "stripedColor": "#e9e7f3"
+    },
+    "progressBar": {
+      "color": "#00b368",
+      "emptyColor": "#0c006b",
+      "percentageColor": "#0c006b"
+    },
+    "spinner": {
+      "color": "#ff6b9f"
+    },
+    "tabs": {
+      "focusColor": "#ff6b9f",
+      "activeColor": "#00b368",
+      "highlightColor": "#f49725"
+    },
+    "tree": {
+      "focusColor": "#ff6b9f",
+      "selectedColor": "#00b368",
+      "highlightColor": "#f49725"
     }
   }
 };
@@ -6254,13 +9780,54 @@ export const GITHUB_DARK_COLORBLIND = {
     },
     "checkbox": {
       "color": "#484f58",
-      "checkedColor": "#d2a8ff",
-      "uncheckedColor": "#484f58"
+      "focusColor": "#d2a8ff",
+      "selectedColor": "#d2a8ff",
+      "highlightColor": "#d29922"
     },
     "radiobox": {
       "color": "#484f58",
+      "focusColor": "#d2a8ff",
       "selectedColor": "#d2a8ff",
-      "unselectedColor": "#484f58"
+      "highlightColor": "#d29922"
+    },
+    "list": {
+      "color": "#c9d1d9",
+      "bg": null,
+      "highlightColor": "#d2a8ff"
+    },
+    "selectInput": {
+      "color": "#484f58",
+      "bg": null,
+      "focusColor": "#d2a8ff",
+      "selectedColor": "#58a6ff",
+      "highlightColor": "#d29922"
+    },
+    "table": {
+      "color": "#484f58",
+      "bg": null,
+      "focusColor": "#d2a8ff",
+      "selectedColor": "#58a6ff",
+      "highlightColor": "#d29922",
+      "headerColor": "#c9d1d9",
+      "stripedColor": "#010409"
+    },
+    "progressBar": {
+      "color": "#58a6ff",
+      "emptyColor": "#484f58",
+      "percentageColor": "#c9d1d9"
+    },
+    "spinner": {
+      "color": "#d2a8ff"
+    },
+    "tabs": {
+      "focusColor": "#d2a8ff",
+      "activeColor": "#58a6ff",
+      "highlightColor": "#d29922"
+    },
+    "tree": {
+      "focusColor": "#d2a8ff",
+      "selectedColor": "#58a6ff",
+      "highlightColor": "#d29922"
     }
   }
 };
@@ -6326,13 +9893,54 @@ export const ZENBONES_SEOULBONES_LIGHT = {
     },
     "checkbox": {
       "color": "#e2e2e2",
-      "checkedColor": "#7f4c7e",
-      "uncheckedColor": "#e2e2e2"
+      "focusColor": "#7f4c7e",
+      "selectedColor": "#7f4c7e",
+      "highlightColor": "#c48562"
     },
     "radiobox": {
       "color": "#e2e2e2",
+      "focusColor": "#7f4c7e",
       "selectedColor": "#7f4c7e",
-      "unselectedColor": "#e2e2e2"
+      "highlightColor": "#c48562"
+    },
+    "list": {
+      "color": "#555555",
+      "bg": null,
+      "highlightColor": "#7f4c7e"
+    },
+    "selectInput": {
+      "color": "#e2e2e2",
+      "bg": null,
+      "focusColor": "#7f4c7e",
+      "selectedColor": "#628562",
+      "highlightColor": "#c48562"
+    },
+    "table": {
+      "color": "#e2e2e2",
+      "bg": null,
+      "focusColor": "#7f4c7e",
+      "selectedColor": "#628562",
+      "highlightColor": "#c48562",
+      "headerColor": "#555555",
+      "stripedColor": "#e2e2e2"
+    },
+    "progressBar": {
+      "color": "#628562",
+      "emptyColor": "#e2e2e2",
+      "percentageColor": "#555555"
+    },
+    "spinner": {
+      "color": "#7f4c7e"
+    },
+    "tabs": {
+      "focusColor": "#7f4c7e",
+      "activeColor": "#628562",
+      "highlightColor": "#c48562"
+    },
+    "tree": {
+      "focusColor": "#7f4c7e",
+      "selectedColor": "#628562",
+      "highlightColor": "#c48562"
     }
   }
 };
@@ -6398,13 +10006,54 @@ export const ZENBONES_NORDBONES = {
     },
     "checkbox": {
       "color": "#2f3541",
-      "checkedColor": "#cf97c5",
-      "uncheckedColor": "#2f3541"
+      "focusColor": "#cf97c5",
+      "selectedColor": "#cf97c5",
+      "highlightColor": "#cf866f"
     },
     "radiobox": {
       "color": "#2f3541",
+      "focusColor": "#cf97c5",
       "selectedColor": "#cf97c5",
-      "unselectedColor": "#2f3541"
+      "highlightColor": "#cf866f"
+    },
+    "list": {
+      "color": "#ebeef3",
+      "bg": null,
+      "highlightColor": "#cf97c5"
+    },
+    "selectInput": {
+      "color": "#2f3541",
+      "bg": null,
+      "focusColor": "#cf97c5",
+      "selectedColor": "#a4be8d",
+      "highlightColor": "#cf866f"
+    },
+    "table": {
+      "color": "#2f3541",
+      "bg": null,
+      "focusColor": "#cf97c5",
+      "selectedColor": "#a4be8d",
+      "highlightColor": "#cf866f",
+      "headerColor": "#ebeef3",
+      "stripedColor": "#2f3541"
+    },
+    "progressBar": {
+      "color": "#a4be8d",
+      "emptyColor": "#2f3541",
+      "percentageColor": "#ebeef3"
+    },
+    "spinner": {
+      "color": "#cf97c5"
+    },
+    "tabs": {
+      "focusColor": "#cf97c5",
+      "activeColor": "#a4be8d",
+      "highlightColor": "#cf866f"
+    },
+    "tree": {
+      "focusColor": "#cf97c5",
+      "selectedColor": "#a4be8d",
+      "highlightColor": "#cf866f"
     }
   }
 };
@@ -6470,13 +10119,54 @@ export const GITHUB_DARK = {
     },
     "checkbox": {
       "color": "#484f58",
-      "checkedColor": "#d2a8ff",
-      "uncheckedColor": "#484f58"
+      "focusColor": "#d2a8ff",
+      "selectedColor": "#d2a8ff",
+      "highlightColor": "#d29922"
     },
     "radiobox": {
       "color": "#484f58",
+      "focusColor": "#d2a8ff",
       "selectedColor": "#d2a8ff",
-      "unselectedColor": "#484f58"
+      "highlightColor": "#d29922"
+    },
+    "list": {
+      "color": "#e6edf3",
+      "bg": null,
+      "highlightColor": "#d2a8ff"
+    },
+    "selectInput": {
+      "color": "#484f58",
+      "bg": null,
+      "focusColor": "#d2a8ff",
+      "selectedColor": "#3fb950",
+      "highlightColor": "#d29922"
+    },
+    "table": {
+      "color": "#484f58",
+      "bg": null,
+      "focusColor": "#d2a8ff",
+      "selectedColor": "#3fb950",
+      "highlightColor": "#d29922",
+      "headerColor": "#e6edf3",
+      "stripedColor": "#010409"
+    },
+    "progressBar": {
+      "color": "#3fb950",
+      "emptyColor": "#484f58",
+      "percentageColor": "#e6edf3"
+    },
+    "spinner": {
+      "color": "#d2a8ff"
+    },
+    "tabs": {
+      "focusColor": "#d2a8ff",
+      "activeColor": "#3fb950",
+      "highlightColor": "#d29922"
+    },
+    "tree": {
+      "focusColor": "#d2a8ff",
+      "selectedColor": "#3fb950",
+      "highlightColor": "#d29922"
     }
   }
 };
@@ -6542,13 +10232,54 @@ export const ROSE_PINE_DAWN = {
     },
     "checkbox": {
       "color": "#f2e9e1",
-      "checkedColor": "#907aa9",
-      "uncheckedColor": "#f2e9e1"
+      "focusColor": "#907aa9",
+      "selectedColor": "#907aa9",
+      "highlightColor": "#ea9d34"
     },
     "radiobox": {
       "color": "#f2e9e1",
+      "focusColor": "#907aa9",
       "selectedColor": "#907aa9",
-      "unselectedColor": "#f2e9e1"
+      "highlightColor": "#ea9d34"
+    },
+    "list": {
+      "color": "#575279",
+      "bg": null,
+      "highlightColor": "#907aa9"
+    },
+    "selectInput": {
+      "color": "#f2e9e1",
+      "bg": null,
+      "focusColor": "#907aa9",
+      "selectedColor": "#286983",
+      "highlightColor": "#ea9d34"
+    },
+    "table": {
+      "color": "#f2e9e1",
+      "bg": null,
+      "focusColor": "#907aa9",
+      "selectedColor": "#286983",
+      "highlightColor": "#ea9d34",
+      "headerColor": "#575279",
+      "stripedColor": "#fffaf3"
+    },
+    "progressBar": {
+      "color": "#286983",
+      "emptyColor": "#f2e9e1",
+      "percentageColor": "#575279"
+    },
+    "spinner": {
+      "color": "#907aa9"
+    },
+    "tabs": {
+      "focusColor": "#907aa9",
+      "activeColor": "#286983",
+      "highlightColor": "#ea9d34"
+    },
+    "tree": {
+      "focusColor": "#907aa9",
+      "selectedColor": "#286983",
+      "highlightColor": "#ea9d34"
     }
   }
 };
@@ -6614,13 +10345,54 @@ export const TENDER_DEFAULT = {
     },
     "checkbox": {
       "color": "#282828",
-      "checkedColor": "#d3b987",
-      "uncheckedColor": "#282828"
+      "focusColor": "#d3b987",
+      "selectedColor": "#d3b987",
+      "highlightColor": "#ffc24b"
     },
     "radiobox": {
       "color": "#282828",
+      "focusColor": "#d3b987",
       "selectedColor": "#d3b987",
-      "unselectedColor": "#282828"
+      "highlightColor": "#ffc24b"
+    },
+    "list": {
+      "color": "#eeeeee",
+      "bg": null,
+      "highlightColor": "#d3b987"
+    },
+    "selectInput": {
+      "color": "#282828",
+      "bg": null,
+      "focusColor": "#d3b987",
+      "selectedColor": "#c9d05c",
+      "highlightColor": "#ffc24b"
+    },
+    "table": {
+      "color": "#282828",
+      "bg": null,
+      "focusColor": "#d3b987",
+      "selectedColor": "#c9d05c",
+      "highlightColor": "#ffc24b",
+      "headerColor": "#eeeeee",
+      "stripedColor": "#282828"
+    },
+    "progressBar": {
+      "color": "#c9d05c",
+      "emptyColor": "#282828",
+      "percentageColor": "#eeeeee"
+    },
+    "spinner": {
+      "color": "#d3b987"
+    },
+    "tabs": {
+      "focusColor": "#d3b987",
+      "activeColor": "#c9d05c",
+      "highlightColor": "#ffc24b"
+    },
+    "tree": {
+      "focusColor": "#d3b987",
+      "selectedColor": "#c9d05c",
+      "highlightColor": "#ffc24b"
     }
   }
 };
@@ -6686,13 +10458,54 @@ export const ZENBONES_SEOULBONES_DARK = {
     },
     "checkbox": {
       "color": "#4b4b4b",
-      "checkedColor": "#b2b3da",
-      "uncheckedColor": "#4b4b4b"
+      "focusColor": "#b2b3da",
+      "selectedColor": "#b2b3da",
+      "highlightColor": "#ffdf9b"
     },
     "radiobox": {
       "color": "#4b4b4b",
+      "focusColor": "#b2b3da",
       "selectedColor": "#b2b3da",
-      "unselectedColor": "#4b4b4b"
+      "highlightColor": "#ffdf9b"
+    },
+    "list": {
+      "color": "#dddddd",
+      "bg": null,
+      "highlightColor": "#b2b3da"
+    },
+    "selectInput": {
+      "color": "#4b4b4b",
+      "bg": null,
+      "focusColor": "#b2b3da",
+      "selectedColor": "#98bd99",
+      "highlightColor": "#ffdf9b"
+    },
+    "table": {
+      "color": "#4b4b4b",
+      "bg": null,
+      "focusColor": "#b2b3da",
+      "selectedColor": "#98bd99",
+      "highlightColor": "#ffdf9b",
+      "headerColor": "#dddddd",
+      "stripedColor": "#4b4b4b"
+    },
+    "progressBar": {
+      "color": "#98bd99",
+      "emptyColor": "#4b4b4b",
+      "percentageColor": "#dddddd"
+    },
+    "spinner": {
+      "color": "#b2b3da"
+    },
+    "tabs": {
+      "focusColor": "#b2b3da",
+      "activeColor": "#98bd99",
+      "highlightColor": "#ffdf9b"
+    },
+    "tree": {
+      "focusColor": "#b2b3da",
+      "selectedColor": "#98bd99",
+      "highlightColor": "#ffdf9b"
     }
   }
 };
@@ -6758,13 +10571,54 @@ export const GITHUB_DARK_HIGH_CONTRAST = {
     },
     "checkbox": {
       "color": "#7a828e",
-      "checkedColor": "#dbb7ff",
-      "uncheckedColor": "#7a828e"
+      "focusColor": "#dbb7ff",
+      "selectedColor": "#dbb7ff",
+      "highlightColor": "#f0b72f"
     },
     "radiobox": {
       "color": "#7a828e",
+      "focusColor": "#dbb7ff",
       "selectedColor": "#dbb7ff",
-      "unselectedColor": "#7a828e"
+      "highlightColor": "#f0b72f"
+    },
+    "list": {
+      "color": "#f0f3f6",
+      "bg": null,
+      "highlightColor": "#dbb7ff"
+    },
+    "selectInput": {
+      "color": "#7a828e",
+      "bg": null,
+      "focusColor": "#dbb7ff",
+      "selectedColor": "#26cd4d",
+      "highlightColor": "#f0b72f"
+    },
+    "table": {
+      "color": "#7a828e",
+      "bg": null,
+      "focusColor": "#dbb7ff",
+      "selectedColor": "#26cd4d",
+      "highlightColor": "#f0b72f",
+      "headerColor": "#f0f3f6",
+      "stripedColor": "#010409"
+    },
+    "progressBar": {
+      "color": "#26cd4d",
+      "emptyColor": "#7a828e",
+      "percentageColor": "#f0f3f6"
+    },
+    "spinner": {
+      "color": "#dbb7ff"
+    },
+    "tabs": {
+      "focusColor": "#dbb7ff",
+      "activeColor": "#26cd4d",
+      "highlightColor": "#f0b72f"
+    },
+    "tree": {
+      "focusColor": "#dbb7ff",
+      "selectedColor": "#26cd4d",
+      "highlightColor": "#f0b72f"
     }
   }
 };
@@ -6830,13 +10684,54 @@ export const GITHUB_DARK_DIMMED = {
     },
     "checkbox": {
       "color": "#545d68",
-      "checkedColor": "#dcbdfb",
-      "uncheckedColor": "#545d68"
+      "focusColor": "#dcbdfb",
+      "selectedColor": "#dcbdfb",
+      "highlightColor": "#c69026"
     },
     "radiobox": {
       "color": "#545d68",
+      "focusColor": "#dcbdfb",
       "selectedColor": "#dcbdfb",
-      "unselectedColor": "#545d68"
+      "highlightColor": "#c69026"
+    },
+    "list": {
+      "color": "#adbac7",
+      "bg": null,
+      "highlightColor": "#dcbdfb"
+    },
+    "selectInput": {
+      "color": "#545d68",
+      "bg": null,
+      "focusColor": "#dcbdfb",
+      "selectedColor": "#57ab5a",
+      "highlightColor": "#c69026"
+    },
+    "table": {
+      "color": "#545d68",
+      "bg": null,
+      "focusColor": "#dcbdfb",
+      "selectedColor": "#57ab5a",
+      "highlightColor": "#c69026",
+      "headerColor": "#adbac7",
+      "stripedColor": "#1c2128"
+    },
+    "progressBar": {
+      "color": "#57ab5a",
+      "emptyColor": "#545d68",
+      "percentageColor": "#adbac7"
+    },
+    "spinner": {
+      "color": "#dcbdfb"
+    },
+    "tabs": {
+      "focusColor": "#dcbdfb",
+      "activeColor": "#57ab5a",
+      "highlightColor": "#c69026"
+    },
+    "tree": {
+      "focusColor": "#dcbdfb",
+      "selectedColor": "#57ab5a",
+      "highlightColor": "#c69026"
     }
   }
 };
@@ -6902,13 +10797,54 @@ export const ZENBONES_ROSEBONES_DARK = {
     },
     "checkbox": {
       "color": "#1a1825",
-      "checkedColor": "#ceb3ef",
-      "uncheckedColor": "#1a1825"
+      "focusColor": "#ceb3ef",
+      "selectedColor": "#ceb3ef",
+      "highlightColor": "#f6c074"
     },
     "radiobox": {
       "color": "#1a1825",
+      "focusColor": "#ceb3ef",
       "selectedColor": "#ceb3ef",
-      "unselectedColor": "#1a1825"
+      "highlightColor": "#f6c074"
+    },
+    "list": {
+      "color": "#e1d4d4",
+      "bg": null,
+      "highlightColor": "#ceb3ef"
+    },
+    "selectInput": {
+      "color": "#1a1825",
+      "bg": null,
+      "focusColor": "#ceb3ef",
+      "selectedColor": "#317490",
+      "highlightColor": "#f6c074"
+    },
+    "table": {
+      "color": "#1a1825",
+      "bg": null,
+      "focusColor": "#ceb3ef",
+      "selectedColor": "#317490",
+      "highlightColor": "#f6c074",
+      "headerColor": "#e1d4d4",
+      "stripedColor": "#1a1825"
+    },
+    "progressBar": {
+      "color": "#317490",
+      "emptyColor": "#1a1825",
+      "percentageColor": "#e1d4d4"
+    },
+    "spinner": {
+      "color": "#ceb3ef"
+    },
+    "tabs": {
+      "focusColor": "#ceb3ef",
+      "activeColor": "#317490",
+      "highlightColor": "#f6c074"
+    },
+    "tree": {
+      "focusColor": "#ceb3ef",
+      "selectedColor": "#317490",
+      "highlightColor": "#f6c074"
     }
   }
 };
@@ -6974,13 +10910,54 @@ export const TOMORROW_NIGHT_BLUE = {
     },
     "checkbox": {
       "color": "#000000",
-      "checkedColor": "#ebbbff",
-      "uncheckedColor": "#000000"
+      "focusColor": "#ebbbff",
+      "selectedColor": "#ebbbff",
+      "highlightColor": "#ffeead"
     },
     "radiobox": {
       "color": "#000000",
+      "focusColor": "#ebbbff",
       "selectedColor": "#ebbbff",
-      "unselectedColor": "#000000"
+      "highlightColor": "#ffeead"
+    },
+    "list": {
+      "color": "#ffffff",
+      "bg": null,
+      "highlightColor": "#ebbbff"
+    },
+    "selectInput": {
+      "color": "#000000",
+      "bg": null,
+      "focusColor": "#ebbbff",
+      "selectedColor": "#d1f1a9",
+      "highlightColor": "#ffeead"
+    },
+    "table": {
+      "color": "#000000",
+      "bg": null,
+      "focusColor": "#ebbbff",
+      "selectedColor": "#d1f1a9",
+      "highlightColor": "#ffeead",
+      "headerColor": "#ffffff",
+      "stripedColor": "#002451"
+    },
+    "progressBar": {
+      "color": "#d1f1a9",
+      "emptyColor": "#000000",
+      "percentageColor": "#ffffff"
+    },
+    "spinner": {
+      "color": "#ebbbff"
+    },
+    "tabs": {
+      "focusColor": "#ebbbff",
+      "activeColor": "#d1f1a9",
+      "highlightColor": "#ffeead"
+    },
+    "tree": {
+      "focusColor": "#ebbbff",
+      "selectedColor": "#d1f1a9",
+      "highlightColor": "#ffeead"
     }
   }
 };
@@ -7046,13 +11023,54 @@ export const NOCTIS_AZUREUS = {
     },
     "checkbox": {
       "color": "#28353e",
-      "checkedColor": "#e798b3",
-      "uncheckedColor": "#28353e"
+      "focusColor": "#e798b3",
+      "selectedColor": "#e798b3",
+      "highlightColor": "#e4b781"
     },
     "radiobox": {
       "color": "#28353e",
+      "focusColor": "#e798b3",
       "selectedColor": "#e798b3",
-      "unselectedColor": "#28353e"
+      "highlightColor": "#e4b781"
+    },
+    "list": {
+      "color": "#becfda",
+      "bg": null,
+      "highlightColor": "#e798b3"
+    },
+    "selectInput": {
+      "color": "#28353e",
+      "bg": null,
+      "focusColor": "#e798b3",
+      "selectedColor": "#49e9a6",
+      "highlightColor": "#e4b781"
+    },
+    "table": {
+      "color": "#28353e",
+      "bg": null,
+      "focusColor": "#e798b3",
+      "selectedColor": "#49e9a6",
+      "highlightColor": "#e4b781",
+      "headerColor": "#becfda",
+      "stripedColor": "#051b29"
+    },
+    "progressBar": {
+      "color": "#49e9a6",
+      "emptyColor": "#28353e",
+      "percentageColor": "#becfda"
+    },
+    "spinner": {
+      "color": "#e798b3"
+    },
+    "tabs": {
+      "focusColor": "#e798b3",
+      "activeColor": "#49e9a6",
+      "highlightColor": "#e4b781"
+    },
+    "tree": {
+      "focusColor": "#e798b3",
+      "selectedColor": "#49e9a6",
+      "highlightColor": "#e4b781"
     }
   }
 };
@@ -7118,13 +11136,54 @@ export const ZENBONES_FORESTBONES_DARK = {
     },
     "checkbox": {
       "color": "#2c343a",
-      "checkedColor": "#e5a7c4",
-      "uncheckedColor": "#2c343a"
+      "focusColor": "#e5a7c4",
+      "selectedColor": "#e5a7c4",
+      "highlightColor": "#ddbd7f"
     },
     "radiobox": {
       "color": "#2c343a",
+      "focusColor": "#e5a7c4",
       "selectedColor": "#e5a7c4",
-      "unselectedColor": "#2c343a"
+      "highlightColor": "#ddbd7f"
+    },
+    "list": {
+      "color": "#e7dcc4",
+      "bg": null,
+      "highlightColor": "#e5a7c4"
+    },
+    "selectInput": {
+      "color": "#2c343a",
+      "bg": null,
+      "focusColor": "#e5a7c4",
+      "selectedColor": "#a9c181",
+      "highlightColor": "#ddbd7f"
+    },
+    "table": {
+      "color": "#2c343a",
+      "bg": null,
+      "focusColor": "#e5a7c4",
+      "selectedColor": "#a9c181",
+      "highlightColor": "#ddbd7f",
+      "headerColor": "#e7dcc4",
+      "stripedColor": "#2c343a"
+    },
+    "progressBar": {
+      "color": "#a9c181",
+      "emptyColor": "#2c343a",
+      "percentageColor": "#e7dcc4"
+    },
+    "spinner": {
+      "color": "#e5a7c4"
+    },
+    "tabs": {
+      "focusColor": "#e5a7c4",
+      "activeColor": "#a9c181",
+      "highlightColor": "#ddbd7f"
+    },
+    "tree": {
+      "focusColor": "#e5a7c4",
+      "selectedColor": "#a9c181",
+      "highlightColor": "#ddbd7f"
     }
   }
 };
@@ -7190,13 +11249,54 @@ export const ROSE_PINE_DEFAULT = {
     },
     "checkbox": {
       "color": "#26233a",
-      "checkedColor": "#c4a7e7",
-      "uncheckedColor": "#26233a"
+      "focusColor": "#c4a7e7",
+      "selectedColor": "#c4a7e7",
+      "highlightColor": "#f6c177"
     },
     "radiobox": {
       "color": "#26233a",
+      "focusColor": "#c4a7e7",
       "selectedColor": "#c4a7e7",
-      "unselectedColor": "#26233a"
+      "highlightColor": "#f6c177"
+    },
+    "list": {
+      "color": "#e0def4",
+      "bg": null,
+      "highlightColor": "#c4a7e7"
+    },
+    "selectInput": {
+      "color": "#26233a",
+      "bg": null,
+      "focusColor": "#c4a7e7",
+      "selectedColor": "#31748f",
+      "highlightColor": "#f6c177"
+    },
+    "table": {
+      "color": "#26233a",
+      "bg": null,
+      "focusColor": "#c4a7e7",
+      "selectedColor": "#31748f",
+      "highlightColor": "#f6c177",
+      "headerColor": "#e0def4",
+      "stripedColor": "#1f1d2e"
+    },
+    "progressBar": {
+      "color": "#31748f",
+      "emptyColor": "#26233a",
+      "percentageColor": "#e0def4"
+    },
+    "spinner": {
+      "color": "#c4a7e7"
+    },
+    "tabs": {
+      "focusColor": "#c4a7e7",
+      "activeColor": "#31748f",
+      "highlightColor": "#f6c177"
+    },
+    "tree": {
+      "focusColor": "#c4a7e7",
+      "selectedColor": "#31748f",
+      "highlightColor": "#f6c177"
     }
   }
 };
@@ -7262,13 +11362,54 @@ export const LUCARIO_DEFAULT = {
     },
     "checkbox": {
       "color": "#19242f",
-      "checkedColor": "#d4a9ff",
-      "uncheckedColor": "#19242f"
+      "focusColor": "#d4a9ff",
+      "selectedColor": "#d4a9ff",
+      "highlightColor": "#f0cc04"
     },
     "radiobox": {
       "color": "#19242f",
+      "focusColor": "#d4a9ff",
       "selectedColor": "#d4a9ff",
-      "unselectedColor": "#19242f"
+      "highlightColor": "#f0cc04"
+    },
+    "list": {
+      "color": "#f8f8f2",
+      "bg": null,
+      "highlightColor": "#d4a9ff"
+    },
+    "selectInput": {
+      "color": "#19242f",
+      "bg": null,
+      "focusColor": "#d4a9ff",
+      "selectedColor": "#199c4b",
+      "highlightColor": "#f0cc04"
+    },
+    "table": {
+      "color": "#19242f",
+      "bg": null,
+      "focusColor": "#d4a9ff",
+      "selectedColor": "#199c4b",
+      "highlightColor": "#f0cc04",
+      "headerColor": "#f8f8f2",
+      "stripedColor": "#2b3e50"
+    },
+    "progressBar": {
+      "color": "#199c4b",
+      "emptyColor": "#19242f",
+      "percentageColor": "#f8f8f2"
+    },
+    "spinner": {
+      "color": "#d4a9ff"
+    },
+    "tabs": {
+      "focusColor": "#d4a9ff",
+      "activeColor": "#199c4b",
+      "highlightColor": "#f0cc04"
+    },
+    "tree": {
+      "focusColor": "#d4a9ff",
+      "selectedColor": "#199c4b",
+      "highlightColor": "#f0cc04"
     }
   }
 };
@@ -7334,13 +11475,54 @@ export const NOCTIS_VIOLA = {
     },
     "checkbox": {
       "color": "#362f3d",
-      "checkedColor": "#e798b3",
-      "uncheckedColor": "#362f3d"
+      "focusColor": "#e798b3",
+      "selectedColor": "#e798b3",
+      "highlightColor": "#e4b781"
     },
     "radiobox": {
       "color": "#362f3d",
+      "focusColor": "#e798b3",
       "selectedColor": "#e798b3",
-      "unselectedColor": "#362f3d"
+      "highlightColor": "#e4b781"
+    },
+    "list": {
+      "color": "#ccbfd9",
+      "bg": null,
+      "highlightColor": "#e798b3"
+    },
+    "selectInput": {
+      "color": "#362f3d",
+      "bg": null,
+      "focusColor": "#e798b3",
+      "selectedColor": "#49e9a6",
+      "highlightColor": "#e4b781"
+    },
+    "table": {
+      "color": "#362f3d",
+      "bg": null,
+      "focusColor": "#e798b3",
+      "selectedColor": "#49e9a6",
+      "highlightColor": "#e4b781",
+      "headerColor": "#ccbfd9",
+      "stripedColor": "#291d35"
+    },
+    "progressBar": {
+      "color": "#49e9a6",
+      "emptyColor": "#362f3d",
+      "percentageColor": "#ccbfd9"
+    },
+    "spinner": {
+      "color": "#e798b3"
+    },
+    "tabs": {
+      "focusColor": "#e798b3",
+      "activeColor": "#49e9a6",
+      "highlightColor": "#e4b781"
+    },
+    "tree": {
+      "focusColor": "#e798b3",
+      "selectedColor": "#49e9a6",
+      "highlightColor": "#e4b781"
     }
   }
 };
@@ -7406,13 +11588,54 @@ export const NORDIC_DEFAULT = {
     },
     "checkbox": {
       "color": "#191d24",
-      "checkedColor": "#be9d88",
-      "uncheckedColor": "#191d24"
+      "focusColor": "#be9d88",
+      "selectedColor": "#be9d88",
+      "highlightColor": "#ebcb8b"
     },
     "radiobox": {
       "color": "#191d24",
+      "focusColor": "#be9d88",
       "selectedColor": "#be9d88",
-      "unselectedColor": "#191d24"
+      "highlightColor": "#ebcb8b"
+    },
+    "list": {
+      "color": "#bbc3d4",
+      "bg": null,
+      "highlightColor": "#be9d88"
+    },
+    "selectInput": {
+      "color": "#191d24",
+      "bg": null,
+      "focusColor": "#be9d88",
+      "selectedColor": "#a3be8c",
+      "highlightColor": "#ebcb8b"
+    },
+    "table": {
+      "color": "#191d24",
+      "bg": null,
+      "focusColor": "#be9d88",
+      "selectedColor": "#a3be8c",
+      "highlightColor": "#ebcb8b",
+      "headerColor": "#bbc3d4",
+      "stripedColor": "#242933"
+    },
+    "progressBar": {
+      "color": "#a3be8c",
+      "emptyColor": "#191d24",
+      "percentageColor": "#bbc3d4"
+    },
+    "spinner": {
+      "color": "#be9d88"
+    },
+    "tabs": {
+      "focusColor": "#be9d88",
+      "activeColor": "#a3be8c",
+      "highlightColor": "#ebcb8b"
+    },
+    "tree": {
+      "focusColor": "#be9d88",
+      "selectedColor": "#a3be8c",
+      "highlightColor": "#ebcb8b"
     }
   }
 };
@@ -7478,13 +11701,54 @@ export const GITHUB_LIGHT_COLORBLIND = {
     },
     "checkbox": {
       "color": "#24292f",
-      "checkedColor": "#a475f9",
-      "uncheckedColor": "#24292f"
+      "focusColor": "#a475f9",
+      "selectedColor": "#a475f9",
+      "highlightColor": "#4d2d00"
     },
     "radiobox": {
       "color": "#24292f",
+      "focusColor": "#a475f9",
       "selectedColor": "#a475f9",
-      "unselectedColor": "#24292f"
+      "highlightColor": "#4d2d00"
+    },
+    "list": {
+      "color": "#24292f",
+      "bg": null,
+      "highlightColor": "#a475f9"
+    },
+    "selectInput": {
+      "color": "#24292f",
+      "bg": null,
+      "focusColor": "#a475f9",
+      "selectedColor": "#0550ae",
+      "highlightColor": "#4d2d00"
+    },
+    "table": {
+      "color": "#24292f",
+      "bg": null,
+      "focusColor": "#a475f9",
+      "selectedColor": "#0550ae",
+      "highlightColor": "#4d2d00",
+      "headerColor": "#24292f",
+      "stripedColor": "#f6f8fa"
+    },
+    "progressBar": {
+      "color": "#0550ae",
+      "emptyColor": "#24292f",
+      "percentageColor": "#24292f"
+    },
+    "spinner": {
+      "color": "#a475f9"
+    },
+    "tabs": {
+      "focusColor": "#a475f9",
+      "activeColor": "#0550ae",
+      "highlightColor": "#4d2d00"
+    },
+    "tree": {
+      "focusColor": "#a475f9",
+      "selectedColor": "#0550ae",
+      "highlightColor": "#4d2d00"
     }
   }
 };
@@ -7550,13 +11814,54 @@ export const KANAGAWA_LOTUS = {
     },
     "checkbox": {
       "color": "#1f1f28",
-      "checkedColor": "#624c83",
-      "uncheckedColor": "#1f1f28"
+      "focusColor": "#624c83",
+      "selectedColor": "#624c83",
+      "highlightColor": "#77713f"
     },
     "radiobox": {
       "color": "#1f1f28",
+      "focusColor": "#624c83",
       "selectedColor": "#624c83",
-      "unselectedColor": "#1f1f28"
+      "highlightColor": "#77713f"
+    },
+    "list": {
+      "color": "#545464",
+      "bg": null,
+      "highlightColor": "#624c83"
+    },
+    "selectInput": {
+      "color": "#1f1f28",
+      "bg": null,
+      "focusColor": "#624c83",
+      "selectedColor": "#6f894e",
+      "highlightColor": "#77713f"
+    },
+    "table": {
+      "color": "#1f1f28",
+      "bg": null,
+      "focusColor": "#624c83",
+      "selectedColor": "#6f894e",
+      "highlightColor": "#77713f",
+      "headerColor": "#545464",
+      "stripedColor": "#f2ecbc"
+    },
+    "progressBar": {
+      "color": "#6f894e",
+      "emptyColor": "#1f1f28",
+      "percentageColor": "#545464"
+    },
+    "spinner": {
+      "color": "#624c83"
+    },
+    "tabs": {
+      "focusColor": "#624c83",
+      "activeColor": "#6f894e",
+      "highlightColor": "#77713f"
+    },
+    "tree": {
+      "focusColor": "#624c83",
+      "selectedColor": "#6f894e",
+      "highlightColor": "#77713f"
     }
   }
 };
@@ -7622,13 +11927,54 @@ export const DRACULA_DEFAULT = {
     },
     "checkbox": {
       "color": "#21222c",
-      "checkedColor": "#ff92df",
-      "uncheckedColor": "#21222c"
+      "focusColor": "#ff92df",
+      "selectedColor": "#ff92df",
+      "highlightColor": "#f1fa8c"
     },
     "radiobox": {
       "color": "#21222c",
+      "focusColor": "#ff92df",
       "selectedColor": "#ff92df",
-      "unselectedColor": "#21222c"
+      "highlightColor": "#f1fa8c"
+    },
+    "list": {
+      "color": "#f8f8f2",
+      "bg": null,
+      "highlightColor": "#ff92df"
+    },
+    "selectInput": {
+      "color": "#21222c",
+      "bg": null,
+      "focusColor": "#ff92df",
+      "selectedColor": "#50fa7b",
+      "highlightColor": "#f1fa8c"
+    },
+    "table": {
+      "color": "#21222c",
+      "bg": null,
+      "focusColor": "#ff92df",
+      "selectedColor": "#50fa7b",
+      "highlightColor": "#f1fa8c",
+      "headerColor": "#f8f8f2",
+      "stripedColor": "#282a36"
+    },
+    "progressBar": {
+      "color": "#50fa7b",
+      "emptyColor": "#21222c",
+      "percentageColor": "#f8f8f2"
+    },
+    "spinner": {
+      "color": "#ff92df"
+    },
+    "tabs": {
+      "focusColor": "#ff92df",
+      "activeColor": "#50fa7b",
+      "highlightColor": "#f1fa8c"
+    },
+    "tree": {
+      "focusColor": "#ff92df",
+      "selectedColor": "#50fa7b",
+      "highlightColor": "#f1fa8c"
     }
   }
 };
@@ -7694,13 +12040,54 @@ export const KANAGAWA_DRAGON = {
     },
     "checkbox": {
       "color": "#0d0c0c",
-      "checkedColor": "#938aa9",
-      "uncheckedColor": "#0d0c0c"
+      "focusColor": "#938aa9",
+      "selectedColor": "#938aa9",
+      "highlightColor": "#c4b28a"
     },
     "radiobox": {
       "color": "#0d0c0c",
+      "focusColor": "#938aa9",
       "selectedColor": "#938aa9",
-      "unselectedColor": "#0d0c0c"
+      "highlightColor": "#c4b28a"
+    },
+    "list": {
+      "color": "#c5c9c5",
+      "bg": null,
+      "highlightColor": "#938aa9"
+    },
+    "selectInput": {
+      "color": "#0d0c0c",
+      "bg": null,
+      "focusColor": "#938aa9",
+      "selectedColor": "#8a9a7b",
+      "highlightColor": "#c4b28a"
+    },
+    "table": {
+      "color": "#0d0c0c",
+      "bg": null,
+      "focusColor": "#938aa9",
+      "selectedColor": "#8a9a7b",
+      "highlightColor": "#c4b28a",
+      "headerColor": "#c5c9c5",
+      "stripedColor": "#181616"
+    },
+    "progressBar": {
+      "color": "#8a9a7b",
+      "emptyColor": "#0d0c0c",
+      "percentageColor": "#c5c9c5"
+    },
+    "spinner": {
+      "color": "#938aa9"
+    },
+    "tabs": {
+      "focusColor": "#938aa9",
+      "activeColor": "#8a9a7b",
+      "highlightColor": "#c4b28a"
+    },
+    "tree": {
+      "focusColor": "#938aa9",
+      "selectedColor": "#8a9a7b",
+      "highlightColor": "#c4b28a"
     }
   }
 };
@@ -7766,13 +12153,54 @@ export const ZENBONES_ZENBURNED = {
     },
     "checkbox": {
       "color": "#404040",
-      "checkedColor": "#cf86c1",
-      "uncheckedColor": "#404040"
+      "focusColor": "#cf86c1",
+      "selectedColor": "#cf86c1",
+      "highlightColor": "#b77e64"
     },
     "radiobox": {
       "color": "#404040",
+      "focusColor": "#cf86c1",
       "selectedColor": "#cf86c1",
-      "unselectedColor": "#404040"
+      "highlightColor": "#b77e64"
+    },
+    "list": {
+      "color": "#f0e4cf",
+      "bg": null,
+      "highlightColor": "#cf86c1"
+    },
+    "selectInput": {
+      "color": "#404040",
+      "bg": null,
+      "focusColor": "#cf86c1",
+      "selectedColor": "#819b69",
+      "highlightColor": "#b77e64"
+    },
+    "table": {
+      "color": "#404040",
+      "bg": null,
+      "focusColor": "#cf86c1",
+      "selectedColor": "#819b69",
+      "highlightColor": "#b77e64",
+      "headerColor": "#f0e4cf",
+      "stripedColor": "#404040"
+    },
+    "progressBar": {
+      "color": "#819b69",
+      "emptyColor": "#404040",
+      "percentageColor": "#f0e4cf"
+    },
+    "spinner": {
+      "color": "#cf86c1"
+    },
+    "tabs": {
+      "focusColor": "#cf86c1",
+      "activeColor": "#819b69",
+      "highlightColor": "#b77e64"
+    },
+    "tree": {
+      "focusColor": "#cf86c1",
+      "selectedColor": "#819b69",
+      "highlightColor": "#b77e64"
     }
   }
 };
@@ -7838,13 +12266,54 @@ export const AYU_DARK = {
     },
     "checkbox": {
       "color": "#1e232b",
-      "checkedColor": "#d2a6ff",
-      "uncheckedColor": "#1e232b"
+      "focusColor": "#d2a6ff",
+      "selectedColor": "#d2a6ff",
+      "highlightColor": "#f9af4f"
     },
     "radiobox": {
       "color": "#1e232b",
+      "focusColor": "#d2a6ff",
       "selectedColor": "#d2a6ff",
-      "unselectedColor": "#1e232b"
+      "highlightColor": "#f9af4f"
+    },
+    "list": {
+      "color": "#bfbdb6",
+      "bg": null,
+      "highlightColor": "#d2a6ff"
+    },
+    "selectInput": {
+      "color": "#1e232b",
+      "bg": null,
+      "focusColor": "#d2a6ff",
+      "selectedColor": "#7fd962",
+      "highlightColor": "#f9af4f"
+    },
+    "table": {
+      "color": "#1e232b",
+      "bg": null,
+      "focusColor": "#d2a6ff",
+      "selectedColor": "#7fd962",
+      "highlightColor": "#f9af4f",
+      "headerColor": "#bfbdb6",
+      "stripedColor": "#0b0e14"
+    },
+    "progressBar": {
+      "color": "#7fd962",
+      "emptyColor": "#1e232b",
+      "percentageColor": "#bfbdb6"
+    },
+    "spinner": {
+      "color": "#d2a6ff"
+    },
+    "tabs": {
+      "focusColor": "#d2a6ff",
+      "activeColor": "#7fd962",
+      "highlightColor": "#f9af4f"
+    },
+    "tree": {
+      "focusColor": "#d2a6ff",
+      "selectedColor": "#7fd962",
+      "highlightColor": "#f9af4f"
     }
   }
 };
@@ -7910,13 +12379,54 @@ export const ZENBONES_ZENWRITTEN_DARK = {
     },
     "checkbox": {
       "color": "#191919",
-      "checkedColor": "#cf86c1",
-      "uncheckedColor": "#191919"
+      "focusColor": "#cf86c1",
+      "selectedColor": "#cf86c1",
+      "highlightColor": "#b77e64"
     },
     "radiobox": {
       "color": "#191919",
+      "focusColor": "#cf86c1",
       "selectedColor": "#cf86c1",
-      "unselectedColor": "#191919"
+      "highlightColor": "#b77e64"
+    },
+    "list": {
+      "color": "#bbbbbb",
+      "bg": null,
+      "highlightColor": "#cf86c1"
+    },
+    "selectInput": {
+      "color": "#191919",
+      "bg": null,
+      "focusColor": "#cf86c1",
+      "selectedColor": "#819b69",
+      "highlightColor": "#b77e64"
+    },
+    "table": {
+      "color": "#191919",
+      "bg": null,
+      "focusColor": "#cf86c1",
+      "selectedColor": "#819b69",
+      "highlightColor": "#b77e64",
+      "headerColor": "#bbbbbb",
+      "stripedColor": "#191919"
+    },
+    "progressBar": {
+      "color": "#819b69",
+      "emptyColor": "#191919",
+      "percentageColor": "#bbbbbb"
+    },
+    "spinner": {
+      "color": "#cf86c1"
+    },
+    "tabs": {
+      "focusColor": "#cf86c1",
+      "activeColor": "#819b69",
+      "highlightColor": "#b77e64"
+    },
+    "tree": {
+      "focusColor": "#cf86c1",
+      "selectedColor": "#819b69",
+      "highlightColor": "#b77e64"
     }
   }
 };
@@ -7982,13 +12492,54 @@ export const GRUVBOX_LIGHT = {
     },
     "checkbox": {
       "color": "#fbf1c7",
-      "checkedColor": "#8f3f71",
-      "uncheckedColor": "#fbf1c7"
+      "focusColor": "#8f3f71",
+      "selectedColor": "#8f3f71",
+      "highlightColor": "#d79921"
     },
     "radiobox": {
       "color": "#fbf1c7",
+      "focusColor": "#8f3f71",
       "selectedColor": "#8f3f71",
-      "unselectedColor": "#fbf1c7"
+      "highlightColor": "#d79921"
+    },
+    "list": {
+      "color": "#3c3836",
+      "bg": null,
+      "highlightColor": "#8f3f71"
+    },
+    "selectInput": {
+      "color": "#fbf1c7",
+      "bg": null,
+      "focusColor": "#8f3f71",
+      "selectedColor": "#98971a",
+      "highlightColor": "#d79921"
+    },
+    "table": {
+      "color": "#fbf1c7",
+      "bg": null,
+      "focusColor": "#8f3f71",
+      "selectedColor": "#98971a",
+      "highlightColor": "#d79921",
+      "headerColor": "#3c3836",
+      "stripedColor": "#fbf1c7"
+    },
+    "progressBar": {
+      "color": "#98971a",
+      "emptyColor": "#fbf1c7",
+      "percentageColor": "#3c3836"
+    },
+    "spinner": {
+      "color": "#8f3f71"
+    },
+    "tabs": {
+      "focusColor": "#8f3f71",
+      "activeColor": "#98971a",
+      "highlightColor": "#d79921"
+    },
+    "tree": {
+      "focusColor": "#8f3f71",
+      "selectedColor": "#98971a",
+      "highlightColor": "#d79921"
     }
   }
 };
@@ -8054,13 +12605,54 @@ export const CATPPUCCIN_FRAPPE = {
     },
     "checkbox": {
       "color": "#51576d",
-      "checkedColor": "#f2a4db",
-      "uncheckedColor": "#51576d"
+      "focusColor": "#f2a4db",
+      "selectedColor": "#f2a4db",
+      "highlightColor": "#e5c890"
     },
     "radiobox": {
       "color": "#51576d",
+      "focusColor": "#f2a4db",
       "selectedColor": "#f2a4db",
-      "unselectedColor": "#51576d"
+      "highlightColor": "#e5c890"
+    },
+    "list": {
+      "color": "#c6d0f5",
+      "bg": null,
+      "highlightColor": "#f2a4db"
+    },
+    "selectInput": {
+      "color": "#51576d",
+      "bg": null,
+      "focusColor": "#f2a4db",
+      "selectedColor": "#a6d189",
+      "highlightColor": "#e5c890"
+    },
+    "table": {
+      "color": "#51576d",
+      "bg": null,
+      "focusColor": "#f2a4db",
+      "selectedColor": "#a6d189",
+      "highlightColor": "#e5c890",
+      "headerColor": "#c6d0f5",
+      "stripedColor": "#303446"
+    },
+    "progressBar": {
+      "color": "#a6d189",
+      "emptyColor": "#51576d",
+      "percentageColor": "#c6d0f5"
+    },
+    "spinner": {
+      "color": "#f2a4db"
+    },
+    "tabs": {
+      "focusColor": "#f2a4db",
+      "activeColor": "#a6d189",
+      "highlightColor": "#e5c890"
+    },
+    "tree": {
+      "focusColor": "#f2a4db",
+      "selectedColor": "#a6d189",
+      "highlightColor": "#e5c890"
     }
   }
 };

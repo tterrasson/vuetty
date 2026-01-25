@@ -1,6 +1,11 @@
 // src/components/Checkbox.js
 import { h, ref, inject, onUnmounted, watch, computed } from 'vue';
-import { VUETTY_INPUT_MANAGER_KEY, VUETTY_VIEWPORT_STATE_KEY, VUETTY_INSTANCE_KEY } from '@core/vuettyKeys.js';
+import {
+  VUETTY_INPUT_MANAGER_KEY,
+  VUETTY_VIEWPORT_STATE_KEY,
+  VUETTY_INSTANCE_KEY,
+  VUETTY_THEME_KEY
+} from '@core/vuettyKeys.js';
 import { WIDTH_CONTEXT_KEY } from '@core/widthContext.js';
 import {
   KEY_UP,
@@ -98,6 +103,7 @@ export default {
   setup(props, { emit }) {
     const inputManager = inject(VUETTY_INPUT_MANAGER_KEY);
     const vuettyInstance = inject(VUETTY_INSTANCE_KEY, null);
+    const theme = inject(VUETTY_THEME_KEY, null);
 
     // Inject viewport state to trigger re-renders on resize
     const viewportState = inject(VUETTY_VIEWPORT_STATE_KEY, null);
@@ -367,6 +373,12 @@ export default {
         ? injectedWidthContext()
         : injectedWidthContext;
 
+      // Resolve colors from theme
+      const effectiveFocusColor = props.focusColor || theme?.components?.checkbox?.focusColor || 'cyan';
+      const effectiveSelectedColor = props.selectedColor || theme?.components?.checkbox?.selectedColor || 'green';
+      const effectiveHighlightColor = props.highlightColor || theme?.components?.checkbox?.highlightColor || 'yellow';
+      const effectiveColor = props.color || theme?.components?.checkbox?.color;
+
       // Pass injected width and viewport version through props
       // The viewport version creates a reactive dependency - when it changes, Vue re-renders
       return h('checkbox', {
@@ -377,6 +389,10 @@ export default {
         scrollOffset: scrollOffset.value,
         isFocused: isFocused.value,
         modelValue: props.modelValue,
+        focusColor: effectiveFocusColor,
+        selectedColor: effectiveSelectedColor,
+        highlightColor: effectiveHighlightColor,
+        color: effectiveColor,
         _injectedWidth: injectedWidth,
         _viewportVersion: viewportState ? viewportState.version : 0
       });
