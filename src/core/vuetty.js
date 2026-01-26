@@ -286,10 +286,9 @@ export class Vuetty {
 
     this.viewport.scrollOffset = newOffset;
 
-    // Adjust clickMap Y positions (fast path - no rebuild needed)
-    if (!this.clickMap.isDirty) {
-      this.clickMap.adjustForScroll(newOffset);
-    }
+    // Mark clickMap dirty to ensure fresh regions after scroll
+    // (visibility filtering means we can't rely on adjustForScroll alone)
+    this.clickMap.invalidate();
 
     // Throttle renders during rapid scrolling
     if (now - this.lastScrollTime < this.scrollThrottleMs) {
@@ -324,10 +323,9 @@ export class Vuetty {
 
     this.viewport.scrollOffset = newOffset;
 
-    // Adjust clickMap Y positions (fast path - no rebuild needed)
-    if (!this.clickMap.isDirty) {
-      this.clickMap.adjustForScroll(newOffset);
-    }
+    // Mark clickMap dirty to ensure fresh regions after scroll
+    // (visibility filtering means we can't rely on adjustForScroll alone)
+    this.clickMap.invalidate();
 
     if (now - this.lastScrollTime < this.scrollThrottleMs) {
       // Accumulate delta (positive for down)
@@ -423,10 +421,8 @@ export class Vuetty {
     if (this.viewport.scrollOffset === 0) return;
     this.viewport.scrollOffset = 0;
 
-    // Adjust clickMap positions for scroll (fast path)
-    if (!this.clickMap.isDirty && this.clickMap.regions.length > 0) {
-      this.clickMap.adjustForScroll(0);
-    }
+    // Mark clickMap dirty to ensure fresh regions after scroll
+    this.clickMap.invalidate();
 
     this.render();
   }
@@ -439,10 +435,8 @@ export class Vuetty {
     if (this.viewport.scrollOffset === maxOffset) return;
     this.viewport.scrollOffset = maxOffset;
 
-    // Adjust clickMap positions for scroll (fast path)
-    if (!this.clickMap.isDirty && this.clickMap.regions.length > 0) {
-      this.clickMap.adjustForScroll(maxOffset);
-    }
+    // Mark clickMap dirty to ensure fresh regions after scroll
+    this.clickMap.invalidate();
 
     this.render();
   }
@@ -1123,6 +1117,8 @@ export class Vuetty {
       this.clickMap.build(this.rootContainer, this.viewport.scrollOffset, this.viewport.terminalHeight);
     } else if (this.clickMap.regions.length > 0 &&
                this.clickMap._scrollOffset !== this.viewport.scrollOffset) {
+      // Safe to use fast-path here: scrollOffset changed but regions didn't
+      // (this path only hit during renders, not user-initiated scrolls)
       this.clickMap.adjustForScroll(this.viewport.scrollOffset);
     }
   }

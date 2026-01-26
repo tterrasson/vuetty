@@ -150,6 +150,11 @@ export class ClickMap {
    * Adjust screen Y positions for scroll without full rebuild
    * Much faster than rebuild() when only scroll offset changed
    *
+   * IMPORTANT: Only safe when visibility filtering didn't affect the regions
+   * (i.e., all clickable components are already in the regions array).
+   * For user-initiated scrolls that may bring filtered components into view,
+   * use invalidate() instead to force a rebuild.
+   *
    * @param {number} newScrollOffset - New scroll offset
    */
   adjustForScroll(newScrollOffset) {
