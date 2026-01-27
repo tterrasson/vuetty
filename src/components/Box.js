@@ -60,7 +60,7 @@ class StringBuffer {
   }
 }
 
-// Pool de buffers réutilisables
+// Reusable buffer pool
 const bufferPool = [];
 
 function getBufferPoolSize() {

@@ -56,8 +56,9 @@ export class Vuetty {
       chalk.level = 3; // Force 16m colors
     }
 
-    // Initialize theme from options
-    this.theme = createTheme(options.theme || {});
+    // Initialize theme from options (reactive so theme updates trigger renders)
+    this.theme = reactive(createTheme(options.theme || {}));
+    this.theme.version = 0; // Initialize theme version for reactivity
     this.themeBgCode = colorToAnsiBg(this.theme?.background);
 
     // Initialize debug server if enabled (will be started in mount())

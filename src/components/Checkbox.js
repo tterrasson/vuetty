@@ -21,6 +21,7 @@ import {
 } from '@utils/keyParser.js';
 import chalk from 'chalk';
 import { getTerminalWidth, applyStyles } from '@utils/renderUtils.js';
+import { getChalkColor } from '@utils/colorUtils.js';
 import { boxProps } from '@core/layoutProps.js';
 import { RenderHandler, renderHandlerRegistry } from '@core/renderHandlers.js';
 
@@ -76,17 +77,18 @@ export default {
     // Styling
     color: String,
     bg: String,
+    borderColor: String,
     focusColor: {
       type: String,
-      default: 'cyan'
+      default: null
     },
     selectedColor: {
       type: String,
-      default: 'green'
+      default: null
     },
     highlightColor: {
       type: String,
-      default: 'yellow'
+      default: null
     },
     bold: Boolean,
     dim: Boolean,
@@ -395,14 +397,15 @@ export default {
         ? injectedWidthContext()
         : injectedWidthContext;
 
-      // Resolve colors from theme
+      // Resolve colors from theme inside render function for reactivity
       const effectiveFocusColor = props.focusColor || theme?.components?.checkbox?.focusColor || 'cyan';
       const effectiveSelectedColor = props.selectedColor || theme?.components?.checkbox?.selectedColor || 'green';
       const effectiveHighlightColor = props.highlightColor || theme?.components?.checkbox?.highlightColor || 'yellow';
       const effectiveColor = props.color || theme?.components?.checkbox?.color;
+      const effectiveBorderColor = props.borderColor || theme?.components?.checkbox?.borderColor || effectiveColor;
 
-      // Pass injected width and viewport version through props
-      // The viewport version creates a reactive dependency - when it changes, Vue re-renders
+      // Pass injected width and theme version through props
+      // The theme version creates a reactive dependency - when it changes, Vue re-renders
       return h('checkbox', {
         ...props,
         _componentId: componentId,
@@ -411,12 +414,14 @@ export default {
         scrollOffset: scrollOffset.value,
         isFocused: isFocused.value,
         modelValue: props.modelValue,
+        // Override theme-resolved colors after spreading props
         focusColor: effectiveFocusColor,
         selectedColor: effectiveSelectedColor,
         highlightColor: effectiveHighlightColor,
         color: effectiveColor,
+        borderColor: effectiveBorderColor,
         _injectedWidth: injectedWidth,
-        _viewportVersion: viewportState ? viewportState.version : 0
+        _themeVersion: theme?.version || 0,
       });
     };
   }
@@ -437,6 +442,7 @@ function renderCheckboxVertical(props) {
     focusColor = 'cyan',
     selectedColor = 'green',
     highlightColor = 'yellow',
+    borderColor,
     disabled = false,
     hint = 'default'
   } = props;
@@ -452,10 +458,9 @@ function renderCheckboxVertical(props) {
   // If no options
   if (options.length === 0) {
     const width = 20;
-    const borderColor = isFocused && !disabled ? focusColor : (props.color || 'white');
-    const borderStyle = isFocused && !disabled
-      ? (chalk[borderColor] || chalk).bold
-      : chalk[borderColor] || chalk;
+    const borderColorValue = isFocused && !disabled ? focusColor : borderColor;
+    const borderChalk = borderColorValue ? getChalkColor(borderColorValue) : chalk;
+    const borderStyle = (isFocused && !disabled) ? borderChalk.bold : borderChalk;
 
     output += borderStyle('┌' + '─'.repeat(width + 2) + '┐') + '\n';
     output += borderStyle('│') + ' No options'.padEnd(width + 2, ' ') + borderStyle('│') + '\n';
@@ -479,10 +484,9 @@ function renderCheckboxVertical(props) {
   const contentWidth = Math.max(1, innerWidth - 6);
 
   // Border style (bold when focused)
-  const borderColor = isFocused && !disabled ? focusColor : (props.color || 'white');
-  const borderStyle = isFocused && !disabled
-    ? (chalk[borderColor] || chalk).bold
-    : chalk[borderColor] || chalk;
+  const borderColorValue = isFocused && !disabled ? focusColor : borderColor;
+  const borderChalk = borderColorValue ? getChalkColor(borderColorValue) : chalk;
+  const borderStyle = (isFocused && !disabled) ? borderChalk.bold : borderChalk;
 
   // Top border
   output += borderStyle('┌' + '─'.repeat(innerWidth) + '┐') + '\n';
@@ -500,7 +504,7 @@ function renderCheckboxVertical(props) {
       // Build checkbox indicator
       let indicator = '   '; // 3 spaces
       if (isSelected) {
-        indicator = chalk[selectedColor].bold('[✓]');
+        indicator = getChalkColor(selectedColor).bold('[✓]');
       } else {
         indicator = '[ ]';
       }
@@ -515,9 +519,9 @@ function renderCheckboxVertical(props) {
 
       // Apply styling
       if (isHighlighted && isFocused && !disabled) {
-        optionText = chalk[highlightColor].bold.inverse(optionText);
+        optionText = getChalkColor(highlightColor).bold.inverse(optionText);
       } else if (isSelected) {
-        optionText = chalk[selectedColor].bold(optionText);
+        optionText = getChalkColor(selectedColor).bold(optionText);
       } else if (option.disabled) {
         optionText = chalk.dim(optionText);
       }
@@ -611,7 +615,7 @@ function renderCheckboxHorizontal(props) {
     // Build item string
     let indicator;
     if (isSelected) {
-      indicator = chalk[selectedColor].bold('[✓]');
+      indicator = getChalkColor(selectedColor).bold('[✓]');
     } else {
       indicator = '[ ]';
     }
@@ -620,9 +624,9 @@ function renderCheckboxHorizontal(props) {
 
     // Apply styling
     if (isHighlighted && isFocused && !disabled) {
-      itemText = chalk[highlightColor].bold.inverse(itemText);
+      itemText = getChalkColor(highlightColor).bold.inverse(itemText);
     } else if (isSelected) {
-      itemText = chalk[selectedColor].bold(itemText);
+      itemText = getChalkColor(selectedColor).bold(itemText);
     } else if (option.disabled) {
       itemText = chalk.dim(itemText);
     }

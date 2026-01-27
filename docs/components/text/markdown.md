@@ -16,29 +16,31 @@ import { Markdown } from 'vuetty';
 
 ## Props
 
+Markdown colors are theme-aware. They default to `theme.components.markdown.*` and fall back to the legacy defaults below when the theme doesn’t define them.
+
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
 | `content` | `string` | `''` | Markdown content to render |
-| `h1Color` | `string` | `'cyan'` | Color for H1 headings |
-| `h2Color` | `string` | `'cyan'` | Color for H2 headings |
-| `h3Color` | `string` | `'blue'` | Color for H3 headings |
-| `h4Color` | `string` | `'blue'` | Color for H4 headings |
-| `h5Color` | `string` | `'blue'` | Color for H5 headings |
-| `h6Color` | `string` | `'blue'` | Color for H6 headings |
-| `codeColor` | `string` | `'yellow'` | Code text color |
-| `codeBg` | `string` | `'#1a1a24'` | Code background color |
-| `linkColor` | `string` | `'blue'` | Link color |
-| `emphasisColor` | `string` | `'white'` | Emphasis (italic) color |
-| `strongColor` | `string` | `'white'` | Strong (bold) color |
-| `blockquoteColor` | `string` | `'gray'` | Blockquote text color |
-| `blockquoteBorderColor` | `string` | `'gray'` | Blockquote border color |
-| `listBulletColor` | `string` | `'green'` | List bullet color |
-| `listNumberColor` | `string` | `'green'` | List number color |
-| `hrColor` | `string` | `'gray'` | Horizontal rule color |
+| `h1Color` | `string` | theme | Color for H1 headings |
+| `h2Color` | `string` | theme | Color for H2 headings |
+| `h3Color` | `string` | theme | Color for H3 headings |
+| `h4Color` | `string` | theme | Color for H4 headings |
+| `h5Color` | `string` | theme | Color for H5 headings |
+| `h6Color` | `string` | theme | Color for H6 headings |
+| `codeColor` | `string` | theme | Code text color |
+| `codeBg` | `string` | theme | Code background color |
+| `linkColor` | `string` | theme | Link color |
+| `emphasisColor` | `string` | theme | Emphasis (italic) color |
+| `strongColor` | `string` | theme | Strong (bold) color |
+| `blockquoteColor` | `string` | theme | Blockquote text color |
+| `blockquoteBorderColor` | `string` | theme | Blockquote border color |
+| `listBulletColor` | `string` | theme | List bullet color |
+| `listNumberColor` | `string` | theme | List number color |
+| `hrColor` | `string` | theme | Horizontal rule color |
 | `hrChar` | `string` | `'─'` | Horizontal rule character |
 | `hrLength` | `number` | `60` | Horizontal rule length |
-| `tableHeaderColor` | `string` | `'cyan'` | Table header color |
-| `tableBorderColor` | `string` | `'white'` | Table border color |
+| `tableHeaderColor` | `string` | theme | Table header color |
+| `tableBorderColor` | `string` | theme | Table border color |
 | `color` | `string` | `-` | Base text color |
 | `bg` | `string` | `-` | Background color |
 | `bold` | `boolean` | `false` | Bold text |

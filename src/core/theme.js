@@ -90,6 +90,28 @@ export const DEFAULT_THEME = {
       activeColor: '#4ecca3',
       highlightColor: '#c97945'
     },
+    markdown: {
+      color: '#e6e8f0',
+      bg: null,
+      h1Color: '#5eb3d6',
+      h2Color: '#5eb3d6',
+      h3Color: '#3d5eff',
+      h4Color: '#3d5eff',
+      h5Color: '#3d5eff',
+      h6Color: '#3d5eff',
+      codeColor: '#c97945',
+      codeBg: '#1a1a24',
+      linkColor: '#3d5eff',
+      emphasisColor: '#e6e8f0',
+      strongColor: '#e6e8f0',
+      blockquoteColor: '#4a4f6a',
+      blockquoteBorderColor: '#4a4f6a',
+      listBulletColor: '#4ecca3',
+      listNumberColor: '#4ecca3',
+      hrColor: '#4a4f6a',
+      tableHeaderColor: '#e6e8f0',
+      tableBorderColor: '#4a4f6a'
+    },
     tree: {
       focusColor: '#7d5fff',
       selectedColor: '#4ecca3',

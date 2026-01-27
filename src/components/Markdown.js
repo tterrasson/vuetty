@@ -9,6 +9,7 @@ import Table from './Table.js';
 import Row from './Row.js';
 import { WIDTH_CONTEXT_KEY } from '@core/widthContext.js';
 import { boxProps } from '@core/layoutProps.js';
+import { VUETTY_THEME_KEY } from '@core/vuettyKeys.js';
 import {
   renderInlineTokens,
   flattenInlineTokensToString,
@@ -128,40 +129,40 @@ export default {
     content: { type: String, default: '' },
 
     // Heading colors
-    h1Color: { type: String, default: 'cyan' },
-    h2Color: { type: String, default: 'cyan' },
-    h3Color: { type: String, default: 'blue' },
-    h4Color: { type: String, default: 'blue' },
-    h5Color: { type: String, default: 'blue' },
-    h6Color: { type: String, default: 'blue' },
+    h1Color: { type: String, default: null },
+    h2Color: { type: String, default: null },
+    h3Color: { type: String, default: null },
+    h4Color: { type: String, default: null },
+    h5Color: { type: String, default: null },
+    h6Color: { type: String, default: null },
 
     // Code styling
-    codeColor: { type: String, default: 'yellow' },
-    codeBg: { type: String, default: '#1a1a24' },
+    codeColor: { type: String, default: null },
+    codeBg: { type: String, default: null },
 
     // Link styling
-    linkColor: { type: String, default: 'blue' },
+    linkColor: { type: String, default: null },
 
     // Text emphasis
-    emphasisColor: { type: String, default: 'white' },
-    strongColor: { type: String, default: 'white' },
+    emphasisColor: { type: String, default: null },
+    strongColor: { type: String, default: null },
 
     // Blockquote styling
-    blockquoteColor: { type: String, default: 'gray' },
-    blockquoteBorderColor: { type: String, default: 'gray' },
+    blockquoteColor: { type: String, default: null },
+    blockquoteBorderColor: { type: String, default: null },
 
     // List styling
-    listBulletColor: { type: String, default: 'green' },
-    listNumberColor: { type: String, default: 'green' },
+    listBulletColor: { type: String, default: null },
+    listNumberColor: { type: String, default: null },
 
     // Horizontal rule
-    hrColor: { type: String, default: 'gray' },
+    hrColor: { type: String, default: null },
     hrChar: { type: String, default: '─' },
     hrLength: { type: Number, default: 60 },
 
     // Table styling
-    tableHeaderColor: { type: String, default: 'cyan' },
-    tableBorderColor: { type: String, default: 'white' },
+    tableHeaderColor: { type: String, default: null },
+    tableBorderColor: { type: String, default: null },
 
     // Base text styling
     color: String,
@@ -179,6 +180,7 @@ export default {
   setup(props) {
     const components = { TextBox, Box, Divider, Newline, Table, Row };
     const parentWidthContext = inject(WIDTH_CONTEXT_KEY, null);
+    const theme = inject(VUETTY_THEME_KEY, null);
 
     // Shared token cache with conservative limits (5 entries, 500 total tokens max)
     const config = getCacheConfig();
@@ -346,13 +348,13 @@ export default {
     /**
      * Render tokens to vnodes (not cached - created fresh each render)
      */
-    function renderTokensToVnodes(tokens, contentWidth, effectiveBg) {
+    function renderTokensToVnodes(tokens, contentWidth, effectiveBg, effectiveProps) {
       if (!tokens || tokens.length === 0) {
         return [h(TextBox, { bg: effectiveBg }, { default: () => '' })];
       }
 
       // Create enriched props with effective background
-      const enrichedProps = { ...props, bg: effectiveBg };
+      const enrichedProps = { ...effectiveProps, bg: effectiveBg };
 
       const elements = [];
       for (const token of tokens) {
@@ -378,21 +380,47 @@ export default {
         cachedTokens = parseToTokens(content);
       }
 
-      // Only use explicit bg prop, don't fallback to theme.background
+      const themeMarkdown = theme?.components?.markdown || {};
+
+      const effectiveProps = {
+        ...props,
+        color: props.color ?? themeMarkdown.color ?? undefined,
+        bg: props.bg ?? themeMarkdown.bg ?? undefined,
+        h1Color: props.h1Color ?? themeMarkdown.h1Color ?? 'cyan',
+        h2Color: props.h2Color ?? themeMarkdown.h2Color ?? 'cyan',
+        h3Color: props.h3Color ?? themeMarkdown.h3Color ?? 'blue',
+        h4Color: props.h4Color ?? themeMarkdown.h4Color ?? 'blue',
+        h5Color: props.h5Color ?? themeMarkdown.h5Color ?? 'blue',
+        h6Color: props.h6Color ?? themeMarkdown.h6Color ?? 'blue',
+        codeColor: props.codeColor ?? themeMarkdown.codeColor ?? 'yellow',
+        codeBg: props.codeBg ?? themeMarkdown.codeBg ?? '#1a1a24',
+        linkColor: props.linkColor ?? themeMarkdown.linkColor ?? 'blue',
+        emphasisColor: props.emphasisColor ?? themeMarkdown.emphasisColor ?? 'white',
+        strongColor: props.strongColor ?? themeMarkdown.strongColor ?? 'white',
+        blockquoteColor: props.blockquoteColor ?? themeMarkdown.blockquoteColor ?? 'gray',
+        blockquoteBorderColor: props.blockquoteBorderColor ?? themeMarkdown.blockquoteBorderColor ?? 'gray',
+        listBulletColor: props.listBulletColor ?? themeMarkdown.listBulletColor ?? 'green',
+        listNumberColor: props.listNumberColor ?? themeMarkdown.listNumberColor ?? 'green',
+        hrColor: props.hrColor ?? themeMarkdown.hrColor ?? 'gray',
+        tableHeaderColor: props.tableHeaderColor ?? themeMarkdown.tableHeaderColor ?? 'cyan',
+        tableBorderColor: props.tableBorderColor ?? themeMarkdown.tableBorderColor ?? 'white'
+      };
+
+      // Only use explicit bg or markdown bg, don't fallback to theme.background
       // This allows terminal's native background (OSC 11) to show through
-      const effectiveBg = props.bg;
+      const effectiveBg = effectiveProps.bg;
 
       // Always re-render vnodes (they're cheap, caching them causes leaks)
-      const elements = renderTokensToVnodes(cachedTokens, contentWidth, effectiveBg);
+      const elements = renderTokensToVnodes(cachedTokens, contentWidth, effectiveBg, effectiveProps);
 
       const boxProps = {
-        padding: props.padding,
+        padding: effectiveProps.padding,
         width: getEffectiveWidth(),
-        color: props.color,
+        color: effectiveProps.color,
         bg: effectiveBg,
-        bold: props.bold,
-        italic: props.italic,
-        dim: props.dim,
+        bold: effectiveProps.bold,
+        italic: effectiveProps.italic,
+        dim: effectiveProps.dim,
         border: false
       };
 

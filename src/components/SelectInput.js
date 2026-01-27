@@ -89,15 +89,15 @@ export default {
     bg: String,
     focusColor: {
       type: String,
-      default: 'cyan'
+      default: null
     },
     selectedColor: {
       type: String,
-      default: 'green'
+      default: null
     },
     highlightColor: {
       type: String,
-      default: 'yellow'
+      default: null
     },
     bold: Boolean,
     dim: Boolean,

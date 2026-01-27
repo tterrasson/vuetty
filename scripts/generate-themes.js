@@ -139,6 +139,28 @@ function mapToVuettyTheme(tomlData, themeName) {
         activeColor: normal.green || bright.green || '#4ecca3',
         highlightColor: normal.yellow || bright.yellow || '#c97945'
       },
+      markdown: {
+        color: primary.foreground || '#e6e8f0',
+        bg: null,
+        h1Color: bright.cyan || normal.cyan || '#5eb3d6',
+        h2Color: bright.cyan || normal.cyan || '#5eb3d6',
+        h3Color: bright.blue || normal.blue || '#3d5eff',
+        h4Color: bright.blue || normal.blue || '#3d5eff',
+        h5Color: bright.blue || normal.blue || '#3d5eff',
+        h6Color: bright.blue || normal.blue || '#3d5eff',
+        codeColor: normal.yellow || bright.yellow || '#c97945',
+        codeBg: primary.background || '#1a1a24',
+        linkColor: bright.blue || normal.blue || '#3d5eff',
+        emphasisColor: primary.foreground || '#e6e8f0',
+        strongColor: primary.foreground || '#e6e8f0',
+        blockquoteColor: normal.black || bright.black || '#4a4f6a',
+        blockquoteBorderColor: normal.black || bright.black || '#4a4f6a',
+        listBulletColor: normal.green || bright.green || '#4ecca3',
+        listNumberColor: normal.green || bright.green || '#4ecca3',
+        hrColor: normal.black || bright.black || '#4a4f6a',
+        tableHeaderColor: primary.foreground || '#e6e8f0',
+        tableBorderColor: normal.black || bright.black || '#4a4f6a'
+      },
       tree: {
         focusColor: bright.magenta || normal.magenta || '#7d5fff',
         selectedColor: normal.green || bright.green || '#4ecca3',

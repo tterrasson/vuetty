@@ -19,6 +19,7 @@ import {
 } from '@utils/keyParser.js';
 import chalk from 'chalk';
 import { getTerminalWidth, applyStyles } from '@utils/renderUtils.js';
+import { getChalkColor } from '@utils/colorUtils.js';
 import { boxProps } from '@core/layoutProps.js';
 import { RenderHandler, renderHandlerRegistry } from '@core/renderHandlers.js';
 
@@ -74,17 +75,18 @@ export default {
     // Styling
     color: String,
     bg: String,
+    borderColor: String,
     focusColor: {
       type: String,
-      default: 'cyan'
+      default: null
     },
     selectedColor: {
       type: String,
-      default: 'green'
+      default: null
     },
     highlightColor: {
       type: String,
-      default: 'yellow'
+      default: null
     },
     bold: Boolean,
     dim: Boolean,
@@ -389,11 +391,12 @@ export default {
 
     // Render
     return () => {
-      // Resolve colors from theme
+      // Resolve colors from theme inside render function for reactivity
       const effectiveFocusColor = props.focusColor || theme?.components?.radiobox?.focusColor || 'cyan';
       const effectiveSelectedColor = props.selectedColor || theme?.components?.radiobox?.selectedColor || 'green';
       const effectiveHighlightColor = props.highlightColor || theme?.components?.radiobox?.highlightColor || 'yellow';
       const effectiveColor = props.color || theme?.components?.radiobox?.color;
+      const effectiveBorderColor = props.borderColor || theme?.components?.radiobox?.borderColor || effectiveColor;
 
       return h('radiobox', {
         ...props,
@@ -406,7 +409,9 @@ export default {
         focusColor: effectiveFocusColor,
         selectedColor: effectiveSelectedColor,
         highlightColor: effectiveHighlightColor,
-        color: effectiveColor
+        color: effectiveColor,
+        borderColor: effectiveBorderColor,
+        _themeVersion: theme?.version || 0,
       });
     };
   }
@@ -428,6 +433,7 @@ function renderRadioboxVertical(props) {
     focusColor = 'cyan',
     selectedColor = 'green',
     highlightColor = 'yellow',
+    borderColor,
     disabled = false,
     hint = 'default'
   } = props;
@@ -443,10 +449,9 @@ function renderRadioboxVertical(props) {
   // If no options
   if (options.length === 0) {
     const width = 20;
-    const borderColor = isFocused && !disabled ? focusColor : (props.color || 'white');
-    const borderStyle = isFocused && !disabled
-      ? (chalk[borderColor] || chalk).bold
-      : chalk[borderColor] || chalk;
+    const borderColorValue = isFocused && !disabled ? focusColor : borderColor;
+    const borderChalk = borderColorValue ? getChalkColor(borderColorValue) : chalk;
+    const borderStyle = (isFocused && !disabled) ? borderChalk.bold : borderChalk;
 
     output += borderStyle('┌' + '─'.repeat(width + 2) + '┐') + '\n';
     output += borderStyle('│') + ' No options'.padEnd(width + 2, ' ') + borderStyle('│') + '\n';
@@ -469,10 +474,9 @@ function renderRadioboxVertical(props) {
   const contentWidth = Math.max(1, innerWidth - 6);
 
   // Border style (bold when focused)
-  const borderColor = isFocused && !disabled ? focusColor : (props.color || 'white');
-  const borderStyle = isFocused && !disabled
-    ? (chalk[borderColor] || chalk).bold
-    : chalk[borderColor] || chalk;
+  const borderColorValue = isFocused && !disabled ? focusColor : borderColor;
+  const borderChalk = borderColorValue ? getChalkColor(borderColorValue) : chalk;
+  const borderStyle = (isFocused && !disabled) ? borderChalk.bold : borderChalk;
 
   // Top border
   output += borderStyle('┌' + '─'.repeat(innerWidth) + '┐') + '\n';
@@ -490,7 +494,7 @@ function renderRadioboxVertical(props) {
       // Build radio indicator
       let indicator = '   ';
       if (isSelected) {
-        indicator = chalk[selectedColor].bold('(●)');
+        indicator = getChalkColor(selectedColor).bold('(●)');
       } else {
         indicator = '( )';
       }
@@ -505,9 +509,9 @@ function renderRadioboxVertical(props) {
 
       // Apply styling
       if (isHighlighted && isFocused && !disabled) {
-        optionText = chalk[highlightColor].bold.inverse(optionText);
+        optionText = getChalkColor(highlightColor).bold.inverse(optionText);
       } else if (isSelected) {
-        optionText = chalk[selectedColor].bold(optionText);
+        optionText = getChalkColor(selectedColor).bold(optionText);
       } else if (option.disabled) {
         optionText = chalk.dim(optionText);
       }
@@ -601,7 +605,7 @@ function renderRadioboxHorizontal(props) {
     // Build item string
     let indicator;
     if (isSelected) {
-      indicator = chalk[selectedColor].bold('(●)');
+      indicator = getChalkColor(selectedColor).bold('(●)');
     } else {
       indicator = '( )';
     }
@@ -610,9 +614,9 @@ function renderRadioboxHorizontal(props) {
 
     // Apply styling
     if (isHighlighted && isFocused && !disabled) {
-      itemText = chalk[highlightColor].bold.inverse(itemText);
+      itemText = getChalkColor(highlightColor).bold.inverse(itemText);
     } else if (isSelected) {
-      itemText = chalk[selectedColor].bold(itemText);
+      itemText = getChalkColor(selectedColor).bold(itemText);
     } else if (option.disabled) {
       itemText = chalk.dim(itemText);
     }

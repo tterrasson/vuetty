@@ -14,17 +14,18 @@ import {
 
 /**
  * Composable for navigable list behavior
- * Provides keyboard navigation, selection, and focus management for list-based components
+ * Provides keyboard navigation, selection, and focus management
+ * for list-based components
  *
  * @param {Object} options - Configuration options
  * @param {import('vue').ComputedRef<Array>} options.items
  *   - Computed ref to normalized items array [{value, label, disabled}]
  * @param {import('vue').ComputedRef<number>} options.height - Computed ref to viewport height
  * @param {import('vue').ComputedRef<*>} options.modelValue - Computed ref to selected value(s)
- * @param {Function} options.emit - Emit function for events
+ * @param {Function} options.emit - Event emission function
  * @param {string} options.componentId - Unique component identifier
- * @param {import('vue').ComputedRef<boolean>} options.disabled - Computed ref to disabled state
- * @param {boolean} [options.multiSelect=false] - Enable multi-select mode (for Checkbox)
+ * @param {import('vue').ComputedRef<boolean>} options.disabled - Computed ref for disabled state
+ * @param {boolean} [options.multiSelect=false] - Enable multi-selection mode (for Checkbox)
  * @returns {Object} Navigation API and state
  */
 export function useNavigableList(options) {
@@ -46,7 +47,7 @@ export function useNavigableList(options) {
   const highlightedIndex = ref(0);
   const scrollOffset = ref(0);
 
-  // Computed: Find selected index based on modelValue
+  // Computed: find selected index based on modelValue
   const selectedIndex = computed(() => {
     const currentItems = items.value;
     const currentValue = modelValue.value;
@@ -55,7 +56,7 @@ export function useNavigableList(options) {
       return -1;
     }
 
-    // For multi-select with array, return first selected
+    // In multi-selection with array, return first selection
     if (multiple?.value && Array.isArray(currentValue) && currentValue.length > 0) {
       return currentItems.findIndex(item => currentValue.includes(item.value));
     }
@@ -63,7 +64,7 @@ export function useNavigableList(options) {
     return currentItems.findIndex(item => item.value === currentValue);
   });
 
-  // Computed: Find all selected indices for multi-select
+  // Computed: find all selected indices in multi-selection
   const selectedIndices = computed(() => {
     if (!multiple?.value) {
       return [];
@@ -81,13 +82,13 @@ export function useNavigableList(options) {
       .filter(index => index !== -1);
   });
 
-  // Computed: Check if this component is focused (reactive)
+  // Computed: check if this component has focus (reactive)
   const isFocused = computed(() => {
     return inputManager && inputManager.isFocused(componentId);
   });
 
   /**
-   * Update scroll offset to keep highlighted item visible
+   * Update scroll offset to keep highlighted element visible
    */
   function updateScrollOffset() {
     const currentHeight = height.value;
@@ -95,7 +96,7 @@ export function useNavigableList(options) {
     const itemsCount = items.value.length;
 
     // Ensure scrollOffset doesn't exceed valid range
-    // maxScrollOffset ensures we always show a full viewport of items (no empty rows at the end)
+    // maxScrollOffset ensures full viewport (no empty lines at the end)
     const maxScrollOffset = Math.max(0, itemsCount - currentHeight);
 
     if (currentIndex < scrollOffset.value) {
@@ -128,7 +129,7 @@ export function useNavigableList(options) {
         highlightedIndex.value--;
       }
 
-      // If we landed on a disabled item (first item is disabled), revert
+      // If we land on a disabled item (first disabled item), revert
       if (currentItems[highlightedIndex.value]?.disabled) {
         highlightedIndex.value = startIndex;
         return;
@@ -156,7 +157,7 @@ export function useNavigableList(options) {
         highlightedIndex.value++;
       }
 
-      // If we landed on a disabled item (last item is disabled), revert
+      // If we land on a disabled item (last disabled item), revert
       if (currentItems[highlightedIndex.value]?.disabled) {
         highlightedIndex.value = startIndex;
         return;
@@ -167,7 +168,7 @@ export function useNavigableList(options) {
   }
 
   /**
-   * Select the highlighted item
+   * Select highlighted item
    */
   function selectHighlighted() {
     const currentItems = items.value;
@@ -178,7 +179,7 @@ export function useNavigableList(options) {
     }
 
     if (multiple?.value) {
-      // Multi-select mode: toggle selection
+      // Multi-selection mode: toggle selection
       const currentValue = Array.isArray(modelValue.value) ? modelValue.value : [];
       const itemValue = item.value;
 
@@ -194,7 +195,7 @@ export function useNavigableList(options) {
       emit('update:modelValue', newValue);
       emit('change', newValue);
     } else {
-      // Single select mode
+      // Single selection mode
       emit('update:modelValue', item.value);
       emit('change', item.value);
     }
@@ -207,7 +208,7 @@ export function useNavigableList(options) {
     const currentItems = items.value;
     highlightedIndex.value = 0;
 
-    // Skip disabled items at the start
+    // Skip disabled items at the beginning
     while (
       highlightedIndex.value < currentItems.length - 1 &&
       currentItems[highlightedIndex.value]?.disabled
@@ -234,14 +235,14 @@ export function useNavigableList(options) {
   }
 
   /**
-   * Jump to item by typing first letter
+   * Jump to an item by typing its first letter
    */
   function jumpByChar(char) {
     const currentItems = items.value;
     const lowerChar = char.toLowerCase();
     const currentIndex = highlightedIndex.value;
 
-    // Search from next item forward
+    // Search from next item
     for (let i = currentIndex + 1; i < currentItems.length; i++) {
       const item = currentItems[i];
       const label = item.label.toLowerCase();
@@ -253,7 +254,7 @@ export function useNavigableList(options) {
       }
     }
 
-    // Wrap around: search from start to current
+    // Loop: search from beginning to current item
     for (let i = 0; i <= currentIndex; i++) {
       const item = currentItems[i];
       const label = item.label.toLowerCase();
@@ -294,7 +295,7 @@ export function useNavigableList(options) {
     }
 
     if (parsedKey.key === KEY_PAGEUP) {
-      // Move up by height
+      // Move up by "height"
       for (let i = 0; i < height.value; i++) {
         moveUp();
       }
@@ -302,7 +303,7 @@ export function useNavigableList(options) {
     }
 
     if (parsedKey.key === KEY_PAGEDOWN) {
-      // Move down by height
+      // Move down by "height"
       for (let i = 0; i < height.value; i++) {
         moveDown();
       }
@@ -315,7 +316,7 @@ export function useNavigableList(options) {
       return;
     }
 
-    // Type to jump
+    // Type to navigate
     if (isPrintable(parsedKey) && parsedKey.char !== ' ') {
       jumpByChar(parsedKey.char);
       return;
@@ -357,7 +358,7 @@ export function useNavigableList(options) {
     }
   }
 
-  // Watch focus state for events
+  // Watch focus state to emit events
   watch(isFocused, (newVal, oldVal) => {
     if (newVal && !oldVal) {
       emit('focus');
@@ -375,14 +376,14 @@ export function useNavigableList(options) {
     updateScrollOffset();
   });
 
-  // Watch height changes to recalculate scroll offset
+  // Watch height changes to recalculate offset
   watch(height, () => {
     updateScrollOffset();
   });
 
-  // Watch modelValue changes to sync highlighted index
+  // Watch modelValue changes to synchronize highlight
   watch(modelValue, () => {
-    // For multi-select, don't auto-highlight on selection change
+    // In multi-selection, don't auto-highlight on change
     if (multiple?.value) {
       return;
     }
@@ -401,7 +402,7 @@ export function useNavigableList(options) {
     }
   });
 
-  // Initialize: If there's a modelValue, highlight it
+  // Initialize: if there's a modelValue, highlight it
   if (selectedIndex.value >= 0) {
     highlightedIndex.value = selectedIndex.value;
     updateScrollOffset();

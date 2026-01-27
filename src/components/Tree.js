@@ -69,11 +69,11 @@ export default {
     bg: String,              // Background color
     branchColor: {           // Color for tree branch characters (│├└─)
       type: String,
-      default: 'gray'
+      default: null
     },
     folderColor: {           // Color for folder/parent nodes
       type: String,
-      default: 'blue'
+      default: null
     },
     fileColor: {             // Color for file/leaf nodes
       type: String,
@@ -87,7 +87,7 @@ export default {
     },
     treeStyle: {             // Tree branch character style
       type: [String, Object],
-      default: 'default'
+      default: null
     },
 
     // Include common layout props (padding, margin, dimensions, flex item)

@@ -77,23 +77,23 @@ export default {
     bg: String,
     focusColor: {
       type: String,
-      default: 'cyan'
+      default: null
     },
     selectedColor: {
       type: String,
-      default: 'green'
+      default: null
     },
     highlightColor: {
       type: String,
-      default: 'yellow'
+      default: null
     },
     headerColor: {
       type: String,
-      default: 'white'
+      default: null
     },
     stripedColor: {
       type: String,
-      default: 'black'
+      default: null
     },
     bold: Boolean,
     dim: Boolean,
@@ -530,10 +530,10 @@ function renderEmptyRow(colWidths, borderStyle) {
  */
 function renderEmptyTable(isFocused, focusColor, props) {
   const width = 20;
-  const borderColor = isFocused ? focusColor : (props.color || 'white');
+  const borderColor = isFocused ? focusColor : props.color;
   const borderStyle = isFocused
     ? (chalk[borderColor] || chalk).bold
-    : chalk[borderColor] || chalk;
+    : (borderColor ? chalk[borderColor] || chalk : chalk);
 
   let output = '';
   output += borderStyle('┌' + '─'.repeat(width + 2) + '┐') + '\n';
@@ -585,10 +585,10 @@ export function renderTable(props) {
   const colWidths = calculateColumnWidths(headers, rows, columnWidths);
 
   // Determine border style (bold when focused)
-  const borderColor = isFocused && !disabled ? focusColor : (props.color || 'white');
+  const borderColor = isFocused && !disabled ? focusColor : props.color;
   const borderStyle = isFocused && !disabled
     ? (chalk[borderColor] || chalk).bold
-    : chalk[borderColor] || chalk;
+    : (borderColor ? chalk[borderColor] || chalk : chalk);
 
   // Render top border
   output += renderTopBorder(colWidths, borderStyle);

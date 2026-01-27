@@ -8,7 +8,7 @@
       <Col :flex="2" :gap="1">
         <Box :padding="1" color="green">
           <TextBox>Current theme</TextBox>
-          <TextBox bold color="yellow">{{ currentTheme }}</TextBox>
+          <TextBox bold>{{ currentTheme }}</TextBox>
           <TextBox dim>Next: {{ nextTheme }}</TextBox>
         </Box>
         <Box :padding="1" color="magenta">
@@ -34,11 +34,28 @@
 
     <Divider />
 
-    <Row>
-      <Spinner type="dots" label="Previewing theme" color="cyan" />
+    <Row :gap="1">
+      <Box :padding="1">
+        <TextBox>Sample text</TextBox>
+      </Box>
     </Row>
 
-    <Box :padding="1" color="gray" borderStyle="dashed">
+    <Row>
+      <Spinner type="dots" label="Dots" :paddingLeft="2" />
+      <Spinner type="line" label="Line" :paddingLeft="2" />
+      <Spinner type="box" label="Box" :paddingLeft="2" />
+    </Row>
+
+    <Row :gap="1">
+      <Checkbox v-model="selected1" :options="option1" label="Dark mode preference" />
+      <Checkbox v-model="selected2" :options="option2" label="Auto-save" />
+    </Row>
+
+    <Box :padding="1" borderStyle="single">
+      <Markdown :content="markdownContent" />
+    </Box>
+
+    <Box :padding="1" borderStyle="dashed">
       <TextBox dim>Ctrl+C to exit</TextBox>
     </Box>
   </Col>
@@ -48,8 +65,10 @@
 import { computed, onMounted, onUnmounted, ref } from 'vue';
 import {
   Box,
+  Checkbox,
   Col,
   Divider,
+  Markdown,
   ProgressBar,
   Row,
   Spinner,
@@ -77,6 +96,33 @@ const progress = ref(20);
 const nextTheme = computed(
   () => themes[(currentIndex.value + 1) % themes.length]
 );
+const option1 = ref([
+  { label: 'Dark', value: 'dark' },
+  { label: 'Dark Grey', value: 'dark-grey' },
+  { label: 'Light', value: 'light' }
+]);
+const selected1 = ref(["dark"])
+const option2 = ref([
+  { label: 'Force', value: 'force' },
+  { label: 'Auto', value: 'auto' }
+]);
+const selected2 = ref(["auto"])
+const markdownContent = `# Theme Preview
+
+**Bold text** and *italic text* to see how they render.
+
+- List item one
+- List item two
+- List item three
+
+Example: \`const theme = useTheme()\` and regular text.
+
+\`\`\`javascript
+function applyTheme(name) {
+  setTheme(name);
+  return true;
+}
+\`\`\``;
 let timerId = null;
 
 const applyTheme = (index) => {

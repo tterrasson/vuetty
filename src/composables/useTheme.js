@@ -3,35 +3,35 @@ import { VUETTY_THEME_KEY, VUETTY_INSTANCE_KEY } from '@core/vuettyKeys.js';
 import * as generatedThemes from '@core/generated-themes.js';
 
 /**
- * Composable pour gérer les thèmes de l'application
- * @returns {Object} API du composable
+ * Composable for managing application themes
+ * @returns {Object} Composable API
  */
 export function useTheme() {
-  // Injecter le thème et l'instance Vuetty
+  // Inject theme and Vuetty instance
   const injectedTheme = inject(VUETTY_THEME_KEY, null);
   const vuettyInstance = inject(VUETTY_INSTANCE_KEY, null);
 
   /**
-   * Liste tous les thèmes disponibles
-   * @returns {Array<string>} Noms des thèmes
+   * List all available themes
+   * @returns {Array<string>} Theme names
    */
   const listThemes = () => {
     return Object.keys(generatedThemes);
   };
 
   /**
-   * Récupère un thème par son nom
-   * @param {string} themeName - Nom du thème (ex: 'GITHUB_LIGHT')
-   * @returns {Object|null} Objet du thème ou null si non trouvé
+   * Get a theme by its name
+   * @param {string} themeName - Theme name (e.g., 'GITHUB_LIGHT')
+   * @returns {Object|null} Theme object or null if not found
    */
   const getTheme = (themeName) => {
     return generatedThemes[themeName] || null;
   };
 
   /**
-   * Définit le thème actuel
-   * @param {string} themeName - Nom du thème à activer
-   * @throws {Error} Si le thème n'existe pas
+   * Set the current theme
+   * @param {string} themeName - Theme name to activate
+   * @throws {Error} If the theme does not exist
    */
   const setTheme = (themeName) => {
     const newTheme = getTheme(themeName);
@@ -43,21 +43,23 @@ export function useTheme() {
       );
     }
 
-    // Mettre à jour l'objet thème injecté de manière réactive
+    // Update the injected theme object reactively
     if (injectedTheme) {
-      // Copier toutes les propriétés du nouveau thème dans l'objet injecté
+      // Copy all properties of the new theme into the injected object
       Object.keys(injectedTheme).forEach(key => delete injectedTheme[key]);
       Object.assign(injectedTheme, newTheme);
+      // Increment version to force component re-render
+      injectedTheme.version = (injectedTheme.version || 0) + 1;
     }
 
-    // Mettre à jour le background du terminal et le themeBgCode
+    // Update terminal background and themeBgCode
     if (vuettyInstance) {
-      // Importer dynamiquement les fonctions de colorUtils
+      // Dynamically import colorUtils functions
       import('@utils/colorUtils.js').then(({ colorToAnsiBg, colorToOSC11 }) => {
-        // Mettre à jour le themeBgCode pour le rendu
+        // Update themeBgCode for rendering
         vuettyInstance.themeBgCode = colorToAnsiBg(newTheme.background);
 
-        // Mettre à jour le background du terminal (OSC 11)
+        // Update terminal background (OSC 11)
         if (newTheme.background) {
           const bgRgbFormat = colorToOSC11(newTheme.background);
           if (bgRgbFormat) {
@@ -65,19 +67,19 @@ export function useTheme() {
           }
         }
 
-        // Effacer les caches qui dépendent du thème
+        // Clear theme-dependent caches
         if (vuettyInstance.logUpdate) {
           vuettyInstance.logUpdate.clear();
         }
 
-        // Invalider le cache de lignes visibles
+        // Invalidate visible lines cache
         vuettyInstance.visibleLinesCache = {
           offset: -1,
           lines: null,
           output: null
         };
 
-        // Forcer un re-render complet
+        // Force complete re-render
         if (vuettyInstance.renderer && vuettyInstance.renderer.forceUpdate) {
           vuettyInstance.renderer.forceUpdate();
         }
@@ -86,17 +88,17 @@ export function useTheme() {
   };
 
   /**
-   * Récupère tous les thèmes avec leurs données
-   * @returns {Object} Objet contenant tous les thèmes
+   * Get all themes with their data
+   * @returns {Object} Object containing all themes
    */
   const getAllThemes = () => {
     return { ...generatedThemes };
   };
 
   /**
-   * Trouve des thèmes par pattern
-   * @param {string} pattern - Pattern de recherche (ex: 'DARK', 'LIGHT', 'GITHUB')
-   * @returns {Array<Object>} Liste des thèmes correspondants
+   * Find themes by pattern
+   * @param {string} pattern - Search pattern (e.g., 'DARK', 'LIGHT', 'GITHUB')
+   * @returns {Array<Object>} List of matching themes
    */
   const findThemes = (pattern) => {
     const regex = new RegExp(pattern, 'i');

@@ -72,7 +72,7 @@ export default {
     bg: String,
     highlightColor: {
       type: String,
-      default: 'cyan'
+      default: null
     },
     bold: Boolean,
     dim: Boolean

@@ -81,15 +81,15 @@ export default {
     bg: String,
     focusColor: {
       type: String,
-      default: 'cyan'
+      default: null
     },
     activeColor: {
       type: String,
-      default: 'green'
+      default: null
     },
     highlightColor: {
       type: String,
-      default: 'yellow'
+      default: null
     },
 
     // Panel styling
@@ -475,6 +475,9 @@ export default {
       const effectiveHighlightColor = props.highlightColor !== undefined
         ? props.highlightColor
         : (theme?.components?.tabs?.highlightColor || 'yellow');
+      const effectiveColor = props.color !== undefined
+        ? props.color
+        : (theme?.components?.tabs?.color || theme?.components?.tabs?.focusColor);
 
       return h('tabs', {
         ...props,
@@ -488,6 +491,7 @@ export default {
         focusColor: effectiveFocusColor,
         activeColor: effectiveActiveColor,
         highlightColor: effectiveHighlightColor,
+        color: effectiveColor,
         _injectedWidth: injectedWidth,
         _viewportVersion: viewportState ? viewportState.version : 0
       }, slotContent);
