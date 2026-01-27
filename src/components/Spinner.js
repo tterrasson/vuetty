@@ -1,7 +1,7 @@
 // src/components/Spinner.js
 import { h, ref, watch, onUnmounted, nextTick, inject } from 'vue';
 import { VUETTY_THEME_KEY } from '@core/vuettyKeys.js';
-import { applyStyles } from '@utils/renderUtils.js';
+import { applyStyles, getSpaces } from '@utils/renderUtils.js';
 import { boxProps } from '@core/layoutProps.js';
 import { RenderHandler, renderHandlerRegistry } from '@core/renderHandlers.js';
 
@@ -27,15 +27,7 @@ export default {
     type: {
       type: String,
       default: 'dots',
-      validator: (value) => [
-        'dots',
-        'line',
-        'arc',
-        'arrow',
-        'bounce',
-        'clock',
-        'box'
-      ].includes(value)
+      validator: (value) => Object.keys(SPINNER_FRAMES).includes(value)
     },
     modelValue: {
       type: Boolean,
@@ -157,8 +149,19 @@ export function renderSpinner(props) {
     type = 'dots',
     frame = 0,
     label = '',
-    labelPosition = 'right'
+    labelPosition = 'right',
+    padding = 0,
+    paddingTop,
+    paddingBottom,
+    paddingLeft,
+    paddingRight
   } = props;
+
+  // Calculate effective padding for each side
+  const effectivePaddingTop = paddingTop ?? padding ?? 0;
+  const effectivePaddingBottom = paddingBottom ?? padding ?? 0;
+  const effectivePaddingLeft = paddingLeft ?? padding ?? 0;
+  const effectivePaddingRight = paddingRight ?? padding ?? 0;
 
   const frames = SPINNER_FRAMES[type] || SPINNER_FRAMES.dots;
   const spinnerChar = frames[frame % frames.length];
@@ -167,7 +170,28 @@ export function renderSpinner(props) {
     ? [label, label ? ' ' : '', spinnerChar]
     : [spinnerChar, label ? ' ' : '', label];
 
-  return applyStyles(parts.join(''), props);
+  // Build content with horizontal padding
+  const leftPad = getSpaces(effectivePaddingLeft);
+  const rightPad = getSpaces(effectivePaddingRight);
+  const content = leftPad + applyStyles(parts.join(''), props) + rightPad;
+
+  // Build output with vertical padding
+  const lines = [];
+
+  // Top padding
+  for (let i = 0; i < effectivePaddingTop; i++) {
+    lines.push('');
+  }
+
+  // Content
+  lines.push(content);
+
+  // Bottom padding
+  for (let i = 0; i < effectivePaddingBottom; i++) {
+    lines.push('');
+  }
+
+  return lines.join('\n');
 }
 
 /**
