@@ -4,9 +4,9 @@
     <TextInput
       v-model="query"
       color="green"
-      :multiline="true"
       placeholder="Search..."
       hint="Type to update the preview"
+      multiline
     />
     <TextInput
       v-model="username"
