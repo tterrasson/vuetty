@@ -126,7 +126,6 @@ export function generateContentHash(node, depth = 0) {
 
 /**
  * Hash a string using FNV-1a algorithm (32-bit)
- * Optimized for hot path usage in layout engine
  *
  * @param {string} str - String to hash
  * @param {number} maxLen - Maximum length to hash (for performance). Default: Infinity for full string.

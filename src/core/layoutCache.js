@@ -3,8 +3,15 @@
  * Layout Cache - Caches text measurements and layout metrics
  */
 
-const DEFAULT_TEXT_CACHE_SIZE = 5000;
-const MAX_METRICS_PER_NODE = 3;
+import { getCacheConfig } from './cacheConfig.js';
+
+function getTextCacheSize() {
+  return getCacheConfig().layout.textMeasurement;
+}
+
+function getMaxMetricsPerNode() {
+  return getCacheConfig().layout.metricsPerNode;
+}
 
 /**
  * Simple LRU (Least Recently Used) Cache
@@ -58,11 +65,12 @@ class LRUCache {
 
 export class LayoutCache {
   constructor(options = {}) {
-    this.textMeasurementCache = new LRUCache(options.textCacheSize || DEFAULT_TEXT_CACHE_SIZE);
+    this.textMeasurementCache = new LRUCache(options.textCacheSize || getTextCacheSize());
     this.layoutMetricsCache = new WeakMap(); // node -> Map<cacheKey, metrics>
 
     // Track total metrics entries for debugging
     this._metricsEntryCount = 0;
+    this._maxMetricsPerNode = getMaxMetricsPerNode();
   }
 
   /**
@@ -122,7 +130,7 @@ export class LayoutCache {
     nodeCache.set(cacheKey, metrics);
 
     // Most nodes only need 1-2 cache entries (current and previous state)
-    if (nodeCache.size > MAX_METRICS_PER_NODE) {
+    if (nodeCache.size > this._maxMetricsPerNode) {
       const firstKey = nodeCache.keys().next().value;
       nodeCache.delete(firstKey);
       this._metricsEntryCount--;
@@ -157,7 +165,7 @@ export class LayoutCache {
       textMeasurements: this.textMeasurementCache.size,
       textCacheMaxSize: this.textMeasurementCache.maxSize,
       metricsEntries: this._metricsEntryCount,
-      metricsMaxPerNode: MAX_METRICS_PER_NODE
+      metricsMaxPerNode: this._maxMetricsPerNode
     };
   }
 }

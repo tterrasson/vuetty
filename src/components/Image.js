@@ -6,11 +6,15 @@ import TextBox from './TextBox.js';
 import Newline from './Newline.js';
 import { boxProps } from '@core/layoutProps.js';
 import { RenderHandler, renderHandlerRegistry } from '@core/renderHandlers.js';
+import { getCacheConfig } from '@core/cacheConfig.js';
+
+function getImageCacheSize() {
+  return getCacheConfig().components.image.rendered;
+}
 
 // Cache rendered images to avoid re-processing identical images
 // Key: src + width + height + preserveAspectRatio
 const imageCache = new Map();
-const MAX_CACHE_SIZE = 20;
 
 /**
  * Generate cache key for image
@@ -118,7 +122,7 @@ export default {
         const lines = rendered.split('\n').length;
 
         // Store in cache
-        if (imageCache.size >= MAX_CACHE_SIZE) {
+        if (imageCache.size >= getImageCacheSize()) {
           const firstKey = imageCache.keys().next().value;
           imageCache.delete(firstKey);
         }

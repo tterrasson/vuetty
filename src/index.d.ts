@@ -4,12 +4,47 @@ import type { Component, DefineComponent, ComputedRef } from "vue";
 // Core Options and Classes
 // ============================================================================
 
+export interface CacheOptions {
+  layout?: {
+    textMeasurement?: number;
+    metricsPerNode?: number;
+  };
+  line?: {
+    width?: number;
+    truncateBuckets?: number;
+    truncatePerBucket?: number;
+  };
+  effects?: {
+    results?: number;
+    parsedColors?: number;
+    colorArrays?: number;
+  };
+  components?: {
+    markdown?: {
+      tokens?: number;
+      maxTokens?: number;
+      styles?: number;
+    };
+    bigText?: {
+      figlet?: number;
+      final?: number;
+    };
+    image?: {
+      rendered?: number;
+    };
+    box?: {
+      bufferPool?: number;
+    };
+  };
+}
+
 export interface VuettyOptions {
   theme?: Partial<Theme>;
   debugServer?: boolean | Record<string, any>;
   viewport?: Record<string, any>;
   forceColors?: boolean;
   scrollIndicatorMode?: string;
+  cache?: CacheOptions;
   [key: string]: any;
 }
 

@@ -2,13 +2,17 @@
 import { h } from 'vue';
 import { highlight } from 'cli-highlight';
 import { wrapText, getTerminalWidth } from '@utils/renderUtils.js';
+import { getCacheConfig } from '@core/cacheConfig.js';
 
 // Reusable empty style object to avoid allocations
 const EMPTY_STYLE = Object.freeze({});
 
+function getStyleCacheSize() {
+  return getCacheConfig().components.markdown.styles;
+}
+
 // Cache for commonly used style combinations
 const styleCache = new Map();
-const MAX_STYLE_CACHE = 30;
 
 function getOrCreateStyle(styleProps) {
   // Fast path for empty style
@@ -27,7 +31,7 @@ function getOrCreateStyle(styleProps) {
   cached = Object.freeze({ ...styleProps });
 
   // LRU eviction
-  if (styleCache.size >= MAX_STYLE_CACHE) {
+  if (styleCache.size >= getStyleCacheSize()) {
     const firstKey = styleCache.keys().next().value;
     styleCache.delete(firstKey);
   }
@@ -49,7 +53,7 @@ export function clearRendererCaches() {
 export function getRendererCacheStats() {
   return {
     styleCacheSize: styleCache.size,
-    styleCacheMaxSize: MAX_STYLE_CACHE
+    styleCacheMaxSize: getStyleCacheSize()
   };
 }
 

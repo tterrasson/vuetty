@@ -5,6 +5,20 @@
  * Avoids expensive ANSI parsing on repeated lines
  */
 
+import { getCacheConfig } from '@core/cacheConfig.js';
+
+function getWidthCacheSize() {
+  return getCacheConfig().line.width;
+}
+
+function getTruncateBuckets() {
+  return getCacheConfig().line.truncateBuckets;
+}
+
+function getTruncatePerBucket() {
+  return getCacheConfig().line.truncatePerBucket;
+}
+
 class LineLRUCache {
   constructor(maxSize = 2000) {
     this.maxSize = maxSize;
@@ -41,12 +55,10 @@ class LineLRUCache {
 }
 
 // Width cache: line -> width
-const widthCache = new LineLRUCache(2000);
+const widthCache = new LineLRUCache(getWidthCacheSize());
 
 // Truncate cache: organized by width buckets
 const truncateCacheByWidth = new Map();
-const MAX_WIDTH_BUCKETS = 5;
-const MAX_ENTRIES_PER_WIDTH = 500;
 
 /**
  * Get cached terminal width for a line
@@ -74,11 +86,11 @@ export function getCachedTruncate(line, maxWidth, truncateFn) {
   let cache = truncateCacheByWidth.get(maxWidth);
   if (!cache) {
     // Limit number of width buckets to prevent memory leak
-    if (truncateCacheByWidth.size >= MAX_WIDTH_BUCKETS) {
+    if (truncateCacheByWidth.size >= getTruncateBuckets()) {
       const firstKey = truncateCacheByWidth.keys().next().value;
       truncateCacheByWidth.delete(firstKey);
     }
-    cache = new LineLRUCache(MAX_ENTRIES_PER_WIDTH);
+    cache = new LineLRUCache(getTruncatePerBucket());
     truncateCacheByWidth.set(maxWidth, cache);
   }
 
@@ -153,13 +165,16 @@ export function getLineCacheStats() {
   for (const cache of truncateCacheByWidth.values()) {
     truncateTotal += cache.size;
   }
+  const widthCacheSize = getWidthCacheSize();
+  const truncateBuckets = getTruncateBuckets();
+  const truncatePerBucket = getTruncatePerBucket();
   return {
     widthCacheSize: widthCache.size,
-    widthCacheMaxSize: 2000,
+    widthCacheMaxSize: widthCacheSize,
     truncateBuckets: truncateCacheByWidth.size,
-    truncateBucketsMaxSize: MAX_WIDTH_BUCKETS,
+    truncateBucketsMaxSize: truncateBuckets,
     truncateCacheSize: truncateTotal,
-    truncateMaxPerBucket: MAX_ENTRIES_PER_WIDTH,
-    maxPossibleMemory: MAX_WIDTH_BUCKETS * MAX_ENTRIES_PER_WIDTH + 2000
+    truncateMaxPerBucket: truncatePerBucket,
+    maxPossibleMemory: truncateBuckets * truncatePerBucket + widthCacheSize
   };
 }

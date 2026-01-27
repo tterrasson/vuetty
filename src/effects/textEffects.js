@@ -7,18 +7,28 @@ import {
   adjustBrightness,
   RAINBOW_PALETTE
 } from '@utils/colorUtils.js';
+import { getCacheConfig } from '@core/cacheConfig.js';
+
+function getEffectCacheSize() {
+  return getCacheConfig().effects.results;
+}
+
+function getParsedColorCacheSize() {
+  return getCacheConfig().effects.parsedColors;
+}
+
+function getColorArrayCacheSize() {
+  return getCacheConfig().effects.colorArrays;
+}
 
 // Cache for effect results
 const effectCache = new Map();
-const MAX_CACHE = 100;
 
 // Cache for parsed colors (keyed by color string)
 const parsedColorCache = new Map();
-const MAX_PARSED_COLOR_CACHE = 50;
 
 // Cache for parsed color arrays (keyed by joined colors string)
 const parsedColorsArrayCache = new Map();
-const MAX_PARSED_COLORS_ARRAY_CACHE = 20;
 
 /**
  * Get cached parsed color or parse and cache it
@@ -34,7 +44,7 @@ function getCachedParsedColor(color) {
   parsed = parseColor(color);
 
   // LRU eviction
-  if (parsedColorCache.size >= MAX_PARSED_COLOR_CACHE) {
+  if (parsedColorCache.size >= getParsedColorCacheSize()) {
     const firstKey = parsedColorCache.keys().next().value;
     parsedColorCache.delete(firstKey);
   }
@@ -58,7 +68,7 @@ function getCachedParsedColorsArray(colors) {
   parsed = colors.map(c => getCachedParsedColor(c) || { r: 255, g: 255, b: 255 });
 
   // LRU eviction
-  if (parsedColorsArrayCache.size >= MAX_PARSED_COLORS_ARRAY_CACHE) {
+  if (parsedColorsArrayCache.size >= getColorArrayCacheSize()) {
     const firstKey = parsedColorsArrayCache.keys().next().value;
     parsedColorsArrayCache.delete(firstKey);
   }
@@ -109,7 +119,7 @@ function cachedCompute(cacheKey, computeFn) {
   const result = computeFn();
 
   // LRU eviction
-  if (effectCache.size >= MAX_CACHE) {
+  if (effectCache.size >= getEffectCacheSize()) {
     const firstKey = effectCache.keys().next().value;
     effectCache.delete(firstKey);
   }
@@ -120,7 +130,6 @@ function cachedCompute(cacheKey, computeFn) {
 
 /**
  * Process text line by line with an effect function
- * Optimized to avoid unnecessary allocations
  * @param {string} text - Text to process
  * @param {function} lineProcessor - Function that processes each line's characters
  * @returns {string}

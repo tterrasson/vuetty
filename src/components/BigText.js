@@ -8,6 +8,7 @@ import { join, dirname } from 'path';
 import { boxProps } from '@core/layoutProps.js';
 import { RenderHandler, renderHandlerRegistry } from '@core/renderHandlers.js';
 import { renderChildrenCached } from '@core/memoization.js';
+import { getCacheConfig } from '@core/cacheConfig.js';
 
 // Preload fonts at module initialization to avoid runtime file access
 function preloadFont(fontName) {
@@ -54,12 +55,20 @@ for (const font of PRELOAD_FONTS) {
   preloadFont(font);
 }
 
+function getFigletCacheSize() {
+  return getCacheConfig().components.bigText.figlet;
+}
+
+function getFinalCacheSize() {
+  return getCacheConfig().components.bigText.final;
+}
+
 // Two-tier cache system for BigText rendering
 // Tier 1: Cache figlet ASCII art output (before alignment/styling)
-const figletCache = new LRUCache(50);
+const figletCache = new LRUCache(getFigletCacheSize());
 
 // Tier 2: Cache final rendered output (after alignment and styling)
-const finalOutputCache = new LRUCache(100);
+const finalOutputCache = new LRUCache(getFinalCacheSize());
 
 /**
  * Generate cache key for figlet output

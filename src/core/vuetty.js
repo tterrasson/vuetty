@@ -23,6 +23,8 @@ import { clearBoxCaches } from '@components/Box.js';
 import { clearMarkdownCaches } from '@components/Markdown.js';
 import { clearRendererCaches } from '@utils/markdownRenderer.js';
 import { clearEffectCaches } from '@effects/textEffects.js';
+import { clearBigTextCache } from '@components/BigText.js';
+import { clearImageCache } from '@components/Image.js';
 import {
   KEY_UP, KEY_DOWN, KEY_PAGEUP, KEY_PAGEDOWN,
   KEY_HOME, KEY_END, KEY_ESCAPE
@@ -30,6 +32,7 @@ import {
 import { createTheme } from './theme.js';
 import { colorToAnsiBg, colorToOSC11 } from '@utils/colorUtils.js';
 import chalk from 'chalk';
+import { initializeCacheConfig } from './cacheConfig.js';
 
 /**
  * Vuetty - TUI Framework using Vue Custom Renderer
@@ -42,6 +45,11 @@ const MAX_CLICK_HANDLERS = 200;
 export class Vuetty {
   constructor(options = {}) {
     this.config = {...options};
+
+    // Initialize cache configuration FIRST (before any cache creation)
+    if (options.cache) {
+      initializeCacheConfig(options.cache);
+    }
 
     // Force chalk colors if requested (useful for tests)
     if (options.forceColors) {
@@ -1283,6 +1291,12 @@ export class Vuetty {
 
     // Clear text effect caches (effect results, parsed colors)
     clearEffectCaches();
+
+    // Clear BigText caches (figlet, final output)
+    clearBigTextCache();
+
+    // Clear Image cache (rendered images)
+    clearImageCache();
 
     // Clear visible lines cache
     this.visibleLinesCache = {

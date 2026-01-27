@@ -16,6 +16,7 @@ import { getAnsiFgCode, getAnsiBgCode, preserveBackground } from '@utils/colorUt
 import { boxProps } from '@core/layoutProps.js';
 import { RenderHandler, renderHandlerRegistry } from '@core/renderHandlers.js';
 import { renderChildrenCached } from '@core/memoization.js';
+import { getCacheConfig } from '@core/cacheConfig.js';
 
 // Pre-compiled regex
 const TRAILING_NEWLINES_REGEX = /\n+$/;
@@ -61,7 +62,10 @@ class StringBuffer {
 
 // Pool de buffers réutilisables
 const bufferPool = [];
-const MAX_POOL_SIZE = 5;
+
+function getBufferPoolSize() {
+  return getCacheConfig().components.box.bufferPool;
+}
 
 function getBuffer() {
   return bufferPool.pop() || new StringBuffer(30);
@@ -69,7 +73,7 @@ function getBuffer() {
 
 function releaseBuffer(buffer) {
   buffer.clear();
-  if (bufferPool.length < MAX_POOL_SIZE) {
+  if (bufferPool.length < getBufferPoolSize()) {
     bufferPool.push(buffer);
   }
 }
@@ -87,7 +91,7 @@ export function clearBoxCaches() {
 export function getBoxCacheStats() {
   return {
     bufferPoolSize: bufferPool.length,
-    bufferPoolMaxSize: MAX_POOL_SIZE
+    bufferPoolMaxSize: getBufferPoolSize()
   };
 }
 

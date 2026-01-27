@@ -19,6 +19,7 @@ import {
   renderParagraphWithStyles
 } from '@utils/markdownRenderer.js';
 import { createCacheKey } from '@utils/hashUtils.js';
+import { getCacheConfig } from '@core/cacheConfig.js';
 
 // Global instance for cleanup access
 let globalTokenCache = null;
@@ -45,7 +46,6 @@ export function getMarkdownCacheStats() {
 /**
  * LRU Cache for parsed markdown tokens (not vnodes)
  * Caching tokens instead of vnodes avoids retaining Vue component references
- * Memory-optimized: limits both entry count and total token count
  */
 class MarkdownTokenCache {
   constructor(maxSize = 5, maxTotalTokens = 500) {
@@ -181,7 +181,11 @@ export default {
     const parentWidthContext = inject(WIDTH_CONTEXT_KEY, null);
 
     // Shared token cache with conservative limits (5 entries, 500 total tokens max)
-    const tokenCache = new MarkdownTokenCache(5, 500);
+    const config = getCacheConfig();
+    const tokenCache = new MarkdownTokenCache(
+      config.components.markdown.tokens,
+      config.components.markdown.maxTokens
+    );
     globalTokenCache = tokenCache;
 
     // Track last rendered state to avoid unnecessary re-parsing
