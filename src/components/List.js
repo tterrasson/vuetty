@@ -4,6 +4,7 @@ import { VUETTY_VIEWPORT_STATE_KEY, VUETTY_THEME_KEY } from '@core/vuettyKeys.js
 import { WIDTH_CONTEXT_KEY } from '@core/widthContext.js';
 import chalk from 'chalk';
 import { getTerminalWidth, applyStyles } from '@utils/renderUtils.js';
+import { getChalkColor } from '@utils/colorUtils.js';
 import { boxProps } from '@core/layoutProps.js';
 import { RenderHandler, renderHandlerRegistry } from '@core/renderHandlers.js';
 
@@ -177,7 +178,7 @@ export function renderList(props) {
       // Build indicator
       let indicator = '  ';
       if (isHighlighted) {
-        indicator = chalk[highlightColor].bold(`${marker} `);
+        indicator = getChalkColor(highlightColor).bold(`${marker} `);
       }
 
       // Build item text - pad to width
@@ -190,7 +191,7 @@ export function renderList(props) {
 
       // Apply styling
       if (isHighlighted) {
-        itemText = chalk[highlightColor](itemText);
+        itemText = getChalkColor(highlightColor)(itemText);
       } else {
         itemText = applyStyles(itemText, props);
       }

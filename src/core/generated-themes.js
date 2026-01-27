@@ -1,5 +1,5 @@
 // Auto-generated themes from TOML files
-// Generated on: 2026-01-27T23:35:38.569Z
+// Generated on: 2026-01-27T23:53:01.471Z
 
 export const TOMORROW_NIGHT_EIGHTIES = {
   "name": "TOMORROW_NIGHT_EIGHTIES",

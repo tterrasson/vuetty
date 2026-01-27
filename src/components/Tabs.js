@@ -18,6 +18,7 @@ import {
 } from '@utils/keyParser.js';
 import chalk from 'chalk';
 import { getTerminalWidth } from '@utils/renderUtils.js';
+import { getChalkColor } from '@utils/colorUtils.js';
 import { boxProps } from '@core/layoutProps.js';
 import { renderBox } from './Box.js';
 import { RenderHandler, renderHandlerRegistry } from '@core/renderHandlers.js';
@@ -540,9 +541,9 @@ export function renderTabs(props, panelContent = '') {
     if (tab.disabled) {
       tabLabel = chalk.dim(tabLabel);
     } else if (isHighlighted && !disabled) {
-      tabLabel = chalk[highlightColor].bold.inverse(tabLabel);
+      tabLabel = getChalkColor(highlightColor).bold.inverse(tabLabel);
     } else if (isActive) {
-      tabLabel = chalk[activeColor].bold(tabLabel);
+      tabLabel = getChalkColor(activeColor).bold(tabLabel);
     }
 
     tabItems.push(tabLabel);
@@ -558,7 +559,7 @@ export function renderTabs(props, panelContent = '') {
   for (let i = 0; i < tabs.length; i++) {
     const labelWidth = tabWidths[i];
     if (i === activeIndex) {
-      underlineParts.push(chalk[activeColor]('─'.repeat(labelWidth)));
+      underlineParts.push(getChalkColor(activeColor)('─'.repeat(labelWidth)));
     } else {
       underlineParts.push(' '.repeat(labelWidth));
     }

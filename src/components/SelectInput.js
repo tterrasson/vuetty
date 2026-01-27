@@ -5,6 +5,7 @@ import { WIDTH_CONTEXT_KEY } from '@core/widthContext.js';
 import { useNavigableList } from '@composables/useNavigableList.js';
 import chalk from 'chalk';
 import { getTerminalWidth, applyStyles } from '@utils/renderUtils.js';
+import { getChalkColor } from '@utils/colorUtils.js';
 import { boxProps } from '@core/layoutProps.js';
 import { RenderHandler, renderHandlerRegistry } from '@core/renderHandlers.js';
 
@@ -211,10 +212,9 @@ export function renderSelectInput(props) {
   // If no options
   if (options.length === 0) {
     const width = 20;
-    const borderColor = isFocused && !disabled ? focusColor : (props.color || 'white');
-    const borderStyle = isFocused && !disabled
-      ? (chalk[borderColor] || chalk).bold
-      : chalk[borderColor] || chalk;
+      const borderColor = isFocused && !disabled ? focusColor : props.color;
+      const borderChalk = borderColor ? getChalkColor(borderColor) : chalk;
+      const borderStyle = (isFocused && !disabled) ? borderChalk.bold : borderChalk;
 
     output += borderStyle('┌' + '─'.repeat(width + 2) + '┐') + '\n';
     output += borderStyle('│') + ' No options'.padEnd(width + 2, ' ') + borderStyle('│') + '\n';
@@ -237,10 +237,9 @@ export function renderSelectInput(props) {
   const contentWidth = innerWidth - 2;
 
   // Border style (bold when focused)
-  const borderColor = isFocused && !disabled ? focusColor : (props.color || 'white');
-  const borderStyle = isFocused && !disabled
-    ? (chalk[borderColor] || chalk).bold
-    : chalk[borderColor] || chalk;
+  const borderColor = isFocused && !disabled ? focusColor : props.color;
+  const borderChalk = borderColor ? getChalkColor(borderColor) : chalk;
+  const borderStyle = (isFocused && !disabled) ? borderChalk.bold : borderChalk;
 
   // Top border
   output += borderStyle('┌' + '─'.repeat(innerWidth) + '┐') + '\n';
@@ -275,9 +274,9 @@ export function renderSelectInput(props) {
       // Build indicator
       let indicator = '  ';
       if (isSelected) {
-        indicator = chalk[selectedColor].bold(`${marker} `);
+        indicator = getChalkColor(selectedColor).bold(`${marker} `);
       } else if (isHighlighted) {
-        indicator = chalk[highlightColor].bold(`${highlightMarker} `);
+        indicator = getChalkColor(highlightColor).bold(`${highlightMarker} `);
       }
 
       // Build option text - pad to width
@@ -290,9 +289,9 @@ export function renderSelectInput(props) {
 
       // Apply styling
       if (isHighlighted && isFocused && !disabled) {
-        optionText = chalk[highlightColor].bold.inverse(optionText);
+        optionText = getChalkColor(highlightColor).bold.inverse(optionText);
       } else if (isSelected) {
-        optionText = chalk[selectedColor].bold(optionText);
+        optionText = getChalkColor(selectedColor).bold(optionText);
       } else if (option.disabled) {
         optionText = chalk.dim(optionText);
       }

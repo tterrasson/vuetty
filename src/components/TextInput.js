@@ -382,6 +382,7 @@ export default {
     let lastStateSnapshot = '';
     let lastInjectedWidth = undefined;
     let lastViewportVersion = -1;
+    let lastThemeVersion = -1;
 
     return () => {
       const stateSnapshot =
@@ -394,15 +395,19 @@ export default {
 
       const viewportVersion = viewportState ? viewportState.version : 0;
 
+      const themeVersion = theme?.version ?? 0;
+
       if (
         stateSnapshot !== lastStateSnapshot
         || injectedWidth !== lastInjectedWidth
         || viewportVersion !== lastViewportVersion
+        || themeVersion !== lastThemeVersion
         || !cachedProps
       ) {
         lastStateSnapshot = stateSnapshot;
         lastInjectedWidth = injectedWidth;
         lastViewportVersion = viewportVersion;
+        lastThemeVersion = themeVersion;
 
         // Resolve colors from theme if not provided in props
         const effectiveFocusColor = props.focusColor || theme?.components?.textInput?.focusColor || 'cyan';
@@ -446,7 +451,8 @@ export default {
           isFocused: state.isFocused,
           validationError: state.validationError,
           _injectedWidth: injectedWidth,
-          _viewportVersion: viewportVersion
+          _viewportVersion: viewportVersion,
+          _themeVersion: themeVersion
         };
 
         // Only add width if explicitly set by user

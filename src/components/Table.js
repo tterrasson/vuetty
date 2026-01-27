@@ -17,6 +17,7 @@ import {
 } from '@utils/keyParser.js';
 import chalk from 'chalk';
 import { getTerminalWidth, applyStyles } from '@utils/renderUtils.js';
+import { getChalkColor } from '@utils/colorUtils.js';
 import { boxProps } from '@core/layoutProps.js';
 import { RenderHandler, renderHandlerRegistry } from '@core/renderHandlers.js';
 
@@ -459,7 +460,7 @@ function renderHeaderRow(headers, colWidths, borderStyle, headerColor) {
     cellText = ' ' + cellText + ' '.repeat(padding + 1);
 
     // Apply header styling
-    const headerStyle = chalk[headerColor] ? chalk[headerColor].bold : chalk.bold;
+    const headerStyle = headerColor ? getChalkColor(headerColor).bold : chalk.bold;
     const styledCell = headerStyle(cellText);
     line += styledCell + borderStyle('│');
   }
@@ -495,11 +496,13 @@ function renderDataRow(row, colWidths, borderStyle, isHighlighted, isSelected, i
 
     if (isHighlighted && isFocused && !disabled) {
       // Highlighted row (inverted)
-      const highlightStyle = chalk[highlightColor] ? chalk[highlightColor].bold.inverse : chalk.bold.inverse;
+      const highlightStyle = highlightColor
+        ? getChalkColor(highlightColor).bold.inverse
+        : chalk.bold.inverse;
       styledCell = highlightStyle(cellText);
     } else if (isSelected) {
       // Selected row (bold green)
-      const selectedStyle = chalk[selectedColor] ? chalk[selectedColor].bold : chalk.bold;
+      const selectedStyle = selectedColor ? getChalkColor(selectedColor).bold : chalk.bold;
       styledCell = selectedStyle(cellText);
     } else if (isStriped) {
       // Striped row (dim background)
