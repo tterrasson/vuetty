@@ -186,7 +186,8 @@ export function renderNode(node, depth = 0, options = {}) {
         inRow
       });
 
-      innerYOffset += countLines(childOut);
+      // Prefer cached line count when available to avoid rescanning strings
+      innerYOffset += child.actualRenderedHeight ?? countLines(childOut);
       return childOut;
     });
     output = node.text || childrenOutput;

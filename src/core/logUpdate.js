@@ -39,21 +39,25 @@ export class LogUpdate {
    * @private
    */
   _detectChangeRegion(newLines, prevLines) {
-    const changes = [];
     const maxLines = Math.max(newLines.length, prevLines.length);
+    let firstChanged = -1;
+    let lastChanged = -1;
+    let totalChanged = 0;
 
     for (let i = 0; i < maxLines; i++) {
       if (newLines[i] !== prevLines[i]) {
-        changes.push(i);
+        if (firstChanged === -1) firstChanged = i;
+        lastChanged = i;
+        totalChanged++;
       }
     }
 
-    if (changes.length === 0) return null;
+    if (totalChanged === 0) return null;
 
     return {
-      firstChanged: changes[0],
-      lastChanged: changes[changes.length - 1],
-      totalChanged: changes.length
+      firstChanged,
+      lastChanged,
+      totalChanged
     };
   }
 

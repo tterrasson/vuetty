@@ -79,7 +79,7 @@ export function markSelfDirty(node) {
 /**
  * Invalidate cache for a node
  * Explicitly null out all cached data to help garbage collection
- * OPTIMIZED: Uses iterative approach for recursive mode to avoid stack overflow
+ * Uses iterative approach for recursive mode to avoid stack overflow
  */
 export function invalidateCache(node, recursive = false) {
   if (!node) return;
@@ -98,10 +98,11 @@ export function invalidateCache(node, recursive = false) {
   // Recursive mode: use iterative BFS to avoid stack overflow
   const queue = [node];
   let processed = 0;
+  let index = 0;
   const MAX_NODES = 10000; // Safety limit
 
-  while (queue.length > 0 && processed < MAX_NODES) {
-    const current = queue.shift();
+  while (index < queue.length && processed < MAX_NODES) {
+    const current = queue[index++];
     processed++;
 
     current.isDirty = true;

@@ -509,10 +509,11 @@ export class YogaLayoutEngine {
     // Use iterative BFS to avoid stack overflow
     const queue = [node];
     let processed = 0;
+    let index = 0;
     const MAX_NODES = 10000; // Safety limit
 
-    while (queue.length > 0 && processed < MAX_NODES) {
-      const current = queue.shift();
+    while (index < queue.length && processed < MAX_NODES) {
+      const current = queue[index++];
       processed++;
 
       current.isLayoutDirty = true;
