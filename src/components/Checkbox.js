@@ -144,10 +144,31 @@ export default {
      * Update scroll offset to keep highlighted option visible
      */
     function updateScrollOffset() {
+      // Get effective height, fallback to default if null/undefined
+      const effectiveHeight = props.height ?? 10;
+
+      // Don't scroll if all options fit in the visible area
+      if (props.options.length <= effectiveHeight) {
+        scrollOffset.value = 0;
+        return;
+      }
+
+      // Calculate the maximum valid scroll offset
+      const maxScrollOffset = Math.max(0, props.options.length - effectiveHeight);
+
+      // Scrolling up: if highlighted item is above visible area, scroll up
       if (highlightedIndex.value < scrollOffset.value) {
         scrollOffset.value = highlightedIndex.value;
-      } else if (highlightedIndex.value >= scrollOffset.value + props.height) {
-        scrollOffset.value = highlightedIndex.value - props.height + 1;
+      }
+
+      // Scrolling down: only scroll when highlighted item goes beyond the last visible row
+      // The last visible index is (scrollOffset + height - 1)
+      else if (highlightedIndex.value > scrollOffset.value + effectiveHeight - 1) {
+        // Move scroll offset so the highlighted item becomes the last visible item
+        scrollOffset.value = Math.min(
+          highlightedIndex.value - effectiveHeight + 1,
+          maxScrollOffset
+        );
       }
     }
 
@@ -219,7 +240,8 @@ export default {
         highlightedIndex.value++;
       }
 
-      updateScrollOffset();
+      // Always reset scroll to beginning when jumping to first
+      scrollOffset.value = 0;
     }
 
     /**
