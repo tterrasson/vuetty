@@ -95,7 +95,7 @@
     "@types/bun": "latest",
     "@vue/compiler-sfc": "^3.5.27",
     "bulma": "^1.0.4",
-    "rollup": "^4.57.0",
+    "rollup": "^4.57.1",
     "vitepress": "^2.0.0-alpha.15"
   }
 }
