@@ -82,7 +82,7 @@
     "glob": "^13.0.0",
     "gradient-string": "^3.0.0",
     "marked": "^17.0.1",
-    "string-width": "^8.1.0",
+    "string-width": "^8.1.1",
     "terminal-image": "^4.2.0",
     "yoga-layout": "^3.2.1"
   },
@@ -94,7 +94,7 @@
     "@types/bun": "latest",
     "@vue/compiler-sfc": "^3.5.27",
     "bulma": "^1.0.4",
-    "rollup": "^4.56.0",
+    "rollup": "^4.57.0",
     "vitepress": "^2.0.0-alpha.15"
   }
 }
