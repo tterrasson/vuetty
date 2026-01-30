@@ -2,7 +2,6 @@
 import { h, ref, inject, onUnmounted, watch, computed } from 'vue';
 import {
   VUETTY_INPUT_MANAGER_KEY,
-  VUETTY_VIEWPORT_STATE_KEY,
   VUETTY_INSTANCE_KEY,
   VUETTY_THEME_KEY
 } from '@core/vuettyKeys.js';
