@@ -45,6 +45,8 @@ export interface VuettyOptions {
   forceColors?: boolean;
   scrollIndicatorMode?: string;
   cache?: CacheOptions;
+  maxClickHandlers?: number;
+  maxClickRegions?: number;
   [key: string]: any;
 }
 

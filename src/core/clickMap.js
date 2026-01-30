@@ -8,12 +8,8 @@
  * coordinates, then adjusted for viewport scroll during hit testing.
  */
 
-// Maximum number of clickable regions to track
-// Prevents memory issues with many dynamic components
-const MAX_REGIONS = 500;
-
 export class ClickMap {
-  constructor() {
+  constructor(maxRegions = 500) {
     /** @type {Array<ClickRegion>} Clickable regions sorted by render order (z-order) */
     this.regions = [];
 
@@ -28,6 +24,9 @@ export class ClickMap {
 
     /** @type {Object|null} Debug server for event capture */
     this.debugServer = null;
+
+    /** @type {number} Maximum number of clickable regions to track */
+    this.maxRegions = maxRegions;
   }
 
   /**
@@ -73,9 +72,9 @@ export class ClickMap {
     }
 
     // Limit regions count to prevent memory issues
-    if (this.regions.length > MAX_REGIONS) {
+    if (this.regions.length > this.maxRegions) {
       // Keep the most recently rendered (highest depth/last in array)
-      this.regions = this.regions.slice(-MAX_REGIONS);
+      this.regions = this.regions.slice(-this.maxRegions);
     }
 
     this.isDirty = false;
@@ -218,7 +217,7 @@ export class ClickMap {
   getStats() {
     return {
       regionCount: this.regions.length,
-      maxRegions: MAX_REGIONS,
+      maxRegions: this.maxRegions,
       isDirty: this.isDirty,
       scrollOffset: this._scrollOffset,
       viewportHeight: this.viewportHeight

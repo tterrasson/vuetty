@@ -46,6 +46,7 @@ export class Vuetty {
     // Store options with defaults
     this.options = {
       maxClickHandlers: options.maxClickHandlers ?? 200,
+      maxClickRegions: options.maxClickRegions ?? 500,
     };
 
     // Initialize cache configuration FIRST (before any cache creation)
@@ -124,7 +125,7 @@ export class Vuetty {
     });
 
     // Click handling system
-    this.clickMap = new ClickMap();
+    this.clickMap = new ClickMap(this.options.maxClickRegions);
     this.clickHandlers = new Map(); // componentId → click handler
 
     // Track handler registration order for LRU eviction
