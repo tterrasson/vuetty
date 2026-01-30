@@ -510,6 +510,25 @@ export interface ImageProps extends BoxProps {
   errorBorderStyle?: string;
 }
 
+export interface CodeDiffProps extends BoxProps {
+  oldCode?: string;
+  newCode?: string;
+  mode?: 'inline' | 'side-by-side';
+  language?: string;
+  showLineNumbers?: boolean;
+  context?: number;
+  showAll?: boolean;
+  addedColor?: string | null;
+  removedColor?: string | null;
+  unchangedColor?: string | null;
+  addedBg?: string | null;
+  removedBg?: string | null;
+  lineNumberColor?: string | null;
+  codeBg?: string | null;
+  border?: boolean;
+  padding?: number;
+}
+
 // ============================================================================
 // Component Exports
 // ============================================================================
@@ -536,6 +555,7 @@ export const Button: DefineComponent<ButtonComponentProps>;
 export const Tree: DefineComponent<TreeProps>;
 export const List: DefineComponent<ListComponentProps>;
 export const Tabs: DefineComponent<TabsProps>;
+export const CodeDiff: DefineComponent<CodeDiffProps>;
 
 // ============================================================================
 // BigText Utilities
