@@ -22,17 +22,19 @@
     <Spacer :height="1" />
 
     <TextBox bold color="cyan">CodeDiff - Show All Lines</TextBox>
-    <CodeDiff
-      :oldCode="oldCode"
-      :newCode="newCode"
-      language="javascript"
-      :showAll="true"
-    />
+    <Box>
+      <CodeDiff
+        :oldCode="oldCode"
+        :newCode="newCode"
+        language="javascript"
+        :showAll="true"
+      />
+    </Box>
   </Col>
 </template>
 
 <script setup>
-import { Col, CodeDiff, TextBox, Spacer } from 'vuetty';
+import { Col, CodeDiff, TextBox, Spacer, Box } from 'vuetty';
 
 const oldCode = `function greet(name) {
   console.log('Hello, ' + name);
