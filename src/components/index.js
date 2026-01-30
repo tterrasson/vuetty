@@ -21,3 +21,4 @@ export { default as Gradient } from './Gradient.js';
 export { default as Button } from './Button.js';
 export { default as Tree } from './Tree.js';
 export { default as Tabs } from './Tabs.js';
+export { default as CodeDiff } from './CodeDiff.js';

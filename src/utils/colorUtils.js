@@ -606,3 +606,54 @@ export function interpolateColorRgb(colors, ratio, interpolation = 'rgb') {
     ? interpolateHsvColors(color1, color2, localRatio)
     : interpolateRgbColors(color1, color2, localRatio);
 }
+
+/**
+ * Mix two colors together
+ * @param {string} color1 - First hex color
+ * @param {string} color2 - Second hex color
+ * @param {number} ratio - Mix ratio (0 = all color1, 1 = all color2)
+ * @returns {string} Mixed hex color
+ */
+export function mixColors(color1, color2, ratio) {
+  if (!color1 || !color1.startsWith('#')) return color2;
+  if (!color2 || !color2.startsWith('#')) return color1;
+
+  const hex1 = color1.replace('#', '');
+  const hex2 = color2.replace('#', '');
+
+  const r1 = parseInt(hex1.substring(0, 2), 16);
+  const g1 = parseInt(hex1.substring(2, 4), 16);
+  const b1 = parseInt(hex1.substring(4, 6), 16);
+
+  const r2 = parseInt(hex2.substring(0, 2), 16);
+  const g2 = parseInt(hex2.substring(2, 4), 16);
+  const b2 = parseInt(hex2.substring(4, 6), 16);
+
+  const r = Math.round(r1 * (1 - ratio) + r2 * ratio);
+  const g = Math.round(g1 * (1 - ratio) + g2 * ratio);
+  const b = Math.round(b1 * (1 - ratio) + b2 * ratio);
+
+  const rHex = r.toString(16).padStart(2, '0');
+  const gHex = g.toString(16).padStart(2, '0');
+  const bHex = b.toString(16).padStart(2, '0');
+
+  return `#${rHex}${gHex}${bHex}`;
+}
+
+/**
+ * Check if background is light or dark
+ * @param {string} color - Hex color
+ * @returns {boolean} True if light, false if dark
+ */
+export function isLightBackground(color) {
+  if (!color || !color.startsWith('#')) return false;
+
+  const hex = color.replace('#', '');
+  const r = parseInt(hex.substring(0, 2), 16);
+  const g = parseInt(hex.substring(2, 4), 16);
+  const b = parseInt(hex.substring(4, 6), 16);
+
+  // Calculate relative luminance
+  const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+  return luminance > 0.5;
+}

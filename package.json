@@ -78,6 +78,7 @@
   "dependencies": {
     "chalk": "^5.6.2",
     "cli-highlight": "^2.1.11",
+    "diff": "^8.0.3",
     "figlet": "^1.10.0",
     "glob": "^13.0.0",
     "gradient-string": "^3.0.0",

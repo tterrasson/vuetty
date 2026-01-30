@@ -2,6 +2,7 @@
 
 import { readFileSync, writeFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
+import { mixColors, isLightBackground } from "../src/utils/colorUtils.js";
 
 // Simple TOML parser for our specific structure
 function parseToml(content) {
@@ -54,6 +55,20 @@ function mapToVuettyTheme(tomlData, themeName) {
   const normal = colors.normal || {};
   const bright = colors.bright || {};
   const primary = colors.primary || {};
+
+  // Determine if background is light or dark
+  const bgColor = primary.background || '#000000';
+  const isLight = isLightBackground(bgColor);
+
+  // Generate diff background colors based on theme brightness
+  const greenColor = normal.green || bright.green || '#4ecca3';
+  const redColor = normal.red || bright.red || '#d64d64';
+
+  // Mix with background color for subtle diff backgrounds
+  // For dark themes: 90% background, 10% color (very subtle)
+  // For light themes: 90% background, 10% color (very subtle)
+  const addedBgColor = mixColors(bgColor, greenColor, isLight ? 0.08 : 0.12);
+  const removedBgColor = mixColors(bgColor, redColor, isLight ? 0.08 : 0.12);
 
   return {
     name: themeName,
@@ -165,6 +180,16 @@ function mapToVuettyTheme(tomlData, themeName) {
         focusColor: bright.magenta || normal.magenta || '#7d5fff',
         selectedColor: normal.green || bright.green || '#4ecca3',
         highlightColor: normal.yellow || bright.yellow || '#c97945'
+      },
+      codeDiff: {
+        addedColor: greenColor,
+        removedColor: redColor,
+        unchangedColor: primary.foreground || '#e6e8f0',
+        addedBg: addedBgColor,
+        removedBg: removedBgColor,
+        lineNumberColor: normal.black || bright.black || '#4a4f6a',
+        codeBg: primary.background || '#1a1a24',
+        borderColor: normal.black || bright.black || '#4a4f6a'
       }
     }
   };

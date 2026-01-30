@@ -55,6 +55,13 @@
       <Markdown :content="markdownContent" />
     </Box>
 
+    <CodeDiff
+      :oldCode="oldCode"
+      :newCode="newCode"
+      language="javascript"
+      :showAll="true"
+    />
+
     <Box :padding="1" borderStyle="dashed">
       <TextBox dim>Ctrl+C to exit</TextBox>
     </Box>
@@ -73,7 +80,8 @@ import {
   Row,
   Spinner,
   TextBox,
-  useTheme
+  useTheme,
+  CodeDiff
 } from 'vuetty';
 
 const themes = [
@@ -123,6 +131,34 @@ function applyTheme(name) {
   return true;
 }
 \`\`\``;
+
+const oldCode = `function greet(name) {
+  console.log('Hello, ' + name);
+  return name;
+}
+
+function add(a, b) {
+  return a + b;
+}
+
+export { greet, add };`;
+
+const newCode = `function greet(name, greeting = 'Hello') {
+  const message = \`\${greeting}, \${name}!\`;
+  console.log(message);
+  return message;
+}
+
+function add(a, b) {
+  return a + b;
+}
+
+function subtract(a, b) {
+  return a - b;
+}
+
+export { greet, add, subtract };`;
+
 let timerId = null;
 
 const applyTheme = (index) => {

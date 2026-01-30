@@ -7,11 +7,12 @@
       "dependencies": {
         "chalk": "^5.6.2",
         "cli-highlight": "^2.1.11",
+        "diff": "^8.0.3",
         "figlet": "^1.10.0",
         "glob": "^13.0.0",
         "gradient-string": "^3.0.0",
         "marked": "^17.0.1",
-        "string-width": "^8.1.0",
+        "string-width": "^8.1.1",
         "terminal-image": "^4.2.0",
         "yoga-layout": "^3.2.1",
       },
@@ -23,7 +24,7 @@
         "@types/bun": "latest",
         "@vue/compiler-sfc": "^3.5.27",
         "bulma": "^1.0.4",
-        "rollup": "^4.56.0",
+        "rollup": "^4.57.0",
         "vitepress": "^2.0.0-alpha.15",
       },
       "peerDependencies": {
@@ -475,6 +476,8 @@
     "dequal": ["dequal@2.0.3", "", {}, "sha512-0je+qPKHEMohvfRTCEo3CrPG6cAzAYgmzKyxRiYSSDkS6eGJdyVJm7WaYA5ECaAD9wLB2T4EEeymA5aFVcYXCA=="],
 
     "devlop": ["devlop@1.1.0", "", { "dependencies": { "dequal": "^2.0.0" } }, "sha512-RWmIqhcFf1lRYBvNmr7qTNuyCt/7/ns2jbpp1+PalgE/rDQcBT0fioSMUpJ93irlUhC5hrg4cYqe6U+0ImW0rA=="],
+
+    "diff": ["diff@8.0.3", "", {}, "sha512-qejHi7bcSD4hQAZE0tNAawRK1ZtafHDmMTMkrrIGgSLl7hTnQHmKCeB45xAcbfTqK2zowkM3j3bHt/4b/ARbYQ=="],
 
     "dom-walk": ["dom-walk@0.1.2", "", {}, "sha512-6QvTW9mrGeIegrFXdtQi9pk7O/nSK6lSdXW2eqUspN5LWD7UTji2Fqw5V2YLjBpHEoU9Xl/eUWNpDeZvoyOv2w=="],
 

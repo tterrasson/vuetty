@@ -116,6 +116,16 @@ export const DEFAULT_THEME = {
       focusColor: '#7d5fff',
       selectedColor: '#4ecca3',
       highlightColor: '#c97945'
+    },
+    codeDiff: {
+      addedColor: '#4ecca3',        // success - teal-green
+      removedColor: '#d64d64',      // danger - deep red-pink
+      unchangedColor: '#e6e8f0',    // foreground
+      addedBg: '#1a2f1a',           // subtle green background
+      removedBg: '#2f1a1a',         // subtle red background
+      lineNumberColor: '#4a4f6a',   // dim blue-gray
+      codeBg: '#1a1a24',            // same as markdown.codeBg
+      borderColor: '#4a4f6a'        // same as box border
     }
   }
 };

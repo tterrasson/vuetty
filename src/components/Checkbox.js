@@ -107,9 +107,6 @@ export default {
     const vuettyInstance = inject(VUETTY_INSTANCE_KEY, null);
     const theme = inject(VUETTY_THEME_KEY, null);
 
-    // Inject viewport state to trigger re-renders on resize
-    const viewportState = inject(VUETTY_VIEWPORT_STATE_KEY, null);
-
     // Inject width context from parent (Box, etc.)
     const injectedWidthContext = inject(WIDTH_CONTEXT_KEY, null);
 

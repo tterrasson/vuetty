@@ -1,5 +1,5 @@
 // Auto-generated themes from TOML files
-// Generated on: 2026-01-27T23:53:01.471Z
+// Generated on: 2026-01-30T02:11:26.184Z
 
 export const TOMORROW_NIGHT_EIGHTIES = {
   "name": "TOMORROW_NIGHT_EIGHTIES",
@@ -132,6 +132,16 @@ export const TOMORROW_NIGHT_EIGHTIES = {
       "focusColor": "#cc99cc",
       "selectedColor": "#99cc99",
       "highlightColor": "#ffcc66"
+    },
+    "codeDiff": {
+      "addedColor": "#99cc99",
+      "removedColor": "#f2777a",
+      "unchangedColor": "#cccccc",
+      "addedBg": "#3a403a",
+      "removedBg": "#453636",
+      "lineNumberColor": "#000000",
+      "codeBg": "#2d2d2d",
+      "borderColor": "#000000"
     }
   }
 };
@@ -267,6 +277,16 @@ export const GITHUB_LIGHT = {
       "focusColor": "#a475f9",
       "selectedColor": "#116329",
       "highlightColor": "#4d2d00"
+    },
+    "codeDiff": {
+      "addedColor": "#116329",
+      "removedColor": "#cf222e",
+      "unchangedColor": "#1f2328",
+      "addedBg": "#e4ece9",
+      "removedBg": "#f3e7ea",
+      "lineNumberColor": "#24292f",
+      "codeBg": "#f6f8fa",
+      "borderColor": "#24292f"
     }
   }
 };
@@ -402,6 +422,16 @@ export const DEUS_DEFAULT = {
       "focusColor": "#c858e9",
       "selectedColor": "#98c379",
       "highlightColor": "#e5c07b"
+    },
+    "codeDiff": {
+      "addedColor": "#98c379",
+      "removedColor": "#d54e53",
+      "unchangedColor": "#eaeaea",
+      "addedBg": "#394342",
+      "removedBg": "#40353e",
+      "lineNumberColor": "#242a32",
+      "codeBg": "#2c323b",
+      "borderColor": "#242a32"
     }
   }
 };
@@ -537,6 +567,16 @@ export const DRACULA_SOFT = {
       "focusColor": "#f49dda",
       "selectedColor": "#62e884",
       "highlightColor": "#e7ee98"
+    },
+    "codeDiff": {
+      "addedColor": "#62e884",
+      "removedColor": "#ee6666",
+      "unchangedColor": "#f6f6f4",
+      "addedBg": "#2f413f",
+      "removedBg": "#40313c",
+      "lineNumberColor": "#262626",
+      "codeBg": "#282a36",
+      "borderColor": "#262626"
     }
   }
 };
@@ -672,6 +712,16 @@ export const GRUVBOX_DARK_SOFT_CONTRAST = {
       "focusColor": "#d3869b",
       "selectedColor": "#98971a",
       "highlightColor": "#d79921"
+    },
+    "codeDiff": {
+      "addedColor": "#98971a",
+      "removedColor": "#cc241d",
+      "unchangedColor": "#ebdbb2",
+      "addedBg": "#3e3c2c",
+      "removedBg": "#442f2d",
+      "lineNumberColor": "#32302f",
+      "codeBg": "#32302f",
+      "borderColor": "#32302f"
     }
   }
 };
@@ -807,6 +857,16 @@ export const NOCTIS_OBSCURO = {
       "focusColor": "#e798b3",
       "selectedColor": "#49e9a6",
       "highlightColor": "#e4b781"
+    },
+    "codeDiff": {
+      "addedColor": "#49e9a6",
+      "removedColor": "#e66533",
+      "unchangedColor": "#b2cacd",
+      "addedBg": "#0b2720",
+      "removedBg": "#1d1712",
+      "lineNumberColor": "#324a4d",
+      "codeBg": "#020c0e",
+      "borderColor": "#324a4d"
     }
   }
 };
@@ -942,6 +1002,16 @@ export const GOTHAM_DEFAULT = {
       "focusColor": "#4e5166",
       "selectedColor": "#2aa889",
       "highlightColor": "#edb443"
+    },
+    "codeDiff": {
+      "addedColor": "#2aa889",
+      "removedColor": "#c23127",
+      "unchangedColor": "#99d1ce",
+      "addedBg": "#102222",
+      "removedBg": "#221416",
+      "lineNumberColor": "#0c1014",
+      "codeBg": "#0c1014",
+      "borderColor": "#0c1014"
     }
   }
 };
@@ -1077,6 +1147,16 @@ export const ZENBONES_TOKYOBONES_LIGHT = {
       "focusColor": "#503875",
       "selectedColor": "#34645d",
       "highlightColor": "#8f5e14"
+    },
+    "codeDiff": {
+      "addedColor": "#34645d",
+      "removedColor": "#8b4351",
+      "unchangedColor": "#333a57",
+      "addedBg": "#c9ced2",
+      "removedBg": "#d0cbd1",
+      "lineNumberColor": "#d6d7dc",
+      "codeBg": "#d6d7dc",
+      "borderColor": "#d6d7dc"
     }
   }
 };
@@ -1212,6 +1292,16 @@ export const NOCTIS_HIBERNUS = {
       "focusColor": "#ff6b9f",
       "selectedColor": "#00b368",
       "highlightColor": "#f49725"
+    },
+    "codeDiff": {
+      "addedColor": "#00b368",
+      "removedColor": "#e34e1c",
+      "unchangedColor": "#005661",
+      "addedBg": "#cfe9e4",
+      "removedBg": "#e1e1de",
+      "lineNumberColor": "#003b42",
+      "codeBg": "#e1eeef",
+      "borderColor": "#003b42"
     }
   }
 };
@@ -1347,6 +1437,16 @@ export const GRUVBOX_LIGHT_SOFT_CONTRAST = {
       "focusColor": "#8f3f71",
       "selectedColor": "#98971a",
       "highlightColor": "#d79921"
+    },
+    "codeDiff": {
+      "addedColor": "#98971a",
+      "removedColor": "#cc241d",
+      "unchangedColor": "#3c3836",
+      "addedBg": "#ebdfaf",
+      "removedBg": "#efd6af",
+      "lineNumberColor": "#f2e5bc",
+      "codeBg": "#f2e5bc",
+      "borderColor": "#f2e5bc"
     }
   }
 };
@@ -1482,6 +1582,16 @@ export const SONOKAI_ATLANTIS = {
       "focusColor": "#ba9cf3",
       "selectedColor": "#9dd274",
       "highlightColor": "#eacb64"
+    },
+    "codeDiff": {
+      "addedColor": "#9dd274",
+      "removedColor": "#ff6578",
+      "unchangedColor": "#e1e3e4",
+      "addedBg": "#38433f",
+      "removedBg": "#443540",
+      "lineNumberColor": "#181a1c",
+      "codeBg": "#2a2f38",
+      "borderColor": "#181a1c"
     }
   }
 };
@@ -1617,6 +1727,16 @@ export const TOKYO_NIGHT_DAY = {
       "focusColor": "#9854f1",
       "selectedColor": "#587539",
       "highlightColor": "#8c6c3e"
+    },
+    "codeDiff": {
+      "addedColor": "#587539",
+      "removedColor": "#f52a65",
+      "unchangedColor": "#3760bf",
+      "addedBg": "#d6d9d9",
+      "removedBg": "#e3d3dd",
+      "lineNumberColor": "#b4b5b9",
+      "codeBg": "#e1e2e7",
+      "borderColor": "#b4b5b9"
     }
   }
 };
@@ -1752,6 +1872,16 @@ export const ZENBONES_TOKYOBONES_DARK = {
       "focusColor": "#c6acfa",
       "selectedColor": "#74dbcb",
       "highlightColor": "#e1b068"
+    },
+    "codeDiff": {
+      "addedColor": "#74dbcb",
+      "removedColor": "#f77890",
+      "unchangedColor": "#c0caf5",
+      "addedBg": "#25323a",
+      "removedBg": "#352633",
+      "lineNumberColor": "#1a1b26",
+      "codeBg": "#1a1b26",
+      "borderColor": "#1a1b26"
     }
   }
 };
@@ -1887,6 +2017,16 @@ export const TOMORROW_DEFAULT = {
       "focusColor": "#8959a8",
       "selectedColor": "#718c00",
       "highlightColor": "#eab700"
+    },
+    "codeDiff": {
+      "addedColor": "#718c00",
+      "removedColor": "#c82829",
+      "unchangedColor": "#4d4d4c",
+      "addedBg": "#f4f6eb",
+      "removedBg": "#fbeeee",
+      "lineNumberColor": "#000000",
+      "codeBg": "#ffffff",
+      "borderColor": "#000000"
     }
   }
 };
@@ -2022,6 +2162,16 @@ export const NIGHTFOX_DAWNFOX = {
       "focusColor": "#9a80b9",
       "selectedColor": "#618774",
       "highlightColor": "#ea9d34"
+    },
+    "codeDiff": {
+      "addedColor": "#618774",
+      "removedColor": "#b4637a",
+      "unchangedColor": "#575279",
+      "addedBg": "#eeebe3",
+      "removedBg": "#f4e8e4",
+      "lineNumberColor": "#575279",
+      "codeBg": "#faf4ed",
+      "borderColor": "#575279"
     }
   }
 };
@@ -2157,6 +2307,16 @@ export const ZENBONES_ROSEBONES_LIGHT = {
       "focusColor": "#855aac",
       "selectedColor": "#286a84",
       "highlightColor": "#ec9d33"
+    },
+    "codeDiff": {
+      "addedColor": "#286a84",
+      "removedColor": "#b5637a",
+      "unchangedColor": "#724341",
+      "addedBg": "#eaebe7",
+      "removedBg": "#f5eae7",
+      "lineNumberColor": "#fbf6f0",
+      "codeBg": "#fbf6f0",
+      "borderColor": "#fbf6f0"
     }
   }
 };
@@ -2292,6 +2452,16 @@ export const PANDA_DEFAULT = {
       "focusColor": "#ff9ac1",
       "selectedColor": "#19f9d8",
       "highlightColor": "#ffb86c"
+    },
+    "codeDiff": {
+      "addedColor": "#19f9d8",
+      "removedColor": "#ff2c6d",
+      "unchangedColor": "#cccccc",
+      "addedBg": "#274340",
+      "removedBg": "#432a33",
+      "lineNumberColor": "#000000",
+      "codeBg": "#292a2b",
+      "borderColor": "#000000"
     }
   }
 };
@@ -2427,6 +2597,16 @@ export const SOLARIZED_DARK = {
       "focusColor": "#6c71c4",
       "selectedColor": "#859900",
       "highlightColor": "#b58900"
+    },
+    "codeDiff": {
+      "addedColor": "#859900",
+      "removedColor": "#dc322f",
+      "unchangedColor": "#839496",
+      "addedBg": "#103830",
+      "removedBg": "#1a2c35",
+      "lineNumberColor": "#073642",
+      "codeBg": "#002b36",
+      "borderColor": "#073642"
     }
   }
 };
@@ -2562,6 +2742,16 @@ export const NORD_DEFAULT = {
       "focusColor": "#b48ead",
       "selectedColor": "#a3be8c",
       "highlightColor": "#ebcb8b"
+    },
+    "codeDiff": {
+      "addedColor": "#a3be8c",
+      "removedColor": "#bf616a",
+      "unchangedColor": "#d8dee9",
+      "addedBg": "#3c4549",
+      "removedBg": "#3f3945",
+      "lineNumberColor": "#3b4252",
+      "codeBg": "#2e3440",
+      "borderColor": "#3b4252"
     }
   }
 };
@@ -2697,6 +2887,16 @@ export const NIGHTFOX_TERAFOX = {
       "focusColor": "#b97490",
       "selectedColor": "#7aa4a1",
       "highlightColor": "#fda47f"
+    },
+    "codeDiff": {
+      "addedColor": "#7aa4a1",
+      "removedColor": "#e85c51",
+      "unchangedColor": "#e6eaea",
+      "addedBg": "#213437",
+      "removedBg": "#2e2c2d",
+      "lineNumberColor": "#2f3239",
+      "codeBg": "#152528",
+      "borderColor": "#2f3239"
     }
   }
 };
@@ -2832,6 +3032,16 @@ export const MIASMA_DEFAULT = {
       "focusColor": "#bb7744",
       "selectedColor": "#5f875f",
       "highlightColor": "#b36d43"
+    },
+    "codeDiff": {
+      "addedColor": "#5f875f",
+      "removedColor": "#685742",
+      "unchangedColor": "#c2c2b0",
+      "addedBg": "#292e29",
+      "removedBg": "#2a2826",
+      "lineNumberColor": "#000000",
+      "codeBg": "#222222",
+      "borderColor": "#000000"
     }
   }
 };
@@ -2967,6 +3177,16 @@ export const SEOUL256_DARK = {
       "focusColor": "#ffafaf",
       "selectedColor": "#5f865f",
       "highlightColor": "#d8af5f"
+    },
+    "codeDiff": {
+      "addedColor": "#5f865f",
+      "removedColor": "#d68787",
+      "unchangedColor": "#d0d0d0",
+      "addedBg": "#3e433e",
+      "removedBg": "#4d4343",
+      "lineNumberColor": "#4e4e4e",
+      "codeBg": "#3a3a3a",
+      "borderColor": "#4e4e4e"
     }
   }
 };
@@ -3102,6 +3322,16 @@ export const GITHUB_LIGHT_LEGACY = {
       "focusColor": "#5a32a3",
       "selectedColor": "#28a745",
       "highlightColor": "#dbab09"
+    },
+    "codeDiff": {
+      "addedColor": "#28a745",
+      "removedColor": "#d73a49",
+      "unchangedColor": "#586069",
+      "addedBg": "#e6f2ec",
+      "removedBg": "#f4e9ec",
+      "lineNumberColor": "#24292e",
+      "codeBg": "#f6f8fa",
+      "borderColor": "#24292e"
     }
   }
 };
@@ -3237,6 +3467,16 @@ export const ONE_HALF_DARK = {
       "focusColor": "#c678dd",
       "selectedColor": "#98c379",
       "highlightColor": "#e5c07b"
+    },
+    "codeDiff": {
+      "addedColor": "#98c379",
+      "removedColor": "#e06c75",
+      "unchangedColor": "#dcdfe4",
+      "addedBg": "#353e3c",
+      "removedBg": "#3e343c",
+      "lineNumberColor": "#282c34",
+      "codeBg": "#282c34",
+      "borderColor": "#282c34"
     }
   }
 };
@@ -3372,6 +3612,16 @@ export const ICEBERG_LIGHT = {
       "focusColor": "#6845ad",
       "selectedColor": "#668e3d",
       "highlightColor": "#c57339"
+    },
+    "codeDiff": {
+      "addedColor": "#668e3d",
+      "removedColor": "#cc517a",
+      "unchangedColor": "#33374c",
+      "addedBg": "#dee2de",
+      "removedBg": "#e6dde3",
+      "lineNumberColor": "#dcdfe7",
+      "codeBg": "#e8e9ec",
+      "borderColor": "#dcdfe7"
     }
   }
 };
@@ -3507,6 +3757,16 @@ export const SRCERY_DEFAULT = {
       "focusColor": "#ff5c8f",
       "selectedColor": "#519f50",
       "highlightColor": "#fbb829"
+    },
+    "codeDiff": {
+      "addedColor": "#519f50",
+      "removedColor": "#ef2f27",
+      "unchangedColor": "#fce8c3",
+      "addedBg": "#222b20",
+      "removedBg": "#351d1b",
+      "lineNumberColor": "#1c1b19",
+      "codeBg": "#1c1b19",
+      "borderColor": "#1c1b19"
     }
   }
 };
@@ -3642,6 +3902,16 @@ export const TOMORROW_NIGHT = {
       "focusColor": "#b294bb",
       "selectedColor": "#b5bd68",
       "highlightColor": "#f0c674"
+    },
+    "codeDiff": {
+      "addedColor": "#b5bd68",
+      "removedColor": "#cc6666",
+      "unchangedColor": "#c5c8c6",
+      "addedBg": "#2f322a",
+      "removedBg": "#322829",
+      "lineNumberColor": "#000000",
+      "codeBg": "#1d1f21",
+      "borderColor": "#000000"
     }
   }
 };
@@ -3777,6 +4047,16 @@ export const ZENBONES_NEOBONES_LIGHT = {
       "focusColor": "#7b3b70",
       "selectedColor": "#567a30",
       "highlightColor": "#944927"
+    },
+    "codeDiff": {
+      "addedColor": "#567a30",
+      "removedColor": "#a8334c",
+      "unchangedColor": "#202e18",
+      "addedBg": "#dae4d7",
+      "removedBg": "#e0deda",
+      "lineNumberColor": "#e5ede6",
+      "codeBg": "#e5ede6",
+      "borderColor": "#e5ede6"
     }
   }
 };
@@ -3912,6 +4192,16 @@ export const KANAGAWA_WAVE = {
       "focusColor": "#938aa9",
       "selectedColor": "#76946a",
       "highlightColor": "#c0a36e"
+    },
+    "codeDiff": {
+      "addedColor": "#76946a",
+      "removedColor": "#c34043",
+      "unchangedColor": "#dcd7ba",
+      "addedBg": "#292d30",
+      "removedBg": "#33232b",
+      "lineNumberColor": "#16161d",
+      "codeBg": "#1f1f28",
+      "borderColor": "#16161d"
     }
   }
 };
@@ -4047,6 +4337,16 @@ export const NIGHTFOX_NORDFOX = {
       "focusColor": "#c895bf",
       "selectedColor": "#a3be8c",
       "highlightColor": "#ebcb8b"
+    },
+    "codeDiff": {
+      "addedColor": "#a3be8c",
+      "removedColor": "#bf616a",
+      "unchangedColor": "#cdcecf",
+      "addedBg": "#3c4549",
+      "removedBg": "#3f3945",
+      "lineNumberColor": "#3b4252",
+      "codeBg": "#2e3440",
+      "borderColor": "#3b4252"
     }
   }
 };
@@ -4182,6 +4482,16 @@ export const ZENBONES_DUCKBONES = {
       "focusColor": "#b3a1e6",
       "selectedColor": "#5dcd97",
       "highlightColor": "#e39500"
+    },
+    "codeDiff": {
+      "addedColor": "#5dcd97",
+      "removedColor": "#e03600",
+      "unchangedColor": "#ebefc0",
+      "addedBg": "#172729",
+      "removedBg": "#271517",
+      "lineNumberColor": "#0e101a",
+      "codeBg": "#0e101a",
+      "borderColor": "#0e101a"
     }
   }
 };
@@ -4317,6 +4627,16 @@ export const SONOKAI_DEFAULT = {
       "focusColor": "#b39df3",
       "selectedColor": "#9ed072",
       "highlightColor": "#e7c664"
+    },
+    "codeDiff": {
+      "addedColor": "#9ed072",
+      "removedColor": "#fc5d7c",
+      "unchangedColor": "#e2e2e3",
+      "addedBg": "#3a413b",
+      "removedBg": "#45343d",
+      "lineNumberColor": "#181819",
+      "codeBg": "#2c2e34",
+      "borderColor": "#181819"
     }
   }
 };
@@ -4452,6 +4772,16 @@ export const GRUVBOX_LIGHT_HARD_CONTRAST = {
       "focusColor": "#8f3f71",
       "selectedColor": "#98971a",
       "highlightColor": "#d79921"
+    },
+    "codeDiff": {
+      "addedColor": "#98971a",
+      "removedColor": "#cc241d",
+      "unchangedColor": "#3c3836",
+      "addedBg": "#f1edc8",
+      "removedBg": "#f5e4c8",
+      "lineNumberColor": "#f9f5d7",
+      "codeBg": "#f9f5d7",
+      "borderColor": "#f9f5d7"
     }
   }
 };
@@ -4587,6 +4917,16 @@ export const SONOKAI_ESPRESSO = {
       "focusColor": "#9fa0e1",
       "selectedColor": "#a6cd77",
       "highlightColor": "#f0c66f"
+    },
+    "codeDiff": {
+      "addedColor": "#a6cd77",
+      "removedColor": "#f86882",
+      "unchangedColor": "#e4e3e1",
+      "addedBg": "#3f3f34",
+      "removedBg": "#493335",
+      "lineNumberColor": "#1f1e1c",
+      "codeBg": "#312c2b",
+      "borderColor": "#1f1e1c"
     }
   }
 };
@@ -4722,6 +5062,16 @@ export const TOKYO_NIGHT_STORM = {
       "focusColor": "#bb9af7",
       "selectedColor": "#9ece6a",
       "highlightColor": "#e0af68"
+    },
+    "codeDiff": {
+      "addedColor": "#9ece6a",
+      "removedColor": "#f7768e",
+      "unchangedColor": "#c0caf5",
+      "addedBg": "#333c41",
+      "removedBg": "#3d3145",
+      "lineNumberColor": "#1d202f",
+      "codeBg": "#24283b",
+      "borderColor": "#1d202f"
     }
   }
 };
@@ -4857,6 +5207,16 @@ export const SONOKAI_SHUSIA = {
       "focusColor": "#ab9df2",
       "selectedColor": "#9ecd6f",
       "highlightColor": "#e5c463"
+    },
+    "codeDiff": {
+      "addedColor": "#9ecd6f",
+      "removedColor": "#f85e84",
+      "unchangedColor": "#e3e1e4",
+      "addedBg": "#3b3e36",
+      "removedBg": "#453038",
+      "lineNumberColor": "#1a181a",
+      "codeBg": "#2d2a2e",
+      "borderColor": "#1a181a"
     }
   }
 };
@@ -4992,6 +5352,16 @@ export const AYU_MIRAGE = {
       "focusColor": "#dfbfff",
       "selectedColor": "#87d96c",
       "highlightColor": "#facc6e"
+    },
+    "codeDiff": {
+      "addedColor": "#87d96c",
+      "removedColor": "#ed8274",
+      "unchangedColor": "#cccac2",
+      "addedBg": "#2b3a37",
+      "removedBg": "#382f38",
+      "lineNumberColor": "#171b24",
+      "codeBg": "#1f2430",
+      "borderColor": "#171b24"
     }
   }
 };
@@ -5127,6 +5497,16 @@ export const ZENBONES_VIMBONES = {
       "focusColor": "#7b3b70",
       "selectedColor": "#4f6c31",
       "highlightColor": "#944927"
+    },
+    "codeDiff": {
+      "addedColor": "#4f6c31",
+      "removedColor": "#a8334c",
+      "unchangedColor": "#353535",
+      "addedBg": "#e3e5be",
+      "removedBg": "#eae1c0",
+      "lineNumberColor": "#f0f0ca",
+      "codeBg": "#f0f0ca",
+      "borderColor": "#f0f0ca"
     }
   }
 };
@@ -5262,6 +5642,16 @@ export const SONOKAI_ANDROMEDA = {
       "focusColor": "#bb97ee",
       "selectedColor": "#9ed06c",
       "highlightColor": "#edc763"
+    },
+    "codeDiff": {
+      "addedColor": "#9ed06c",
+      "removedColor": "#fb617e",
+      "unchangedColor": "#e1e3e4",
+      "addedBg": "#394140",
+      "removedBg": "#443342",
+      "lineNumberColor": "#181a1c",
+      "codeBg": "#2b2d3a",
+      "borderColor": "#181a1c"
     }
   }
 };
@@ -5397,6 +5787,16 @@ export const NOCTIS_DEFAULT = {
       "focusColor": "#e798b3",
       "selectedColor": "#49e9a6",
       "highlightColor": "#e4b781"
+    },
+    "codeDiff": {
+      "addedColor": "#49e9a6",
+      "removedColor": "#e66533",
+      "unchangedColor": "#b2cacd",
+      "addedBg": "#0b322c",
+      "removedBg": "#1e221e",
+      "lineNumberColor": "#324a4d",
+      "codeBg": "#03191b",
+      "borderColor": "#324a4d"
     }
   }
 };
@@ -5532,6 +5932,16 @@ export const AYU_LIGHT = {
       "focusColor": "#a37acc",
       "selectedColor": "#6cbf43",
       "highlightColor": "#eca944"
+    },
+    "codeDiff": {
+      "addedColor": "#6cbf43",
+      "removedColor": "#ea6c6d",
+      "unchangedColor": "#5c6166",
+      "addedBg": "#edf4eb",
+      "removedBg": "#f7eeef",
+      "lineNumberColor": "#000000",
+      "codeBg": "#f8f9fa",
+      "borderColor": "#000000"
     }
   }
 };
@@ -5667,6 +6077,16 @@ export const GRUVBOX_DARK_HARD_CONTRAST = {
       "focusColor": "#d3869b",
       "selectedColor": "#98971a",
       "highlightColor": "#d79921"
+    },
+    "codeDiff": {
+      "addedColor": "#98971a",
+      "removedColor": "#cc241d",
+      "unchangedColor": "#ebdbb2",
+      "addedBg": "#2c2e20",
+      "removedBg": "#322021",
+      "lineNumberColor": "#1d2021",
+      "codeBg": "#1d2021",
+      "borderColor": "#1d2021"
     }
   }
 };
@@ -5802,6 +6222,16 @@ export const SHADES_OF_PURPLE_DEFAULT = {
       "focusColor": "#fb94ff",
       "selectedColor": "#3ad900",
       "highlightColor": "#fad000"
+    },
+    "codeDiff": {
+      "addedColor": "#3ad900",
+      "removedColor": "#e43937",
+      "unchangedColor": "#ffffff",
+      "addedBg": "#213437",
+      "removedBg": "#36213e",
+      "lineNumberColor": "#000000",
+      "codeBg": "#1e1e3f",
+      "borderColor": "#000000"
     }
   }
 };
@@ -5937,6 +6367,16 @@ export const JELLYBEANS_DEFAULT = {
       "focusColor": "#fbdaff",
       "selectedColor": "#94b979",
       "highlightColor": "#ffba7b"
+    },
+    "codeDiff": {
+      "addedColor": "#94b979",
+      "removedColor": "#e27373",
+      "unchangedColor": "#dedede",
+      "addedBg": "#22261e",
+      "removedBg": "#2b1e1e",
+      "lineNumberColor": "#929292",
+      "codeBg": "#121212",
+      "borderColor": "#929292"
     }
   }
 };
@@ -6072,6 +6512,16 @@ export const NIGHTFOX_CARBONFOX = {
       "focusColor": "#c8a5ff",
       "selectedColor": "#25be6a",
       "highlightColor": "#08bdba"
+    },
+    "codeDiff": {
+      "addedColor": "#25be6a",
+      "removedColor": "#ee5396",
+      "unchangedColor": "#f2f4f8",
+      "addedBg": "#182a20",
+      "removedBg": "#301d25",
+      "lineNumberColor": "#282828",
+      "codeBg": "#161616",
+      "borderColor": "#282828"
     }
   }
 };
@@ -6207,6 +6657,16 @@ export const MOONFLY_DEFAULT = {
       "focusColor": "#ae81ff",
       "selectedColor": "#8cc85f",
       "highlightColor": "#e3c78a"
+    },
+    "codeDiff": {
+      "addedColor": "#8cc85f",
+      "removedColor": "#ff5454",
+      "unchangedColor": "#bdbdbd",
+      "addedBg": "#181f12",
+      "removedBg": "#261111",
+      "lineNumberColor": "#323437",
+      "codeBg": "#080808",
+      "borderColor": "#323437"
     }
   }
 };
@@ -6342,6 +6802,16 @@ export const SONOKAI_MAIA = {
       "focusColor": "#baa0f8",
       "selectedColor": "#9cd57b",
       "highlightColor": "#e3d367"
+    },
+    "codeDiff": {
+      "addedColor": "#9cd57b",
+      "removedColor": "#f76c7c",
+      "unchangedColor": "#e1e2e3",
+      "addedBg": "#35453e",
+      "removedBg": "#40383e",
+      "lineNumberColor": "#1c1e1f",
+      "codeBg": "#273136",
+      "borderColor": "#1c1e1f"
     }
   }
 };
@@ -6477,6 +6947,16 @@ export const ZENBONES_FORESTBONES_LIGHT = {
       "focusColor": "#ca43a3",
       "selectedColor": "#8da200",
       "highlightColor": "#dea000"
+    },
+    "codeDiff": {
+      "addedColor": "#8da200",
+      "removedColor": "#f85550",
+      "unchangedColor": "#4f5b62",
+      "addedBg": "#f1edcf",
+      "removedBg": "#fae6d5",
+      "lineNumberColor": "#faf3e1",
+      "codeBg": "#faf3e1",
+      "borderColor": "#faf3e1"
     }
   }
 };
@@ -6612,6 +7092,16 @@ export const NOCTIS_LUX = {
       "focusColor": "#ff6b9f",
       "selectedColor": "#00b368",
       "highlightColor": "#f49725"
+    },
+    "codeDiff": {
+      "addedColor": "#00b368",
+      "removedColor": "#e34e1c",
+      "unchangedColor": "#005661",
+      "addedBg": "#e2e8d1",
+      "removedBg": "#f4e0cb",
+      "lineNumberColor": "#003b42",
+      "codeBg": "#f6edda",
+      "borderColor": "#003b42"
     }
   }
 };
@@ -6747,6 +7237,16 @@ export const CATPPUCCIN_LATTE = {
       "focusColor": "#fe85d8",
       "selectedColor": "#40a02b",
       "highlightColor": "#df8e1d"
+    },
+    "codeDiff": {
+      "addedColor": "#40a02b",
+      "removedColor": "#d20f39",
+      "unchangedColor": "#4c4f69",
+      "addedBg": "#e1ebe5",
+      "removedBg": "#eddfe6",
+      "lineNumberColor": "#5c5f77",
+      "codeBg": "#eff1f5",
+      "borderColor": "#5c5f77"
     }
   }
 };
@@ -6882,6 +7382,16 @@ export const ONE_HALF_LIGHT = {
       "focusColor": "#c678dd",
       "selectedColor": "#50a14f",
       "highlightColor": "#c18401"
+    },
+    "codeDiff": {
+      "addedColor": "#50a14f",
+      "removedColor": "#e45649",
+      "unchangedColor": "#383a42",
+      "addedBg": "#ecf3ec",
+      "removedBg": "#f8edec",
+      "lineNumberColor": "#383a42",
+      "codeBg": "#fafafa",
+      "borderColor": "#383a42"
     }
   }
 };
@@ -7017,6 +7527,16 @@ export const NIGHTFOX_DEFAULT = {
       "focusColor": "#baa1e2",
       "selectedColor": "#81b29a",
       "highlightColor": "#dbc074"
+    },
+    "codeDiff": {
+      "addedColor": "#81b29a",
+      "removedColor": "#c94f6d",
+      "unchangedColor": "#cdcecf",
+      "addedBg": "#25343d",
+      "removedBg": "#2e2837",
+      "lineNumberColor": "#393b44",
+      "codeBg": "#192330",
+      "borderColor": "#393b44"
     }
   }
 };
@@ -7152,6 +7672,16 @@ export const COBALT2_DEFAULT = {
       "focusColor": "#fb94ff",
       "selectedColor": "#3ad900",
       "highlightColor": "#ffc600"
+    },
+    "codeDiff": {
+      "addedColor": "#3ad900",
+      "removedColor": "#ff628c",
+      "unchangedColor": "#ffffff",
+      "addedBg": "#173c31",
+      "removedBg": "#2e2e42",
+      "lineNumberColor": "#000000",
+      "codeBg": "#122738",
+      "borderColor": "#000000"
     }
   }
 };
@@ -7287,6 +7817,16 @@ export const POSTERPOLE_DEFAULT = {
       "focusColor": "#ccb3c6",
       "selectedColor": "#778c73",
       "highlightColor": "#cc9166"
+    },
+    "codeDiff": {
+      "addedColor": "#778c73",
+      "removedColor": "#a97070",
+      "unchangedColor": "#c6c0b9",
+      "addedBg": "#2f2f33",
+      "removedBg": "#352b32",
+      "lineNumberColor": "#2c2c30",
+      "codeBg": "#25222a",
+      "borderColor": "#2c2c30"
     }
   }
 };
@@ -7422,6 +7962,16 @@ export const ONE_DARK = {
       "focusColor": "#c678dd",
       "selectedColor": "#98c379",
       "highlightColor": "#d19a66"
+    },
+    "codeDiff": {
+      "addedColor": "#98c379",
+      "removedColor": "#e06c75",
+      "unchangedColor": "#abb2bf",
+      "addedBg": "#353e3c",
+      "removedBg": "#3e343c",
+      "lineNumberColor": "#1e2127",
+      "codeBg": "#282c34",
+      "borderColor": "#1e2127"
     }
   }
 };
@@ -7557,6 +8107,16 @@ export const NIGHTFLY_DEFAULT = {
       "focusColor": "#ae81ff",
       "selectedColor": "#a1cd5e",
       "highlightColor": "#e7d37a"
+    },
+    "codeDiff": {
+      "addedColor": "#a1cd5e",
+      "removedColor": "#fc514e",
+      "unchangedColor": "#bdc1c6",
+      "addedBg": "#142c2e",
+      "removedBg": "#1f1d2c",
+      "lineNumberColor": "#1d3b53",
+      "codeBg": "#011627",
+      "borderColor": "#1d3b53"
     }
   }
 };
@@ -7692,6 +8252,16 @@ export const TOKYO_NIGHT_MOON = {
       "focusColor": "#c099ff",
       "selectedColor": "#c3e88d",
       "highlightColor": "#ffc777"
+    },
+    "codeDiff": {
+      "addedColor": "#c3e88d",
+      "removedColor": "#ff757f",
+      "unchangedColor": "#c8d3f5",
+      "addedBg": "#353c40",
+      "removedBg": "#3d2e3f",
+      "lineNumberColor": "#1b1d2b",
+      "codeBg": "#222436",
+      "borderColor": "#1b1d2b"
     }
   }
 };
@@ -7827,6 +8397,16 @@ export const NOCTIS_MINIMUS = {
       "focusColor": "#c88da2",
       "selectedColor": "#72c09f",
       "highlightColor": "#c8a984"
+    },
+    "codeDiff": {
+      "addedColor": "#72c09f",
+      "removedColor": "#c08872",
+      "unchangedColor": "#c5cdd3",
+      "addedBg": "#1a2d2f",
+      "removedBg": "#23262a",
+      "lineNumberColor": "#182a35",
+      "codeBg": "#0e1920",
+      "borderColor": "#182a35"
     }
   }
 };
@@ -7962,6 +8542,16 @@ export const NIGHTFOX_DUSKFOX = {
       "focusColor": "#ccb1ed",
       "selectedColor": "#a3be8c",
       "highlightColor": "#f6c177"
+    },
+    "codeDiff": {
+      "addedColor": "#a3be8c",
+      "removedColor": "#eb6f92",
+      "unchangedColor": "#e0def4",
+      "addedBg": "#323440",
+      "removedBg": "#3b2a41",
+      "lineNumberColor": "#393552",
+      "codeBg": "#232136",
+      "borderColor": "#393552"
     }
   }
 };
@@ -8097,6 +8687,16 @@ export const SEOUL256_LIGHT = {
       "focusColor": "#87025f",
       "selectedColor": "#5f885f",
       "highlightColor": "#af8760"
+    },
+    "codeDiff": {
+      "addedColor": "#5f885f",
+      "removedColor": "#af5f5f",
+      "unchangedColor": "#4e4e4e",
+      "addedBg": "#d0d3d0",
+      "removedBg": "#d7d0d0",
+      "lineNumberColor": "#4e4e4e",
+      "codeBg": "#dadada",
+      "borderColor": "#4e4e4e"
     }
   }
 };
@@ -8232,6 +8832,16 @@ export const NOCTIS_BORDO = {
       "focusColor": "#e798b3",
       "selectedColor": "#49e9a6",
       "highlightColor": "#e4b781"
+    },
+    "codeDiff": {
+      "addedColor": "#49e9a6",
+      "removedColor": "#e66533",
+      "unchangedColor": "#cbbec2",
+      "addedBg": "#2b3832",
+      "removedBg": "#3e2824",
+      "lineNumberColor": "#47393e",
+      "codeBg": "#272022",
+      "borderColor": "#47393e"
     }
   }
 };
@@ -8367,6 +8977,16 @@ export const SHADES_OF_PURPLE_SUPER_DARK = {
       "focusColor": "#fb94ff",
       "selectedColor": "#3ad900",
       "highlightColor": "#fad000"
+    },
+    "codeDiff": {
+      "addedColor": "#3ad900",
+      "removedColor": "#e33937",
+      "unchangedColor": "#ffffff",
+      "addedBg": "#192d26",
+      "removedBg": "#2e192c",
+      "lineNumberColor": "#000000",
+      "codeBg": "#15152b",
+      "borderColor": "#000000"
     }
   }
 };
@@ -8502,6 +9122,16 @@ export const ZENBONES_NEOBONES_DARK = {
       "focusColor": "#cf86c1",
       "selectedColor": "#90ff6b",
       "highlightColor": "#b77e64"
+    },
+    "codeDiff": {
+      "addedColor": "#90ff6b",
+      "removedColor": "#de6e7c",
+      "unchangedColor": "#c6d5cf",
+      "addedBg": "#1e3528",
+      "removedBg": "#28232a",
+      "lineNumberColor": "#0f191f",
+      "codeBg": "#0f191f",
+      "borderColor": "#0f191f"
     }
   }
 };
@@ -8637,6 +9267,16 @@ export const NOCTIS_SERENO = {
       "focusColor": "#e798b3",
       "selectedColor": "#49e9a6",
       "highlightColor": "#e4b781"
+    },
+    "codeDiff": {
+      "addedColor": "#49e9a6",
+      "removedColor": "#e66533",
+      "unchangedColor": "#b2cacd",
+      "addedBg": "#0c3530",
+      "removedBg": "#1f2622",
+      "lineNumberColor": "#324a4d",
+      "codeBg": "#041d20",
+      "borderColor": "#324a4d"
     }
   }
 };
@@ -8772,6 +9412,16 @@ export const GRUVBOX_DARK = {
       "focusColor": "#d3869b",
       "selectedColor": "#98971a",
       "highlightColor": "#d79921"
+    },
+    "codeDiff": {
+      "addedColor": "#98971a",
+      "removedColor": "#cc241d",
+      "unchangedColor": "#ebdbb2",
+      "addedBg": "#353526",
+      "removedBg": "#3c2827",
+      "lineNumberColor": "#282828",
+      "codeBg": "#282828",
+      "borderColor": "#282828"
     }
   }
 };
@@ -8907,6 +9557,16 @@ export const SOLARIZED_LIGHT = {
       "focusColor": "#6c71c4",
       "selectedColor": "#859900",
       "highlightColor": "#b58900"
+    },
+    "codeDiff": {
+      "addedColor": "#859900",
+      "removedColor": "#dc322f",
+      "unchangedColor": "#657b83",
+      "addedBg": "#f3efd1",
+      "removedBg": "#fae6d5",
+      "lineNumberColor": "#073642",
+      "codeBg": "#fdf6e3",
+      "borderColor": "#073642"
     }
   }
 };
@@ -9042,6 +9702,16 @@ export const ZENBONES_ZENWRITTEN_LIGHT = {
       "focusColor": "#7b3b70",
       "selectedColor": "#4f6c31",
       "highlightColor": "#944927"
+    },
+    "codeDiff": {
+      "addedColor": "#4f6c31",
+      "removedColor": "#a8334c",
+      "unchangedColor": "#353535",
+      "addedBg": "#e1e4df",
+      "removedBg": "#e8dfe1",
+      "lineNumberColor": "#eeeeee",
+      "codeBg": "#eeeeee",
+      "borderColor": "#eeeeee"
     }
   }
 };
@@ -9177,6 +9847,16 @@ export const NIGHT_OWL_DARK = {
       "focusColor": "#c792ea",
       "selectedColor": "#22da6e",
       "highlightColor": "#c5e478"
+    },
+    "codeDiff": {
+      "addedColor": "#22da6e",
+      "removedColor": "#ef5350",
+      "unchangedColor": "#cccccc",
+      "addedBg": "#052e30",
+      "removedBg": "#1e1d2c",
+      "lineNumberColor": "#011627",
+      "codeBg": "#011627",
+      "borderColor": "#011627"
     }
   }
 };
@@ -9312,6 +9992,16 @@ export const NIGHT_OWL_LIGHT = {
       "focusColor": "#d6438a",
       "selectedColor": "#08916a",
       "highlightColor": "#e0af02"
+    },
+    "codeDiff": {
+      "addedColor": "#08916a",
+      "removedColor": "#de3d3b",
+      "unchangedColor": "#403f53",
+      "addedBg": "#e3eeeb",
+      "removedBg": "#f4e7e7",
+      "lineNumberColor": "#403f53",
+      "codeBg": "#f6f6f6",
+      "borderColor": "#403f53"
     }
   }
 };
@@ -9447,6 +10137,16 @@ export const POSTERPOLE_GRAY = {
       "focusColor": "#ccb3c6",
       "selectedColor": "#778c73",
       "highlightColor": "#cc9166"
+    },
+    "codeDiff": {
+      "addedColor": "#778c73",
+      "removedColor": "#a97070",
+      "unchangedColor": "#c6c0b9",
+      "addedBg": "#2a2c29",
+      "removedBg": "#302929",
+      "lineNumberColor": "#2c2c30",
+      "codeBg": "#1f1f1f",
+      "borderColor": "#2c2c30"
     }
   }
 };
@@ -9582,6 +10282,16 @@ export const APPRENTICE_DEFAULT = {
       "focusColor": "#8787af",
       "selectedColor": "#5f875f",
       "highlightColor": "#87875f"
+    },
+    "codeDiff": {
+      "addedColor": "#5f875f",
+      "removedColor": "#af5f5f",
+      "unchangedColor": "#bcbcbc",
+      "addedBg": "#2d322d",
+      "removedBg": "#362d2d",
+      "lineNumberColor": "#1c1c1c",
+      "codeBg": "#262626",
+      "borderColor": "#1c1c1c"
     }
   }
 };
@@ -9717,6 +10427,16 @@ export const ZENBONES_KANAGAWABONES = {
       "focusColor": "#a98fd2",
       "selectedColor": "#98bc6d",
       "highlightColor": "#e5c283"
+    },
+    "codeDiff": {
+      "addedColor": "#98bc6d",
+      "removedColor": "#e46a78",
+      "unchangedColor": "#ddd8bb",
+      "addedBg": "#2e3230",
+      "removedBg": "#372832",
+      "lineNumberColor": "#1f1f28",
+      "codeBg": "#1f1f28",
+      "borderColor": "#1f1f28"
     }
   }
 };
@@ -9852,6 +10572,16 @@ export const EVERFOREST_DARK = {
       "focusColor": "#d699b6",
       "selectedColor": "#a7c080",
       "highlightColor": "#dbbc7f"
+    },
+    "codeDiff": {
+      "addedColor": "#a7c080",
+      "removedColor": "#e67e80",
+      "unchangedColor": "#d3c6aa",
+      "addedBg": "#3c4643",
+      "removedBg": "#433e43",
+      "lineNumberColor": "#343f44",
+      "codeBg": "#2d353b",
+      "borderColor": "#343f44"
     }
   }
 };
@@ -9987,6 +10717,16 @@ export const ROSE_PINE_MOON = {
       "focusColor": "#c4a7e7",
       "selectedColor": "#3e8fb0",
       "highlightColor": "#f6c177"
+    },
+    "codeDiff": {
+      "addedColor": "#3e8fb0",
+      "removedColor": "#eb6f92",
+      "unchangedColor": "#e0def4",
+      "addedBg": "#2c334d",
+      "removedBg": "#413049",
+      "lineNumberColor": "#393552",
+      "codeBg": "#2a273f",
+      "borderColor": "#393552"
     }
   }
 };
@@ -10122,6 +10862,16 @@ export const NOCTIS_UVA = {
       "focusColor": "#e798b3",
       "selectedColor": "#49e9a6",
       "highlightColor": "#e4b781"
+    },
+    "codeDiff": {
+      "addedColor": "#49e9a6",
+      "removedColor": "#e66533",
+      "unchangedColor": "#c5c2d6",
+      "addedBg": "#24353e",
+      "removedBg": "#372630",
+      "lineNumberColor": "#302f3d",
+      "codeBg": "#1f1d30",
+      "borderColor": "#302f3d"
     }
   }
 };
@@ -10257,6 +11007,16 @@ export const TOMORROW_NIGHT_BRIGHT = {
       "focusColor": "#c397d8",
       "selectedColor": "#b9ca4a",
       "highlightColor": "#e7c547"
+    },
+    "codeDiff": {
+      "addedColor": "#b9ca4a",
+      "removedColor": "#d54e53",
+      "unchangedColor": "#eaeaea",
+      "addedBg": "#161809",
+      "removedBg": "#1a090a",
+      "lineNumberColor": "#000000",
+      "codeBg": "#000000",
+      "borderColor": "#000000"
     }
   }
 };
@@ -10392,6 +11152,16 @@ export const EVERFOREST_LIGHT = {
       "focusColor": "#df69ba",
       "selectedColor": "#8da101",
       "highlightColor": "#dfa000"
+    },
+    "codeDiff": {
+      "addedColor": "#8da101",
+      "removedColor": "#f85552",
+      "unchangedColor": "#5c6a72",
+      "addedBg": "#f4efd1",
+      "removedBg": "#fde9d7",
+      "lineNumberColor": "#5c6a72",
+      "codeBg": "#fdf6e3",
+      "borderColor": "#5c6a72"
     }
   }
 };
@@ -10527,6 +11297,16 @@ export const GITHUB_LIGHT_HIGH_CONTRAST = {
       "focusColor": "#844ae7",
       "selectedColor": "#024c1a",
       "highlightColor": "#3f2200"
+    },
+    "codeDiff": {
+      "addedColor": "#024c1a",
+      "removedColor": "#a0111f",
+      "unchangedColor": "#0e1116",
+      "addedBg": "#ebf1ed",
+      "removedBg": "#f7eced",
+      "lineNumberColor": "#0e1116",
+      "codeBg": "#ffffff",
+      "borderColor": "#0e1116"
     }
   }
 };
@@ -10662,6 +11442,16 @@ export const CATPPUCCIN_MOCHA = {
       "focusColor": "#f2aede",
       "selectedColor": "#a6e3a1",
       "highlightColor": "#f9e2af"
+    },
+    "codeDiff": {
+      "addedColor": "#a6e3a1",
+      "removedColor": "#f38ba8",
+      "unchangedColor": "#cdd6f4",
+      "addedBg": "#2e363c",
+      "removedBg": "#382b3d",
+      "lineNumberColor": "#45475a",
+      "codeBg": "#1e1e2e",
+      "borderColor": "#45475a"
     }
   }
 };
@@ -10797,6 +11587,16 @@ export const ONE_LIGHT = {
       "focusColor": "#a00095",
       "selectedColor": "#3e953a",
       "highlightColor": "#d2b67b"
+    },
+    "codeDiff": {
+      "addedColor": "#3e953a",
+      "removedColor": "#de3d35",
+      "unchangedColor": "#2a2b33",
+      "addedBg": "#e9f0e9",
+      "removedBg": "#f6e9e8",
+      "lineNumberColor": "#000000",
+      "codeBg": "#f8f8f8",
+      "borderColor": "#000000"
     }
   }
 };
@@ -10932,6 +11732,16 @@ export const GITHUB_DARK_LEGACY = {
       "focusColor": "#b392f0",
       "selectedColor": "#34d058",
       "highlightColor": "#ffea7f"
+    },
+    "codeDiff": {
+      "addedColor": "#34d058",
+      "removedColor": "#ea4a5a",
+      "unchangedColor": "#d1d5da",
+      "addedBg": "#22392e",
+      "removedBg": "#37292e",
+      "lineNumberColor": "#586069",
+      "codeBg": "#1f2428",
+      "borderColor": "#586069"
     }
   }
 };
@@ -11067,6 +11877,16 @@ export const ICEBERG_DARK = {
       "focusColor": "#ada0d3",
       "selectedColor": "#b4be82",
       "highlightColor": "#e2a478"
+    },
+    "codeDiff": {
+      "addedColor": "#b4be82",
+      "removedColor": "#e27878",
+      "unchangedColor": "#c6c8d1",
+      "addedBg": "#292c2d",
+      "removedBg": "#2e242b",
+      "lineNumberColor": "#1e2132",
+      "codeBg": "#161821",
+      "borderColor": "#1e2132"
     }
   }
 };
@@ -11202,6 +12022,16 @@ export const TOKYO_NIGHT_DEFAULT = {
       "focusColor": "#bb9af7",
       "selectedColor": "#9ece6a",
       "highlightColor": "#e0af68"
+    },
+    "codeDiff": {
+      "addedColor": "#9ece6a",
+      "removedColor": "#f7768e",
+      "unchangedColor": "#c0caf5",
+      "addedBg": "#2a302e",
+      "removedBg": "#352632",
+      "lineNumberColor": "#15161e",
+      "codeBg": "#1a1b26",
+      "borderColor": "#15161e"
     }
   }
 };
@@ -11337,6 +12167,16 @@ export const CATPPUCCIN_MACCHIATO = {
       "focusColor": "#f2a9dd",
       "selectedColor": "#a6da95",
       "highlightColor": "#eed49f"
+    },
+    "codeDiff": {
+      "addedColor": "#a6da95",
+      "removedColor": "#ed8796",
+      "unchangedColor": "#cad3f5",
+      "addedBg": "#343c45",
+      "removedBg": "#3c3345",
+      "lineNumberColor": "#494d64",
+      "codeBg": "#24273a",
+      "borderColor": "#494d64"
     }
   }
 };
@@ -11472,6 +12312,16 @@ export const NIGHTFOX_DAYFOX = {
       "focusColor": "#8452d5",
       "selectedColor": "#396847",
       "highlightColor": "#ac5402"
+    },
+    "codeDiff": {
+      "addedColor": "#396847",
+      "removedColor": "#a5222f",
+      "unchangedColor": "#3d2b5a",
+      "addedBg": "#e7e7e1",
+      "removedBg": "#f0e1df",
+      "lineNumberColor": "#352c24",
+      "codeBg": "#f6f2ee",
+      "borderColor": "#352c24"
     }
   }
 };
@@ -11607,6 +12457,16 @@ export const NOCTIS_LILAC = {
       "focusColor": "#ff6b9f",
       "selectedColor": "#00b368",
       "highlightColor": "#f49725"
+    },
+    "codeDiff": {
+      "addedColor": "#00b368",
+      "removedColor": "#e34e1c",
+      "unchangedColor": "#0c006b",
+      "addedBg": "#d6e3e8",
+      "removedBg": "#e9dbe2",
+      "lineNumberColor": "#0c006b",
+      "codeBg": "#e9e7f3",
+      "borderColor": "#0c006b"
     }
   }
 };
@@ -11742,6 +12602,16 @@ export const GITHUB_DARK_COLORBLIND = {
       "focusColor": "#d2a8ff",
       "selectedColor": "#58a6ff",
       "highlightColor": "#d29922"
+    },
+    "codeDiff": {
+      "addedColor": "#58a6ff",
+      "removedColor": "#ec8e2c",
+      "unchangedColor": "#c9d1d9",
+      "addedBg": "#0b1727",
+      "removedBg": "#1d150d",
+      "lineNumberColor": "#484f58",
+      "codeBg": "#010409",
+      "borderColor": "#484f58"
     }
   }
 };
@@ -11877,6 +12747,16 @@ export const ZENBONES_SEOULBONES_LIGHT = {
       "focusColor": "#7f4c7e",
       "selectedColor": "#628562",
       "highlightColor": "#c48562"
+    },
+    "codeDiff": {
+      "addedColor": "#628562",
+      "removedColor": "#dc5284",
+      "unchangedColor": "#555555",
+      "addedBg": "#d8dbd8",
+      "removedBg": "#e2d6da",
+      "lineNumberColor": "#e2e2e2",
+      "codeBg": "#e2e2e2",
+      "borderColor": "#e2e2e2"
     }
   }
 };
@@ -12012,6 +12892,16 @@ export const ZENBONES_NORDBONES = {
       "focusColor": "#cf97c5",
       "selectedColor": "#a4be8d",
       "highlightColor": "#cf866f"
+    },
+    "codeDiff": {
+      "addedColor": "#a4be8d",
+      "removedColor": "#c1616a",
+      "unchangedColor": "#ebeef3",
+      "addedBg": "#3d454a",
+      "removedBg": "#413a46",
+      "lineNumberColor": "#2f3541",
+      "codeBg": "#2f3541",
+      "borderColor": "#2f3541"
     }
   }
 };
@@ -12147,6 +13037,16 @@ export const GITHUB_DARK = {
       "focusColor": "#d2a8ff",
       "selectedColor": "#3fb950",
       "highlightColor": "#d29922"
+    },
+    "codeDiff": {
+      "addedColor": "#3fb950",
+      "removedColor": "#ff7b72",
+      "unchangedColor": "#e6edf3",
+      "addedBg": "#081a12",
+      "removedBg": "#1f1216",
+      "lineNumberColor": "#484f58",
+      "codeBg": "#010409",
+      "borderColor": "#484f58"
     }
   }
 };
@@ -12282,6 +13182,16 @@ export const ROSE_PINE_DAWN = {
       "focusColor": "#907aa9",
       "selectedColor": "#286983",
       "highlightColor": "#ea9d34"
+    },
+    "codeDiff": {
+      "addedColor": "#286983",
+      "removedColor": "#b4637a",
+      "unchangedColor": "#575279",
+      "addedBg": "#eeeeea",
+      "removedBg": "#f9eee9",
+      "lineNumberColor": "#f2e9e1",
+      "codeBg": "#fffaf3",
+      "borderColor": "#f2e9e1"
     }
   }
 };
@@ -12417,6 +13327,16 @@ export const TENDER_DEFAULT = {
       "focusColor": "#d3b987",
       "selectedColor": "#c9d05c",
       "highlightColor": "#ffc24b"
+    },
+    "codeDiff": {
+      "addedColor": "#c9d05c",
+      "removedColor": "#f43753",
+      "unchangedColor": "#eeeeee",
+      "addedBg": "#3b3c2e",
+      "removedBg": "#402a2d",
+      "lineNumberColor": "#282828",
+      "codeBg": "#282828",
+      "borderColor": "#282828"
     }
   }
 };
@@ -12552,6 +13472,16 @@ export const ZENBONES_SEOULBONES_DARK = {
       "focusColor": "#b2b3da",
       "selectedColor": "#98bd99",
       "highlightColor": "#ffdf9b"
+    },
+    "codeDiff": {
+      "addedColor": "#98bd99",
+      "removedColor": "#e388a3",
+      "unchangedColor": "#dddddd",
+      "addedBg": "#545954",
+      "removedBg": "#5d5256",
+      "lineNumberColor": "#4b4b4b",
+      "codeBg": "#4b4b4b",
+      "borderColor": "#4b4b4b"
     }
   }
 };
@@ -12687,6 +13617,16 @@ export const GITHUB_DARK_HIGH_CONTRAST = {
       "focusColor": "#dbb7ff",
       "selectedColor": "#26cd4d",
       "highlightColor": "#f0b72f"
+    },
+    "codeDiff": {
+      "addedColor": "#26cd4d",
+      "removedColor": "#ff9492",
+      "unchangedColor": "#f0f3f6",
+      "addedBg": "#051c11",
+      "removedBg": "#1f1519",
+      "lineNumberColor": "#7a828e",
+      "codeBg": "#010409",
+      "borderColor": "#7a828e"
     }
   }
 };
@@ -12822,6 +13762,16 @@ export const GITHUB_DARK_DIMMED = {
       "focusColor": "#dcbdfb",
       "selectedColor": "#57ab5a",
       "highlightColor": "#c69026"
+    },
+    "codeDiff": {
+      "addedColor": "#57ab5a",
+      "removedColor": "#f47067",
+      "unchangedColor": "#adbac7",
+      "addedBg": "#23322e",
+      "removedBg": "#362a30",
+      "lineNumberColor": "#545d68",
+      "codeBg": "#1c2128",
+      "borderColor": "#545d68"
     }
   }
 };
@@ -12957,6 +13907,16 @@ export const ZENBONES_ROSEBONES_DARK = {
       "focusColor": "#ceb3ef",
       "selectedColor": "#317490",
       "highlightColor": "#f6c074"
+    },
+    "codeDiff": {
+      "addedColor": "#317490",
+      "removedColor": "#eb7193",
+      "unchangedColor": "#e1d4d4",
+      "addedBg": "#1d2332",
+      "removedBg": "#332332",
+      "lineNumberColor": "#1a1825",
+      "codeBg": "#1a1825",
+      "borderColor": "#1a1825"
     }
   }
 };
@@ -13092,6 +14052,16 @@ export const TOMORROW_NIGHT_BLUE = {
       "focusColor": "#ebbbff",
       "selectedColor": "#d1f1a9",
       "highlightColor": "#ffeead"
+    },
+    "codeDiff": {
+      "addedColor": "#d1f1a9",
+      "removedColor": "#ff9da4",
+      "unchangedColor": "#ffffff",
+      "addedBg": "#193d5c",
+      "removedBg": "#1f335b",
+      "lineNumberColor": "#000000",
+      "codeBg": "#002451",
+      "borderColor": "#000000"
     }
   }
 };
@@ -13227,6 +14197,16 @@ export const NOCTIS_AZUREUS = {
       "focusColor": "#e798b3",
       "selectedColor": "#49e9a6",
       "highlightColor": "#e4b781"
+    },
+    "codeDiff": {
+      "addedColor": "#49e9a6",
+      "removedColor": "#e66533",
+      "unchangedColor": "#becfda",
+      "addedBg": "#0d3438",
+      "removedBg": "#20242a",
+      "lineNumberColor": "#28353e",
+      "codeBg": "#051b29",
+      "borderColor": "#28353e"
     }
   }
 };
@@ -13362,6 +14342,16 @@ export const ZENBONES_FORESTBONES_DARK = {
       "focusColor": "#e5a7c4",
       "selectedColor": "#a9c181",
       "highlightColor": "#ddbd7f"
+    },
+    "codeDiff": {
+      "addedColor": "#a9c181",
+      "removedColor": "#e67c7f",
+      "unchangedColor": "#e7dcc4",
+      "addedBg": "#3b4543",
+      "removedBg": "#423d42",
+      "lineNumberColor": "#2c343a",
+      "codeBg": "#2c343a",
+      "borderColor": "#2c343a"
     }
   }
 };
@@ -13497,6 +14487,16 @@ export const ROSE_PINE_DEFAULT = {
       "focusColor": "#c4a7e7",
       "selectedColor": "#31748f",
       "highlightColor": "#f6c177"
+    },
+    "codeDiff": {
+      "addedColor": "#31748f",
+      "removedColor": "#eb6f92",
+      "unchangedColor": "#e0def4",
+      "addedBg": "#21273a",
+      "removedBg": "#37273a",
+      "lineNumberColor": "#26233a",
+      "codeBg": "#1f1d2e",
+      "borderColor": "#26233a"
     }
   }
 };
@@ -13632,6 +14632,16 @@ export const LUCARIO_DEFAULT = {
       "focusColor": "#d4a9ff",
       "selectedColor": "#199c4b",
       "highlightColor": "#f0cc04"
+    },
+    "codeDiff": {
+      "addedColor": "#199c4b",
+      "removedColor": "#e94b35",
+      "unchangedColor": "#f8f8f2",
+      "addedBg": "#29494f",
+      "removedBg": "#42404d",
+      "lineNumberColor": "#19242f",
+      "codeBg": "#2b3e50",
+      "borderColor": "#19242f"
     }
   }
 };
@@ -13767,6 +14777,16 @@ export const NOCTIS_VIOLA = {
       "focusColor": "#e798b3",
       "selectedColor": "#49e9a6",
       "highlightColor": "#e4b781"
+    },
+    "codeDiff": {
+      "addedColor": "#49e9a6",
+      "removedColor": "#e66533",
+      "unchangedColor": "#ccbfd9",
+      "addedBg": "#2d3543",
+      "removedBg": "#402635",
+      "lineNumberColor": "#362f3d",
+      "codeBg": "#291d35",
+      "borderColor": "#362f3d"
     }
   }
 };
@@ -13902,6 +14922,16 @@ export const NORDIC_DEFAULT = {
       "focusColor": "#be9d88",
       "selectedColor": "#a3be8c",
       "highlightColor": "#ebcb8b"
+    },
+    "codeDiff": {
+      "addedColor": "#a3be8c",
+      "removedColor": "#bf616a",
+      "unchangedColor": "#bbc3d4",
+      "addedBg": "#333b3e",
+      "removedBg": "#37303a",
+      "lineNumberColor": "#191d24",
+      "codeBg": "#242933",
+      "borderColor": "#191d24"
     }
   }
 };
@@ -14037,6 +15067,16 @@ export const GITHUB_LIGHT_COLORBLIND = {
       "focusColor": "#a475f9",
       "selectedColor": "#0550ae",
       "highlightColor": "#4d2d00"
+    },
+    "codeDiff": {
+      "addedColor": "#0550ae",
+      "removedColor": "#b35900",
+      "unchangedColor": "#24292f",
+      "addedBg": "#e3ebf4",
+      "removedBg": "#f1ebe6",
+      "lineNumberColor": "#24292f",
+      "codeBg": "#f6f8fa",
+      "borderColor": "#24292f"
     }
   }
 };
@@ -14172,6 +15212,16 @@ export const KANAGAWA_LOTUS = {
       "focusColor": "#624c83",
       "selectedColor": "#6f894e",
       "highlightColor": "#77713f"
+    },
+    "codeDiff": {
+      "addedColor": "#6f894e",
+      "removedColor": "#c84053",
+      "unchangedColor": "#545464",
+      "addedBg": "#e8e4b3",
+      "removedBg": "#efdeb4",
+      "lineNumberColor": "#1f1f28",
+      "codeBg": "#f2ecbc",
+      "borderColor": "#1f1f28"
     }
   }
 };
@@ -14307,6 +15357,16 @@ export const DRACULA_DEFAULT = {
       "focusColor": "#ff92df",
       "selectedColor": "#50fa7b",
       "highlightColor": "#f1fa8c"
+    },
+    "codeDiff": {
+      "addedColor": "#50fa7b",
+      "removedColor": "#ff5555",
+      "unchangedColor": "#f8f8f2",
+      "addedBg": "#2d433e",
+      "removedBg": "#422f3a",
+      "lineNumberColor": "#21222c",
+      "codeBg": "#282a36",
+      "borderColor": "#21222c"
     }
   }
 };
@@ -14442,6 +15502,16 @@ export const KANAGAWA_DRAGON = {
       "focusColor": "#938aa9",
       "selectedColor": "#8a9a7b",
       "highlightColor": "#c4b28a"
+    },
+    "codeDiff": {
+      "addedColor": "#8a9a7b",
+      "removedColor": "#c4746e",
+      "unchangedColor": "#c5c9c5",
+      "addedBg": "#262622",
+      "removedBg": "#2d2121",
+      "lineNumberColor": "#0d0c0c",
+      "codeBg": "#181616",
+      "borderColor": "#0d0c0c"
     }
   }
 };
@@ -14577,6 +15647,16 @@ export const ZENBONES_ZENBURNED = {
       "focusColor": "#cf86c1",
       "selectedColor": "#819b69",
       "highlightColor": "#b77e64"
+    },
+    "codeDiff": {
+      "addedColor": "#819b69",
+      "removedColor": "#e3716e",
+      "unchangedColor": "#f0e4cf",
+      "addedBg": "#484b45",
+      "removedBg": "#544646",
+      "lineNumberColor": "#404040",
+      "codeBg": "#404040",
+      "borderColor": "#404040"
     }
   }
 };
@@ -14712,6 +15792,16 @@ export const AYU_DARK = {
       "focusColor": "#d2a6ff",
       "selectedColor": "#7fd962",
       "highlightColor": "#f9af4f"
+    },
+    "codeDiff": {
+      "addedColor": "#7fd962",
+      "removedColor": "#ea6c73",
+      "unchangedColor": "#bfbdb6",
+      "addedBg": "#19261d",
+      "removedBg": "#26191f",
+      "lineNumberColor": "#1e232b",
+      "codeBg": "#0b0e14",
+      "borderColor": "#1e232b"
     }
   }
 };
@@ -14847,6 +15937,16 @@ export const ZENBONES_ZENWRITTEN_DARK = {
       "focusColor": "#cf86c1",
       "selectedColor": "#819b69",
       "highlightColor": "#b77e64"
+    },
+    "codeDiff": {
+      "addedColor": "#819b69",
+      "removedColor": "#de6e7c",
+      "unchangedColor": "#bbbbbb",
+      "addedBg": "#252923",
+      "removedBg": "#312325",
+      "lineNumberColor": "#191919",
+      "codeBg": "#191919",
+      "borderColor": "#191919"
     }
   }
 };
@@ -14982,6 +16082,16 @@ export const GRUVBOX_LIGHT = {
       "focusColor": "#8f3f71",
       "selectedColor": "#98971a",
       "highlightColor": "#d79921"
+    },
+    "codeDiff": {
+      "addedColor": "#98971a",
+      "removedColor": "#cc241d",
+      "unchangedColor": "#3c3836",
+      "addedBg": "#f3eab9",
+      "removedBg": "#f7e1b9",
+      "lineNumberColor": "#fbf1c7",
+      "codeBg": "#fbf1c7",
+      "borderColor": "#fbf1c7"
     }
   }
 };
@@ -15117,6 +16227,16 @@ export const CATPPUCCIN_FRAPPE = {
       "focusColor": "#f2a4db",
       "selectedColor": "#a6d189",
       "highlightColor": "#e5c890"
+    },
+    "codeDiff": {
+      "addedColor": "#a6d189",
+      "removedColor": "#e78284",
+      "unchangedColor": "#c6d0f5",
+      "addedBg": "#3e474e",
+      "removedBg": "#463d4d",
+      "lineNumberColor": "#51576d",
+      "codeBg": "#303446",
+      "borderColor": "#51576d"
     }
   }
 };

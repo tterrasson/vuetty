@@ -77,7 +77,8 @@ export default defineConfig({
           { text: 'Spinner', link: '/components/visual/spinner' },
           { text: 'Divider', link: '/components/visual/divider' },
           { text: 'Spacer', link: '/components/visual/spacer' },
-          { text: 'Newline', link: '/components/visual/newline' }
+          { text: 'Newline', link: '/components/visual/newline' },
+          { text: 'CodeDiff', link: '/components/visual/codediff' }
         ]
       },
       {

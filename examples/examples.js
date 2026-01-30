@@ -22,6 +22,7 @@ export const examples = [
   example('spinner', 'Spinner', './components/Spinner.vue'),
   example('progress-bar', 'ProgressBar', './components/ProgressBar.vue'),
   example('markdown', 'Markdown', './components/Markdown.vue'),
+  example('code-diff', 'CodeDiff', './components/CodeDiff.vue'),
   example('gradient', 'Gradient', './components/Gradient.vue'),
   example('big-text', 'BigText', './components/BigText.vue'),
   example('full-layout', 'Full Layout', './components/FullLayout.vue'),
