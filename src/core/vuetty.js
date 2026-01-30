@@ -39,12 +39,14 @@ import { initializeCacheConfig } from './cacheConfig.js';
  * uses alternate screen buffer for clean rendering
  */
 
-// Maximum click handlers to prevent memory leaks from unregistered handlers
-const MAX_CLICK_HANDLERS = 200;
-
 export class Vuetty {
   constructor(options = {}) {
     this.config = {...options};
+
+    // Store options with defaults
+    this.options = {
+      maxClickHandlers: options.maxClickHandlers ?? 200,
+    };
 
     // Initialize cache configuration FIRST (before any cache creation)
     if (options.cache) {
@@ -554,7 +556,7 @@ export class Vuetty {
     this._handlerOrder.push(componentId);
 
     // Evict oldest handlers if over limit
-    while (this._handlerOrder.length > MAX_CLICK_HANDLERS) {
+    while (this._handlerOrder.length > this.options.maxClickHandlers) {
       const oldestId = this._handlerOrder.shift();
       this.clickHandlers.delete(oldestId);
     }
