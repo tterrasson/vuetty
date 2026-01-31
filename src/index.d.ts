@@ -313,7 +313,7 @@ export interface NewlineProps {
 }
 
 // Interactive Input Components
-export interface TextInputProps extends BoxProps, StyleProps {
+export interface TextInputProps extends BoxProps, Pick<StyleProps, 'color' | 'bg' | 'bold' | 'italic' | 'dim'> {
   modelValue?: string;
   multiline?: boolean;
   rows?: number;
@@ -345,6 +345,7 @@ export interface SelectInputProps extends BoxProps, Pick<StyleProps, 'color' | '
   options?: Array<ListItem | string | number>;
   label?: string;
   height?: number;
+  width?: number;
   marker?: string;
   highlightMarker?: string;
   disabled?: boolean;
@@ -358,6 +359,8 @@ export interface SelectInputProps extends BoxProps, Pick<StyleProps, 'color' | '
 export interface ListComponentProps extends BoxProps, Pick<StyleProps, 'color' | 'bg' | 'bold' | 'dim'> {
   items?: Array<ListItem | string | number>;
   label?: string;
+  height?: number;
+  width?: number;
   marker?: string;
   highlightedValue?: string | number | object | null;
   highlightColor?: string;
@@ -369,8 +372,10 @@ export interface CheckboxProps extends BoxProps, Pick<StyleProps, 'color' | 'bg'
   label?: string;
   direction?: 'vertical' | 'horizontal';
   height?: number;
+  width?: number | null;
   itemSpacing?: number;
   disabled?: boolean;
+  borderColor?: string;
   focusColor?: string;
   selectedColor?: string;
   highlightColor?: string;
@@ -383,8 +388,10 @@ export interface RadioboxProps extends BoxProps, Pick<StyleProps, 'color' | 'bg'
   label?: string;
   direction?: 'vertical' | 'horizontal';
   height?: number;
+  width?: number | null;
   itemSpacing?: number;
   disabled?: boolean;
+  borderColor?: string;
   focusColor?: string;
   selectedColor?: string;
   highlightColor?: string;
@@ -413,6 +420,7 @@ export interface TabItem {
 export interface TabsProps extends BoxProps, Pick<StyleProps, 'color' | 'bg'> {
   modelValue?: string | number | null;
   tabs: Array<TabItem | string | number>;
+  width?: number;
   disabled?: boolean;
   focusColor?: string;
   activeColor?: string;
@@ -444,7 +452,7 @@ export interface TableProps extends BoxProps, Pick<StyleProps, 'color' | 'bg' | 
 // Display Components
 export type SpinnerType = 'dots' | 'line' | 'arc' | 'arrow' | 'bounce' | 'clock' | 'box';
 
-export interface SpinnerProps extends BoxProps, StyleProps {
+export interface SpinnerProps extends BoxProps, Pick<StyleProps, 'color' | 'bold' | 'italic' | 'underline' | 'dim'> {
   type?: SpinnerType;
   modelValue?: boolean;
   interval?: number;
@@ -452,9 +460,10 @@ export interface SpinnerProps extends BoxProps, StyleProps {
   labelPosition?: 'left' | 'right';
 }
 
-export interface ProgressBarProps extends BoxProps, StyleProps {
+export interface ProgressBarProps extends BoxProps, Pick<StyleProps, 'color' | 'bold' | 'italic' | 'underline' | 'dim'> {
   value?: number;
   max?: number;
+  width?: number;
   char?: string;
   emptyChar?: string;
   showPercentage?: boolean;
@@ -492,12 +501,28 @@ export interface TreeProps extends BoxProps, Pick<StyleProps, 'color' | 'bg'> {
   treeStyle?: string | Record<string, string>;
 }
 
-export interface MarkdownProps extends BoxProps, StyleProps {
-  source?: string;
-  codeTheme?: string;
-  enableTables?: boolean;
-  enableLists?: boolean;
-  enableCodeBlocks?: boolean;
+export interface MarkdownProps extends BoxProps, Pick<StyleProps, 'color' | 'bg' | 'bold' | 'italic' | 'dim'> {
+  content?: string;
+  h1Color?: string;
+  h2Color?: string;
+  h3Color?: string;
+  h4Color?: string;
+  h5Color?: string;
+  h6Color?: string;
+  codeColor?: string;
+  codeBg?: string;
+  linkColor?: string;
+  emphasisColor?: string;
+  strongColor?: string;
+  blockquoteColor?: string;
+  blockquoteBorderColor?: string;
+  listBulletColor?: string;
+  listNumberColor?: string;
+  hrColor?: string;
+  hrChar?: string;
+  hrLength?: number;
+  tableHeaderColor?: string;
+  tableBorderColor?: string;
 }
 
 export interface ImageProps extends BoxProps {
