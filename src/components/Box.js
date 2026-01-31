@@ -202,6 +202,11 @@ export default {
       default: 'left',
       validator: val => ['left', 'center', 'right'].includes(val)
     },
+    align: {
+      type: String,
+      default: 'left',
+      validator: val => ['left', 'center', 'right'].includes(val)
+    },
     titlePadding: {
       type: Number,
       default: 1
