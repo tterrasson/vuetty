@@ -57,6 +57,29 @@ You now have a minimal working Vuetty app: one component, one box, one line of t
 - `src/pages/App.vue` is your main page (now minimal).
 - `src/components/` is where you can add more UI pieces as your app grows.
 
+## 6) Open an external full-screen app (runExternalApp)
+
+`Vuetty` instances expose `runExternalApp(command, args?, options?)` to temporarily hand terminal control to an external app (for example `vi`, `nano`, `less`) and then restore/redraw your TUI.
+
+```vue
+<script setup>
+import { inject } from 'vue';
+import { VUETTY_INSTANCE_KEY } from 'vuetty';
+
+const vuetty = inject(VUETTY_INSTANCE_KEY, null);
+
+const openEditor = () => {
+  if (!vuetty) return;
+  vuetty.runExternalApp('vi', ['README.md']);
+};
+</script>
+```
+
+Key options:
+
+- `preserveAlternateBuffer` (default: `true`): keeps the current alternate buffer and only clears/redraws around the external app.
+- `preserveAlternateBuffer: false`: exits/re-enters alternate buffer during handoff.
+
 ## Next in the docs
 
 - Learn about the debug server: [Debug Server](./debug-server.md)

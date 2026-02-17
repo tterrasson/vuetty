@@ -4,6 +4,14 @@ import stringWidth from 'string-width';
 import { layoutCache } from '@core/layoutCache.js';
 import { getChalkColorChain, getChalkBgChain } from '@utils/colorUtils.js';
 
+// Terminal ANSI control sequences
+export const SYNC_START = '\x1b[?2026h';
+export const SYNC_END = '\x1b[?2026l';
+export const ERASE_LINE = '\x1b[2K';
+export const CURSOR_HOME = '\x1b[H';
+export const CLEAR_BELOW = '\x1b[J';
+export const SHOW_CURSOR = '\x1b[?25h';
+
 // Pre-compiled regex
 const ANSI_ESCAPE_REGEX = /^\x1b\[[0-9;]*m/;
 const ANSI_GLOBAL_REGEX = /\x1b\[[0-9;]*m/g;

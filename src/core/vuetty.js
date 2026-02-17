@@ -15,7 +15,12 @@ import * as VuettyComponents from '@components/index.js';
 import { setRenderContext } from './renderContext.js';
 import { LogUpdate } from './logUpdate.js';
 import { YogaLayoutEngine } from './layoutEngine.js';
-import { getTerminalWidth, truncateWithAnsi } from '@utils/renderUtils.js';
+import {
+  getTerminalWidth,
+  truncateWithAnsi,
+  SYNC_START,
+  SYNC_END
+} from '@utils/renderUtils.js';
 import { processVisibleLines, clearLineCaches, getLineCacheStats } from './lineCache.js';
 import { invalidateCache } from './memoization.js';
 import { ClickMap } from './clickMap.js';
@@ -33,6 +38,7 @@ import { createTheme } from './theme.js';
 import { colorToAnsiBg, colorToOSC11 } from '@utils/colorUtils.js';
 import chalk from 'chalk';
 import { initializeCacheConfig } from './cacheConfig.js';
+import { spawnSync } from 'node:child_process';
 
 /**
  * Vuetty - TUI Framework using Vue Custom Renderer
@@ -67,6 +73,7 @@ export class Vuetty {
     // Initialize debug server if enabled (will be started in mount())
     this.debugServer = null;
     this.debugServerConfig = this.config.debugServer;
+    this.externalProcessRunner = spawnSync;
 
     this.rootContainer = new TUINode('root');
     this.rootContainer.vuettyViewport = this.viewport;
@@ -161,8 +168,8 @@ export class Vuetty {
   enableMouseTracking() {
     if (this.viewport.mouseTrackingEnabled) return;
 
-    process.stdout.write('\x1b[?1000h'); // Normal tracking (clicks only, no drag)
-    process.stdout.write('\x1b[?1006h'); // SGR mouse mode
+    // Normal tracking + SGR mode
+    process.stdout.write('\x1b[?1000h\x1b[?1006h');
 
     this.viewport.mouseTrackingEnabled = true;
     this.render();
@@ -174,8 +181,8 @@ export class Vuetty {
   disableMouseTracking() {
     if (!this.viewport.mouseTrackingEnabled) return;
 
-    process.stdout.write('\x1b[?1006l'); // Disable SGR mode
-    process.stdout.write('\x1b[?1000l'); // Disable normal tracking
+    // Disable SGR + normal tracking
+    process.stdout.write('\x1b[?1006l\x1b[?1000l');
 
     this.viewport.mouseTrackingEnabled = false;
     this.render();
@@ -704,8 +711,8 @@ export class Vuetty {
         clearTimeout(this.resizeTimeout);
         this.resizeTimeout = null;
       }
-      process.stdout.write('\x1b[?25h');   // Show cursor
-      process.stdout.write('\x1b[?1049l'); // Exit alternate screen
+      // Restore terminal state in a single write call.
+      process.stdout.write('\x1b[?25h\x1b[?1049l');
     };
 
     this.cleanupHandler = cleanup;
@@ -978,28 +985,169 @@ export class Vuetty {
       output: null
     };
 
-    // Disable mouse tracking
-    if (this.viewport.mouseTrackingEnabled) {
-      process.stdout.write('\x1b[?1006l');
-      process.stdout.write('\x1b[?1000l');
-    }
-
     // Stop debug server
     if (this.debugServer) {
       this.debugServer.captureEvent('vuetty.unmount', {});
       this.debugServer.stop();
     }
 
-    // Restore terminal default background color before exiting
-    process.stdout.write('\x1b]111\x07');  // OSC 111 resets to default
+    let finalAnsi = SYNC_START;
 
-    // Exit alternate screen buffer
-    process.stdout.write('\x1b[?1049l');
+    // Disable mouse tracking if it was enabled.
+    if (this.viewport.mouseTrackingEnabled) {
+      finalAnsi += '\x1b[?1006l\x1b[?1000l';
+    }
 
-    // Show cursor
-    process.stdout.write('\x1b[?25h');
+    // Restore terminal default background color and exit alternate screen.
+    finalAnsi += '\x1b]111\x07';
+    finalAnsi += '\x1b[?1049l';
+    finalAnsi += '\x1b[?25h'; // Show cursor
+    finalAnsi += SYNC_END;
+    process.stdout.write(finalAnsi);
 
     return this;
+  }
+
+  /**
+   * Temporarily hand terminal control to an external full-screen app (vi, nano, etc.)
+   * and restore Vuetty state once it exits.
+   * @param {string} command - Executable to run (for example: "vi")
+   * @param {string[]} args - Command arguments
+   * @param {Object} options - Spawn options (stdio is always forced to "inherit")
+   * @param {boolean} [options.preserveAlternateBuffer=true] - Keep current alternate buffer.
+   * @returns {Object} Spawn result
+   */
+  runExternalApp(command, args = [], options = {}) {
+    if (!command || typeof command !== 'string') {
+      throw new Error('runExternalApp(command, args, options): command must be a non-empty string.');
+    }
+
+    // Support runExternalApp('vi', { cwd: '/tmp' })
+    if (args && !Array.isArray(args) && typeof args === 'object') {
+      options = args;
+      args = [];
+    }
+
+    if (!Array.isArray(args)) {
+      throw new Error('runExternalApp(command, args, options): args must be an array of strings.');
+    }
+
+    if (!this.logUpdate || !this.renderer) {
+      throw new Error('runExternalApp() requires a mounted Vuetty instance.');
+    }
+
+    const {
+      preserveAlternateBuffer = true,
+      ...spawnOverrides
+    } = options;
+
+    const wasInputEnabled = this.inputManager?.enabled === true;
+    const hadResizeHandler = !!this.resizeHandler;
+    const hadMouseTracking = this.viewport.mouseTrackingEnabled;
+    const spawnOptions = {
+      ...spawnOverrides,
+      stdio: 'inherit'
+    };
+
+    // Cancel pending renders to avoid writes while external app controls the terminal.
+    if (this.pendingScrollRender) {
+      clearTimeout(this.pendingScrollRender);
+      this.pendingScrollRender = null;
+    }
+
+    if (this.resizeTimeout) {
+      clearTimeout(this.resizeTimeout);
+      this.resizeTimeout = null;
+    }
+
+    try {
+      if (hadResizeHandler) {
+        process.removeListener('SIGWINCH', this.resizeHandler);
+      }
+
+      if (wasInputEnabled) {
+        this.inputManager.disable();
+      }
+
+      let suspendAnsi = SYNC_START;
+      suspendAnsi += '\x1b[?25h'; // Show cursor
+
+      if (hadMouseTracking) {
+        suspendAnsi += '\x1b[?1006l'; // Disable SGR mouse mode
+        suspendAnsi += '\x1b[?1000l'; // Disable normal mouse tracking
+      }
+
+      if (preserveAlternateBuffer) {
+        // Keep alternate buffer active and just clear before handing control over.
+        suspendAnsi += '\x1b[2J\x1b[H';
+      } else {
+        suspendAnsi += '\x1b]111\x07'; // Reset terminal background to default
+        suspendAnsi += '\x1b[?1049l';  // Exit alternate screen
+      }
+
+      suspendAnsi += SYNC_END;
+      process.stdout.write(suspendAnsi);
+
+      const result = this.externalProcessRunner(command, args, spawnOptions);
+      return result;
+    } finally {
+      let restoreAnsi = SYNC_START;
+
+      if (preserveAlternateBuffer) {
+        restoreAnsi += '\x1b[2J\x1b[H';
+      } else {
+        restoreAnsi += '\x1b[?1049h\x1b[2J\x1b[H';
+      }
+
+      if (this.theme?.background) {
+        const bgRgbFormat = colorToOSC11(this.theme.background);
+        if (bgRgbFormat) {
+          restoreAnsi += `\x1b]11;${bgRgbFormat}\x07`;
+        }
+      }
+
+      restoreAnsi += '\x1b[?25l'; // Hide cursor
+
+      if (hadMouseTracking) {
+        restoreAnsi += '\x1b[?1000h'; // Enable mouse tracking
+        restoreAnsi += '\x1b[?1006h'; // Enable SGR mode
+      }
+
+      restoreAnsi += SYNC_END;
+      process.stdout.write(restoreAnsi);
+
+      if (hadResizeHandler) {
+        process.on('SIGWINCH', this.resizeHandler);
+      }
+
+      if (wasInputEnabled) {
+        this.inputManager.enable();
+      }
+
+      // Refresh dimensions in case terminal size changed while external app was active.
+      this.viewport.terminalHeight = (process.stdout.rows || 24);
+      this.viewport.terminalWidth = (process.stdout.columns || 80);
+      if (this.viewport.scrollIndicatorMode === 'reserved') {
+        this.viewport.terminalHeight -= 1;
+      }
+
+      this.updateMaxScrollOffset();
+      this.clampScrollOffset();
+      setRenderContext(this.viewport);
+
+      this.viewportState.version++;
+      this.viewportState.width = this.viewport.terminalWidth;
+      this.viewportState.height = this.viewport.terminalHeight;
+
+      this.clickMap.invalidate();
+      this.logUpdate.clear();
+
+      if (this.renderer?.forceUpdate) {
+        this.renderer.forceUpdate();
+      } else {
+        this.render();
+      }
+    }
   }
 
   /**

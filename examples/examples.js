@@ -29,6 +29,7 @@ export const examples = [
   example('image', 'Image', './components/Image.vue'),
   example('tree', 'Tree', './components/Tree.vue'),
   example('tabs', 'Tabs', './components/Tabs.vue'),
+  example('external-editor', 'External Editor', './components/ExternalEditor.vue'),
   example('theming', 'Theming', './components/Theming.vue'),
   example('textbox-effect', 'Theming', './components/TextBoxEffects.vue')
 ];

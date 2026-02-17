@@ -10,6 +10,8 @@ import { Vuetty } from '../../src/core/vuetty.js';
 
 // Store original process.stdout
 const originalStdout = process.stdout;
+const originalProcessOn = process.on;
+const originalProcessRemoveListener = process.removeListener;
 
 // Mock process.stdout to avoid actual terminal writes
 const mockStdout = {
@@ -373,7 +375,7 @@ describe('Vuetty - Mouse Tracking', () => {
     vuetty.enableMouseTracking();
 
     expect(vuetty.viewport.mouseTrackingEnabled).toBe(true);
-    expect(writeCallCount).toBeGreaterThan(0);
+    expect(writeCallCount).toBe(1);
   });
 
   test('enableMouseTracking does nothing if already enabled', () => {
@@ -391,7 +393,7 @@ describe('Vuetty - Mouse Tracking', () => {
     vuetty.disableMouseTracking();
 
     expect(vuetty.viewport.mouseTrackingEnabled).toBe(false);
-    expect(writeCallCount).toBeGreaterThan(0);
+    expect(writeCallCount).toBe(1);
   });
 
   test('disableMouseTracking does nothing if already disabled', () => {
@@ -623,5 +625,168 @@ describe('Vuetty - Resize Handling', () => {
     vuetty.performResize();
 
     expect(vuetty.renderer.forceUpdate).toHaveBeenCalled();
+  });
+});
+
+describe('Vuetty - Terminal Write Batching', () => {
+  let vuetty;
+
+  afterEach(() => {
+    vuetty = null;
+    Object.defineProperty(process, 'stdout', { value: originalStdout, writable: true });
+    process.on = originalProcessOn;
+    process.removeListener = originalProcessRemoveListener;
+  });
+
+  test('setupCleanupHandlers cleanup writes terminal restore codes in one write', () => {
+    const write = mock(() => true);
+    Object.defineProperty(process, 'stdout', {
+      value: { ...mockStdout, write },
+      writable: true
+    });
+
+    process.on = mock(() => process);
+    vuetty = new Vuetty();
+
+    vuetty.setupCleanupHandlers();
+    vuetty.cleanupHandler();
+
+    expect(process.stdout.write).toHaveBeenCalledTimes(1);
+    expect(process.stdout.write.mock.calls[0][0]).toContain('\x1b[?25h\x1b[?1049l');
+  });
+
+  test('unmount writes final terminal restore sequence in one synchronized write', () => {
+    const write = mock(() => true);
+    Object.defineProperty(process, 'stdout', {
+      value: { ...mockStdout, write },
+      writable: true
+    });
+
+    vuetty = new Vuetty();
+    vuetty.inputManager.disable = mock(() => {});
+    vuetty.inputManager.clear = mock(() => {});
+    vuetty.logUpdate = { done: mock(() => {}), clear: mock(() => {}) };
+    vuetty.layoutEngine = { clearCache: mock(() => {}) };
+    vuetty.clickMap = { clear: mock(() => {}) };
+    vuetty.viewport.mouseTrackingEnabled = true;
+
+    vuetty.unmount();
+
+    expect(process.stdout.write).toHaveBeenCalledTimes(1);
+    const finalWrite = process.stdout.write.mock.calls[0][0];
+    expect(finalWrite).toContain('\x1b[?2026h');
+    expect(finalWrite).toContain('\x1b[?1006l\x1b[?1000l');
+    expect(finalWrite).toContain('\x1b[?1049l');
+    expect(finalWrite).toContain('\x1b[?25h');
+    expect(finalWrite).toContain('\x1b[?2026l');
+  });
+});
+
+describe('Vuetty - External App Handoff', () => {
+  let vuetty;
+  let processOnMock;
+  let processRemoveListenerMock;
+
+  beforeEach(() => {
+    const write = mock(() => true);
+    Object.defineProperty(process, 'stdout', {
+      value: { ...mockStdout, write },
+      writable: true
+    });
+
+    processOnMock = mock(() => process);
+    processRemoveListenerMock = mock(() => process);
+    process.on = processOnMock;
+    process.removeListener = processRemoveListenerMock;
+
+    vuetty = new Vuetty();
+    vuetty.logUpdate = { clear: mock(() => {}) };
+    vuetty.renderer = { forceUpdate: mock(() => {}) };
+    vuetty.resizeHandler = mock(() => {});
+
+    vuetty.inputManager.enabled = true;
+    vuetty.inputManager.disable = mock(() => {
+      vuetty.inputManager.enabled = false;
+    });
+    vuetty.inputManager.enable = mock(() => {
+      vuetty.inputManager.enabled = true;
+    });
+
+    vuetty.externalProcessRunner = mock(() => ({ status: 0 }));
+  });
+
+  afterEach(() => {
+    vuetty = null;
+    Object.defineProperty(process, 'stdout', { value: originalStdout, writable: true });
+    process.on = originalProcessOn;
+    process.removeListener = originalProcessRemoveListener;
+  });
+
+  test('runExternalApp hands off terminal control and restores TUI', () => {
+    const result = vuetty.runExternalApp('vi', ['test.txt']);
+
+    expect(result.status).toBe(0);
+    expect(vuetty.externalProcessRunner).toHaveBeenCalledWith(
+      'vi',
+      ['test.txt'],
+      expect.objectContaining({ stdio: 'inherit' })
+    );
+    expect(vuetty.inputManager.disable).toHaveBeenCalledTimes(1);
+    expect(vuetty.inputManager.enable).toHaveBeenCalledTimes(1);
+    expect(vuetty.logUpdate.clear).toHaveBeenCalledTimes(1);
+    expect(vuetty.renderer.forceUpdate).toHaveBeenCalledTimes(1);
+    expect(processRemoveListenerMock).toHaveBeenCalledWith('SIGWINCH', vuetty.resizeHandler);
+    expect(processOnMock).toHaveBeenCalledWith('SIGWINCH', vuetty.resizeHandler);
+
+    const writes = process.stdout.write.mock.calls.map(([chunk]) => chunk).join('');
+    expect(writes).toContain('\x1b[?2026h'); // sync start
+    expect(writes).toContain('\x1b[?2026l'); // sync end
+    expect(writes).toContain('\x1b[2J\x1b[H'); // clear + home
+    expect(writes).not.toContain('\x1b[?1049l'); // preserve alt buffer by default
+    expect(writes).not.toContain('\x1b[?1049h');
+    expect(writes).toContain('\x1b[?25h');   // show cursor
+    expect(writes).toContain('\x1b[?25l');   // hide cursor
+  });
+
+  test('runExternalApp restores terminal state even when command fails', () => {
+    vuetty.externalProcessRunner = mock(() => {
+      throw new Error('spawn failed');
+    });
+
+    expect(() => vuetty.runExternalApp('vi')).toThrow('spawn failed');
+    expect(vuetty.inputManager.enable).toHaveBeenCalledTimes(1);
+    expect(vuetty.logUpdate.clear).toHaveBeenCalledTimes(1);
+    expect(vuetty.renderer.forceUpdate).toHaveBeenCalledTimes(1);
+
+    const writes = process.stdout.write.mock.calls.map(([chunk]) => chunk).join('');
+    expect(writes).toContain('\x1b[2J\x1b[H'); // restore view with clear/home
+  });
+
+  test('runExternalApp accepts options as second argument', () => {
+    vuetty.runExternalApp('vi', { cwd: '/tmp' });
+
+    expect(vuetty.externalProcessRunner).toHaveBeenCalledWith(
+      'vi',
+      [],
+      expect.objectContaining({
+        cwd: '/tmp',
+        stdio: 'inherit'
+      })
+    );
+  });
+
+  test('runExternalApp exits and re-enters alternate buffer when preserveAlternateBuffer is false', () => {
+    vuetty.runExternalApp('vi', ['test.txt'], { preserveAlternateBuffer: false });
+
+    const writes = process.stdout.write.mock.calls.map(([chunk]) => chunk).join('');
+    expect(writes).toContain('\x1b[?1049l');
+    expect(writes).toContain('\x1b[?1049h');
+  });
+
+  test('runExternalApp throws when called before mount', () => {
+    vuetty.logUpdate = null;
+
+    expect(() => vuetty.runExternalApp('vi')).toThrow('requires a mounted Vuetty instance');
+    expect(vuetty.externalProcessRunner).not.toHaveBeenCalled();
   });
 });

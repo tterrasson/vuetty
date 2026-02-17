@@ -4,13 +4,14 @@
  * LogUpdate - Efficient terminal rendering with line diffing
  * Uses synchronized output to prevent tearing
  */
-
-const SYNC_START = '\x1b[?2026h';
-const SYNC_END = '\x1b[?2026l';
-const ERASE_LINE = '\x1b[2K';
-const CURSOR_HOME = '\x1b[H';
-const CLEAR_BELOW = '\x1b[J';
-const SHOW_CURSOR = '\x1b[?25h';
+import {
+  SYNC_START,
+  SYNC_END,
+  ERASE_LINE,
+  CURSOR_HOME,
+  CLEAR_BELOW,
+  SHOW_CURSOR
+} from '@utils/renderUtils.js';
 
 export class LogUpdate {
   // Pre-allocated cursor sequences for performance
