@@ -73,17 +73,17 @@
   "author": "Thibault Terrasson",
   "license": "MIT",
   "peerDependencies": {
-    "vue": "^3.5.26"
+    "vue": "^3.5.28"
   },
   "dependencies": {
     "chalk": "^5.6.2",
     "cli-highlight": "^2.1.11",
     "diff": "^8.0.3",
     "figlet": "^1.10.0",
-    "glob": "^13.0.0",
+    "glob": "^13.0.6",
     "gradient-string": "^3.0.0",
-    "marked": "^17.0.1",
-    "string-width": "^8.1.1",
+    "marked": "^17.0.3",
+    "string-width": "^8.2.0",
     "terminal-image": "^4.2.0",
     "yoga-layout": "^3.2.1"
   },
@@ -93,9 +93,9 @@
     "@rollup/plugin-node-resolve": "^16.0.3",
     "@rollup/plugin-terser": "^0.4.4",
     "@types/bun": "latest",
-    "@vue/compiler-sfc": "^3.5.27",
+    "@vue/compiler-sfc": "^3.5.28",
     "bulma": "^1.0.4",
     "rollup": "^4.57.1",
-    "vitepress": "^2.0.0-alpha.15"
+    "vitepress": "^2.0.0-alpha.16"
   }
 }

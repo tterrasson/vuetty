@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "pinia": "^3.0.4",
-    "vue": "^3.5.27",
+    "vue": "^3.5.28",
     "vuetty": "^0.3.2"
   },
   "devDependencies": {
@@ -23,6 +23,6 @@
     "@rollup/plugin-node-resolve": "^16.0.3",
     "@rollup/plugin-replace": "^6.0.3",
     "@types/bun": "latest",
-    "rollup": "^4.57.0"
+    "rollup": "^4.57.1"
   }
 }
