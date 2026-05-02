@@ -366,6 +366,29 @@ export interface ListComponentProps extends BoxProps, Pick<StyleProps, 'color' |
   highlightColor?: string;
 }
 
+export interface VirtualListSlotProps<T = any> {
+  item: T | null;
+  index: number;
+  loading: boolean;
+  error: any | null;
+}
+
+export interface VirtualListProps<T = any> extends BoxProps, Pick<StyleProps, 'color' | 'bg'> {
+  count: number;
+  itemHeight?: number;
+  height: number;
+  getItem: (index: number) => T | Promise<T>;
+  keyExtractor?: (item: T, index: number) => string | number;
+  overscan?: number;
+  cacheBuffer?: number | null;
+  disabled?: boolean;
+  focusColor?: string;
+  emptyText?: string;
+  loadingText?: string;
+  autoScrollToBottom?: boolean;
+  maxItems?: number | null;
+}
+
 export interface CheckboxProps extends BoxProps, Pick<StyleProps, 'color' | 'bg' | 'bold' | 'dim'> {
   modelValue?: any[];
   options?: Array<ListItem | string | number>;
@@ -579,6 +602,7 @@ export const Gradient: DefineComponent<GradientProps>;
 export const Button: DefineComponent<ButtonComponentProps>;
 export const Tree: DefineComponent<TreeProps>;
 export const List: DefineComponent<ListComponentProps>;
+export const VirtualList: DefineComponent<VirtualListProps>;
 export const Tabs: DefineComponent<TabsProps>;
 export const CodeDiff: DefineComponent<CodeDiffProps>;
 

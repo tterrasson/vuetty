@@ -523,6 +523,26 @@ class TreeHandler extends ComponentHandler {
 }
 
 /**
+ * Handler for VirtualList nodes
+ */
+class VirtualListHandler extends ComponentHandler {
+  applyLayout(yogaNode, tuiNode, context) {
+    const props = tuiNode.props || {};
+    const height = props.height || 1;
+
+    yogaNode.setHeight(height);
+    yogaNode.setMinHeight(height);
+    yogaNode.setMaxHeight(height);
+
+    if (props.width === undefined && props.flex === undefined) {
+      yogaNode.setWidthPercent(100);
+    }
+
+    return {};
+  }
+}
+
+/**
  * Registry of component handlers
  * Can be extended by registering custom handlers
  */
@@ -551,6 +571,7 @@ class ComponentHandlerRegistry {
     this.register('selectinput', new SelectInputHandler());
     this.register('box', new BoxHandler());
     this.register('tree', new TreeHandler());
+    this.register('virtuallist', new VirtualListHandler());
   }
 
   /**

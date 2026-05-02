@@ -34,7 +34,9 @@ describe('layoutPropRegistry', () => {
       const componentProps = [
         'rows', 'headers', 'options', 'showHeader',
         'minRows', 'maxRows', 'autoResize',
-        'imageLines', 'count', 'lines', 'direction', 'font', 'length'
+        'imageLines', 'count', 'lines', 'direction', 'font', 'length',
+        'itemHeight', 'overscan', 'scrollOffset',
+        'visibleStart', 'visibleEnd', 'renderStart', 'renderEnd'
       ];
       for (const prop of componentProps) {
         expect(LAYOUT_AFFECTING_PROPS.has(prop)).toBe(true);
@@ -46,7 +48,7 @@ describe('layoutPropRegistry', () => {
       const coreLayoutPropsCount = getLayoutPropNames().length; // 27
       const universalPropsCount = 6; // border, borderStyle, responsive, _injectedWidth, _viewportVersion, text
       const visualStatePropsCount = 5; // label, hint, validationError, isFocused, disabled
-      const componentSpecificPropsCount = 13; // rows, headers, etc.
+      const componentSpecificPropsCount = 20; // rows, headers, virtualization props, etc.
 
       const expectedTotal = coreLayoutPropsCount + universalPropsCount + visualStatePropsCount + componentSpecificPropsCount;
       expect(LAYOUT_AFFECTING_PROPS.size).toBe(expectedTotal);
@@ -149,6 +151,13 @@ describe('layoutPropRegistry', () => {
         expect(isLayoutAffectingProp('direction')).toBe(true);
         expect(isLayoutAffectingProp('font')).toBe(true);
         expect(isLayoutAffectingProp('length')).toBe(true);
+        expect(isLayoutAffectingProp('itemHeight')).toBe(true);
+        expect(isLayoutAffectingProp('overscan')).toBe(true);
+        expect(isLayoutAffectingProp('scrollOffset')).toBe(true);
+        expect(isLayoutAffectingProp('visibleStart')).toBe(true);
+        expect(isLayoutAffectingProp('visibleEnd')).toBe(true);
+        expect(isLayoutAffectingProp('renderStart')).toBe(true);
+        expect(isLayoutAffectingProp('renderEnd')).toBe(true);
       });
     });
 

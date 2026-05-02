@@ -344,6 +344,43 @@ describe('Vuetty - Click Handlers', () => {
     expect(vuetty.clickHandlers.get('btn1')).toBe(handler1);
     expect(vuetty.clickHandlers.get('btn2')).toBe(handler2);
   });
+
+  test('dispatchMouseToComponent sends wheel events to the component under the pointer', () => {
+    const handler = mock(() => true);
+    vuetty.clickMap = {
+      isDirty: false,
+      hitTest: mock(() => 'virtual-list')
+    };
+    vuetty.inputManager.onInputChange = mock(() => {});
+    vuetty.registerClickHandler('virtual-list', handler);
+
+    const event = { action: 'wheel_down', x: 4, y: 2 };
+
+    expect(vuetty.dispatchMouseToComponent(4, 2, event)).toBe(true);
+    expect(handler).toHaveBeenCalledWith(event);
+    expect(vuetty.inputManager.onInputChange).toHaveBeenCalled();
+  });
+
+  test('viewport wheel falls back only when no component handles the event', () => {
+    vuetty.viewport.mouseWheelEnabled = true;
+    vuetty.viewport.mouseWheelScrollLines = 3;
+    vuetty.scrollDown = mock(() => {});
+    vuetty.inputManager.onInputChange = mock(() => {});
+    vuetty.clickMap = {
+      isDirty: false,
+      hitTest: mock(() => 'virtual-list')
+    };
+    vuetty.registerClickHandler('virtual-list', mock(() => true));
+
+    expect(vuetty.handleViewportMouse({ action: 'wheel_down', x: 4, y: 2 })).toBe(true);
+    expect(vuetty.scrollDown).not.toHaveBeenCalled();
+    expect(vuetty.inputManager.onInputChange).toHaveBeenCalled();
+
+    vuetty.clickMap.hitTest = mock(() => null);
+
+    expect(vuetty.handleViewportMouse({ action: 'wheel_down', x: 40, y: 20 })).toBe(true);
+    expect(vuetty.scrollDown).toHaveBeenCalledWith(3);
+  });
 });
 
 describe('Vuetty - Mouse Tracking', () => {

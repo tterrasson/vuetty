@@ -68,6 +68,7 @@ const visualStateProps = new Set([
  * - count/lines: Various components that render lists
  * - direction: Component orientation
  * - font/length: Text measurement props
+ * - itemHeight/overscan/scrollOffset/window bounds: VirtualList layout
  */
 const componentSpecificProps = new Set([
   'rows',
@@ -82,7 +83,14 @@ const componentSpecificProps = new Set([
   'lines',
   'direction',
   'font',
-  'length'
+  'length',
+  'itemHeight',
+  'overscan',
+  'scrollOffset',
+  'visibleStart',
+  'visibleEnd',
+  'renderStart',
+  'renderEnd'
 ]);
 
 /**

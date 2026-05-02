@@ -659,6 +659,34 @@ export class Vuetty {
   }
 
   /**
+   * Dispatch a mouse event to the component under the pointer.
+   * Used for wheel events before falling back to global viewport scrolling.
+   */
+  dispatchMouseToComponent(x, y, event) {
+    if (this.clickMap.isDirty) {
+      this.clickMap.build(
+        this.rootContainer,
+        this.viewport.scrollOffset,
+        this.viewport.terminalHeight
+      );
+    }
+
+    const componentId = this.clickMap.hitTest(x, y);
+    if (!componentId) return false;
+
+    const handler = this.clickHandlers.get(componentId);
+    if (!handler) return false;
+
+    const handled = handler(event);
+    if (handled) {
+      this.inputManager.onInputChange();
+      return true;
+    }
+
+    return false;
+  }
+
+  /**
    * Handle viewport-level mouse input (wheel scrolling and clicks)
    * Returns true if event was handled
    */
@@ -669,11 +697,17 @@ export class Vuetty {
 
     // Handle wheel scrolling
     if (event.action === 'wheel_up') {
+      if (this.dispatchMouseToComponent(event.x, event.y, event)) {
+        return true;
+      }
       this.scrollUp(this.viewport.mouseWheelScrollLines);
       return true;
     }
 
     if (event.action === 'wheel_down') {
+      if (this.dispatchMouseToComponent(event.x, event.y, event)) {
+        return true;
+      }
       this.scrollDown(this.viewport.mouseWheelScrollLines);
       return true;
     }

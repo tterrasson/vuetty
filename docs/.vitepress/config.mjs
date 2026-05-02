@@ -72,6 +72,7 @@ export default defineConfig({
           { text: 'Table', link: '/components/visual/table' },
           { text: 'Tree', link: '/components/visual/tree' },
           { text: 'List', link: '/components/visual/list' },
+          { text: 'VirtualList', link: '/components/visual/virtuallist' },
           { text: 'Image', link: '/components/visual/image' },
           { text: 'ProgressBar', link: '/components/visual/progressbar' },
           { text: 'Spinner', link: '/components/visual/spinner' },

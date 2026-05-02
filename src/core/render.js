@@ -28,6 +28,7 @@ import '@components/Checkbox.js';
 import '@components/Radiobox.js';
 import '@components/Button.js';
 import '@components/Tabs.js';
+import '@components/VirtualList.js';
 import './flexRenderers.js';
 
 // ============================================================
