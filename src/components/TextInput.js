@@ -57,6 +57,8 @@ const BORDER = {
 };
 
 
+const PASTE_LONG_THRESHOLD_DEFAULT = 80;
+
 // Set for faster ctrl code lookup
 const ALLOWED_CTRL_CODES = new Set([
   0x01, // Ctrl+A
@@ -96,6 +98,7 @@ export default {
     pattern: RegExp,
     required: Boolean,
     maxLength: Number,
+    pasteLongThreshold: { type: Number, default: PASTE_LONG_THRESHOLD_DEFAULT },
     disabled: Boolean,
     readonly: Boolean,
     // Include common layout props (padding, margin, dimensions)
@@ -121,6 +124,20 @@ export default {
     });
 
     let lastEmittedValue = props.modelValue || '';
+
+    let pasteCounter = 0;
+    const pasteStore = new Map();
+
+    function expandPasteTokens(text) {
+      if (pasteStore.size === 0) return text;
+      let result = text;
+      for (const { content, placeholder } of pasteStore.values()) {
+        if (result.includes(placeholder)) {
+          result = result.split(placeholder).join(content);
+        }
+      }
+      return result;
+    }
 
     // Compute effective width for internal calculations (content width, not including borders)
     const getEffectiveWidth = () => {
@@ -148,9 +165,10 @@ export default {
     };
 
     function emitUpdate() {
-      if (state.text !== lastEmittedValue) {
-        lastEmittedValue = state.text;
-        emit('update:modelValue', state.text);
+      const expanded = expandPasteTokens(state.text);
+      if (expanded !== lastEmittedValue) {
+        lastEmittedValue = expanded;
+        emit('update:modelValue', expanded);
       }
     }
 
@@ -303,8 +321,23 @@ export default {
       if (key === KEY_BACKSPACE) {
         if (state.cursor > 0) {
           const pos = state.cursor;
-          state.text = text.slice(0, pos - 1) + text.slice(pos);
-          state.cursor--;
+          let deletedPaste = false;
+          if (pasteStore.size > 0) {
+            const before = text.slice(0, pos);
+            for (const [id, { placeholder }] of pasteStore.entries()) {
+              if (before.endsWith(placeholder)) {
+                state.text = text.slice(0, pos - placeholder.length) + text.slice(pos);
+                state.cursor -= placeholder.length;
+                pasteStore.delete(id);
+                deletedPaste = true;
+                break;
+              }
+            }
+          }
+          if (!deletedPaste) {
+            state.text = text.slice(0, pos - 1) + text.slice(pos);
+            state.cursor--;
+          }
         }
         afterEdit();
         return true;
@@ -312,7 +345,21 @@ export default {
       if (key === KEY_DELETE || key === KEY_CTRL_D) {
         if (state.cursor < text.length) {
           const pos = state.cursor;
-          state.text = text.slice(0, pos) + text.slice(pos + 1);
+          let deletedPaste = false;
+          if (pasteStore.size > 0) {
+            const after = text.slice(pos);
+            for (const [id, { placeholder }] of pasteStore.entries()) {
+              if (after.startsWith(placeholder)) {
+                state.text = text.slice(0, pos) + text.slice(pos + placeholder.length);
+                pasteStore.delete(id);
+                deletedPaste = true;
+                break;
+              }
+            }
+          }
+          if (!deletedPaste) {
+            state.text = text.slice(0, pos) + text.slice(pos + 1);
+          }
         }
         afterEdit();
         return true;
@@ -323,13 +370,13 @@ export default {
           state.text = text.slice(0, pos) + '\n' + text.slice(pos);
           state.cursor++;
         } else {
-          emit('change', state.text);
+          emit('change', expandPasteTokens(state.text));
         }
         afterEdit();
         return true;
       }
       if (key === KEY_CTRL_ENTER) {
-        emit('change', state.text);
+        emit('change', expandPasteTokens(state.text));
         afterEdit();
         return true;
       }
@@ -346,12 +393,44 @@ export default {
       return false;
     }
 
+    function handlePaste(content) {
+      if (props.disabled || props.readonly) return;
+
+      const isLong = content.includes('\n') || content.length > props.pasteLongThreshold;
+
+      if (!isLong) {
+        const pos = state.cursor;
+        let toInsert = content;
+        if (props.maxLength) toInsert = toInsert.slice(0, props.maxLength - state.text.length);
+        state.text = state.text.slice(0, pos) + toInsert + state.text.slice(pos);
+        state.cursor += toInsert.length;
+        afterEdit();
+        return;
+      }
+
+      pasteCounter++;
+      const id = pasteCounter;
+      const lineCount = content.split('\n').length;
+      const summary = lineCount > 1 ? `+${lineCount} lines` : `+${content.length} chars`;
+      const placeholder = `[paste #${id} ${summary}]`;
+
+      pasteStore.set(id, { content, placeholder });
+
+      const pos = state.cursor;
+      state.text = state.text.slice(0, pos) + placeholder + state.text.slice(pos);
+      state.cursor += placeholder.length;
+      afterEdit();
+    }
+
     function handleClick(_mouseEvent) {
       if (props.disabled || props.readonly) return;
       inputManager.focus(componentId);
     }
 
-    inputManager.registerComponent(componentId, handleKey, { disabled: props.disabled });
+    inputManager.registerComponent(componentId, handleKey, {
+      disabled: props.disabled,
+      pasteHandler: handlePaste
+    });
 
     if (vuettyInstance) {
       vuettyInstance.registerClickHandler(componentId, handleClick);
@@ -368,10 +447,11 @@ export default {
 
     watch(() => props.modelValue, (newValue) => {
       const normalizedNew = newValue || '';
-      if (normalizedNew !== state.text) {
+      if (normalizedNew !== expandPasteTokens(state.text)) {
         state.text = normalizedNew;
         state.cursor = Math.min(state.cursor, state.text.length);
         lastEmittedValue = normalizedNew;
+        pasteStore.clear();
         validate();
         updateScroll();
       }

@@ -2,6 +2,13 @@
 import { ref } from 'vue';
 import { parseKey, parseMouseEvent, KEY_TAB, KEY_CTRL_C } from '@utils/keyParser.js';
 
+const BP_START = '\x1b[200~';
+const BP_END = '\x1b[201~';
+const BP_START_LEN = BP_START.length;
+const BP_END_LEN = BP_END.length;
+const ENABLE_BRACKETED_PASTE = '\x1b[?2004h';
+const DISABLE_BRACKETED_PASTE = '\x1b[?2004l';
+
 /**
  * InputManager - Centralized keyboard input handling for TUI
  *
@@ -24,6 +31,7 @@ export class InputManager {
 
     this.handleData = this.handleData.bind(this);
     this.buffer = '';
+    this.pasteBuffer = null; // null = not in paste mode, string = accumulating bracketed paste
   }
 
   /**
@@ -40,6 +48,10 @@ export class InputManager {
     process.stdin.setEncoding('utf8');
     process.stdin.on('data', this.handleData);
 
+    if (process.stdout.isTTY) {
+      process.stdout.write(ENABLE_BRACKETED_PASTE);
+    }
+
     this.enabled = true;
   }
 
@@ -49,6 +61,10 @@ export class InputManager {
   disable() {
     if (!this.enabled) return;
 
+    if (process.stdout.isTTY) {
+      process.stdout.write(DISABLE_BRACKETED_PASTE);
+    }
+
     process.stdin.removeListener('data', this.handleData);
     process.stdin.pause();
 
@@ -56,6 +72,7 @@ export class InputManager {
       process.stdin.setRawMode(false);
     }
 
+    this.pasteBuffer = null;
     this.enabled = false;
   }
 
@@ -65,6 +82,7 @@ export class InputManager {
   registerComponent(id, handler, options = {}) {
     this.components.set(id, {
       handler,
+      pasteHandler: options.pasteHandler || null,
       disabled: options.disabled || false,
       focusable: options.focusable !== undefined ? options.focusable : true
     });
@@ -220,9 +238,51 @@ export class InputManager {
   }
 
   /**
+   * Dispatch a fully-assembled paste to the focused component
+   */
+  handlePaste(text) {
+    if (!this.focusedId.value) return;
+    const component = this.components.get(this.focusedId.value);
+    if (component && !component.disabled && component.pasteHandler) {
+      component.pasteHandler(text);
+      this.onInputChange();
+    }
+  }
+
+  /**
    * Handle raw data from stdin
    */
   handleData(data) {
+    if (this.pasteBuffer !== null) {
+      const endIdx = data.indexOf(BP_END);
+      if (endIdx !== -1) {
+        this.pasteBuffer += data.slice(0, endIdx);
+        const full = this.pasteBuffer;
+        this.pasteBuffer = null;
+        this.handlePaste(full);
+        const tail = data.slice(endIdx + BP_END_LEN);
+        if (tail.length > 0) this.handleData(tail);
+      } else {
+        this.pasteBuffer += data;
+      }
+      return;
+    }
+
+    const startIdx = data.indexOf(BP_START);
+    if (startIdx !== -1) {
+      if (startIdx > 0) this.handleData(data.slice(0, startIdx));
+      const after = data.slice(startIdx + BP_START_LEN);
+      const endIdx = after.indexOf(BP_END);
+      if (endIdx !== -1) {
+        this.handlePaste(after.slice(0, endIdx));
+        const tail = after.slice(endIdx + BP_END_LEN);
+        if (tail.length > 0) this.handleData(tail);
+      } else {
+        this.pasteBuffer = after;
+      }
+      return;
+    }
+
     this.buffer += data;
 
     while (this.buffer.length > 0) {

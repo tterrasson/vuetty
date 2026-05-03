@@ -14,6 +14,7 @@ export const examples = [
   example('newline', 'Newline', './components/Newline.vue'),
   example('button', 'Button', './components/Button.vue'),
   example('text-input', 'TextInput', './components/TextInput.vue'),
+  example('paste-collapse', 'Paste Collapse', './components/PasteCollapse.vue'),
   example('select-input', 'SelectInput', './components/SelectInput.vue'),
   example('checkbox', 'Checkbox', './components/Checkbox.vue'),
   example('radiobox', 'Radiobox', './components/Radiobox.vue'),

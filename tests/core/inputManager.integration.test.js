@@ -285,4 +285,48 @@ describe('InputManager integration behavior', () => {
 
     expect(viewportHandler).not.toHaveBeenCalled();
   });
+
+  test('bracketed paste: single data event assembles one paste', () => {
+    const pasteHandler = mock(() => {});
+    const manager = new InputManager();
+    manager.registerComponent('c', () => {}, { pasteHandler });
+    manager.focus('c');
+
+    manager.handleData('\x1b[200~hello world\x1b[201~');
+
+    expect(pasteHandler).toHaveBeenCalledTimes(1);
+    expect(pasteHandler.mock.calls[0][0]).toBe('hello world');
+  });
+
+  test('bracketed paste: multiple data chunks assemble into one paste', () => {
+    const pasteHandler = mock(() => {});
+    const manager = new InputManager();
+    manager.registerComponent('c', () => {}, { pasteHandler });
+    manager.focus('c');
+
+    manager.handleData('\x1b[200~chunk one ');
+    manager.handleData('chunk two ');
+    manager.handleData('chunk three\x1b[201~');
+
+    expect(pasteHandler).toHaveBeenCalledTimes(1);
+    expect(pasteHandler.mock.calls[0][0]).toBe('chunk one chunk two chunk three');
+  });
+
+  test('bracketed paste: chars before and after paste are dispatched normally', () => {
+    const pasteHandler = mock(() => {});
+    const keyHandler = mock(() => true);
+    const manager = new InputManager();
+    manager.registerComponent('c', keyHandler, { pasteHandler });
+    manager.focus('c');
+    manager.handleKeyPress = mock(manager.handleKeyPress.bind(manager));
+
+    manager.handleData('a\x1b[200~paste\x1b[201~b');
+
+    expect(pasteHandler).toHaveBeenCalledTimes(1);
+    expect(pasteHandler.mock.calls[0][0]).toBe('paste');
+    // 'a' and 'b' should have reached the key handler
+    const charKeys = keyHandler.mock.calls.map(c => c[0].char);
+    expect(charKeys).toContain('a');
+    expect(charKeys).toContain('b');
+  });
 });

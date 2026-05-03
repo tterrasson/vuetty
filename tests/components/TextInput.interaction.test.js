@@ -175,4 +175,105 @@ describe('TextInput Interaction', () => {
       // Should NOT update
       expect(lastUpdate).toBe(null);
   });
+
+  test('long multiline paste → inserts placeholder, emits expanded content', () => {
+    const props = { modelValue: '' };
+    let lastUpdate = '';
+    const context = {
+      emit: (event, val) => {
+        if (event === 'update:modelValue') lastUpdate = val;
+      }
+    };
+
+    TextInput.setup(props, context);
+    const [_id, _handler, options] = mockInputManager.registerComponent.mock.calls[0];
+    const { pasteHandler } = options;
+
+    const lines = Array.from({ length: 10 }, (_, i) => `line ${i + 1}`).join('\n');
+    pasteHandler(lines);
+
+    // emitted value should be the full content, not the placeholder
+    expect(lastUpdate).toBe(lines);
+  });
+
+  test('short paste (below threshold, no newline) → inserted inline', () => {
+    const props = { modelValue: 'hello ' };
+    let lastUpdate = '';
+    const context = {
+      emit: (event, val) => {
+        if (event === 'update:modelValue') lastUpdate = val;
+      }
+    };
+
+    TextInput.setup(props, context);
+    const [_id, _handler, options] = mockInputManager.registerComponent.mock.calls[0];
+    const { pasteHandler } = options;
+
+    pasteHandler('world');
+    expect(lastUpdate).toBe('hello world');
+  });
+
+  test('multiple pastes get unique IDs and both expand correctly', () => {
+    const props = { modelValue: '' };
+    const updates = [];
+    const context = {
+      emit: (event, val) => {
+        if (event === 'update:modelValue') updates.push(val);
+      }
+    };
+
+    TextInput.setup(props, context);
+    const [_id, _handler, options] = mockInputManager.registerComponent.mock.calls[0];
+    const { pasteHandler } = options;
+
+    const content1 = Array.from({ length: 5 }, (_, i) => `a${i}`).join('\n');
+    const content2 = Array.from({ length: 5 }, (_, i) => `b${i}`).join('\n');
+
+    pasteHandler(content1);
+    pasteHandler(content2);
+
+    const last = updates[updates.length - 1];
+    expect(last).toBe(content1 + content2);
+  });
+
+  test('backspace once after paste placeholder → removes entire placeholder', () => {
+    const props = { modelValue: '' };
+    let lastUpdate = '';
+    const context = {
+      emit: (event, val) => {
+        if (event === 'update:modelValue') lastUpdate = val;
+      }
+    };
+
+    TextInput.setup(props, context);
+    const [_id, handler, options] = mockInputManager.registerComponent.mock.calls[0];
+    const { pasteHandler } = options;
+
+    const lines = Array.from({ length: 5 }, (_, i) => `line ${i}`).join('\n');
+    pasteHandler(lines);
+
+    // one backspace should remove the whole placeholder
+    handler({ key: 'backspace' });
+    expect(lastUpdate).toBe('');
+  });
+
+  test('enter after paste emits expanded content via change event', () => {
+    const props = { modelValue: '', multiline: false };
+    let changeValue = null;
+    const context = {
+      emit: (event, val) => {
+        if (event === 'change') changeValue = val;
+      }
+    };
+
+    TextInput.setup(props, context);
+    const [_id, handler, options] = mockInputManager.registerComponent.mock.calls[0];
+    const { pasteHandler } = options;
+
+    const lines = Array.from({ length: 5 }, (_, i) => `line ${i}`).join('\n');
+    pasteHandler(lines);
+
+    handler({ key: 'enter' });
+    expect(changeValue).toBe(lines);
+  });
 });
