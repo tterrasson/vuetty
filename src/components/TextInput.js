@@ -583,7 +583,7 @@ function wrapTextWithIndices(text, width) {
         const lastSpace = remaining.lastIndexOf(' ', width);
 
         if (lastSpace > width * 0.3) {
-          breakPoint = lastSpace + 1;
+          breakPoint = Math.min(lastSpace + 1, width);
         }
 
         chunk = remaining.slice(0, breakPoint);
@@ -640,7 +640,7 @@ export function renderTextInput(props) {
   // Determine effective width: explicit width takes precedence, then injected, fallback to 40
   const effectiveWidth = width !== undefined && width !== null
     ? width
-    : (_injectedWidth !== undefined && _injectedWidth !== null ? _injectedWidth : 40);
+    : (_injectedWidth !== undefined && _injectedWidth !== null ? Math.max(1, _injectedWidth - 2) : 40);
 
   const lines = [];
 
