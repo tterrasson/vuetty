@@ -50,8 +50,52 @@ export interface VuettyOptions {
   [key: string]: any;
 }
 
+export interface RunExternalAppOptions {
+  preserveAlternateBuffer?: boolean;
+  cwd?: string;
+  env?: Record<string, string>;
+  [key: string]: any;
+}
+
+export interface MemoryStats {
+  timestamp: number;
+  caches: Record<string, any>;
+  nodeTree: Record<string, any>;
+  viewport: Record<string, any>;
+  process: Record<string, any>;
+}
+
 export class Vuetty {
   constructor(options?: VuettyOptions);
+
+  use(plugin: any, ...options: any[]): this;
+  createApp(rootComponent: Component, rootProps?: Record<string, any> | null): any;
+  mount(): this;
+  unmount(): this;
+  render(): void;
+
+  enableMouseTracking(): void;
+  disableMouseTracking(): void;
+  toggleMouseTracking(): void;
+
+  scrollUp(lines?: number): void;
+  scrollDown(lines?: number): void;
+  scrollToTop(): void;
+  scrollToBottom(): void;
+  pageUp(): void;
+  pageDown(): void;
+
+  provideRouter(router: any): void;
+  runExternalApp(command: string, args?: string[], options?: RunExternalAppOptions): any;
+
+  registerClickHandler(componentId: string, handler: (event: any) => void): void;
+  unregisterClickHandler(componentId: string): void;
+
+  clear(): void;
+  getOutput(): string;
+  getMemoryStats(): MemoryStats;
+  clearAllCaches(): MemoryStats;
+
   [key: string]: any;
 }
 
@@ -330,6 +374,7 @@ export interface TextInputProps extends BoxProps, Pick<StyleProps, 'color' | 'bg
   pattern?: RegExp;
   required?: boolean;
   maxLength?: number;
+  pasteLongThreshold?: number;
   disabled?: boolean;
   readonly?: boolean;
 }
