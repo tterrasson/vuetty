@@ -62,7 +62,8 @@ export default defineConfig({
           { text: 'Tabs', link: '/components/input/tabs' },
           { text: 'Checkbox', link: '/components/input/checkbox' },
           { text: 'Radiobox', link: '/components/input/radiobox' },
-          { text: 'Button', link: '/components/input/button' }
+          { text: 'Button', link: '/components/input/button' },
+          { text: 'External Apps', link: '/components/input/external-apps' }
         ]
       },
       {
