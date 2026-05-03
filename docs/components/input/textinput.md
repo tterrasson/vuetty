@@ -43,6 +43,7 @@ const textValue = ref('');
 | `pattern` | `RegExp` | `-` | Validation regex pattern |
 | `required` | `boolean` | `false` | Mark field as required |
 | `maxLength` | `number` | `-` | Maximum character length |
+| `pasteLongThreshold` | `number` | `80` | Character length threshold for long paste handling. Pasted content exceeding this length is inserted as a placeholder instead of raw text |
 | `disabled` | `boolean` | `false` | Disable input |
 | `readonly` | `boolean` | `false` | Make input read-only |
 
