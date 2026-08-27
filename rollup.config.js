@@ -1,7 +1,6 @@
 // rollup.config.js
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
-import terser from '@rollup/plugin-terser';
 import alias from '@rollup/plugin-alias';
 import { fileURLToPath } from 'node:url';
 import { dirname, resolve as pathResolve } from 'node:path';;
@@ -26,7 +25,7 @@ const externalDeps = [
   'string-width',
   'cli-highlight',
   'marked',
-  'gradient-string',
+  'tinygradient',
   'glob',
 
   // Runtime
@@ -70,8 +69,7 @@ export default [
       commonjs({
         transformMixedEsModules: true,
         requireReturnsDefault: 'auto'
-      }),
-      terser()
+      })
     ]
   },
 
@@ -104,8 +102,7 @@ export default [
       commonjs({
         transformMixedEsModules: true,
         requireReturnsDefault: 'auto'
-      }),
-      terser()
+      })
     ]
   },
 
@@ -121,10 +118,7 @@ export default [
     external: externalDeps,
     plugins: [
       resolve({ preferBuiltins: true }),
-      commonjs(),
-      terser({
-        format: { comments: false }
-      })
+      commonjs()
     ]
   }
 ];
