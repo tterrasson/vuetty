@@ -1,6 +1,7 @@
 // src/components/Gradient.js
 import { h } from 'vue';
-import gradient from 'gradient-string';
+import chalk from 'chalk';
+import tinygradient from 'tinygradient';
 import { boxProps } from '@core/layoutProps.js';
 import { stripAnsi } from '@utils/renderUtils.js';
 import { RenderHandler, renderHandlerRegistry } from '@core/renderHandlers.js';
@@ -17,6 +18,33 @@ const CUSTOM_GRADIENTS = {
   night: ['#1A237E', '#5E35B1', '#EC407A']
 };
 
+const PRESET_GRADIENTS = {
+  atlas: { colors: ['#feac5e', '#c779d0', '#4bc0c8'] },
+  cristal: { colors: ['#bdfff3', '#4ac29a'] },
+  teen: { colors: ['#77a1d3', '#79cbca', '#e684ae'] },
+  mind: { colors: ['#473b7b', '#3584a7', '#30d2be'] },
+  morning: { colors: ['#ff5f6d', '#ffc371'], interpolation: 'hsv' },
+  vice: { colors: ['#5ee7df', '#b490ca'], interpolation: 'hsv' },
+  fruit: { colors: ['#ff4e50', '#f9d423'] },
+  retro: {
+    colors: [
+      '#3f51b1', '#5a55ae', '#7b5fac', '#8f6aae', '#a86aa4',
+      '#cc6b8e', '#f18271', '#f3a469', '#f7c978'
+    ]
+  },
+  summer: { colors: ['#fdbb2d', '#22c1c3'] },
+  rainbow: {
+    colors: ['#ff0000', '#ff0100'],
+    interpolation: 'hsv',
+    hsvSpin: 'long'
+  },
+  pastel: {
+    colors: ['#74ebd5', '#74ecd5'],
+    interpolation: 'hsv',
+    hsvSpin: 'long'
+  }
+};
+
 /**
  * Available gradient presets
  */
@@ -28,6 +56,41 @@ export const GRADIENT_PRESETS = [
 
 // Cache gradient instances (they're expensive to create)
 const gradientCache = new Map();
+
+function createGradient(colors, options = {}) {
+  const colorGradient = tinygradient(colors);
+  const interpolation = options.interpolation?.toLowerCase() || 'rgb';
+  const hsvSpin = options.hsvSpin?.toLowerCase() || false;
+
+  const getColors = (count) => interpolation === 'hsv'
+    ? colorGradient.hsv(count, hsvSpin)
+    : colorGradient.rgb(count);
+
+  const apply = (text) => {
+    const count = Math.max(text.replace(/\s/g, '').length, colorGradient.stops.length);
+    const generatedColors = getColors(count);
+
+    return [...text].map((character) => character.match(/\s/)
+      ? character
+      : chalk.hex(generatedColors.shift()?.toHex() || '#000')(character)
+    ).join('');
+  };
+
+  apply.multiline = (text) => {
+    const lines = text.split('\n');
+    const count = Math.max(...lines.map(line => line.length), colorGradient.stops.length);
+    const generatedColors = getColors(count);
+
+    return lines.map(line => {
+      const lineColors = [...generatedColors];
+      return [...line].map(character =>
+        chalk.hex(lineColors.shift()?.toHex() || '#000')(character)
+      ).join('');
+    }).join('\n');
+  };
+
+  return apply;
+}
 
 /**
  * Get or create a gradient instance
@@ -41,16 +104,16 @@ function getGradientInstance(name, colors, interpolation) {
   let instance = gradientCache.get(key);
   if (instance) return instance;
 
-  const options = { interpolation };
-
   if (colors && Array.isArray(colors) && colors.length > 0) {
-    instance = gradient(colors, options);
-  } else if (name && gradient[name]) {
-    instance = gradient[name];
+    instance = createGradient(colors, { interpolation });
+  } else if (name && PRESET_GRADIENTS[name]) {
+    const preset = PRESET_GRADIENTS[name];
+    instance = createGradient(preset.colors, preset);
   } else if (name && CUSTOM_GRADIENTS[name]) {
-    instance = gradient(CUSTOM_GRADIENTS[name], options);
+    instance = createGradient(CUSTOM_GRADIENTS[name], { interpolation });
   } else {
-    instance = gradient.rainbow;
+    const preset = PRESET_GRADIENTS.rainbow;
+    instance = createGradient(preset.colors, preset);
   }
 
   // Limit cache size
