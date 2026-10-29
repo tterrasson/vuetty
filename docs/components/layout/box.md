@@ -25,6 +25,7 @@ import { Box, TextBox } from 'vuetty';
 | `title` | `string` | `null` | Title text displayed in the top border |
 | `titleAlign` | `string` | `'left'` | Title alignment: 'left', 'center', 'right' |
 | `titlePadding` | `number` | `1` | Padding around the title text |
+| `align` | `string` | `'left'` | Text alignment inside the box: 'left', 'center', 'right' |
 | `color` | `string` | - | Text and border color (chalk color names) |
 | `bg` | `string` | - | Background color |
 | `bold` | `boolean` | `false` | Bold text |
@@ -61,7 +62,7 @@ import { Box, TextBox } from 'vuetty';
 
 ## Border Styles
 
-Box supports 6 built-in border styles:
+Box supports 8 built-in border styles:
 
 ```vue
 <template>
@@ -82,6 +83,12 @@ Box supports 6 built-in border styles:
   </Box>
   <Box borderStyle="dashed" :padding="1">
     <TextBox>Dashed border</TextBox>
+  </Box>
+  <Box borderStyle="sparse" :padding="1">
+    <TextBox>Sparse dotted border</TextBox>
+  </Box>
+  <Box borderStyle="light" :padding="1">
+    <TextBox>Invisible border (spacing only)</TextBox>
   </Box>
   <Box :padding="1" :border="false">
     <TextBox>Box without border</TextBox>
