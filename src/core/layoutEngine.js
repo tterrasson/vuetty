@@ -10,6 +10,48 @@ import { componentHandlerRegistry } from './componentHandlers.js';
 import { extractTextContent } from '@utils/renderUtils.js';
 import { calculateTextHeight } from '@utils/heightUtils.js';
 
+// Yoga enum lookups - hoisted out of the per-node hot path
+const JUSTIFY_MAP = {
+  'flex-start': Yoga.JUSTIFY_FLEX_START,
+  'flex-end': Yoga.JUSTIFY_FLEX_END,
+  'center': Yoga.JUSTIFY_CENTER,
+  'space-between': Yoga.JUSTIFY_SPACE_BETWEEN,
+  'space-around': Yoga.JUSTIFY_SPACE_AROUND,
+  'space-evenly': Yoga.JUSTIFY_SPACE_EVENLY,
+};
+
+const ALIGN_ITEMS_MAP = {
+  'flex-start': Yoga.ALIGN_FLEX_START,
+  'flex-end': Yoga.ALIGN_FLEX_END,
+  'center': Yoga.ALIGN_CENTER,
+  'stretch': Yoga.ALIGN_STRETCH,
+  'baseline': Yoga.ALIGN_BASELINE,
+};
+
+const ALIGN_SELF_MAP = {
+  'auto': Yoga.ALIGN_AUTO,
+  'flex-start': Yoga.ALIGN_FLEX_START,
+  'flex-end': Yoga.ALIGN_FLEX_END,
+  'center': Yoga.ALIGN_CENTER,
+  'stretch': Yoga.ALIGN_STRETCH,
+  'baseline': Yoga.ALIGN_BASELINE,
+};
+
+const WRAP_MAP = {
+  'wrap': Yoga.WRAP_WRAP,
+  'nowrap': Yoga.WRAP_NO_WRAP,
+  'wrap-reverse': Yoga.WRAP_WRAP_REVERSE,
+};
+
+const ALIGN_CONTENT_MAP = {
+  'flex-start': Yoga.ALIGN_FLEX_START,
+  'flex-end': Yoga.ALIGN_FLEX_END,
+  'center': Yoga.ALIGN_CENTER,
+  'stretch': Yoga.ALIGN_STRETCH,
+  'space-between': Yoga.ALIGN_SPACE_BETWEEN,
+  'space-around': Yoga.ALIGN_SPACE_AROUND,
+};
+
 /**
  * Yoga Layout Engine
  */
@@ -187,15 +229,7 @@ export class YogaLayoutEngine {
 
     // Justify content
     if (props.justifyContent) {
-      const justifyMap = {
-        'flex-start': Yoga.JUSTIFY_FLEX_START,
-        'flex-end': Yoga.JUSTIFY_FLEX_END,
-        'center': Yoga.JUSTIFY_CENTER,
-        'space-between': Yoga.JUSTIFY_SPACE_BETWEEN,
-        'space-around': Yoga.JUSTIFY_SPACE_AROUND,
-        'space-evenly': Yoga.JUSTIFY_SPACE_EVENLY,
-      };
-      const justifyValue = justifyMap[props.justifyContent];
+      const justifyValue = JUSTIFY_MAP[props.justifyContent];
       if (justifyValue !== undefined) {
         yogaNode.setJustifyContent(justifyValue);
       }
@@ -203,14 +237,7 @@ export class YogaLayoutEngine {
 
     // Align items
     if (props.alignItems) {
-      const alignMap = {
-        'flex-start': Yoga.ALIGN_FLEX_START,
-        'flex-end': Yoga.ALIGN_FLEX_END,
-        'center': Yoga.ALIGN_CENTER,
-        'stretch': Yoga.ALIGN_STRETCH,
-        'baseline': Yoga.ALIGN_BASELINE,
-      };
-      const alignValue = alignMap[props.alignItems];
+      const alignValue = ALIGN_ITEMS_MAP[props.alignItems];
       if (alignValue !== undefined) {
         yogaNode.setAlignItems(alignValue);
       }
@@ -218,15 +245,7 @@ export class YogaLayoutEngine {
 
     // Align self
     if (props.alignSelf) {
-      const alignSelfMap = {
-        'auto': Yoga.ALIGN_AUTO,
-        'flex-start': Yoga.ALIGN_FLEX_START,
-        'flex-end': Yoga.ALIGN_FLEX_END,
-        'center': Yoga.ALIGN_CENTER,
-        'stretch': Yoga.ALIGN_STRETCH,
-        'baseline': Yoga.ALIGN_BASELINE,
-      };
-      const alignSelfValue = alignSelfMap[props.alignSelf];
+      const alignSelfValue = ALIGN_SELF_MAP[props.alignSelf];
       if (alignSelfValue !== undefined) {
         yogaNode.setAlignSelf(alignSelfValue);
       }
@@ -236,12 +255,7 @@ export class YogaLayoutEngine {
     if (props.responsive) {
       yogaNode.setFlexWrap(Yoga.WRAP_WRAP);
     } else if (props.flexWrap) {
-      const wrapMap = {
-        'wrap': Yoga.WRAP_WRAP,
-        'nowrap': Yoga.WRAP_NO_WRAP,
-        'wrap-reverse': Yoga.WRAP_WRAP_REVERSE,
-      };
-      const wrapValue = wrapMap[props.flexWrap];
+      const wrapValue = WRAP_MAP[props.flexWrap];
       if (wrapValue !== undefined) {
         yogaNode.setFlexWrap(wrapValue);
       }
@@ -249,15 +263,7 @@ export class YogaLayoutEngine {
 
     // Align content
     if (props.alignContent) {
-      const alignContentMap = {
-        'flex-start': Yoga.ALIGN_FLEX_START,
-        'flex-end': Yoga.ALIGN_FLEX_END,
-        'center': Yoga.ALIGN_CENTER,
-        'stretch': Yoga.ALIGN_STRETCH,
-        'space-between': Yoga.ALIGN_SPACE_BETWEEN,
-        'space-around': Yoga.ALIGN_SPACE_AROUND,
-      };
-      const alignContentValue = alignContentMap[props.alignContent];
+      const alignContentValue = ALIGN_CONTENT_MAP[props.alignContent];
       if (alignContentValue !== undefined) {
         yogaNode.setAlignContent(alignContentValue);
       }
