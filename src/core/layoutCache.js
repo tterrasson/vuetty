@@ -4,6 +4,7 @@
  */
 
 import { getCacheConfig } from './cacheConfig.js';
+import { LRUCache } from '../utils/lruCache.js';
 
 function getTextCacheSize() {
   return getCacheConfig().layout.textMeasurement;
@@ -11,56 +12,6 @@ function getTextCacheSize() {
 
 function getMaxMetricsPerNode() {
   return getCacheConfig().layout.metricsPerNode;
-}
-
-/**
- * Simple LRU (Least Recently Used) Cache
- */
-class LRUCache {
-  constructor(maxSize = 5000) {
-    this.maxSize = maxSize;
-    this.cache = new Map();
-  }
-
-  get(key) {
-    if (!this.cache.has(key)) {
-      return null;
-    }
-
-    // Move to end (most recently used)
-    const value = this.cache.get(key);
-    this.cache.delete(key);
-    this.cache.set(key, value);
-
-    return value;
-  }
-
-  set(key, value) {
-    // Delete if already exists (to reinsert at end)
-    if (this.cache.has(key)) {
-      this.cache.delete(key);
-    }
-
-    this.cache.set(key, value);
-
-    // Evict oldest entries if size exceeded
-    if (this.cache.size > this.maxSize) {
-      const firstKey = this.cache.keys().next().value;
-      this.cache.delete(firstKey);
-    }
-  }
-
-  has(key) {
-    return this.cache.has(key);
-  }
-
-  clear() {
-    this.cache.clear();
-  }
-
-  get size() {
-    return this.cache.size;
-  }
 }
 
 export class LayoutCache {
