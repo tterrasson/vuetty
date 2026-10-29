@@ -7,14 +7,14 @@ The Newline component inserts one or more newline characters to control vertical
 ```vue
 <template>
   <Col gap="1">
-    <Text>Line 1</Text>
+    <TextBox>Line 1</TextBox>
     <Newline />
-    <Text>Line 2</Text>
+    <TextBox>Line 2</TextBox>
   </Col>
 </template>
 
 <script setup>
-import { Newline, Col, Text } from 'vuetty';
+import { Newline, Col, TextBox } from 'vuetty';
 </script>
 ```
 
@@ -31,14 +31,14 @@ import { Newline, Col, Text } from 'vuetty';
 ```vue
 <template>
   <Col gap="1">
-    <Text>Line 1</Text>
+    <TextBox>Line 1</TextBox>
     <Newline :count="2" />
-    <Text>Line 2</Text>
+    <TextBox>Line 2</TextBox>
   </Col>
 </template>
 
 <script setup>
-import { Newline, Col, Text } from 'vuetty';
+import { Newline, Col, TextBox } from 'vuetty';
 </script>
 ```
 
@@ -49,14 +49,14 @@ import { Newline, Col, Text } from 'vuetty';
 ```vue
 <template>
   <Box :padding="1">
-    <Text>First Line</Text>
+    <TextBox>First Line</TextBox>
     <Newline />
-    <Text>Second Line</Text>
+    <TextBox>Second Line</TextBox>
   </Box>
 </template>
 
 <script setup>
-import { Newline, Box, Text } from 'vuetty';
+import { Newline, Box, TextBox } from 'vuetty';
 </script>
 ```
 
@@ -66,19 +66,19 @@ import { Newline, Box, Text } from 'vuetty';
 <template>
   <Row gap="2">
     <Col flex="1">
-      <Text>Column 1</Text>
+      <TextBox>Column 1</TextBox>
       <Newline />
-      <Text>Line 2</Text>
+      <TextBox>Line 2</TextBox>
     </Col>
     <Col flex="1">
-      <Text>Column 2</Text>
+      <TextBox>Column 2</TextBox>
       <Newline />
-      <Text>Line 2</Text>
+      <TextBox>Line 2</TextBox>
     </Col>
   </Row>
 </template>
 
 <script setup>
-import { Newline, Row, Col, Text } from 'vuetty';
+import { Newline, Row, Col, TextBox } from 'vuetty';
 </script>
 ```

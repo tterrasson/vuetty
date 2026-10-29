@@ -88,7 +88,7 @@ import { ProgressBar, Col } from 'vuetty';
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `width` | `Number \| String` | `null` | Width of the progress bar in characters |
+| `width` | `Number \| String` | `40` | Width of the progress bar in characters |
 | `char` | `String` | `'█'` | Character used for filled portion |
 | `emptyChar` | `String` | `'░'` | Character used for empty portion |
 | `showPercentage` | `Boolean` | `true` | Display percentage after the bar |

@@ -7,14 +7,14 @@ The Spacer component inserts one or more spaces to control horizontal spacing in
 ```vue
 <template>
   <Row gap="1">
-    <Text>Left</Text>
+    <TextBox>Left</TextBox>
     <Spacer />
-    <Text>Right</Text>
+    <TextBox>Right</TextBox>
   </Row>
 </template>
 
 <script setup>
-import { Spacer, Row, Text } from 'vuetty';
+import { Spacer, Row, TextBox } from 'vuetty';
 </script>
 ```
 
@@ -31,14 +31,14 @@ import { Spacer, Row, Text } from 'vuetty';
 ```vue
 <template>
   <Row gap="1">
-    <Text>Left</Text>
+    <TextBox>Left</TextBox>
     <Spacer :count="4" />
-    <Text>Right</Text>
+    <TextBox>Right</TextBox>
   </Row>
 </template>
 
 <script setup>
-import { Spacer, Row, Text } from 'vuetty';
+import { Spacer, Row, TextBox } from 'vuetty';
 </script>
 ```
 
@@ -49,14 +49,14 @@ import { Spacer, Row, Text } from 'vuetty';
 ```vue
 <template>
   <Box :padding="1">
-    <Text>Start</Text>
+    <TextBox>Start</TextBox>
     <Spacer />
-    <Text>End</Text>
+    <TextBox>End</TextBox>
   </Box>
 </template>
 
 <script setup>
-import { Spacer, Box, Text } from 'vuetty';
+import { Spacer, Box, TextBox } from 'vuetty';
 </script>
 ```
 
@@ -66,19 +66,19 @@ import { Spacer, Box, Text } from 'vuetty';
 <template>
   <Col gap="1">
     <Row gap="2">
-      <Text>Item 1</Text>
+      <TextBox>Item 1</TextBox>
       <Spacer />
-      <Text>Item 2</Text>
+      <TextBox>Item 2</TextBox>
     </Row>
     <Row gap="2">
-      <Text>Item 3</Text>
+      <TextBox>Item 3</TextBox>
       <Spacer />
-      <Text>Item 4</Text>
+      <TextBox>Item 4</TextBox>
     </Row>
   </Col>
 </template>
 
 <script setup>
-import { Spacer, Row, Col, Text } from 'vuetty';
+import { Spacer, Row, Col, TextBox } from 'vuetty';
 </script>
 ```

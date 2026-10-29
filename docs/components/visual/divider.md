@@ -93,14 +93,14 @@ import { Divider } from 'vuetty';
 ```vue
 <template>
   <Box :padding="1">
-    <Text>Section 1</Text>
+    <TextBox>Section 1</TextBox>
     <Divider />
-    <Text>Section 2</Text>
+    <TextBox>Section 2</TextBox>
   </Box>
 </template>
 
 <script setup>
-import { Divider, Box, Text } from 'vuetty';
+import { Divider, Box, TextBox } from 'vuetty';
 </script>
 ```
 
@@ -109,13 +109,13 @@ import { Divider, Box, Text } from 'vuetty';
 ```vue
 <template>
   <Col gap="1">
-    <Text>Above Divider</Text>
+    <TextBox>Above Divider</TextBox>
     <Divider />
-    <Text>Below Divider</Text>
+    <TextBox>Below Divider</TextBox>
   </Col>
 </template>
 
 <script setup>
-import { Divider, Col, Text } from 'vuetty';
+import { Divider, Col, TextBox } from 'vuetty';
 </script>
 ```

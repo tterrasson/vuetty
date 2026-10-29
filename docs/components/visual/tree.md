@@ -252,6 +252,4 @@ const customStyle = {
 
 ## Notes
 
-- Tree height is computed from the total number of visible nodes.
-- If `width` and `flex` are not set, Tree defaults to full width.
 - Theme defaults can be provided via `theme.components.tree.branchColor`, `folderColor`, `fileColor`, and `treeStyle`.

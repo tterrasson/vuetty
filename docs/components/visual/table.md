@@ -33,7 +33,7 @@ const selectedIndex = ref(null);
 | `headers` | `array` | `[]` | Column header labels |
 | `rows` | `array` | `[]` | Row data as array of arrays |
 | `label` | `string` | `''` | Optional label displayed above the table |
-| `height` | `number \| string` | `null` | Number of visible rows |
+| `height` | `number` | `10` | Number of visible rows |
 | `columnWidths` | `array` | `null` | Manual column widths (auto-calculated if null) |
 | `striped` | `boolean` | `true` | Alternate row background colors |
 | `showHeader` | `boolean` | `true` | Display header row |

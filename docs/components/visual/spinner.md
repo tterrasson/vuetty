@@ -15,14 +15,14 @@ The Spinner component is a self-animating loading indicator for async operations
     />
 
     <Box v-if="!isLoading" :padding="1">
-      <Text>Data loaded successfully!</Text>
+      <TextBox>Data loaded successfully!</TextBox>
     </Box>
   </Col>
 </template>
 
 <script setup>
 import { ref } from 'vue';
-import { Spinner, Box, Text, Col } from 'vuetty';
+import { Spinner, Box, TextBox, Col } from 'vuetty';
 
 const isLoading = ref(true);
 
@@ -153,12 +153,6 @@ Frames: `▖`, `▘`, `▝`, `▗`
 | `marginTop` | `Number` | `null` | Top margin |
 | `marginBottom` | `Number` | `null` | Bottom margin |
 
-## Events
-
-| Event | Payload | Description |
-|-------|---------|-------------|
-| `update:modelValue` | `Boolean` | Emitted when animation state could be updated (when using as controlled component) |
-
 ## Advanced Examples
 
 ### Multiple Spinners
@@ -167,7 +161,7 @@ Frames: `▖`, `▘`, `▝`, `▗`
 <template>
   <Col>
     <Box :padding="2" color="cyan">
-      <Text bold>Async Operation Status</Text>
+      <TextBox bold>Async Operation Status</TextBox>
     </Box>
 
     <Spinner
@@ -198,7 +192,7 @@ Frames: `▖`, `▘`, `▝`, `▗`
 
 <script setup>
 import { ref } from 'vue';
-import { Spinner, Box, Text, Col } from 'vuetty';
+import { Spinner, Box, TextBox, Col } from 'vuetty';
 
 const isConnecting = ref(true);
 const isAuthenticating = ref(false);
@@ -227,7 +221,7 @@ setTimeout(() => {
 <template>
   <Col>
     <Box :padding="1" color="magenta">
-      <Text bold>Available Spinner Types</Text>
+      <TextBox bold>Available Spinner Types</TextBox>
     </Box>
 
     <Spinner type="dots" label="dots" color="cyan" />
@@ -241,7 +235,7 @@ setTimeout(() => {
 </template>
  
 <script setup>
-import { Spinner, Box, Text, Col } from 'vuetty';
+import { Spinner, Box, TextBox, Col } from 'vuetty';
 </script>
 ```
 
@@ -261,18 +255,18 @@ import { Spinner, Box, Text, Col } from 'vuetty';
     />
 
     <Box v-if="error" :padding="1" margin-top="1" color="red">
-      <Text>{{ error }}</Text>
+      <TextBox>{{ error }}</TextBox>
     </Box>
 
     <Box v-if="result" :padding="1" margin-top="1" color="green">
-      <Text bold>Success: {{ result }}</Text>
+      <TextBox bold>Success: {{ result }}</TextBox>
     </Box>
   </Col>
 </template>
 
 <script setup>
 import { ref, computed } from 'vue';
-import { Spinner, Box, Text, Col } from 'vuetty';
+import { Spinner, Box, TextBox, Col } from 'vuetty';
 
 const loading = ref(false);
 const loadingMessage = ref('Ready');
