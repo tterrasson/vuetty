@@ -52,6 +52,9 @@ export class LRUCache {
    * @param {*} value - Value to cache
    */
   set(key, value) {
+    // A non-positive capacity means "no caching"
+    if (this.maxSize <= 0) return;
+
     // Remove if exists (will re-add at end)
     if (this.cache.has(key)) {
       this.cache.delete(key);
