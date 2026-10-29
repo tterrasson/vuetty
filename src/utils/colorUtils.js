@@ -35,6 +35,67 @@ const chalkColorCache = new Map();
 const MAX_COLOR_CACHE = 50;
 
 /**
+ * ANSI foreground codes for named colors
+ * (background uses true-color RGB to avoid palette remapping, see NAMED_COLOR_RGB)
+ */
+const ANSI_FG_CODES = {
+  black: '\x1b[30m',
+  red: '\x1b[31m',
+  green: '\x1b[32m',
+  yellow: '\x1b[33m',
+  blue: '\x1b[34m',
+  magenta: '\x1b[35m',
+  cyan: '\x1b[36m',
+  white: '\x1b[37m',
+  gray: '\x1b[90m',
+  grey: '\x1b[90m',
+  brightRed: '\x1b[91m',
+  brightGreen: '\x1b[92m',
+  brightYellow: '\x1b[93m',
+  brightBlue: '\x1b[94m',
+  brightMagenta: '\x1b[95m',
+  brightCyan: '\x1b[96m',
+  brightWhite: '\x1b[97m'
+};
+
+/**
+ * Parse a hex color body (without '#') to RGB values.
+ * Expands #RGB shorthand. Returns null for invalid input.
+ * @param {string} hex - 3 or 6 hex digits
+ * @returns {{ r: number, g: number, b: number } | null}
+ */
+function hexToRgb(hex) {
+  if (hex.length === 3) {
+    hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
+  }
+  if (hex.length !== 6) return null;
+
+  const r = parseInt(hex.slice(0, 2), 16);
+  const g = parseInt(hex.slice(2, 4), 16);
+  const b = parseInt(hex.slice(4, 6), 16);
+
+  if (isNaN(r) || isNaN(g) || isNaN(b)) return null;
+  return { r, g, b };
+}
+
+/**
+ * Parse a permissive rgb(...) string into validated RGB values.
+ * @param {string} color
+ * @returns {{ r: number, g: number, b: number } | null} null if invalid or out of 0-255 range
+ */
+function parseRgbString(color) {
+  const rgbMatch = color.match(/^rgb\s*\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)$/i);
+  if (!rgbMatch) return null;
+
+  const r = parseInt(rgbMatch[1], 10);
+  const g = parseInt(rgbMatch[2], 10);
+  const b = parseInt(rgbMatch[3], 10);
+
+  if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255) return null;
+  return { r, g, b };
+}
+
+/**
  * Get chalk chain for foreground color with caching (supports named, hex, RGB)
  * Returns chalk.white as fallback if color is invalid
  * @param {string} color - Color name, hex (#DEADED), or rgb (rgb(15,100,204))
@@ -172,59 +233,24 @@ export function preserveBackground(content, bgCode) {
 export function getAnsiFgCode(color) {
   if (!color) return null;
 
-  // Named colors mapping to ANSI codes
-  const namedColors = {
-    black: '\x1b[30m',
-    red: '\x1b[31m',
-    green: '\x1b[32m',
-    yellow: '\x1b[33m',
-    blue: '\x1b[34m',
-    magenta: '\x1b[35m',
-    cyan: '\x1b[36m',
-    white: '\x1b[37m',
-    gray: '\x1b[90m',
-    grey: '\x1b[90m',
-    brightRed: '\x1b[91m',
-    brightGreen: '\x1b[92m',
-    brightYellow: '\x1b[93m',
-    brightBlue: '\x1b[94m',
-    brightMagenta: '\x1b[95m',
-    brightCyan: '\x1b[96m',
-    brightWhite: '\x1b[97m'
-  };
-
-  // Check named colors first
-  if (namedColors[color]) {
-    return namedColors[color];
+  // Named colors (fast path, module-level map)
+  if (ANSI_FG_CODES[color]) {
+    return ANSI_FG_CODES[color];
   }
 
   // Handle hex colors (#RGB or #RRGGBB)
   if (color.startsWith('#')) {
-    let hex = color.slice(1);
-
-    // Expand short hex (#RGB -> #RRGGBB)
-    if (hex.length === 3) {
-      hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
+    const rgb = hexToRgb(color.slice(1));
+    if (rgb) {
+      return `\x1b[38;2;${rgb.r};${rgb.g};${rgb.b}m`;
     }
-
-    if (hex.length === 6) {
-      const r = parseInt(hex.slice(0, 2), 16);
-      const g = parseInt(hex.slice(2, 4), 16);
-      const b = parseInt(hex.slice(4, 6), 16);
-
-      if (!isNaN(r) && !isNaN(g) && !isNaN(b)) {
-        return `\x1b[38;2;${r};${g};${b}m`;
-      }
-    }
+    return null;
   }
 
-  // Handle rgb(r, g, b) format
-  const rgbMatch = color.match(/^rgb\s*\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)$/i);
-  if (rgbMatch) {
-    const r = parseInt(rgbMatch[1], 10);
-    const g = parseInt(rgbMatch[2], 10);
-    const b = parseInt(rgbMatch[3], 10);
-    return `\x1b[38;2;${r};${g};${b}m`;
+  // Handle rgb(r, g, b) format (validated 0-255)
+  const rgb = parseRgbString(color);
+  if (rgb) {
+    return `\x1b[38;2;${rgb.r};${rgb.g};${rgb.b}m`;
   }
 
   return null;
@@ -251,26 +277,17 @@ export function getAnsiBgCode(color) {
   }
 
   if (color.startsWith('#')) {
-    let hex = color.slice(1);
-    if (hex.length === 3) {
-      hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
+    const rgb = hexToRgb(color.slice(1));
+    if (rgb) {
+      return `\x1b[48;2;${rgb.r};${rgb.g};${rgb.b}m`;
     }
-    if (hex.length === 6) {
-      const r = parseInt(hex.slice(0, 2), 16);
-      const g = parseInt(hex.slice(2, 4), 16);
-      const b = parseInt(hex.slice(4, 6), 16);
-      if (!isNaN(r) && !isNaN(g) && !isNaN(b)) {
-        return `\x1b[48;2;${r};${g};${b}m`;
-      }
-    }
+    return null;
   }
 
-  const rgbMatch = color.match(/^rgb\s*\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)$/i);
-  if (rgbMatch) {
-    const r = parseInt(rgbMatch[1], 10);
-    const g = parseInt(rgbMatch[2], 10);
-    const b = parseInt(rgbMatch[3], 10);
-    return `\x1b[48;2;${r};${g};${b}m`;
+  // rgb(r, g, b) format (validated 0-255)
+  const rgb = parseRgbString(color);
+  if (rgb) {
+    return `\x1b[48;2;${rgb.r};${rgb.g};${rgb.b}m`;
   }
 
   return null;
@@ -305,14 +322,11 @@ export function colorToOSC11(color) {
   }
   // Hex color (#RGB or #RRGGBB)
   else if (HEX_COLOR_REGEX.test(color)) {
-    let hex = color.slice(1);
-    if (hex.length === 3) {
-      hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
-    }
-    if (hex.length === 6) {
-      r = parseInt(hex.slice(0, 2), 16);
-      g = parseInt(hex.slice(2, 4), 16);
-      b = parseInt(hex.slice(4, 6), 16);
+    const rgb = hexToRgb(color.slice(1));
+    if (rgb) {
+      r = rgb.r;
+      g = rgb.g;
+      b = rgb.b;
     }
   }
   // RGB format: rgb(r, g, b)
@@ -368,15 +382,7 @@ export function parseColor(color) {
 
   // Hex color: #RGB or #RRGGBB
   if (HEX_COLOR_REGEX.test(color)) {
-    let hex = color.slice(1);
-    if (hex.length === 3) {
-      hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
-    }
-    return {
-      r: parseInt(hex.slice(0, 2), 16),
-      g: parseInt(hex.slice(2, 4), 16),
-      b: parseInt(hex.slice(4, 6), 16)
-    };
+    return hexToRgb(color.slice(1));
   }
 
   // RGB format: rgb(r, g, b)
