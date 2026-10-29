@@ -122,25 +122,3 @@ export function invalidateCache(node, recursive = false) {
     }
   }
 }
-
-/**
- * Deep invalidate - clears everything including layout
- * Use sparingly as it forces full re-render
- */
-export function deepInvalidate(node) {
-  if (!node) return;
-
-  node.isDirty = true;
-  node.childrenDirty = true;
-  node.isLayoutDirty = true;
-  node.renderVersion++;
-  node.cachedOutput = null;
-  node.cachedChildrenOutput = null;
-  node.cachedLayoutMetrics = null;
-
-  if (node.children) {
-    for (let i = 0; i < node.children.length; i++) {
-      deepInvalidate(node.children[i]);
-    }
-  }
-}

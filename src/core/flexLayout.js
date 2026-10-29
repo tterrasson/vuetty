@@ -1,5 +1,4 @@
 // src/core/flexLayout.js
-import { getTerminalWidth } from '@utils/renderUtils.js';
 
 /**
  * Parse flex shorthand property into {grow, shrink, basis}
@@ -63,27 +62,4 @@ export function parseFlexShorthand(flex) {
   }
 
   return { grow: 0, shrink: 1, basis: 'auto' };
-}
-
-/**
- * Measure children by pre-rendering them
- * Returns array of { node, width, height, lines, rendered }
- */
-export function measureChildren(children, renderFn) {
-  return children
-    .filter(child => child && child.type !== 'comment')
-    .map(child => {
-      const rendered = renderFn(child);
-      const lines = rendered.split('\n').filter(l => l.length > 0);
-      const width = Math.max(0, ...lines.map(l => getTerminalWidth(l)));
-      const height = lines.length;
-
-      return {
-        node: child,
-        width,
-        height,
-        lines,
-        rendered
-      };
-    });
 }

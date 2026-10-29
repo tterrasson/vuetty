@@ -76,7 +76,6 @@ export class Vuetty {
     this.externalProcessRunner = spawnSync;
 
     this.rootContainer = new TUINode('root');
-    this.rootContainer.vuettyViewport = this.viewport;
 
     // Reactive viewport version - incremented on resize to trigger re-renders
     this.viewportState = reactive({
