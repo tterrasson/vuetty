@@ -5,7 +5,7 @@
  * @see https://en.wikipedia.org/wiki/Fowler%E2%80%93Noll%E2%80%93Vo_hash_function
  */
 
-import { LAYOUT_AFFECTING_PROPS } from '@core/layoutPropRegistry.js';
+import { LAYOUT_AFFECTING_PROPS_LIST } from '@core/layoutPropRegistry.js';
 
 const FNV_OFFSET_BASIS = 2166136261; // FNV-1a 32-bit offset basis
 const FNV_PRIME = 16777619; // FNV-1a 32-bit prime
@@ -14,6 +14,25 @@ const FNV_PRIME = 16777619; // FNV-1a 32-bit prime
 const MAX_HASH_DEPTH = 10;
 // Maximum children to hash per node (prevents O(n) explosion on wide trees)
 const MAX_CHILDREN_TO_HASH = 20;
+
+// Memoized FNV-1a hashes for node types: the same handful of short strings
+// ('box', 'row', 'col', 'text', ...) are re-hashed for every node on every
+// layout pass, so compute each one only once.
+const typeHashCache = new Map();
+
+function hashNodeType(type) {
+  let hash = typeHashCache.get(type);
+  if (hash !== undefined) return hash;
+
+  hash = FNV_OFFSET_BASIS;
+  for (let i = 0; i < type.length; i++) {
+    hash ^= type.charCodeAt(i);
+    hash = Math.imul(hash, FNV_PRIME);
+  }
+
+  typeHashCache.set(type, hash);
+  return hash;
+}
 
 /**
  * Generate a simple hash of the node tree content for cache invalidation
@@ -30,14 +49,7 @@ const MAX_CHILDREN_TO_HASH = 20;
 export function generateContentHash(node, depth = 0) {
   if (!node) return 0;
 
-  let hash = FNV_OFFSET_BASIS;
-
-  // Hash type (full string for type - they're short)
-  const type = node.type || '';
-  for (let i = 0; i < type.length; i++) {
-    hash ^= type.charCodeAt(i);
-    hash = Math.imul(hash, FNV_PRIME);
-  }
+  let hash = hashNodeType(node.type || '');
 
   // Hash text content (first 50 chars + length for speed)
   const text = node.text;
@@ -57,7 +69,10 @@ export function generateContentHash(node, depth = 0) {
   // Hash ONLY layout-affecting props
   const props = node.props;
   if (props) {
-    for (const key of LAYOUT_AFFECTING_PROPS) {
+    const layoutProps = LAYOUT_AFFECTING_PROPS_LIST;
+    const propCount = layoutProps.length;
+    for (let p = 0; p < propCount; p++) {
+      const key = layoutProps[p];
       const value = props[key];
       if (value !== undefined) {
         if (typeof value === 'number') {

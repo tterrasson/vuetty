@@ -95,7 +95,7 @@ const componentSpecificProps = new Set([
 
 /**
  * Combined set of all layout-affecting props
- * Used by hashUtils.js for content hash generation
+ * Used by renderer.js to determine if node.markLayoutDirty() should be called
  */
 export const LAYOUT_AFFECTING_PROPS = new Set([
   ...coreLayoutProps,
@@ -103,6 +103,13 @@ export const LAYOUT_AFFECTING_PROPS = new Set([
   ...visualStateProps,
   ...componentSpecificProps
 ]);
+
+/**
+ * Array form of LAYOUT_AFFECTING_PROPS.
+ * Array iteration is significantly faster than Set iteration, which matters
+ * because generateContentHash walks this list for every node on every layout.
+ */
+export const LAYOUT_AFFECTING_PROPS_LIST = Array.from(LAYOUT_AFFECTING_PROPS);
 
 /**
  * Check if a prop change affects layout
