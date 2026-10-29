@@ -55,6 +55,11 @@ export function cacheOutput(node, output) {
   if (!node) return;
   node.cachedOutput = output;
   node.isDirty = false;
+  // The output was just recomputed (leaf nodes have no children to
+  // re-render, container handlers re-render children themselves), so
+  // the pending-children flag is consumed. Without this, childless
+  // nodes keep childrenDirty=true forever and can never be skipped.
+  node.childrenDirty = false;
 }
 
 /**
