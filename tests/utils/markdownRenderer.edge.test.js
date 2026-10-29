@@ -57,6 +57,33 @@ describe('renderParagraphWithStyles edge cases', () => {
     expect(Array.isArray(elements)).toBe(true);
   });
 });
+
+describe('renderList edge cases', () => {
+  test('ordered list defaults start to 1 when token.start is missing', () => {
+    // Pre-fix this produced "NaN. " prefixes
+    const token = {
+      type: 'list',
+      ordered: true,
+      items: [{ tokens: [{ type: 'text', text: 'first' }] }]
+    };
+    const elements = renderList(token, components, {});
+    const text = collectText(elements);
+    expect(text).toContain('1. ');
+    expect(text).not.toContain('NaN');
+  });
+
+  test('respects explicit start on ordered lists', () => {
+    const token = {
+      type: 'list',
+      ordered: true,
+      start: 3,
+      items: [{ tokens: [{ type: 'text', text: 'third' }] }]
+    };
+    const elements = renderList(token, components, {});
+    expect(collectText(elements)).toContain('3. ');
+  });
+});
+
 describe('flattenInlineTokensToString edge cases', () => {
   test('returns empty string for null/undefined/non-array tokens', () => {
     expect(flattenInlineTokensToString(null)).toBe('');

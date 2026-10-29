@@ -453,7 +453,7 @@ export function renderList(token, components, props, depth = 0, contentWidth = n
 
   token.items.forEach((item, index) => {
     const prefix = token.ordered
-      ? `${token.start + index}. `
+      ? `${(token.start || 1) + index}. `
       : '• ';
 
     const prefixWidth = getTerminalWidth(prefix);
