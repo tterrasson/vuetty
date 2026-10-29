@@ -377,7 +377,8 @@ export default {
  */
 function calculateColumnWidths(headers, rows, manualWidths) {
   if (manualWidths && manualWidths.length > 0) {
-    return manualWidths;
+    // Clamp manual widths to avoid negative repeat counts downstream
+    return manualWidths.map(w => Math.max(0, w));
   }
 
   const numCols = Math.max(headers.length, ...rows.map(r => r.length));
@@ -454,17 +455,17 @@ function renderHeaderRow(headers, colWidths, borderStyle, headerColor) {
 
   for (let i = 0; i < colWidths.length; i++) {
     const header = String(headers[i] || '');
-    const width = colWidths[i] - 2; // Subtract padding
+    const width = Math.max(0, colWidths[i] - 2); // Subtract padding
 
     // Truncate if too long
     let cellText = header;
     if (getTerminalWidth(header) > width) {
-      cellText = header.substring(0, width - 1) + '…';
+      cellText = width > 0 ? header.substring(0, width - 1) + '…' : '';
     }
 
     // Pad to width
     const visualWidth = getTerminalWidth(cellText);
-    const padding = width - visualWidth;
+    const padding = Math.max(0, width - visualWidth);
     cellText = ' ' + cellText + ' '.repeat(padding + 1);
 
     // Apply header styling
@@ -486,17 +487,17 @@ function renderDataRow(row, colWidths, borderStyle, isHighlighted, isSelected, i
 
   for (let i = 0; i < colWidths.length; i++) {
     const cellData = String(row[i] || '');
-    const width = colWidths[i] - 2; // Subtract padding
+    const width = Math.max(0, colWidths[i] - 2); // Subtract padding
 
     // Truncate if too long
     let cellText = cellData;
     if (getTerminalWidth(cellData) > width) {
-      cellText = cellData.substring(0, width - 1) + '…';
+      cellText = width > 0 ? cellData.substring(0, width - 1) + '…' : '';
     }
 
     // Pad to width
     const visualWidth = getTerminalWidth(cellText);
-    const padding = width - visualWidth;
+    const padding = Math.max(0, width - visualWidth);
     cellText = ' ' + cellText + ' '.repeat(padding + 1);
 
     // Apply row styling

@@ -690,6 +690,31 @@ describe('Table component', () => {
   });
 
   describe('edge cases and special scenarios', () => {
+    test('does not throw with manual columnWidths smaller than content', () => {
+      expect(() => renderTable({
+        headers: ['Header'],
+        rows: [['long cell content']],
+        columnWidths: [1],
+        isFocused: false,
+        height: 5
+      })).not.toThrow();
+    });
+
+    test('renders without crash when manual columnWidths truncate header', () => {
+      const result = renderTable({
+        headers: ['VeryLongHeader'],
+        rows: [['x']],
+        columnWidths: [3],
+        isFocused: false,
+        height: 5
+      });
+      const stripped = stripAnsi(result);
+
+      expect(result).toBeTruthy();
+      expect(stripped).toContain('x');
+      expect(stripped).toContain('…');
+    });
+
     test('handles rows with different column counts', () => {
       const result = renderTable({
         headers: ['A', 'B', 'C'],
