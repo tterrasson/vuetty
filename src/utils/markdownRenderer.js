@@ -196,57 +196,6 @@ export function renderInlineTokens(tokens, components, props) {
 }
 
 /**
- * Extract plain text from inline tokens (for width calculation)
- */
-function getInlineText(tokens) {
-  if (!tokens || !Array.isArray(tokens)) return '';
-
-  return tokens.map(token => {
-    switch (token.type) {
-      case 'text': return token.text || '';
-      case 'strong':
-      case 'em':
-        return token.tokens ? getInlineText(token.tokens) : (token.text || '');
-      case 'codespan': return ` ${token.text} `;
-      case 'link': return `${token.text} (${token.href})`;
-      case 'del': return `~~${token.text}~~`;
-      case 'br': return '\n';
-      default: return token.raw || '';
-    }
-  }).join('');
-}
-
-/**
- * Render a paragraph with proper text wrapping
- */
-export function renderParagraph(token, components, props, availableWidth) {
-  const { TextBox, Newline } = components;
-
-  if (!availableWidth || availableWidth <= 0) {
-    return [
-      ...renderInlineTokens(token.tokens, components, props),
-      h(Newline),
-    ];
-  }
-
-  const fullText = getInlineText(token.tokens);
-
-  if (getTerminalWidth(fullText) <= availableWidth) {
-    return [
-      ...renderInlineTokens(token.tokens, components, props),
-      h(Newline),
-    ];
-  }
-
-  const wrappedText = wrapText(fullText, availableWidth);
-
-  return [
-    h(TextBox, {}, { default: () => wrappedText }),
-    h(Newline)
-  ];
-}
-
-/**
  * Render a paragraph preserving inline styles (advanced version)
  */
 export function renderParagraphWithStyles(token, components, props, availableWidth) {
