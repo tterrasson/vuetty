@@ -98,10 +98,15 @@ export function useTheme() {
   /**
    * Find themes by pattern
    * @param {string} pattern - Search pattern (e.g., 'DARK', 'LIGHT', 'GITHUB')
-   * @returns {Array<Object>} List of matching themes
+   * @returns {Array<Object>} List of matching themes (empty if pattern is not a valid regex)
    */
   const findThemes = (pattern) => {
-    const regex = new RegExp(pattern, 'i');
+    let regex;
+    try {
+      regex = new RegExp(pattern, 'i');
+    } catch {
+      return [];
+    }
     return listThemes()
       .filter(name => regex.test(name))
       .map(name => ({
