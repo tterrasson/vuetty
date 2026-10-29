@@ -224,7 +224,8 @@ export function useNavigableList(options) {
    */
   function jumpToLast() {
     const currentItems = items.value;
-    highlightedIndex.value = currentItems.length - 1;
+    // Guard against empty lists: Math.max(0, ...) keeps the highlight valid
+    highlightedIndex.value = Math.max(0, currentItems.length - 1);
 
     // Skip disabled items at the end
     while (highlightedIndex.value > 0 && currentItems[highlightedIndex.value]?.disabled) {
@@ -370,7 +371,10 @@ export function useNavigableList(options) {
   // Watch items changes to reset highlight if needed
   watch(items, () => {
     const currentItems = items.value;
-    if (highlightedIndex.value >= currentItems.length) {
+    if (
+      highlightedIndex.value >= currentItems.length ||
+      highlightedIndex.value < 0
+    ) {
       highlightedIndex.value = Math.max(0, currentItems.length - 1);
     }
     updateScrollOffset();

@@ -138,10 +138,13 @@ export default {
 
     // Watch options changes to reset highlight if needed
     watch(() => props.options, () => {
-      if (highlightedIndex.value >= props.options.length) {
+      if (
+        highlightedIndex.value >= props.options.length ||
+        highlightedIndex.value < 0
+      ) {
         highlightedIndex.value = Math.max(0, props.options.length - 1);
-        updateScrollOffset();
       }
+      updateScrollOffset();
     }, { deep: true });
 
     /**
@@ -240,7 +243,8 @@ export default {
      * Jump to last option
      */
     function jumpToLast() {
-      highlightedIndex.value = props.options.length - 1;
+      // Guard against empty options: Math.max(0, ...) keeps the highlight valid
+      highlightedIndex.value = Math.max(0, props.options.length - 1);
 
       // Skip disabled options at the end
       while (highlightedIndex.value > 0 && props.options[highlightedIndex.value]?.disabled) {

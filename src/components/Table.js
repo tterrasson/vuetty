@@ -150,20 +150,27 @@ export default {
 
     // Watch rows changes to reset highlight if needed
     watch(() => props.rows, () => {
-      if (highlightedIndex.value >= props.rows.length) {
+      if (
+        highlightedIndex.value >= props.rows.length ||
+        highlightedIndex.value < 0
+      ) {
         highlightedIndex.value = Math.max(0, props.rows.length - 1);
-        updateScrollOffset();
       }
+      updateScrollOffset();
     });
 
     /**
      * Update scroll offset to keep highlighted row visible
      */
     function updateScrollOffset() {
+      const maxScrollOffset = Math.max(0, props.rows.length - props.height);
       if (highlightedIndex.value < scrollOffset.value) {
         scrollOffset.value = highlightedIndex.value;
       } else if (highlightedIndex.value >= scrollOffset.value + props.height) {
         scrollOffset.value = highlightedIndex.value - props.height + 1;
+      }
+      if (scrollOffset.value > maxScrollOffset) {
+        scrollOffset.value = maxScrollOffset;
       }
     }
 
@@ -199,7 +206,8 @@ export default {
      * Jump to last row
      */
     function jumpToLast() {
-      highlightedIndex.value = props.rows.length - 1;
+      // Guard against empty rows: Math.max(0, ...) keeps the highlight valid
+      highlightedIndex.value = Math.max(0, props.rows.length - 1);
       updateScrollOffset();
     }
 

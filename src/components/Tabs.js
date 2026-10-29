@@ -203,7 +203,10 @@ export default {
 
     // Watch tabs changes to reset highlight if needed
     watch(normalizedTabs, () => {
-      if (highlightedIndex.value >= normalizedTabs.value.length) {
+      if (
+        highlightedIndex.value >= normalizedTabs.value.length ||
+        highlightedIndex.value < 0
+      ) {
         highlightedIndex.value = Math.max(0, normalizedTabs.value.length - 1);
       }
     }, { deep: true });
@@ -270,7 +273,8 @@ export default {
      * Jump to last tab
      */
     function jumpToLast() {
-      highlightedIndex.value = normalizedTabs.value.length - 1;
+      // Guard against empty tabs: Math.max(0, ...) keeps the highlight valid
+      highlightedIndex.value = Math.max(0, normalizedTabs.value.length - 1);
 
       // Skip disabled tabs at the end
       while (highlightedIndex.value > 0 && normalizedTabs.value[highlightedIndex.value]?.disabled) {

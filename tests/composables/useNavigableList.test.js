@@ -250,4 +250,49 @@ describe('useNavigableList', () => {
     expect(mockInputManager.unregisterComponent).toHaveBeenCalledWith(componentId);
     expect(mockVuettyInstance.unregisterClickHandler).toHaveBeenCalledWith(componentId);
   });
+
+  test('jumpToLast on empty list keeps highlight at 0, not -1', () => {
+    const { api } = createHarness({ items: [] });
+
+    api.jumpToLast();
+
+    expect(api.highlightedIndex.value).toBe(0);
+  });
+
+  test('END key on empty list does not set highlight to -1', () => {
+    const { api } = createHarness({ items: [] });
+
+    api.handleKey({ key: 'end' });
+
+    expect(api.highlightedIndex.value).toBeGreaterThanOrEqual(0);
+  });
+
+  test('recovers highlight when items arrive after empty list navigation', async () => {
+    const { api, itemsRef } = createHarness({ items: [] });
+
+    api.handleKey({ key: 'end' });
+    itemsRef.value = [
+      { value: 'a', label: 'Alpha', disabled: false },
+      { value: 'b', label: 'Beta', disabled: false }
+    ];
+    await nextTick();
+
+    expect(api.highlightedIndex.value).toBe(0);
+  });
+
+  test('clamps negative highlighted index when items change', async () => {
+    const { api, itemsRef } = createHarness({ items: [] });
+
+    // Force invalid state (-1) as if it came from a previous empty jump
+    api.highlightedIndex.value = -1;
+    itemsRef.value = [
+      { value: 'a', label: 'Alpha', disabled: false },
+      { value: 'b', label: 'Beta', disabled: false }
+    ];
+    await nextTick();
+
+    // Highlight must recover to a valid index (not stay at -1)
+    expect(api.highlightedIndex.value).toBeGreaterThanOrEqual(0);
+    expect(api.highlightedIndex.value).toBeLessThan(2);
+  });
 });
