@@ -207,6 +207,7 @@ export function renderFlexCol(node, depth, renderNode) {
 
     if (hasTargetHeightInjection) {
       const originalTargetHeight = child.props._targetHeight;
+      const hadTargetHeight = '_targetHeight' in child.props;
       child.props._targetHeight = childMetrics.height;
 
       if (originalTargetHeight !== childMetrics.height && child.cachedOutput !== null) {
@@ -214,13 +215,16 @@ export function renderFlexCol(node, depth, renderNode) {
         child.cachedOutput = null;
       }
 
-      // Pass yOffset for accurate click tracking
-      const rendered = renderNodeWithDimensions(child, childWidth, depth + 1, renderNode, { yOffset: cumulativeY });
-
-      if (originalTargetHeight !== undefined) {
-        child.props._targetHeight = originalTargetHeight;
-      } else {
-        delete child.props._targetHeight;
+      let rendered;
+      try {
+        // Pass yOffset for accurate click tracking
+        rendered = renderNodeWithDimensions(child, childWidth, depth + 1, renderNode, { yOffset: cumulativeY });
+      } finally {
+        if (hadTargetHeight) {
+          child.props._targetHeight = originalTargetHeight;
+        } else {
+          delete child.props._targetHeight;
+        }
       }
 
       outputs.push(rendered);
@@ -392,7 +396,11 @@ function renderNodeWithConstrainedWidth(node, width, depth, renderNode, options 
     node.cachedOutput = null;
   }
 
-  return renderNode(node, depth, options);
+  try {
+    return renderNode(node, depth, options);
+  } finally {
+    node._renderWidth = prevRenderWidth;
+  }
 }
 
 function renderNodeWithDimensions(node, width, depth, renderNode, options = {}) {
