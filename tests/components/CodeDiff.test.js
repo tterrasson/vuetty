@@ -5,6 +5,7 @@
 import { test, expect, describe } from 'bun:test';
 import CodeDiff from '../../src/components/CodeDiff.js';
 import { renderHandlerRegistry } from '../../src/core/renderHandlers.js';
+import { stripAnsi } from '../helpers/test-utils.js';
 
 describe('CodeDiff component', () => {
   describe('diff computation', () => {
@@ -484,5 +485,44 @@ describe('CodeDiff component', () => {
       const lines = output.split('\n');
       expect(lines.length).toBeLessThan(50); // Much less than 100 lines due to context
     });
+  });
+});
+
+describe('CodeDiff side-by-side width handling', () => {
+  test('uses half of _contentWidth for the left column instead of hardcoded 40', () => {
+    const handler = renderHandlerRegistry.handlers.get('codediff');
+
+    const component = CodeDiff.setup({
+      oldCode: 'line1\nold line',
+      newCode: 'line1\nnew line',
+      mode: 'side-by-side',
+      showLineNumbers: true,
+      border: false,
+      padding: 0,
+      width: 100
+    });
+    const vnode = component();
+    const output = handler.render({ props: vnode.props, type: 'codediff' });
+    const firstLine = stripAnsi(output).split('\n')[0];
+
+    // Line numbers (2 chars) + marker (2 chars) + left column (50) + space of ' | '
+    expect(firstLine.indexOf('|')).toBe(2 + 2 + 50 + 1);
+  });
+
+  test('falls back to 40-column layout when no width is available', () => {
+    const handler = renderHandlerRegistry.handlers.get('codediff');
+
+    const component = CodeDiff.setup({
+      oldCode: 'line1\nold line',
+      newCode: 'line1\nnew line',
+      mode: 'side-by-side',
+      showLineNumbers: true
+    });
+    const vnode = component();
+    const output = handler.render({ props: vnode.props, type: 'codediff' });
+    const firstLine = stripAnsi(output).split('\n')[0];
+
+    // Line numbers (2 chars) + marker (2 chars) + left column (40) + space of ' | '
+    expect(firstLine.indexOf('|')).toBe(2 + 2 + 40 + 1);
   });
 });

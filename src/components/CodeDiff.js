@@ -925,9 +925,11 @@ function renderSideBySideOutput(
       line += highlightLine(left.line, props.language);
     }
 
-    // Pad left side
+    // Pad left side (use half of the available content width when known)
     const leftWidth = getTerminalWidth(left.line || '');
-    const targetWidth = 40;
+    const targetWidth = props._contentWidth
+      ? Math.max(4, Math.floor(props._contentWidth / 2))
+      : 40;
     line += ' '.repeat(Math.max(0, targetWidth - leftWidth));
 
     // Separator
