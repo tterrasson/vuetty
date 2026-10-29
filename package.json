@@ -81,20 +81,20 @@
     "diff": "^9.0.0",
     "figlet": "^1.12.0",
     "glob": "^13.0.6",
-    "marked": "^18.1.1",
+    "marked": "^18.1.2",
     "string-width": "^8.3.0",
     "terminal-image": "^5.0.1",
     "tinygradient": "^1.1.5",
     "yoga-layout": "^3.2.1"
   },
   "devDependencies": {
-    "@rollup/plugin-alias": "^6.0.0",
+    "@rollup/plugin-alias": "^6.0.1",
     "@rollup/plugin-commonjs": "^29.0.3",
     "@rollup/plugin-node-resolve": "^16.0.3",
-    "@types/bun": "^1.4.3",
+    "@types/bun": "^1.4.4",
     "@vue/compiler-sfc": "^3.5.44",
     "bulma": "^1.0.4",
-    "rollup": "^4.64.12",
-    "vitepress": "^2.0.0-alpha.20"
+    "rollup": "^4.66.0",
+    "vitepress": "^2.0.0-alpha.21"
   }
 }
