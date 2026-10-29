@@ -310,12 +310,23 @@ import { Row, Col, Markdown } from 'vuetty';
 
 ```vue
 <template>
-  <Markdown :padding="1">
-    # Getting Started\n\n## Installation\n\n```bash\nnpm install vuetty\n```\n\n## Usage\n\nImport components and start building!\n  </Markdown>
+  <Markdown :content="docs" :padding="1" />
 </template>
 
 <script setup>
 import { Markdown } from 'vuetty';
+
+const docs = `# Getting Started
+
+## Installation
+
+\`\`\`bash
+npm install vuetty
+\`\`\`
+
+## Usage
+
+Import components and start building!`;
 </script>
 ```
 

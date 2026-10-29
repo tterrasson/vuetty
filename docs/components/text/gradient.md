@@ -54,6 +54,8 @@ import { Gradient } from 'vuetty';
 
 ## Preset Gradients
 
+Available presets: `rainbow`, `pastel`, `cristal`, `teen`, `mind`, `morning`, `vice`, `fruit`, `retro`, `summer`, `fire`, `ocean`, `sunset`, `forest`, `night`.
+
 ### Rainbow
 
 ```vue
