@@ -284,6 +284,11 @@ export function wrapText(text, maxWidth) {
   return wrappedLines.join('\n');
 }
 
+// Cached style chains: building a chalk chain allocates several objects,
+// and applyStyles runs for every styled node on every render.
+const styleChainCache = new Map();
+const MAX_STYLE_CHAIN_CACHE = 100;
+
 /**
  * Apply text styles using chalk
  */
@@ -293,24 +298,41 @@ export function applyStyles(text, props) {
     return text;
   }
 
-  // Build the chalk style chain for this combination
-  let styled = chalk;
+  // Build cache key for the style combination
+  const chainKey =
+    (props.bold ? '1' : '0') +
+    (props.italic ? '1' : '0') +
+    (props.underline ? '1' : '0') +
+    (props.dim ? '1' : '0') +
+    '|' + (props.color || '') +
+    '|' + (props.bg || '');
 
-  if (props.bold) styled = styled.bold;
-  if (props.italic) styled = styled.italic;
-  if (props.underline) styled = styled.underline;
-  if (props.dim) styled = styled.dim;
+  let styled = styleChainCache.get(chainKey);
+  if (styled === undefined) {
+    styled = chalk;
 
-  // Use utility for foreground color (supports named, hex, RGB)
-  if (props.color) {
-    const colorChain = getChalkColorChain(props.color, styled);
-    if (colorChain) styled = colorChain;
-  }
+    if (props.bold) styled = styled.bold;
+    if (props.italic) styled = styled.italic;
+    if (props.underline) styled = styled.underline;
+    if (props.dim) styled = styled.dim;
 
-  // Use utility for background color (supports named, hex, RGB)
-  if (props.bg) {
-    const bgChain = getChalkBgChain(props.bg, styled);
-    if (bgChain) styled = bgChain;
+    // Use utility for foreground color (supports named, hex, RGB)
+    if (props.color) {
+      const colorChain = getChalkColorChain(props.color, styled);
+      if (colorChain) styled = colorChain;
+    }
+
+    // Use utility for background color (supports named, hex, RGB)
+    if (props.bg) {
+      const bgChain = getChalkBgChain(props.bg, styled);
+      if (bgChain) styled = bgChain;
+    }
+
+    if (styleChainCache.size >= MAX_STYLE_CHAIN_CACHE) {
+      const firstKey = styleChainCache.keys().next().value;
+      styleChainCache.delete(firstKey);
+    }
+    styleChainCache.set(chainKey, styled);
   }
 
   return styled(text);

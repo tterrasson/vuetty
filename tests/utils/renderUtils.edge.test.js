@@ -10,7 +10,7 @@ import {
   getSpaces,
   stripAnsi,
   getTerminalWidth,
-
+  applyStyles,
   extractTextContent
 } from '../../src/utils/renderUtils.js';
 
@@ -114,6 +114,31 @@ describe('getSpaces edge cases', () => {
   });
 });
 
+describe('applyStyles edge cases', () => {
+  test('combines multiple styles with hex colors', () => {
+    const out = applyStyles('hi', { bold: true, italic: true, color: '#ff0000', bg: '#0000ff' });
+    expect(out).not.toBe('hi');
+    expect(stripAnsi(out)).toBe('hi');
+    expect(out).toContain('\x1b[1m'); // bold opener
+  });
+
+  test('ignores invalid colors without breaking other styles', () => {
+    const out = applyStyles('hi', { bold: true, color: 'notacolor', bg: 'alsonot' });
+    expect(stripAnsi(out)).toBe('hi');
+    expect(out).toContain('\x1b[1m');
+  });
+
+  test('returns input unchanged with falsy/absent style props', () => {
+    expect(applyStyles('hi', {})).toBe('hi');
+    expect(applyStyles('hi', { bold: false, color: null, bg: undefined })).toBe('hi');
+  });
+
+  test('repeated calls with identical props produce identical output (chain reuse)', () => {
+    const props = { bold: true, color: 'rgb(10,20,30)', bg: '#101010' };
+    expect(applyStyles('x', props)).toBe(applyStyles('x', props));
+    expect(applyStyles('y', props)).toBe(applyStyles('y', props));
+  });
+});
 
 describe('extractTextContent edge cases', () => {
   test('handles null/empty nodes', () => {
