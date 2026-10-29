@@ -4,11 +4,11 @@ import { VUETTY_VIEWPORT_STATE_KEY, VUETTY_THEME_KEY } from '@core/vuettyKeys.js
 import { WIDTH_CONTEXT_KEY } from '@core/widthContext.js';
 import { useNavigableList } from '@composables/useNavigableList.js';
 import chalk from 'chalk';
-import { getTerminalWidth, applyStyles } from '@utils/renderUtils.js';
+import { applyStyles } from '@utils/renderUtils.js';
 import { getChalkColor } from '@utils/colorUtils.js';
 import { boxProps } from '@core/layoutProps.js';
 import { RenderHandler, renderHandlerRegistry } from '@core/renderHandlers.js';
-import { padLabelToWidth, maxDisplayWidthOf } from './renderHelpers.js';
+import { padLabelToWidth, maxDisplayWidthOf, resolveHintText, renderNoDataBox, formatScrollIndicator } from './renderHelpers.js';
 
 let selectInputIdCounter = 0;
 
@@ -213,15 +213,11 @@ export function renderSelectInput(props) {
 
   // If no options
   if (options.length === 0) {
-    const width = 20;
-      const borderColor = isFocused && !disabled ? focusColor : props.color;
-      const borderChalk = borderColor ? getChalkColor(borderColor) : chalk;
-      const borderStyle = (isFocused && !disabled) ? borderChalk.bold : borderChalk;
+    const borderColor = isFocused && !disabled ? focusColor : props.color;
+    const borderChalk = borderColor ? getChalkColor(borderColor) : chalk;
+    const borderStyle = (isFocused && !disabled) ? borderChalk.bold : borderChalk;
 
-    output += borderStyle('┌' + '─'.repeat(width + 2) + '┐') + '\n';
-    output += borderStyle('│') + ' No options'.padEnd(width + 2, ' ') + borderStyle('│') + '\n';
-    output += borderStyle('└' + '─'.repeat(width + 2) + '┘') + '\n';
-    return output;
+    return output + renderNoDataBox(borderStyle);
   }
 
   // Calculate max width for options
@@ -306,18 +302,11 @@ export function renderSelectInput(props) {
   output += borderStyle('└' + '─'.repeat(innerWidth) + '┘');
 
   // Helper text
-  if (isFocused && !disabled && hint !== false) {
-    let hintText = '';
-
-    if (hint === 'default') {
-      if (multiple) {
-        hintText = '↑↓ Navigate • Space to toggle • Enter to confirm • Tab to next field';
-      } else {
-        hintText = '↑↓ Navigate • Enter to select • Tab to next field';
-      }
-    } else if (hint && hint !== '') {
-      hintText = hint;
-    }
+  if (isFocused && !disabled) {
+    const defaultHint = multiple
+      ? '↑↓ Navigate • Space to toggle • Enter to confirm • Tab to next field'
+      : '↑↓ Navigate • Enter to select • Tab to next field';
+    const hintText = resolveHintText(hint, defaultHint);
 
     if (hintText) {
       output += '\n' + chalk.dim(hintText);
@@ -326,11 +315,7 @@ export function renderSelectInput(props) {
 
   // Scroll indicator
   if (options.length > height) {
-    const scrollPercent = Math.round((scrollOffset / Math.max(1, options.length - height)) * 100);
-    const start = scrollOffset + 1;
-    const end = Math.min(scrollOffset + height, options.length);
-    const total = options.length;
-    output += '\n' + chalk.dim(`[${scrollPercent}% - showing ${start}-${end} of ${total}]`);
+    output += '\n' + chalk.dim(formatScrollIndicator(scrollOffset, height, options.length));
   }
 
   return output;

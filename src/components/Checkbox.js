@@ -23,7 +23,7 @@ import { getTerminalWidth, applyStyles } from '@utils/renderUtils.js';
 import { getChalkColor } from '@utils/colorUtils.js';
 import { boxProps } from '@core/layoutProps.js';
 import { RenderHandler, renderHandlerRegistry } from '@core/renderHandlers.js';
-import { padLabelToWidth, maxDisplayWidthOf } from './renderHelpers.js';
+import { padLabelToWidth, maxDisplayWidthOf, resolveHintText, renderNoDataBox, formatScrollIndicator } from './renderHelpers.js';
 
 let checkboxIdCounter = 0;
 
@@ -472,15 +472,11 @@ function renderCheckboxVertical(props) {
 
   // If no options
   if (options.length === 0) {
-    const width = 20;
     const borderColorValue = isFocused && !disabled ? focusColor : borderColor;
     const borderChalk = borderColorValue ? getChalkColor(borderColorValue) : chalk;
     const borderStyle = (isFocused && !disabled) ? borderChalk.bold : borderChalk;
 
-    output += borderStyle('┌' + '─'.repeat(width + 2) + '┐') + '\n';
-    output += borderStyle('│') + ' No options'.padEnd(width + 2, ' ') + borderStyle('│') + '\n';
-    output += borderStyle('└' + '─'.repeat(width + 2) + '┘') + '\n';
-    return output;
+    return output + renderNoDataBox(borderStyle);
   }
 
   // Calculate max width for options
@@ -549,16 +545,11 @@ function renderCheckboxVertical(props) {
   output += borderStyle('└' + '─'.repeat(innerWidth) + '┘');
 
   // Helper text
-  if (isFocused && !disabled && hint !== false) {
-    let hintText = '';
-
-    if (hint === 'default') {
-      hintText = props.direction === 'vertical'
-        ? '↑↓ Navigate • Space/Enter to toggle • Tab to next field'
-        : '←→ Navigate • Space/Enter to toggle • Tab to next field';
-    } else if (hint && hint !== '') {
-      hintText = hint;
-    }
+  if (isFocused && !disabled) {
+    const defaultHint = props.direction === 'vertical'
+      ? '↑↓ Navigate • Space/Enter to toggle • Tab to next field'
+      : '←→ Navigate • Space/Enter to toggle • Tab to next field';
+    const hintText = resolveHintText(hint, defaultHint);
 
     if (hintText) {
       output += '\n' + chalk.dim(hintText);
@@ -567,11 +558,7 @@ function renderCheckboxVertical(props) {
 
   // Scroll indicator
   if (options.length > height) {
-    const scrollPercent = Math.round((scrollOffset / Math.max(1, options.length - height)) * 100);
-    const start = scrollOffset + 1;
-    const end = Math.min(scrollOffset + height, options.length);
-    const total = options.length;
-    output += '\n' + chalk.dim(`[${scrollPercent}% - showing ${start}-${end} of ${total}]`);
+    output += '\n' + chalk.dim(formatScrollIndicator(scrollOffset, height, options.length));
   }
 
   return output;
@@ -668,16 +655,11 @@ function renderCheckboxHorizontal(props) {
   }
 
   // Helper text
-  if (isFocused && !disabled && hint !== false) {
-    let hintText = '';
-
-    if (hint === 'default') {
-      hintText = direction === 'horizontal'
-        ? '←→ Navigate • Space/Enter to toggle • Tab to next field'
-        : '↑↓ Navigate • Space/Enter to toggle • Tab to next field';
-    } else if (hint && hint !== '') {
-      hintText = hint;
-    }
+  if (isFocused && !disabled) {
+    const defaultHint = direction === 'horizontal'
+      ? '←→ Navigate • Space/Enter to toggle • Tab to next field'
+      : '↑↓ Navigate • Space/Enter to toggle • Tab to next field';
+    const hintText = resolveHintText(hint, defaultHint);
 
     if (hintText) {
       output += '\n' + chalk.dim(hintText);

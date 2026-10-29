@@ -27,6 +27,7 @@ import {
 import { getChalkColor, getAnsiBgCode, preserveBackground } from '@utils/colorUtils.js';
 import { boxProps } from '@core/layoutProps.js';
 import { RenderHandler, renderHandlerRegistry } from '@core/renderHandlers.js';
+import { resolveHintText } from './renderHelpers.js';
 
 // Counter-based ID instead of Math.random()
 let componentIdCounter = 0;
@@ -760,13 +761,10 @@ export function renderTextInput(props) {
   if (validationError) {
     lines.push(getChalkColor(errorColor)('✗ ' + validationError));
   } else if (isFocused && !disabled) {
-    let hintText = '';
-
-    if (hint === 'default') {
-      hintText = multiline ? 'Enter to submit, Shift+Enter for new line' : 'Enter to submit';
-    } else if (hint && hint !== false && hint !== '') {
-      hintText = hint;
-    }
+    const hintText = resolveHintText(
+      hint,
+      multiline ? 'Enter to submit, Shift+Enter for new line' : 'Enter to submit'
+    );
 
     if (hintText) {
       lines.push(contentStyle.dim(hintText));

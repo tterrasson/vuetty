@@ -17,6 +17,7 @@ import { boxProps } from '@core/layoutProps.js';
 import { RenderHandler, renderHandlerRegistry } from '@core/renderHandlers.js';
 import { renderChildrenCached } from '@core/memoization.js';
 import { getCacheConfig } from '@core/cacheConfig.js';
+import { countLines } from './renderHelpers.js';
 
 // Pre-compiled regex
 const TRAILING_NEWLINES_REGEX = /\n+$/;
@@ -623,18 +624,6 @@ export function renderBox(content, props, _depth) {
   } finally {
     releaseBuffer(buffer);
   }
-}
-
-/**
- * Helper to count lines in a string
- */
-function countLines(str) {
-  if (!str) return 0;
-  let count = 1;
-  for (let i = 0; i < str.length; i++) {
-    if (str.charCodeAt(i) === 10) count++;
-  }
-  return count;
 }
 
 /**

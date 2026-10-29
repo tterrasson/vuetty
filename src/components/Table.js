@@ -20,6 +20,7 @@ import { getTerminalWidth, applyStyles } from '@utils/renderUtils.js';
 import { getChalkColor } from '@utils/colorUtils.js';
 import { boxProps } from '@core/layoutProps.js';
 import { RenderHandler, renderHandlerRegistry } from '@core/renderHandlers.js';
+import { resolveHintText, renderNoDataBox, formatScrollIndicator } from './renderHelpers.js';
 
 let tableIdCounter = 0;
 
@@ -541,18 +542,12 @@ function renderEmptyRow(colWidths, borderStyle) {
  * Helper function
  */
 function renderEmptyTable(isFocused, focusColor, props) {
-  const width = 20;
   const borderColor = isFocused ? focusColor : props.color;
   const borderStyle = isFocused
     ? (chalk[borderColor] || chalk).bold
     : (borderColor ? chalk[borderColor] || chalk : chalk);
 
-  let output = '';
-  output += borderStyle('┌' + '─'.repeat(width + 2) + '┐') + '\n';
-  output += borderStyle('│') + ' No data'.padEnd(width + 2, ' ') + borderStyle('│') + '\n';
-  output += borderStyle('└' + '─'.repeat(width + 2) + '┘') + '\n';
-
-  return output;
+  return renderNoDataBox(borderStyle, 'No data');
 }
 
 /**
@@ -642,14 +637,11 @@ export function renderTable(props) {
   output += renderBottomBorder(colWidths, borderStyle);
 
   // Helper text
-  if (isFocused && !disabled && hint !== false) {
-    let hintText = '';
-
-    if (hint === 'default') {
-      hintText = '↑↓ Navigate • Enter/Space to select • Tab to next field';
-    } else if (hint && hint !== '') {
-      hintText = hint;
-    }
+  if (isFocused && !disabled) {
+    const hintText = resolveHintText(
+      hint,
+      '↑↓ Navigate • Enter/Space to select • Tab to next field'
+    );
 
     if (hintText) {
       output += chalk.dim(hintText) + '\n';
@@ -658,13 +650,7 @@ export function renderTable(props) {
 
   // Scroll indicator
   if (rows.length > height) {
-    const scrollPercent = Math.round((scrollOffset / Math.max(1, rows.length - height)) * 100);
-    output += chalk.dim(
-      `[${scrollPercent}% - showing ${scrollOffset + 1}-${Math.min(
-        scrollOffset + height,
-        rows.length
-      )} of ${rows.length} rows]`
-    ) + '\n';
+    output += chalk.dim(formatScrollIndicator(scrollOffset, height, rows.length, 'rows')) + '\n';
   }
 
   return output;

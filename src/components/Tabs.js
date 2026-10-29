@@ -21,6 +21,7 @@ import { getTerminalWidth } from '@utils/renderUtils.js';
 import { getChalkColor } from '@utils/colorUtils.js';
 import { boxProps } from '@core/layoutProps.js';
 import { renderBox } from './Box.js';
+import { countLines, resolveHintText } from './renderHelpers.js';
 import { RenderHandler, renderHandlerRegistry } from '@core/renderHandlers.js';
 
 let tabsIdCounter = 0;
@@ -594,14 +595,11 @@ export function renderTabs(props, panelContent = '') {
   }
 
   // --- Hint Text ---
-  if (isFocused && !disabled && hint !== false) {
-    let hintText = '';
-
-    if (hint === 'default') {
-      hintText = '\u2190\u2192 Navigate tabs \u2022 Enter to select \u2022 Tab to next field';
-    } else if (hint && hint !== '') {
-      hintText = hint;
-    }
+  if (isFocused && !disabled) {
+    const hintText = resolveHintText(
+      hint,
+      '\u2190\u2192 Navigate tabs \u2022 Enter to select \u2022 Tab to next field'
+    );
 
     if (hintText) {
       output += '\n' + chalk.dim(hintText);
@@ -609,18 +607,6 @@ export function renderTabs(props, panelContent = '') {
   }
 
   return output;
-}
-
-/**
- * Helper to count lines in a string
- */
-function countLines(str) {
-  if (!str) return 0;
-  let count = 1;
-  for (let i = 0; i < str.length; i++) {
-    if (str.charCodeAt(i) === 10) count++;
-  }
-  return count;
 }
 
 /**

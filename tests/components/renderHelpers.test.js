@@ -5,7 +5,11 @@
 import { test, expect, describe } from 'bun:test';
 import {
   padLabelToWidth,
-  maxDisplayWidthOf
+  maxDisplayWidthOf,
+  countLines,
+  resolveHintText,
+  renderNoDataBox,
+  formatScrollIndicator
 } from '../../src/components/renderHelpers.js';
 import { getTerminalWidth, stripAnsi } from '../../src/utils/renderUtils.js';
 
@@ -73,5 +77,66 @@ describe('maxDisplayWidthOf', () => {
   test('measures via getter without allocating temp arrays', () => {
     const options = [{ label: 'Option 1' }, { label: 'オプション' }];
     expect(maxDisplayWidthOf(options, o => o.label, 0)).toBe(10);
+  });
+});
+
+describe('countLines', () => {
+  test('counts lines in rendered output', () => {
+    expect(countLines('')).toBe(0);
+    expect(countLines(null)).toBe(0);
+    expect(countLines('single')).toBe(1);
+    expect(countLines('a\nb')).toBe(2);
+    expect(countLines('a\nb\nc\n')).toBe(4);
+  });
+});
+
+describe('resolveHintText', () => {
+  test('returns default text for "default"', () => {
+    expect(resolveHintText('default', 'My hint')).toBe('My hint');
+  });
+
+  test('returns empty string for false/null/undefined/empty', () => {
+    expect(resolveHintText(false, 'd')).toBe('');
+    expect(resolveHintText(null, 'd')).toBe('');
+    expect(resolveHintText(undefined, 'd')).toBe('');
+    expect(resolveHintText('', 'd')).toBe('');
+  });
+
+  test('returns custom hint string as-is', () => {
+    expect(resolveHintText('Press Enter', 'd')).toBe('Press Enter');
+  });
+});
+
+describe('renderNoDataBox', () => {
+  test('renders a bordered placeholder box', () => {
+    const style = s => `<${s}>`;
+    const result = renderNoDataBox(style, 'No data', 5);
+    const lines = result.split('\n');
+
+    expect(lines).toHaveLength(4);
+    expect(lines[0]).toBe('<┌───────┐>');
+    expect(lines[1]).toContain('No data');
+    expect(lines[2]).toBe('<└───────┘>');
+  });
+
+  test('defaults to "No options" with width 20', () => {
+    const result = renderNoDataBox(s => s);
+    expect(result).toContain('No options');
+    expect(result.split('\n')[0]).toBe('┌' + '─'.repeat(22) + '┐');
+  });
+});
+
+describe('formatScrollIndicator', () => {
+  test('formats percentage and visible range', () => {
+    expect(formatScrollIndicator(0, 10, 100)).toBe('[0% - showing 1-10 of 100]');
+    expect(formatScrollIndicator(90, 10, 100)).toBe('[100% - showing 91-100 of 100]');
+  });
+
+  test('appends unit label when provided', () => {
+    expect(formatScrollIndicator(5, 10, 50, 'rows')).toBe('[13% - showing 6-15 of 50 rows]');
+  });
+
+  test('handles total smaller than visible count without division issues', () => {
+    expect(formatScrollIndicator(0, 10, 5)).toBe('[0% - showing 1-5 of 5]');
   });
 });

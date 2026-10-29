@@ -3,7 +3,7 @@ import { h, inject, computed } from 'vue';
 import { VUETTY_VIEWPORT_STATE_KEY, VUETTY_THEME_KEY } from '@core/vuettyKeys.js';
 import { WIDTH_CONTEXT_KEY } from '@core/widthContext.js';
 import chalk from 'chalk';
-import { getTerminalWidth, applyStyles } from '@utils/renderUtils.js';
+import { applyStyles } from '@utils/renderUtils.js';
 import { getChalkColor } from '@utils/colorUtils.js';
 import { boxProps } from '@core/layoutProps.js';
 import { RenderHandler, renderHandlerRegistry } from '@core/renderHandlers.js';
