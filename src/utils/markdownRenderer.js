@@ -401,6 +401,15 @@ function wrapStyledSegments(segments, maxWidth) {
             }
           }
 
+          // No progress possible: the next char is wider than maxWidth
+          // (e.g. a CJK char with maxWidth 1). Force-emit it to
+          // guarantee the loop terminates. Consume the full code point.
+          if (!chunk && remaining.length > 0) {
+            const cp = remaining.codePointAt(0);
+            chunk = String.fromCodePoint(cp);
+            chunkWidth = getTerminalWidth(chunk);
+          }
+
           if (chunk) {
             lines[lines.length - 1].push({ text: chunk, style: segment.style });
             currentLineWidth += chunkWidth;
