@@ -344,37 +344,50 @@ class TextInputHandler extends ComponentHandler {
 }
 
 /**
+ * Shared layout for vertical list components (Checkbox, Radiobox, SelectInput).
+ * Computes height from visible options and width from the widest option label.
+ * @param {YogaNode} yogaNode - Yoga node to configure
+ * @param {Object} props - Component props
+ * @param {number} widthPadding - Extra columns added to the widest option label
+ */
+function applyVerticalListLayout(yogaNode, props, widthPadding) {
+  const label = props.label || '';
+  const maxHeight = props.height || 10;
+  const options = props.options || [];
+  const isFocused = props.isFocused || false;
+  const disabled = props.disabled || false;
+
+  const visibleOptions = options.length === 0 ? 1 : Math.min(maxHeight, options.length);
+  let totalHeight = 1 + visibleOptions + 1;
+  if (label) totalHeight += 1;
+  if (isFocused && !disabled) totalHeight += 1;
+  if (options.length > maxHeight) totalHeight += 1;
+
+  yogaNode.setHeight(totalHeight);
+
+  if (props.width === undefined && props.flex === undefined) {
+    let maxWidth = 20;
+    for (let i = 0; i < options.length; i++) {
+      const optLabel = options[i].label || String(options[i].value);
+      const width = getTerminalWidth(optLabel);
+      if (width > maxWidth) maxWidth = width;
+    }
+    yogaNode.setWidth(maxWidth + widthPadding);
+  }
+}
+
+/**
  * Handler for Checkbox nodes
  */
 class CheckboxHandler extends ComponentHandler {
   applyLayout(yogaNode, tuiNode, context) {
     const props = tuiNode.props || {};
-    const label = props.label || '';
-    const maxHeight = props.height || 10;
-    const options = props.options || [];
-    const isFocused = props.isFocused || false;
-    const disabled = props.disabled || false;
     const direction = props.direction || 'vertical';
 
     if (direction === 'vertical') {
-      const visibleOptions = options.length === 0 ? 1 : Math.min(maxHeight, options.length);
-      let totalHeight = 1 + visibleOptions + 1;
-      if (label) totalHeight += 1;
-      if (isFocused && !disabled) totalHeight += 1;
-      if (options.length > maxHeight) totalHeight += 1;
-
-      yogaNode.setHeight(totalHeight);
-
-      if (props.width === undefined && props.flex === undefined) {
-        let maxWidth = 20;
-        for (let i = 0; i < options.length; i++) {
-          const optLabel = options[i].label || String(options[i].value);
-          const width = getTerminalWidth(optLabel);
-          if (width > maxWidth) maxWidth = width;
-        }
-        yogaNode.setWidth(maxWidth + 8);
-      }
+      applyVerticalListLayout(yogaNode, props, 8);
     } else {
+      const label = props.label || '';
       yogaNode.setHeight(label ? 4 : 3);
     }
     return {};
@@ -387,32 +400,12 @@ class CheckboxHandler extends ComponentHandler {
 class RadioboxHandler extends ComponentHandler {
   applyLayout(yogaNode, tuiNode, context) {
     const props = tuiNode.props || {};
-    const label = props.label || '';
-    const maxHeight = props.height || 10;
-    const options = props.options || [];
-    const isFocused = props.isFocused || false;
-    const disabled = props.disabled || false;
     const direction = props.direction || 'vertical';
 
     if (direction === 'vertical') {
-      const visibleOptions = options.length === 0 ? 1 : Math.min(maxHeight, options.length);
-      let totalHeight = 1 + visibleOptions + 1;
-      if (label) totalHeight += 1;
-      if (isFocused && !disabled) totalHeight += 1;
-      if (options.length > maxHeight) totalHeight += 1;
-
-      yogaNode.setHeight(totalHeight);
-
-      if (props.width === undefined && props.flex === undefined) {
-        let maxWidth = 20;
-        for (let i = 0; i < options.length; i++) {
-          const optLabel = options[i].label || String(options[i].value);
-          const width = getTerminalWidth(optLabel);
-          if (width > maxWidth) maxWidth = width;
-        }
-        yogaNode.setWidth(maxWidth + 8);
-      }
+      applyVerticalListLayout(yogaNode, props, 8);
     } else {
+      const label = props.label || '';
       yogaNode.setHeight(label ? 4 : 3);
     }
     return {};
@@ -425,29 +418,7 @@ class RadioboxHandler extends ComponentHandler {
 class SelectInputHandler extends ComponentHandler {
   applyLayout(yogaNode, tuiNode, context) {
     const props = tuiNode.props || {};
-    const label = props.label || '';
-    const maxHeight = props.height || 10;
-    const options = props.options || [];
-    const isFocused = props.isFocused || false;
-    const disabled = props.disabled || false;
-
-    const visibleOptions = options.length === 0 ? 1 : Math.min(maxHeight, options.length);
-    let totalHeight = 1 + visibleOptions + 1;
-    if (label) totalHeight += 1;
-    if (isFocused && !disabled) totalHeight += 1;
-    if (options.length > maxHeight) totalHeight += 1;
-
-    yogaNode.setHeight(totalHeight);
-
-    if (props.width === undefined && props.flex === undefined) {
-      let maxWidth = 20;
-      for (let i = 0; i < options.length; i++) {
-        const optLabel = options[i].label || String(options[i].value);
-        const width = getTerminalWidth(optLabel);
-        if (width > maxWidth) maxWidth = width;
-      }
-      yogaNode.setWidth(maxWidth + 4);
-    }
+    applyVerticalListLayout(yogaNode, props, 4);
     return {};
   }
 }
