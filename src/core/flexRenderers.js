@@ -104,22 +104,7 @@ export function renderFlexRow(node, depth, renderNode) {
     result = renderSingleRow(items);
   }
 
-  // Apply vertical padding
-  if (effectivePaddingTop > 0 || effectivePaddingBottom > 0) {
-    const lines = result ? result.split('\n') : [];
-
-    for (let i = 0; i < effectivePaddingTop; i++) {
-      lines.unshift('');
-    }
-
-    for (let i = 0; i < effectivePaddingBottom; i++) {
-      lines.push('');
-    }
-
-    result = lines.join('\n');
-  }
-
-  return result;
+  return applyVerticalPadding(result, effectivePaddingTop, effectivePaddingBottom);
 }
 
 /**
@@ -252,22 +237,7 @@ export function renderFlexCol(node, depth, renderNode) {
     result = outputs.join('\n');
   }
 
-  // Apply vertical padding
-  if (effectivePaddingTop > 0 || effectivePaddingBottom > 0) {
-    const lines = result ? result.split('\n') : [];
-
-    for (let i = 0; i < effectivePaddingTop; i++) {
-      lines.unshift('');
-    }
-
-    for (let i = 0; i < effectivePaddingBottom; i++) {
-      lines.push('');
-    }
-
-    result = lines.join('\n');
-  }
-
-  return result;
+  return applyVerticalPadding(result, effectivePaddingTop, effectivePaddingBottom);
 }
 
 function countLinesSimple(str) {
@@ -281,75 +251,25 @@ function countLinesSimple(str) {
 
 // Helper functions
 
-function groupItemsByRow(items) {
-  if (items.length === 0) return [];
+// Apply vertical padding around already-rendered content
+function applyVerticalPadding(result, paddingTop, paddingBottom) {
+  if (paddingTop <= 0 && paddingBottom <= 0) return result;
 
-  const sorted = items.slice().sort((a, b) => a.y - b.y);
+  const lines = result ? result.split('\n') : [];
 
-  const rows = [];
-  let currentRow = [sorted[0]];
-  let currentRowBottom = sorted[0].y + (sorted[0].height || 1);
-
-  for (let i = 1; i < sorted.length; i++) {
-    const item = sorted[i];
-    const itemHeight = item.height || 1;
-
-    if (item.y >= currentRowBottom) {
-      rows.push(currentRow);
-      currentRow = [item];
-      currentRowBottom = item.y + itemHeight;
-    } else {
-      currentRow.push(item);
-      currentRowBottom = Math.max(currentRowBottom, item.y + itemHeight);
-    }
-  }
-  rows.push(currentRow);
-
-  return rows;
-}
-
-function renderMultipleRows(rows) {
-  const allLines = [];
-
-  for (let r = 0; r < rows.length; r++) {
-    const rowItems = rows[r];
-    rowItems.sort((a, b) => a.x - b.x);
-
-    const itemLines = new Array(rowItems.length);
-    let maxHeight = 0;
-
-    for (let i = 0; i < rowItems.length; i++) {
-      const lines = rowItems[i].rendered.split('\n');
-      itemLines[i] = { lines, x: rowItems[i].x };
-      if (lines.length > maxHeight) maxHeight = lines.length;
-    }
-
-    for (let lineIndex = 0; lineIndex < maxHeight; lineIndex++) {
-      let line = '';
-      let currentX = 0;
-
-      for (let i = 0; i < itemLines.length; i++) {
-        const item = itemLines[i];
-        const contentLine = item.lines[lineIndex] || '';
-        const targetX = item.x;
-
-        if (targetX > currentX) {
-          line += ' '.repeat(targetX - currentX);
-          currentX = targetX;
-        }
-
-        line += contentLine;
-        currentX += getTerminalWidth(contentLine);
-      }
-
-      allLines.push(line);
-    }
+  for (let i = 0; i < paddingTop; i++) {
+    lines.unshift('');
   }
 
-  return allLines.join('\n');
+  for (let i = 0; i < paddingBottom; i++) {
+    lines.push('');
+  }
+
+  return lines.join('\n');
 }
 
-function renderSingleRow(items) {
+// Merge horizontally-positioned rendered items into output lines
+function mergeRowItemsToLines(items) {
   const len = items.length;
 
   const itemLines = new Array(len);
@@ -384,7 +304,50 @@ function renderSingleRow(items) {
     outputLines[lineIndex] = line;
   }
 
-  return outputLines.join('\n');
+  return outputLines;
+}
+
+function groupItemsByRow(items) {
+  if (items.length === 0) return [];
+
+  const sorted = items.slice().sort((a, b) => a.y - b.y);
+
+  const rows = [];
+  let currentRow = [sorted[0]];
+  let currentRowBottom = sorted[0].y + (sorted[0].height || 1);
+
+  for (let i = 1; i < sorted.length; i++) {
+    const item = sorted[i];
+    const itemHeight = item.height || 1;
+
+    if (item.y >= currentRowBottom) {
+      rows.push(currentRow);
+      currentRow = [item];
+      currentRowBottom = item.y + itemHeight;
+    } else {
+      currentRow.push(item);
+      currentRowBottom = Math.max(currentRowBottom, item.y + itemHeight);
+    }
+  }
+  rows.push(currentRow);
+
+  return rows;
+}
+
+function renderMultipleRows(rows) {
+  const allLines = [];
+
+  for (let r = 0; r < rows.length; r++) {
+    const rowItems = rows[r];
+    rowItems.sort((a, b) => a.x - b.x);
+    allLines.push(...mergeRowItemsToLines(rowItems));
+  }
+
+  return allLines.join('\n');
+}
+
+function renderSingleRow(items) {
+  return mergeRowItemsToLines(items).join('\n');
 }
 
 function renderNodeWithConstrainedWidth(node, width, depth, renderNode, options = {}) {
@@ -404,13 +367,19 @@ function renderNodeWithConstrainedWidth(node, width, depth, renderNode, options 
 }
 
 function renderNodeWithDimensions(node, width, depth, renderNode, options = {}) {
+  const hasOriginalWidth = 'width' in node.props;
   const originalWidth = node.props.width;
 
   node.props.width = width;
-  const rendered = renderNode(node, depth, options);
-  node.props.width = originalWidth;
-
-  return rendered;
+  try {
+    return renderNode(node, depth, options);
+  } finally {
+    if (hasOriginalWidth) {
+      node.props.width = originalWidth;
+    } else {
+      delete node.props.width;
+    }
+  }
 }
 
 /**

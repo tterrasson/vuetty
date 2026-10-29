@@ -144,3 +144,94 @@ describe('renderFlexRow error safety', () => {
     expect(child._renderWidth).toBe(7);
   });
 });
+
+describe('flexRenderers layout output', () => {
+  test('renderFlexRow merges children horizontally using metrics x positions', () => {
+    const row = makeRowWithChildren(
+      [
+        { type: 'textbox', text: 'aa' },
+        { type: 'textbox', text: 'bb' }
+      ],
+      [
+        { width: 2, height: 1, x: 0, y: 0 },
+        { width: 2, height: 1, x: 10, y: 0 }
+      ]
+    );
+
+    const renderNode = (node) => node.text;
+
+    const output = renderFlexRow(row, 0, (child, _depth, opts) => renderNode(child));
+    expect(output.split('\n')[0]).toBe('aa        bb');
+  });
+
+  test('renderFlexRow pads shorter children to the tallest item height', () => {
+    const row = makeRowWithChildren(
+      [
+        { type: 'textbox', text: 'l1\nl2\nl3' },
+        { type: 'textbox', text: 'x' }
+      ],
+      [
+        { width: 2, height: 3, x: 0, y: 0 },
+        { width: 1, height: 1, x: 5, y: 0 }
+      ]
+    );
+
+    const output = renderFlexRow(row, 0, (child) => child.text);
+    const lines = output.split('\n');
+    expect(lines).toHaveLength(3);
+    // Shorter item aligns to the top; rows are padded to the tallest item
+    expect(lines[0]).toBe('l1   x');
+    expect(lines[1]).toBe('l2   ');
+    expect(lines[2]).toBe('l3   ');
+  });
+
+  test('renderFlexRow wraps items onto multiple rows when y differs', () => {
+    const row = makeRowWithChildren(
+      [
+        { type: 'textbox', text: 'aa' },
+        { type: 'textbox', text: 'bb' }
+      ],
+      [
+        { width: 2, height: 1, x: 0, y: 0 },
+        { width: 2, height: 1, x: 0, y: 1 }
+      ]
+    );
+    row.props.flexWrap = 'wrap';
+
+    const output = renderFlexRow(row, 0, (child) => child.text);
+    expect(output.split('\n')).toEqual(['aa', 'bb']);
+  });
+
+  test('renderFlexRow applies vertical padding around content', () => {
+    const row = makeRowWithChildren(
+      [{ type: 'textbox', text: 'hi' }],
+      [{ width: 2, height: 1, x: 0, y: 0 }]
+    );
+    row.props.padding = 1;
+
+    const output = renderFlexRow(row, 0, (child) => child.text);
+    expect(output.split('\n')).toEqual(['', 'hi', '']);
+  });
+
+  test('renderFlexCol joins children with gap lines', () => {
+    const col = new TUINode('col');
+    const a = new TUINode('textbox');
+    a.text = 'aa';
+    const b = new TUINode('textbox');
+    b.text = 'bb';
+    col.appendChild(a);
+    col.appendChild(b);
+    col.props.gap = 1;
+
+    col.cachedLayoutMetrics = {
+      width: 10, height: 4, x: 0, y: 0,
+      children: [
+        { width: 2, height: 1, x: 0, y: 0 },
+        { width: 2, height: 1, x: 0, y: 2 }
+      ]
+    };
+
+    const output = renderFlexCol(col, 0, (child) => child.text);
+    expect(output.split('\n')).toEqual(['aa', '', 'bb']);
+  });
+});
