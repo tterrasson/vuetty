@@ -184,11 +184,18 @@ export default {
      */
     function movePrevious() {
       if (highlightedIndex.value > 0) {
+        const startIndex = highlightedIndex.value;
         highlightedIndex.value--;
 
         // Skip disabled options
         while (highlightedIndex.value > 0 && props.options[highlightedIndex.value]?.disabled) {
           highlightedIndex.value--;
+        }
+
+        // If we land on a disabled option (first one), revert
+        if (props.options[highlightedIndex.value]?.disabled) {
+          highlightedIndex.value = startIndex;
+          return;
         }
 
         updateScrollOffset();
@@ -200,11 +207,18 @@ export default {
      */
     function moveNext() {
       if (highlightedIndex.value < props.options.length - 1) {
+        const startIndex = highlightedIndex.value;
         highlightedIndex.value++;
 
         // Skip disabled options
         while (highlightedIndex.value < props.options.length - 1 && props.options[highlightedIndex.value]?.disabled) {
           highlightedIndex.value++;
+        }
+
+        // If we land on a disabled option (last one), revert
+        if (props.options[highlightedIndex.value]?.disabled) {
+          highlightedIndex.value = startIndex;
+          return;
         }
 
         updateScrollOffset();

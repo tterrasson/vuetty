@@ -148,3 +148,55 @@ describe('Scroll offset clamping when data shrinks', () => {
   });
 });
 
+describe('Disabled item navigation (Checkbox/Radiobox)', () => {
+  const disabledFirst = [
+    { label: 'A', value: 'a', disabled: true },
+    { label: 'B', value: 'b' }
+  ];
+  const disabledLast = [
+    { label: 'A', value: 'a' },
+    { label: 'B', value: 'b', disabled: true }
+  ];
+  // Plain-object props bypass Vue prop defaults, so direction must be explicit
+  const vertical = { direction: 'vertical' };
+
+  test('Checkbox: UP from index 1 with disabled item at 0 reverts highlight', () => {
+    const { render, getHandler } = setupComponent(Checkbox, {
+      options: disabledFirst, modelValue: [], height: 10, ...vertical
+    });
+    expect(render().props.highlightedIndex).toBe(1);
+
+    getHandler()(UP);
+
+    expect(render().props.highlightedIndex).toBe(1);
+  });
+
+  test('Checkbox: DOWN with disabled last item reverts highlight', () => {
+    const { render, getHandler } = setupComponent(Checkbox, {
+      options: disabledLast, modelValue: [], height: 10, ...vertical
+    });
+    getHandler()(DOWN);
+
+    expect(render().props.highlightedIndex).toBe(0);
+  });
+
+  test('Radiobox: UP from index 1 with disabled item at 0 reverts highlight', () => {
+    const { render, getHandler } = setupComponent(Radiobox, {
+      options: disabledFirst, modelValue: null, height: 10, ...vertical
+    });
+    expect(render().props.highlightedIndex).toBe(1);
+
+    getHandler()(UP);
+
+    expect(render().props.highlightedIndex).toBe(1);
+  });
+
+  test('Radiobox: DOWN with disabled last item reverts highlight', () => {
+    const { render, getHandler } = setupComponent(Radiobox, {
+      options: disabledLast, modelValue: null, height: 10, ...vertical
+    });
+    getHandler()(DOWN);
+
+    expect(render().props.highlightedIndex).toBe(0);
+  });
+});
