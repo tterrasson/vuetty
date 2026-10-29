@@ -17,6 +17,50 @@ const ANSI_ESCAPE_REGEX = /^\x1b\[[0-9;]*m/;
 const ANSI_GLOBAL_REGEX = /\x1b\[[0-9;]*m/g;
 const ANSI_RESET_REGEX = /^\x1b\[0?m$/;
 
+/**
+ * Match an SGR escape sequence (\x1b[...m) starting exactly at `index`.
+ * Equivalent to ANSI_ESCAPE_REGEX.test(str.slice(index)) but without
+ * allocating a substring, so it is safe in per-character hot loops.
+ * @param {string} text
+ * @param {number} index
+ * @returns {string|null} The full escape sequence, or null
+ */
+function matchAnsiCodeAt(text, index) {
+  if (text.charCodeAt(index) !== 0x1b || text.charCodeAt(index + 1) !== 0x5b /* [ */) {
+    return null;
+  }
+  const len = text.length;
+  let j = index + 2;
+  while (j < len) {
+    const c = text.charCodeAt(j);
+    if (c === 0x6d /* m */) {
+      return text.slice(index, j + 1);
+    }
+    if ((c >= 0x30 && c <= 0x39) || c === 0x3b /* ; */) {
+      j++;
+      continue;
+    }
+    return null;
+  }
+  return null;
+}
+
+/**
+ * Length in UTF-16 code units of the code point at `index`.
+ * Surrogate pairs (emoji, rare CJK) must be consumed as one visual unit.
+ * @param {string} text
+ * @param {number} index
+ * @returns {number} 1 or 2
+ */
+function codePointLengthAt(text, index) {
+  const code = text.charCodeAt(index);
+  if (code >= 0xd800 && code <= 0xdbff) {
+    const low = text.charCodeAt(index + 1);
+    if (low >= 0xdc00 && low <= 0xdfff) return 2;
+  }
+  return 1;
+}
+
 // Pre-allocated space strings
 const SPACE_CACHE = (() => {
   const cache = new Array(201);
@@ -68,30 +112,26 @@ export function truncateWithAnsi(text, maxWidth) {
   let hasActiveStyle = false;  // Track if styles are active
 
   while (i < len && visualWidth < maxWidth) {
-    const remaining = text.slice(i);
-    const ansiMatch = remaining.match(ANSI_ESCAPE_REGEX);
+    const code = matchAnsiCodeAt(text, i);
 
-    if (ansiMatch) {
-      const code = ansiMatch[0];
+    if (code !== null) {
       result += code;
       i += code.length;
 
       // Track style state
-      if (ANSI_RESET_REGEX.test(code)) {
-        hasActiveStyle = false;
-      } else {
-        hasActiveStyle = true;
-      }
+      hasActiveStyle = !ANSI_RESET_REGEX.test(code);
       continue;
     }
 
-    const char = text[i];
+    // Consume a full code point (surrogate pairs count as one visual char)
+    const charLen = codePointLengthAt(text, i);
+    const char = text.slice(i, i + charLen);
     const charWidth = stringWidth(char);
 
     if (visualWidth + charWidth <= maxWidth) {
       result += char;
       visualWidth += charWidth;
-      i++;
+      i += charLen;
     } else {
       break;
     }
@@ -162,10 +202,9 @@ export function wrapText(text, maxWidth) {
       let currentChunk = '';
 
       while (byteIndex < remaining.length && visualWidth < maxWidth) {
-        const ansiMatch = remaining.slice(byteIndex).match(ANSI_ESCAPE_REGEX);
+        const ansiCode = matchAnsiCodeAt(remaining, byteIndex);
 
-        if (ansiMatch) {
-          const ansiCode = ansiMatch[0];
+        if (ansiCode !== null) {
           currentChunk += ansiCode;
 
           if (ANSI_RESET_REGEX.test(ansiCode)) {
@@ -178,7 +217,9 @@ export function wrapText(text, maxWidth) {
           continue;
         }
 
-        const char = remaining[byteIndex];
+        // Consume a full code point (surrogate pairs count as one visual char)
+        const charLen = codePointLengthAt(remaining, byteIndex);
+        const char = remaining.slice(byteIndex, byteIndex + charLen);
         const charWidth = stringWidth(char);
 
         if (visualWidth + charWidth <= maxWidth) {
@@ -190,7 +231,7 @@ export function wrapText(text, maxWidth) {
             lastSpaceVisualWidth = visualWidth;
           }
 
-          byteIndex++;
+          byteIndex += charLen;
         } else {
           break;
         }
@@ -204,10 +245,10 @@ export function wrapText(text, maxWidth) {
         let tempIndex = 0;
 
         while (tempIndex <= lastSpaceByteIndex) {
-          const ansiMatch = remaining.slice(tempIndex).match(ANSI_ESCAPE_REGEX);
-          if (ansiMatch) {
-            finalChunk += ansiMatch[0];
-            tempIndex += ansiMatch[0].length;
+          const ansiCode = matchAnsiCodeAt(remaining, tempIndex);
+          if (ansiCode !== null) {
+            finalChunk += ansiCode;
+            tempIndex += ansiCode.length;
           } else {
             finalChunk += remaining[tempIndex];
             tempIndex++;
@@ -215,6 +256,16 @@ export function wrapText(text, maxWidth) {
         }
 
         finalByteIndex = lastSpaceByteIndex + 1;
+      }
+
+      // No progress possible: the next char is wider than maxWidth
+      // (e.g. a CJK char with maxWidth 1). Force-emit it on its own
+      // line, otherwise this loop never terminates.
+      if (finalByteIndex === 0) {
+        // Consume the full code point (emoji are 2 code units)
+        const cp = remaining.codePointAt(0);
+        finalChunk = String.fromCodePoint(cp);
+        finalByteIndex = finalChunk.length;
       }
 
       if (activeStyles.length > 0) {
@@ -242,6 +293,7 @@ export function applyStyles(text, props) {
     return text;
   }
 
+  // Build the chalk style chain for this combination
   let styled = chalk;
 
   if (props.bold) styled = styled.bold;
