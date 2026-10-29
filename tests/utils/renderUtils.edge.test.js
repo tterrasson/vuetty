@@ -55,6 +55,49 @@ describe('wrapText edge cases', () => {
       expect(getTerminalWidth(line)).toBeLessThanOrEqual(2);
     }
   });
+
+  test('terminates on styled text with small maxWidth (no exponential style growth)', () => {
+    // Pre-fix: carried styles were re-tracked on every chunk, doubling the
+    // ANSI prefix each iteration -> exponential string growth / hang.
+    const styled = '\x1b[31m\x1b[1mstyled text that keeps going and going\x1b[22m\x1b[39m';
+    for (const maxWidth of [1, 2, 3, 5]) {
+      const result = wrapText(styled, maxWidth);
+      const lines = result.split('\n');
+      // Every line fits; space-only styled lines keep their (zero-width-trimmed) content
+      for (const line of lines) {
+        expect(getTerminalWidth(line)).toBeLessThanOrEqual(maxWidth);
+      }
+      // The visible characters match the plain-text wrap (ignoring blank lines,
+      // which styled space-only chunks render as " " instead of trimming to "")
+      const plain = wrapText(stripAnsi(styled), maxWidth);
+      const visible = (s) => s.split('\n').map((l) => l.trim()).filter((l) => l !== '');
+      expect(visible(stripAnsi(result))).toEqual(visible(plain));
+    }
+  });
+
+  test('terminates on styled text when a wide char stops progress (maxWidth=1)', () => {
+    // Pre-fix: a chunk that consumed only ANSI escapes and stopped on a
+    // too-wide char made no progress; re-prepending styles looped forever.
+    const styled = '\x1b[35m好世界\x1b[39m';
+    const result = wrapText(styled, 1);
+    // The trailing newline comes from the closing escape emitted as its own chunk
+    expect(stripAnsi(result)).toBe('好\n世\n界\n');
+    for (const line of result.split('\n').filter((l) => stripAnsi(l) !== '')) {
+      expect(getTerminalWidth(line)).toBe(2); // force-emitted overwide char
+    }
+  });
+
+  test('does not duplicate carried ANSI styles across wrapped lines', () => {
+    const styled = '\x1b[31m\x1b[1mstyled words that wrap onto several lines here\x1b[0m';
+    const result = wrapText(styled, 12);
+    const lines = result.split('\n');
+    expect(lines.length).toBeGreaterThan(1);
+    for (const line of lines.slice(1)) {
+      // The carried prefix must contain each escape at most once
+      expect(line).not.toContain('\x1b[31m\x1b[1m\x1b[31m');
+      expect(line).not.toContain('\x1b[1m\x1b[31m\x1b[1m');
+    }
+  });
 });
 
 describe('truncateWithAnsi edge cases', () => {

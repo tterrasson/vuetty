@@ -297,12 +297,16 @@ export function wrapText(text, maxWidth) {
       // No progress possible: the next char is wider than maxWidth
       // (e.g. a CJK char with maxWidth 1). Force-emit it on its own
       // line, otherwise this loop never terminates.
-      if (finalByteIndex === 0) {
+      // Also covers chunks that consumed only ANSI escapes (zero visual
+      // width) and stop on a too-wide char: without this, re-prepending
+      // the carried styles would loop forever at the same position.
+      if (finalByteIndex === 0 || (visualWidth === 0 && finalByteIndex < remaining.length)) {
         // Consume the full code point (emoji are 2 code units)
-        const cp = remaining.codePointAt(0);
-        finalChunk = String.fromCodePoint(cp);
-        finalByteIndex = finalChunk.length;
-        consumedWidth = stringWidth(finalChunk);
+        const cp = remaining.codePointAt(finalByteIndex);
+        const cpStr = String.fromCodePoint(cp);
+        finalChunk = finalChunk + cpStr;
+        finalByteIndex += cpStr.length;
+        consumedWidth = stringWidth(cpStr);
       }
 
       if (activeStyles.length > 0) {
@@ -316,6 +320,12 @@ export function wrapText(text, maxWidth) {
       if (remainingWidth < 0) remainingWidth = 0;
       if (activeStyles.length > 0 && remaining.length > 0) {
         remaining = activeStyles.join('') + remaining;
+        // The re-applied codes are consumed (and re-tracked) by the next
+        // chunk, since ANSI escapes are always consumed before the first
+        // printable char. Keeping them in activeStyles would re-append the
+        // whole prefix on every chunk, doubling it each iteration and
+        // growing the string exponentially when no reset is consumed.
+        activeStyles = [];
       }
     }
   }
