@@ -18,7 +18,8 @@ function normalizeOption(opt, index) {
   if (typeof opt === 'object' && opt !== null) {
     return {
       value: opt.value !== undefined ? opt.value : index,
-      label: opt.label || String(opt.value || opt),
+      // Use ?? so falsy values (0, false, '') don't degrade to '[object Object]'
+      label: opt.label ?? String(opt.value ?? opt),
       disabled: opt.disabled || false
     };
   }

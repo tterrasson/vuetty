@@ -17,7 +17,8 @@ function normalizeItem(item, index) {
   if (typeof item === 'object' && item !== null) {
     return {
       value: item.value !== undefined ? item.value : index,
-      label: item.label || String(item.value || item)
+      // Use ?? so falsy values (0, false, '') don't degrade to '[object Object]'
+      label: item.label ?? String(item.value ?? item)
     };
   }
   return {

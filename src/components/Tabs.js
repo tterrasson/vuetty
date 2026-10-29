@@ -32,7 +32,8 @@ function normalizeTab(tab, index) {
   if (typeof tab === 'object' && tab !== null) {
     return {
       value: tab.value !== undefined ? tab.value : index,
-      label: tab.label || String(tab.value || tab),
+      // Use ?? so falsy values (0, false, '') don't degrade to '[object Object]'
+      label: tab.label ?? String(tab.value ?? tab),
       disabled: tab.disabled || false
     };
   }
