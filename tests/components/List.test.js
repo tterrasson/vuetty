@@ -5,6 +5,7 @@
 import { test, expect, describe } from 'bun:test';
 import { renderList } from '../../src/components/List.js';
 import { stripAnsi } from '../helpers/test-utils.js';
+import { getTerminalWidth } from '../../src/utils/renderUtils.js';
 
 describe('List component', () => {
   const items = [
@@ -161,5 +162,29 @@ describe('List component', () => {
     expect(stripped).toContain('String item');
     expect(stripped).toContain('Object item');
     expect(stripped).toContain('42');
+  });
+});
+
+describe('List unicode edge cases', () => {
+  test('pads CJK labels to the configured width (display width padding)', () => {
+    const result = renderList({
+      items: [{ label: '日本語', value: 'x' }],
+      width: 10
+    });
+    const stripped = stripAnsi(result);
+    const line = stripped.split('\n')[0];
+
+    // 2 chars marker area + 8 chars content
+    expect(getTerminalWidth(line)).toBe(10);
+  });
+
+  test('does not split surrogate pairs when truncating emoji labels', () => {
+    const result = renderList({
+      items: [{ label: '😀😀😀', value: 'x' }],
+      width: 5
+    });
+    const stripped = stripAnsi(result);
+
+    expect(stripped).not.toContain('\uFFFD');
   });
 });

@@ -5,6 +5,7 @@
 import { test, expect, describe } from 'bun:test';
 import { renderSelectInput } from '../../src/components/SelectInput.js';
 import { stripAnsi } from '../helpers/test-utils.js';
+import { getTerminalWidth } from '../../src/utils/renderUtils.js';
 
 describe('SelectInput component', () => {
   describe('renderSelectInput', () => {
@@ -753,5 +754,31 @@ describe('SelectInput component', () => {
       // With hint should contain hint text
       expect(strippedWith).toContain('Navigate');
     });
+  });
+});
+
+describe('SelectInput unicode edge cases', () => {
+  test('aligns CJK labels to the box width (display width padding)', () => {
+    const result = renderSelectInput({
+      options: [{ label: '日本語', value: 'x' }],
+      width: 10,
+      height: 3
+    });
+    const widths = stripAnsi(result).split('\n').map(l => getTerminalWidth(l));
+
+    // All lines (borders + content rows) must have the same display width
+    expect(new Set(widths).size).toBe(1);
+    expect(widths[0]).toBe(12);
+  });
+
+  test('does not split surrogate pairs when truncating emoji labels', () => {
+    const result = renderSelectInput({
+      options: [{ label: '😀😀😀', value: 'x' }],
+      width: 5,
+      height: 3
+    });
+    const stripped = stripAnsi(result);
+
+    expect(stripped).not.toContain('\uFFFD');
   });
 });

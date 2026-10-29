@@ -7,6 +7,7 @@ import { getTerminalWidth, applyStyles } from '@utils/renderUtils.js';
 import { getChalkColor } from '@utils/colorUtils.js';
 import { boxProps } from '@core/layoutProps.js';
 import { RenderHandler, renderHandlerRegistry } from '@core/renderHandlers.js';
+import { padLabelToWidth, maxDisplayWidthOf } from './renderHelpers.js';
 
 let listIdCounter = 0;
 
@@ -152,10 +153,7 @@ export function renderList(props) {
   }
 
   // Calculate max width for items
-  const maxWidth = Math.max(
-    20,
-    ...items.map(item => getTerminalWidth(item.label))
-  );
+  const maxWidth = maxDisplayWidthOf(items, item => item.label, 20);
 
   // Determine content width
   // If props.width is provided, use it; otherwise calculate from content
@@ -182,13 +180,8 @@ export function renderList(props) {
         indicator = getChalkColor(highlightColor).bold(`${marker} `);
       }
 
-      // Build item text - pad to width
-      let itemText = itemLabel.padEnd(textWidth, ' ');
-
-      // Truncate if too long
-      if (getTerminalWidth(itemLabel) > textWidth) {
-        itemText = itemLabel.substring(0, textWidth);
-      }
+      // Build item text - pad/truncate to width (unicode-safe)
+      let itemText = padLabelToWidth(itemLabel, textWidth);
 
       // Apply styling
       if (isHighlighted) {

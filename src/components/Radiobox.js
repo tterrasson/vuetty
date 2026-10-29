@@ -22,6 +22,7 @@ import { getTerminalWidth, applyStyles } from '@utils/renderUtils.js';
 import { getChalkColor } from '@utils/colorUtils.js';
 import { boxProps } from '@core/layoutProps.js';
 import { RenderHandler, renderHandlerRegistry } from '@core/renderHandlers.js';
+import { padLabelToWidth, maxDisplayWidthOf } from './renderHelpers.js';
 
 let radioboxIdCounter = 0;
 
@@ -460,9 +461,10 @@ function renderRadioboxVertical(props) {
   }
 
   // Calculate max width for options
-  const maxWidth = Math.max(
-    20,
-    ...options.map(opt => getTerminalWidth(opt.label || String(opt.value)))
+  const maxWidth = maxDisplayWidthOf(
+    options,
+    opt => opt.label || String(opt.value),
+    20
   );
 
   // Determine inner width (inside borders)
@@ -499,13 +501,8 @@ function renderRadioboxVertical(props) {
         indicator = '( )';
       }
 
-      // Build option text - pad to width
-      let optionText = optionLabel.padEnd(contentWidth, ' ');
-
-      // Truncate if too long
-      if (getTerminalWidth(optionLabel) > contentWidth) {
-        optionText = optionLabel.substring(0, contentWidth);
-      }
+      // Build option text - pad/truncate to width (unicode-safe)
+      let optionText = padLabelToWidth(optionLabel, contentWidth);
 
       // Apply styling
       if (isHighlighted && isFocused && !disabled) {
