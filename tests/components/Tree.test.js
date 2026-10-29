@@ -655,3 +655,31 @@ describe('Tree component', () => {
     });
   });
 });
+
+describe('Tree edge cases', () => {
+  test('does not throw with null root node', () => {
+    expect(() => renderTree({ data: [null] })).not.toThrow();
+    const result = stripAnsi(renderTree({ data: [null] }));
+    expect(result).toBe('');
+  });
+
+  test('skips null child nodes but renders siblings', () => {
+    const data = [
+      {
+        name: 'root',
+        children: [null, { name: 'file.js' }]
+      }
+    ];
+    expect(() => renderTree({ data })).not.toThrow();
+    const result = stripAnsi(renderTree({ data }));
+    expect(result).toContain('root');
+    expect(result).toContain('file.js');
+  });
+
+  test('handles nodes without name', () => {
+    const data = [{ children: [{ name: 'child' }] }];
+    expect(() => renderTree({ data })).not.toThrow();
+    const result = stripAnsi(renderTree({ data }));
+    expect(result).toContain('child');
+  });
+});

@@ -166,6 +166,11 @@ export function renderTree(props) {
    * @param {number} depth - Current depth level
    */
   function renderNode(node, prefix, isLast, depth) {
+    // Skip invalid nodes (null/undefined entries in the data)
+    if (!node || typeof node !== 'object') {
+      return;
+    }
+
     const hasChildren = node.children && node.children.length > 0;
     const isFolder = hasChildren;
 
