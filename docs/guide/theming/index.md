@@ -139,19 +139,26 @@ components: {
 
 ### Dynamic Themes
 
-You can change themes at runtime:
+You can switch themes at runtime with the `useTheme` composable (call it inside a component's `setup`). `setTheme` takes a theme **name** from the built-in theme registry:
 
-```javascript
+```vue
+<script setup>
 import { useTheme } from 'vuetty';
 
-const { setTheme } = useTheme();
+const { setTheme, listThemes, findThemes } = useTheme();
 
-// Switch to dark theme
-setTheme(darkTheme);
+// List available theme names (generated from the TOML files in themes/)
+listThemes(); // e.g. ['TOMORROW_NIGHT_EIGHTIES', 'GITHUB_LIGHT', ...]
 
-// Switch to light theme
-setTheme(lightTheme);
+// Switch by name
+setTheme('GITHUB_LIGHT');
+
+// Search by pattern
+findThemes('DARK');
+</script>
 ```
+
+`setTheme` throws if the name is unknown; the error message lists all available themes.
 
 ### Theme Extensions
 
@@ -264,7 +271,7 @@ const modernTheme = {
 
 ```javascript
 // Generate a theme programmatically
-function createTheme(primaryR, primaryG, primaryB) {
+function makeTheme(primaryR, primaryG, primaryB) {
   return {
     background: '#000',
     foreground: '#fff',
@@ -289,8 +296,8 @@ function createTheme(primaryR, primaryG, primaryB) {
   };
 }
 
-const blueTheme = createTheme(86, 156, 214);
-const greenTheme = createTheme(106, 153, 85);
+const blueTheme = makeTheme(86, 156, 214);
+const greenTheme = makeTheme(106, 153, 85);
 ```
 
 ## Troubleshooting
@@ -314,14 +321,13 @@ If colors aren't showing correctly:
 
 ```javascript
 // ❌ Common mistakes
-color: 'RGB(255, 0, 0)'      // Uppercase not supported
 color: '#12345'              // Invalid hex length
 color: 'rgb(300, 0, 0)'      // RGB > 255
 color: 'rgba(255,0,0,0.5)' // RGBA not supported
 
 // ✅ Correct formats
-color: 'rgb(255, 0, 0)'  // Lowercase, valid range
-color: '#FF0000'         // Valid hex
+color: 'rgb(255, 0, 0)'  // Valid range (case-insensitive: 'RGB(...)' also works)
+color: '#FF0000'         // Valid hex (case-insensitive)
 color: 'red'               // Valid named color
 ```
 

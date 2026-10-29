@@ -328,16 +328,15 @@ Common mistakes and fixes:
 
 ```javascript
 // ❌ Wrong
-color: 'RGB(255, 0, 0)'  // Uppercase not supported by regex
 color: '#12345'           // Invalid hex length (must be 3 or 6)
 color: 'rgb(300, 0, 0)'  // RGB values > 255
 color: 'rgb(255,0,0,0.5)' // RGBA not supported
+color: 'Red'              // Named colors are case-sensitive (use 'red')
 
 // ✅ Correct
-color: 'rgb(255, 0, 0)'  // Lowercase, proper format
+color: 'rgb(255, 0, 0)'  // Valid range (the rgb() keyword is case-insensitive)
 color: '#123456'          // 6-digit hex
-color: 'rgb(255, 0, 0)'  // Valid range
-color: 'red'              // Use named color instead
+color: 'red'              // Valid named color
 ```
 
 ### Color Performance Issues
@@ -352,10 +351,10 @@ If you experience performance issues with colors:
 
 ### Debugging Color Resolution
 
-To debug color issues, check the resolution chain:
+To debug color issues, check the resolution chain. The resolution helpers (`getChalkColorChain`, `getChalkBgChain`) live in Vuetty's internal `src/utils/colorUtils.js` module — they are not part of the public package API, so this only applies when working inside the Vuetty source:
 
 ```javascript
-import { getChalkColorChain, getChalkBgChain } from './utils/colorUtils.js';
+import { getChalkColorChain, getChalkBgChain } from './src/utils/colorUtils.js';
 
 // Test foreground color
 const fgChain = getChalkColorChain('#569cd6');

@@ -31,6 +31,15 @@ The Debug Server supports these options:
 - **captureConsole**: `boolean` (default: `true`)
   Enable or disable console output capture.
 
+- **treeCaptureIntervalMs**: `number` (default: `2000`)
+  Minimum interval between layout tree captures (throttles serialization).
+
+- **treeMaxDepth**: `number` (default: `4`)
+  Maximum depth of the serialized layout tree.
+
+- **memoryStatsIntervalMs**: `number` (default: `5000`)
+  Interval for periodic memory stats broadcasts (`0` disables them).
+
 ### Example with Custom Configuration
 
 ```javascript
