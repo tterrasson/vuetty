@@ -125,8 +125,17 @@ export function truncateWithAnsi(text, maxWidth) {
 
     // Consume a full code point (surrogate pairs count as one visual char)
     const charLen = codePointLengthAt(text, i);
-    const char = text.slice(i, i + charLen);
-    const charWidth = stringWidth(char);
+    let char;
+    let charWidth;
+    if (charLen === 1) {
+      const code = text.charCodeAt(i);
+      char = text[i];
+      // Printable ASCII is always exactly one column wide
+      charWidth = (code >= 0x20 && code <= 0x7e) ? 1 : stringWidth(char);
+    } else {
+      char = text.slice(i, i + charLen);
+      charWidth = stringWidth(char);
+    }
 
     if (visualWidth + charWidth <= maxWidth) {
       result += char;
@@ -185,12 +194,21 @@ export function wrapText(text, maxWidth) {
     }
 
     let remaining = line;
+    let remainingWidth = lineWidth; // tracked incrementally; ANSI prefixes are zero-width
+    // Incremental tracking is exact only while every consumed char is
+    // printable ASCII (width 1) or an ANSI escape (width 0). Grapheme
+    // clusters (ZWJ emoji, combining marks) make per-char sums diverge
+    // from a whole-string measurement, so fall back to re-measuring.
+    let trackWidth = true;
     let activeStyles = [];
 
     while (remaining.length > 0) {
-      const remainingWidth = getTerminalWidth(remaining);
-
-      if (remainingWidth <= maxWidth) {
+      if (trackWidth) {
+        if (remainingWidth <= maxWidth) {
+          wrappedLines.push(remaining);
+          break;
+        }
+      } else if (getTerminalWidth(remaining) <= maxWidth) {
         wrappedLines.push(remaining);
         break;
       }
@@ -219,8 +237,23 @@ export function wrapText(text, maxWidth) {
 
         // Consume a full code point (surrogate pairs count as one visual char)
         const charLen = codePointLengthAt(remaining, byteIndex);
-        const char = remaining.slice(byteIndex, byteIndex + charLen);
-        const charWidth = stringWidth(char);
+        let char;
+        let charWidth;
+        if (charLen === 1) {
+          const code = remaining.charCodeAt(byteIndex);
+          char = remaining[byteIndex];
+          if (code >= 0x20 && code <= 0x7e) {
+            // Printable ASCII is always exactly one column wide
+            charWidth = 1;
+          } else {
+            charWidth = stringWidth(char);
+            trackWidth = false;
+          }
+        } else {
+          char = remaining.slice(byteIndex, byteIndex + charLen);
+          charWidth = stringWidth(char);
+          trackWidth = false;
+        }
 
         if (visualWidth + charWidth <= maxWidth) {
           currentChunk += char;
@@ -239,6 +272,8 @@ export function wrapText(text, maxWidth) {
 
       let finalChunk = currentChunk;
       let finalByteIndex = byteIndex;
+      // Visual width consumed by finalChunk (before the trailing-space trim)
+      let consumedWidth = visualWidth;
 
       if (lastSpaceByteIndex >= 0 && lastSpaceVisualWidth > maxWidth * 0.3) {
         finalChunk = '';
@@ -256,6 +291,7 @@ export function wrapText(text, maxWidth) {
         }
 
         finalByteIndex = lastSpaceByteIndex + 1;
+        consumedWidth = lastSpaceVisualWidth;
       }
 
       // No progress possible: the next char is wider than maxWidth
@@ -266,6 +302,7 @@ export function wrapText(text, maxWidth) {
         const cp = remaining.codePointAt(0);
         finalChunk = String.fromCodePoint(cp);
         finalByteIndex = finalChunk.length;
+        consumedWidth = stringWidth(finalChunk);
       }
 
       if (activeStyles.length > 0) {
@@ -275,6 +312,8 @@ export function wrapText(text, maxWidth) {
       wrappedLines.push(finalChunk.trimEnd());
 
       remaining = remaining.slice(finalByteIndex);
+      remainingWidth -= consumedWidth;
+      if (remainingWidth < 0) remainingWidth = 0;
       if (activeStyles.length > 0 && remaining.length > 0) {
         remaining = activeStyles.join('') + remaining;
       }
