@@ -201,6 +201,62 @@ describe('Vuetty - Viewport Calculations', () => {
   });
 });
 
+describe('Vuetty - Cleanup Handlers', () => {
+  let vuetty;
+
+  const SIGNALS = ['exit', 'SIGTERM', 'SIGHUP', 'uncaughtException', 'unhandledRejection'];
+
+  const listenerCounts = () =>
+    Object.fromEntries(SIGNALS.map((signal) => [signal, process.listeners(signal).length]));
+
+  beforeEach(() => {
+    Object.defineProperty(process, 'stdout', { value: mockStdout, writable: true });
+    vuetty = new Vuetty();
+  });
+
+  afterEach(() => {
+    Object.defineProperty(process, 'stdout', { value: originalStdout, writable: true });
+    vuetty = null;
+  });
+
+  test('setupCleanupHandlers registers one listener per signal', () => {
+    const before = listenerCounts();
+
+    vuetty.setupCleanupHandlers();
+
+    const after = listenerCounts();
+    for (const signal of SIGNALS) {
+      expect(after[signal]).toBe(before[signal] + 1);
+    }
+  });
+
+  test('unmount removes all handlers registered by setupCleanupHandlers', () => {
+    const before = listenerCounts();
+
+    vuetty.setupCleanupHandlers();
+    vuetty.unmount();
+
+    const after = listenerCounts();
+    for (const signal of SIGNALS) {
+      expect(after[signal]).toBe(before[signal]);
+    }
+  });
+
+  test('repeated mount/unmount cycles do not accumulate signal listeners', () => {
+    const before = listenerCounts();
+
+    for (let i = 0; i < 3; i++) {
+      vuetty.setupCleanupHandlers();
+      vuetty.unmount();
+    }
+
+    const after = listenerCounts();
+    for (const signal of SIGNALS) {
+      expect(after[signal]).toBe(before[signal]);
+    }
+  });
+});
+
 describe('Vuetty - Scrolling', () => {
   let vuetty;
 

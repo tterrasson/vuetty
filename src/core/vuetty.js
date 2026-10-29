@@ -752,29 +752,32 @@ export class Vuetty {
 
     this.cleanupHandler = cleanup;
 
-    process.on('exit', this.cleanupHandler);
+    // Keep references to every registered handler so unmount() can remove them
+    this._signalHandlers = {
+      exit: cleanup,
+      SIGTERM: () => {
+        cleanup();
+        process.exit(0);
+      },
+      SIGHUP: () => {
+        cleanup();
+        process.exit(0);
+      },
+      uncaughtException: (err) => {
+        cleanup();
+        console.error('Uncaught exception:', err);
+        process.exit(1);
+      },
+      unhandledRejection: (reason, promise) => {
+        cleanup();
+        console.error('Unhandled rejection at:', promise, 'reason:', reason);
+        process.exit(1);
+      }
+    };
 
-    process.on('SIGTERM', () => {
-      cleanup();
-      process.exit(0);
-    });
-
-    process.on('SIGHUP', () => {
-      cleanup();
-      process.exit(0);
-    });
-
-    process.on('uncaughtException', (err) => {
-      cleanup();
-      console.error('Uncaught exception:', err);
-      process.exit(1);
-    });
-
-    process.on('unhandledRejection', (reason, promise) => {
-      cleanup();
-      console.error('Unhandled rejection at:', promise, 'reason:', reason);
-      process.exit(1);
-    });
+    for (const signal of Object.keys(this._signalHandlers)) {
+      process.on(signal, this._signalHandlers[signal]);
+    }
   }
 
   /**
@@ -977,12 +980,11 @@ export class Vuetty {
     }
 
     // Remove cleanup handlers
-    if (this.cleanupHandler) {
-      process.removeListener('exit', this.cleanupHandler);
-      process.removeListener('SIGTERM', this.cleanupHandler);
-      process.removeListener('SIGHUP', this.cleanupHandler);
-      process.removeListener('uncaughtException', this.cleanupHandler);
-      process.removeListener('unhandledRejection', this.cleanupHandler);
+    if (this._signalHandlers) {
+      for (const signal of Object.keys(this._signalHandlers)) {
+        process.removeListener(signal, this._signalHandlers[signal]);
+      }
+      this._signalHandlers = null;
       this.cleanupHandler = null;
     }
 
