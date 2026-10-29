@@ -59,6 +59,31 @@ describe('InputManager', () => {
       expect(inputManager.componentOrder).toContain('comp-1');
     });
 
+    test('re-registering the same id does not duplicate it in component order', () => {
+      const handler = () => {};
+      inputManager.registerComponent('comp-1', handler);
+      inputManager.registerComponent('comp-2', () => {});
+      inputManager.registerComponent('comp-1', () => {});
+
+      expect(inputManager.componentOrder).toEqual(['comp-1', 'comp-2']);
+    });
+
+    test('re-registering keeps focus cycle consistent', () => {
+      inputManager.registerComponent('a', () => {});
+      inputManager.registerComponent('b', () => {});
+      inputManager.registerComponent('a', () => {});
+
+      // Full tab cycle should visit each component exactly once
+      const visited = [];
+      for (let i = 0; i < 4; i++) {
+        const focused = inputManager.getFocusedId();
+        if (!visited.includes(focused)) visited.push(focused);
+        inputManager.focusNext();
+      }
+
+      expect(visited).toEqual(['a', 'b']);
+    });
+
     test('stores handler function', () => {
       const handler = () => {};
       inputManager.registerComponent('comp-1', handler);

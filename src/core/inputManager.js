@@ -87,7 +87,10 @@ export class InputManager {
       focusable: options.focusable !== undefined ? options.focusable : true
     });
 
-    this.componentOrder.push(id);
+    // Avoid duplicate entries when re-registering an existing id
+    if (!this.componentOrder.includes(id)) {
+      this.componentOrder.push(id);
+    }
 
     if (!this.focusedId.value && !options.disabled && options.focusable !== false) {
       this.focus(id);
