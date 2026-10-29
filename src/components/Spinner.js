@@ -55,7 +55,6 @@ export default {
     // Include common layout props (padding, margin, dimensions)
     ...boxProps
   },
-  emits: ['update:modelValue'],
   setup(props) {
     const theme = inject(VUETTY_THEME_KEY, null);
     const currentFrame = ref(0);

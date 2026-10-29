@@ -94,7 +94,7 @@ export default {
     ...boxProps
   },
 
-  setup(props, { slots }) {
+  setup(props) {
     const injectedWidthContext = inject(WIDTH_CONTEXT_KEY, null);
     const viewportState = inject(VUETTY_VIEWPORT_STATE_KEY, null);
     const theme = inject(VUETTY_THEME_KEY, null);
@@ -103,10 +103,6 @@ export default {
       const injectedWidth = typeof injectedWidthContext === 'function'
         ? injectedWidthContext()
         : injectedWidthContext;
-
-      // Get slots for custom rendering
-      const nodeSlot = slots.node || slots.default || null;
-      const iconSlot = slots.icon || null;
 
       // Apply theme defaults
       const effectiveBranchColor = props.branchColor ?? theme?.components?.tree?.branchColor ?? 'gray';
@@ -123,9 +119,7 @@ export default {
         fileColor: effectiveFileColor,
         treeStyle: effectiveTreeStyle,
         _injectedWidth: injectedWidth,
-        _viewportVersion: viewportState ? viewportState.version : 0,
-        _nodeSlot: nodeSlot,
-        _iconSlot: iconSlot
+        _viewportVersion: viewportState ? viewportState.version : 0
       });
     };
   }
