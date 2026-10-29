@@ -45,7 +45,7 @@ const role = ref('viewer');
 
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
-| `modelValue` | `string \\| number \\| object \\| array` | `null` | The selected value (v-model binding). Use an array for multi-selection |
+| `modelValue` | `string \| number \| object \| array` | `null` | The selected value (v-model binding). Use an array for multi-selection |
 | `options` | `array` | `[]` | List of options |
 | `label` | `string` | `''` | Label displayed above the dropdown |
 | `height` | `number` | `10` | Number of visible options in the dropdown |
@@ -61,19 +61,19 @@ const role = ref('viewer');
 | `highlightMarker` | `string` | `'▸'` | Marker for highlighted option |
 | `bold` | `boolean` | `false` | Bold text |
 | `dim` | `boolean` | `false` | Dimmed text |
-| `hint` | `string \\| boolean` | `'default'` | Hint text shown when focused. Set to `false` to hide, `'default'` for default hint, or a custom string |
+| `hint` | `string \| boolean` | `'default'` | Hint text shown when focused. Set to `false` to hide, `'default'` for default hint, or a custom string |
 
 ## Layout Props (Box Props)
 
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
-| `flex` | `number \\| string` | `null` | Flex shorthand when inside a flex container |
+| `flex` | `number \| string` | `null` | Flex shorthand when inside a flex container |
 | `flexGrow` | `number` | `null` | Flex grow factor |
 | `flexShrink` | `number` | `null` | Flex shrink factor |
-| `flexBasis` | `number \\| string` | `null` | Flex basis |
+| `flexBasis` | `number \| string` | `null` | Flex basis |
 | `alignSelf` | `string` | `null` | Self alignment: 'auto', 'flex-start', 'flex-end', 'center', 'stretch', 'baseline' |
-| `width` | `number \\| string` | `undefined` | Width (chars or %) |
-| `height` | `number \\| string` | `10` | Height (rows) |
+| `width` | `number \| string` | `undefined` | Width (chars or %) |
+| `height` | `number \| string` | `10` | Height (rows) |
 | `minWidth` | `number` | `null` | Minimum width |
 | `maxWidth` | `number` | `null` | Maximum width |
 | `minHeight` | `number` | `null` | Minimum height |
@@ -257,7 +257,7 @@ The SelectInput component supports the following keyboard shortcuts:
 - **End**: Jump to last option
 - **Page Up**: Move up by page height
 - **Page Down**: Move down by page height
-- **Enter**: Select highlighted option
+- **Enter / Space**: Select highlighted option
 - **Type characters**: Jump to option starting with typed character
 
 ### Multi-Selection Mode
@@ -267,8 +267,7 @@ The SelectInput component supports the following keyboard shortcuts:
 - **End**: Jump to last option
 - **Page Up**: Move up by page height
 - **Page Down**: Move down by page height
-- **Space**: Toggle selection of highlighted option
-- **Enter**: Confirm selection (moves focus to next field)
+- **Enter / Space**: Toggle selection of highlighted option
 - **Type characters**: Jump to option starting with typed character
 
 ## Customization

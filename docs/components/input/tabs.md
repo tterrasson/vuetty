@@ -47,7 +47,7 @@ const activeTab = ref('general');
 
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
-| `modelValue` | `string \\| number` | `null` | Active tab value (v-model). Defaults to first enabled tab when `null` |
+| `modelValue` | `string \| number` | `null` | Active tab value (v-model). Defaults to first enabled tab when `null` |
 | `tabs` | `array` | `[]` | List of tabs (required) |
 | `width` | `number` | `undefined` | Panel width in characters |
 | `disabled` | `boolean` | `false` | Disable navigation and selection |
@@ -59,19 +59,19 @@ const activeTab = ref('general');
 | `panelBorder` | `boolean` | `true` | Show a panel border under the tab bar |
 | `panelBorderStyle` | `string` | `'rounded'` | Panel border style (same styles as Box) |
 | `panelPadding` | `number` | `1` | Panel padding (characters) |
-| `hint` | `string \\| boolean` | `'default'` | Hint text when focused (`false` to hide) |
+| `hint` | `string \| boolean` | `'default'` | Hint text when focused (`false` to hide) |
 
 ## Layout Props (Box Props)
 
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
-| `flex` | `number \\| string` | `null` | Flex shorthand when inside a flex container |
+| `flex` | `number \| string` | `null` | Flex shorthand when inside a flex container |
 | `flexGrow` | `number` | `null` | Flex grow factor |
 | `flexShrink` | `number` | `null` | Flex shrink factor |
-| `flexBasis` | `number \\| string` | `null` | Flex basis |
+| `flexBasis` | `number \| string` | `null` | Flex basis |
 | `alignSelf` | `string` | `null` | Self alignment: 'auto', 'flex-start', 'flex-end', 'center', 'stretch', 'baseline' |
-| `width` | `number \\| string` | `null` | Width (chars or %) |
-| `height` | `number \\| string` | `null` | Height (rows) |
+| `width` | `number` | `undefined` | Panel width (chars or %) |
+| `height` | `number \| string` | `null` | Height (rows) |
 | `minWidth` | `number` | `null` | Minimum width |
 | `maxWidth` | `number` | `null` | Maximum width |
 | `minHeight` | `number` | `null` | Minimum height |

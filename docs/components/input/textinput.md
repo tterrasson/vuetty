@@ -31,7 +31,7 @@ const textValue = ref('');
 | `wrapLines` | `boolean` | `true` | Enable line wrapping for long text |
 | `label` | `string` | `''` | Label displayed above the input |
 | `placeholder` | `string` | `''` | Placeholder text when input is empty |
-| `hint` | `string\|boolean` | `'default'` | Hint text shown when focused. Use `'default'` for standard hints, `false` to disable, or pass custom text |
+| `hint` | `string \| boolean` | `'default'` | Hint text shown when focused. Use `'default'` for standard hints, `false` to disable, or pass custom text |
 | `color` | `string` | `-` | Text color ([chalk color names](https://github.com/chalk/chalk?tab=readme-ov-file#styles)) |
 | `borderColor` | `string` | `-` | Border color when not focused or in error |
 | `bg` | `string` | `-` | Background color |
@@ -101,6 +101,8 @@ const username = ref('');
 const description = ref('');
 </script>
 ```
+
+In multi-line mode, `Enter` submits the value (emits `change`), while `Shift+Enter` inserts a newline. `Ctrl+Enter` submits from either mode. The `↑`/`↓` arrow keys move the cursor between lines.
 
 ## Validation
 
@@ -223,7 +225,7 @@ const text3 = ref('');
 ```
 
 ::: tip
-Single-line inputs show "Enter to submit" by default, while multi-line inputs show "Ctrl+Enter to submit".
+Single-line inputs show "Enter to submit" by default, while multi-line inputs show "Enter to submit, Shift+Enter for new line".
 :::
 
 ## Width Control
@@ -259,7 +261,13 @@ const text2 = ref('');
 
 ## Events
 
-TextInput supports change, focus, and blur events:
+| Event | Payload | Description |
+|-------|---------|-------------|
+| `update:modelValue` | `string` | Emitted on every edit (v-model) |
+| `change` | `string` | Emitted when the user submits the value: `Enter` (single-line), `Enter`/`Ctrl+Enter` (multi-line) |
+| `focus` | - | Emitted when the input receives keyboard focus |
+| `blur` | - | Emitted when the input loses keyboard focus |
+| `validate` | `{ valid, errors }` | Emitted after each edit with the validation result |
 
 ```vue
 <template>

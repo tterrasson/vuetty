@@ -20,7 +20,7 @@ const openEditor = () => {
   if (result.error) {
     console.error('Failed to launch:', result.error.message);
   } else {
-    console.log(`Exited with code ${result.status ?? result.exitCode}`);
+    console.log(`Exited with code ${result.status}`);
   }
 };
 </script>
@@ -30,7 +30,7 @@ const openEditor = () => {
 
 ### `vuetty.runExternalApp(command, args?, options?)`
 
-Launches an external program and blocks the Vuetty event loop until it exits, then restores/redraws the TUI.
+Launches an external program synchronously (Node's `spawnSync` with `stdio: 'inherit'`), then restores and redraws the TUI once it exits. Keyboard input, mouse tracking, and resize handling are suspended while the external app runs.
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
@@ -38,13 +38,17 @@ Launches an external program and blocks the Vuetty event loop until it exits, th
 | `args` | `string[]` | `[]` | Arguments passed to the executable |
 | `options` | `object` | — | Optional configuration (see below) |
 
-**Returns:** `{ status?: number, exitCode?: number, error?: Error }`
+You can also pass the options object as the second argument: `vuetty.runExternalApp('vi', { cwd: '/tmp' })`.
+
+**Returns:** the `spawnSync` result, e.g. `{ status?: number, signal?: string, error?: Error }`
 
 ### Options
 
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
 | `preserveAlternateBuffer` | `boolean` | `true` | Keeps the current alternate buffer and only clears/redraws around the external app. Set to `false` to fully exit/re-enter the alternate buffer during handoff. |
+
+Any other options (e.g., `cwd`, `env`) are forwarded to `spawnSync`; `stdio` is always forced to `'inherit'`.
 
 ## Examples
 
@@ -112,7 +116,7 @@ const open = (command, args = []) => {
     if (result.error) {
       status.value = `Failed to launch ${command}: ${result.error.message}`;
     } else {
-      const code = result.status ?? result.exitCode;
+      const code = result.status;
       status.value = code === 0
         ? `Returned from ${command}.`
         : `${command} exited with code ${code}.`;
@@ -162,7 +166,7 @@ const open = (command, args = []) => {
     if (result.error) {
       status.value = `Failed to launch ${command}: ${result.error.message}`;
     } else {
-      const code = result.status ?? result.exitCode;
+      const code = result.status;
       status.value = code === 0
         ? `Returned from ${command}.`
         : `${command} exited with code ${code}.`;
@@ -176,6 +180,6 @@ const open = (command, args = []) => {
 
 ## Notes
 
-- External apps run in the terminal's **alternate screen buffer** by default, so the TUI is restored cleanly when the app exits.
+- By default the alternate screen buffer is preserved and cleared around the external app, so the TUI is restored cleanly when the app exits. Set `preserveAlternateBuffer: false` to fully leave the alternate buffer during handoff.
 - Common quit sequences: `vi` → `:q`, `nano` → `Ctrl+X`, `less` → `q`.
-- If the command is not found, `runExternalApp` returns an error object instead of throwing.
+- If the command is not found, `runExternalApp` returns an error object instead of throwing. It does throw if the Vuetty instance is not mounted or the arguments are invalid.

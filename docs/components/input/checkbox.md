@@ -99,8 +99,8 @@ const roleOptions = [
 |------|------|---------|-------------|
 | `label` | `String` | `''` | Label displayed above the checkbox list |
 | `direction` | `String` | `'vertical'` | Layout direction: `'vertical'` or `'horizontal'` |
-| `height` | `Number \| String` | `null` | Number of visible items (vertical mode only) |
-| `width` | `Number \| String` | `null` | Component width in characters (null = auto) |
+| `height` | `Number` | `10` | Number of visible items (vertical mode only) |
+| `width` | `Number` | `null` | Component width in characters (null = auto) |
 | `itemSpacing` | `Number` | `2` | Spacing between items in characters |
 | `hint` | `String \| Boolean` | `'default'` | Hint text shown when focused. Use `'default'` for standard hints, `false` to disable, or pass custom text |
 
@@ -116,7 +116,8 @@ const roleOptions = [
 |------|------|---------|-------------|
 | `color` | `String` | `undefined` | Text color (supports named colors and hex codes) |
 | `bg` | `String` | `undefined` | Background color |
-| `focusColor` | `String` | `'cyan'` | Color for focused item highlight |
+| `borderColor` | `String` | `-` | Border color (defaults to the `color` prop or theme) |
+| `focusColor` | `String` | `'cyan'` | Border color when focused |
 | `selectedColor` | `String` | `'green'` | Color for selected checkbox indicators |
 | `highlightColor` | `String` | `'yellow'` | Color for highlighted item cursor |
 | `bold` | `Boolean` | `false` | Bold text |
@@ -213,13 +214,14 @@ Default hints automatically adjust based on the `direction` prop:
 
 | Key | Action |
 |-----|--------|
-| `↑` / `←` | Move to previous option |
-| `↓` / `→` | Move to next option |
+| `↑` (vertical) / `←` (horizontal) | Move to previous option |
+| `↓` (vertical) / `→` (horizontal) | Move to next option |
 | `Home` | Jump to first option |
 | `End` | Jump to last option |
-| `Page Up` | Move up one page (height) |
-| `Page Down` | Move down one page (height) |
+| `Page Up` | Move up one page of `height` items (vertical only) |
+| `Page Down` | Move down one page of `height` items (vertical only) |
 | `Space` / `Enter` | Toggle current option selection |
+| Any letter | Jump to the next option whose label starts with that letter |
 | `Tab` | Navigate to next focusable component |
 
 ## Advanced Examples
