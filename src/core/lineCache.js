@@ -23,30 +23,41 @@ class LineLRUCache {
   constructor(maxSize = 2000) {
     this.maxSize = maxSize;
     this.cache = new Map();
+    this.lastKey = undefined; // Most recently used key (fast path for repeated hits)
   }
 
   get(key) {
     const value = this.cache.get(key);
     if (value === undefined) return undefined;
 
+    // Already the most recently used entry: no reordering needed
+    if (key === this.lastKey) return value;
+
     // Move to end (most recently used)
     this.cache.delete(key);
     this.cache.set(key, value);
+    this.lastKey = key;
     return value;
   }
 
   set(key, value) {
     this.cache.delete(key);
-    this.cache.set(key, value);
 
-    if (this.cache.size > this.maxSize) {
-      const firstKey = this.cache.keys().next().value;
-      this.cache.delete(firstKey);
+    if (key !== this.lastKey) {
+      // Key is new (the delete above was a no-op): evict LRU if over capacity
+      if (this.cache.size >= this.maxSize) {
+        const firstKey = this.cache.keys().next().value;
+        this.cache.delete(firstKey);
+      }
     }
+
+    this.cache.set(key, value);
+    this.lastKey = key;
   }
 
   clear() {
     this.cache.clear();
+    this.lastKey = undefined;
   }
 
   get size() {

@@ -28,6 +28,7 @@ export class LRUCache {
   constructor(maxSize = 100) {
     this.maxSize = maxSize;
     this.cache = new Map();
+    this.lastKey = undefined; // Most recently used key (fast path for repeated hits)
   }
 
   /**
@@ -36,12 +37,19 @@ export class LRUCache {
    * @returns {*} The cached value, or null if not found
    */
   get(key) {
-    if (!this.cache.has(key)) return null;
+    const value = this.cache.get(key);
+    if (value === undefined) {
+      // Preserve original semantics when an `undefined` value is stored
+      return this.cache.has(key) ? value : null;
+    }
+
+    // Already the most recently used entry: no reordering needed
+    if (key === this.lastKey) return value;
 
     // Move to end (most recently used)
-    const value = this.cache.get(key);
     this.cache.delete(key);
     this.cache.set(key, value);
+    this.lastKey = key;
 
     return value;
   }
@@ -68,6 +76,7 @@ export class LRUCache {
     }
 
     this.cache.set(key, value);
+    this.lastKey = key;
   }
 
   /**
@@ -84,6 +93,7 @@ export class LRUCache {
    */
   clear() {
     this.cache.clear();
+    this.lastKey = undefined;
   }
 
   /**

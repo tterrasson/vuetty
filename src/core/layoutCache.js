@@ -52,11 +52,11 @@ export class LayoutCache {
    * @returns {object|null} Cached metrics or null
    */
   getLayoutMetrics(node, cacheKey) {
-    if (!this.layoutMetricsCache.has(node)) {
+    const nodeCache = this.layoutMetricsCache.get(node);
+    if (nodeCache === undefined) {
       return null;
     }
 
-    const nodeCache = this.layoutMetricsCache.get(node);
     return nodeCache.get(cacheKey) || null;
   }
 
@@ -67,11 +67,11 @@ export class LayoutCache {
    * @param {object} metrics - Layout metrics to cache
    */
   setLayoutMetrics(node, cacheKey, metrics) {
-    if (!this.layoutMetricsCache.has(node)) {
-      this.layoutMetricsCache.set(node, new Map());
+    let nodeCache = this.layoutMetricsCache.get(node);
+    if (nodeCache === undefined) {
+      nodeCache = new Map();
+      this.layoutMetricsCache.set(node, nodeCache);
     }
-
-    const nodeCache = this.layoutMetricsCache.get(node);
 
     // Track entry count (only if new entry)
     if (!nodeCache.has(cacheKey)) {
@@ -92,8 +92,8 @@ export class LayoutCache {
    * Invalidate layout metrics for a node
    */
   invalidateLayoutMetrics(node) {
-    if (this.layoutMetricsCache.has(node)) {
-      const nodeCache = this.layoutMetricsCache.get(node);
+    const nodeCache = this.layoutMetricsCache.get(node);
+    if (nodeCache !== undefined) {
       this._metricsEntryCount -= nodeCache.size;
       this.layoutMetricsCache.delete(node);
     }
