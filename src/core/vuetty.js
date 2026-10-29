@@ -114,6 +114,7 @@ export class Vuetty {
     // Viewport state for global scrolling
     this.viewport = {
       scrollOffset: 0,
+      maxScrollOffset: 0,
       contentHeight: 0,
       terminalHeight: 0,
       terminalWidth: 0,

@@ -115,6 +115,16 @@ describe('Vuetty - Viewport Calculations', () => {
     Object.defineProperty(process, 'stdout', { value: originalStdout, writable: true });
   });
 
+  test('maxScrollOffset starts at zero before first render', () => {
+    expect(vuetty.viewport.maxScrollOffset).toBe(0);
+  });
+
+  test('scrollDown before first render is a no-op and does not corrupt scroll offset', () => {
+    expect(() => vuetty.scrollDown(5)).not.toThrow();
+    expect(Number.isNaN(vuetty.viewport.scrollOffset)).toBe(false);
+    expect(vuetty.viewport.scrollOffset).toBe(0);
+  });
+
   test('updateMaxScrollOffset calculates correct max offset', () => {
     vuetty.viewport.contentHeight = 100;
     vuetty.viewport.terminalHeight = 24;
