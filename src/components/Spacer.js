@@ -22,7 +22,9 @@ export default {
  * Render a spacer
  */
 export function renderSpacer(props) {
-  return ' '.repeat((props && props.count) || 1);
+  // Treat counts < 1 like 0/undefined: a single space (clamps negatives safely)
+  const count = (props && props.count) || 1;
+  return ' '.repeat(Math.max(1, count));
 }
 
 /**

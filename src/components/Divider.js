@@ -32,7 +32,9 @@ export default {
  */
 export function renderDivider(props) {
   const { char = '─', length = 40 } = props;
-  return applyStyles(char.repeat(length) + '\n', props);
+  // Clamp negative lengths to 0 to avoid RangeError from repeat()
+  const safeLength = Math.max(0, length);
+  return applyStyles(char.repeat(safeLength) + '\n', props);
 }
 
 /**

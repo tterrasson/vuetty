@@ -79,3 +79,11 @@ describe('Divider component', () => {
     });
   });
 });
+
+describe('Divider edge cases', () => {
+  test('does not throw with negative length', () => {
+    expect(() => renderDivider({ length: -1 })).not.toThrow();
+    const result = stripAnsi(renderDivider({ length: -1 }));
+    expect(result).toBe('\n');
+  });
+});

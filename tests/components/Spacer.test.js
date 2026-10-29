@@ -40,3 +40,12 @@ describe('Spacer component', () => {
     });
   });
 });
+
+describe('Spacer edge cases', () => {
+  test('does not throw with negative count', () => {
+    expect(() => renderSpacer({ count: -3 })).not.toThrow();
+    const result = renderSpacer({ count: -3 });
+    expect(typeof result).toBe('string');
+    expect(result.length).toBeLessThanOrEqual(1);
+  });
+});

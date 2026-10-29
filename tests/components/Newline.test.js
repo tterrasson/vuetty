@@ -39,3 +39,12 @@ describe('Newline component', () => {
     });
   });
 });
+
+describe('Newline edge cases', () => {
+  test('does not throw with negative count', () => {
+    expect(() => renderNewline({ count: -2 })).not.toThrow();
+    const result = renderNewline({ count: -2 });
+    expect(typeof result).toBe('string');
+    expect(result.length).toBeLessThanOrEqual(1);
+  });
+});

@@ -37,8 +37,9 @@ export default {
  * - count=3: '\n\n\n' → 3 empty lines
  */
 export function renderNewline(props) {
+  // Treat counts < 1 like 0/undefined: a single newline (clamps negatives safely)
   const count = (props && props.count) || 1;
-  return '\n'.repeat(count);
+  return '\n'.repeat(Math.max(1, count));
 }
 
 /**
