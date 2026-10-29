@@ -229,11 +229,11 @@ export function getBigTextCacheStats() {
   return {
     figlet: {
       size: figletCache.size,
-      maxSize: 50
+      maxSize: getFigletCacheSize()
     },
     final: {
       size: finalOutputCache.size,
-      maxSize: 100
+      maxSize: getFinalCacheSize()
     }
   };
 }
