@@ -116,10 +116,16 @@ export function renderProgressBar(props) {
     percentageColor = 'white'
   } = props;
 
-  // Calculate percentage and widths
-  const percentage = Math.min(100, Math.max(0, (value / max) * 100));
-  const filledWidth = Math.round((percentage / 100) * width);
-  const emptyWidth = width - filledWidth;
+  // Calculate percentage and widths (guard against max <= 0 and negative width)
+  const safeWidth = Math.max(0, width);
+  let percentage;
+  if (max > 0) {
+    percentage = Math.min(100, Math.max(0, (value / max) * 100));
+  } else {
+    percentage = value > 0 ? 100 : 0;
+  }
+  const filledWidth = Math.round((percentage / 100) * safeWidth);
+  const emptyWidth = safeWidth - filledWidth;
 
   // Build bar with separate styling for filled/empty portions
   const filled = applyStyles(char.repeat(filledWidth), { color, bold: props.bold });

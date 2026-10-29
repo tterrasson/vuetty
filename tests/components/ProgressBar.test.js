@@ -257,4 +257,46 @@ describe('ProgressBar component', () => {
       expect(stripped).toContain('[');
     });
   });
+
+  describe('renderProgressBar edge cases', () => {
+    test('renders 0% when max is 0 and value is 0 (no NaN)', () => {
+      const result = renderProgressBar({ value: 0, max: 0 });
+      const stripped = stripAnsi(result);
+
+      expect(stripped).not.toContain('NaN');
+      expect(stripped).toContain('0%');
+    });
+
+    test('renders 100% when max is 0 and value is positive', () => {
+      const result = renderProgressBar({ value: 5, max: 0 });
+      const stripped = stripAnsi(result);
+
+      expect(stripped).not.toContain('NaN');
+      expect(stripped).toContain('100%');
+    });
+
+    test('renders 0% when max is negative', () => {
+      const result = renderProgressBar({ value: 5, max: -10 });
+      const stripped = stripAnsi(result);
+
+      expect(stripped).not.toContain('NaN');
+      expect(stripped).toContain('0%');
+    });
+
+    test('clamps negative value to 0%', () => {
+      const result = renderProgressBar({ value: -20, max: 100, width: 10 });
+      const stripped = stripAnsi(result);
+
+      expect(stripped).toContain('0%');
+    });
+
+    test('does not throw with width 0 or negative width', () => {
+      expect(() => renderProgressBar({ value: 50, width: 0 })).not.toThrow();
+      expect(() => renderProgressBar({ value: 50, width: -5 })).not.toThrow();
+
+      const zero = stripAnsi(renderProgressBar({ value: 50, width: 0 }));
+      expect(zero).toContain('50%');
+      expect(zero).not.toContain('█');
+    });
+  });
 });
